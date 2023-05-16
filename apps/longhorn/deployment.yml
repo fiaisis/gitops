@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik-staging
+  name: longhorn-staging
   namespace: argocd
 spec:
   project: staging
   source:
-    repoURL: 'https://traefik.github.io/charts/'
-    targetRevision: 23.0.1
+    repoURL: https://charts.longhorn.io
+    targetRevision: 1.4.2
     chart: traefik
   destination:
-    namespace: traefik
+    namespace: longhorn-system
     name: k0s-cluster-staging
   syncPolicy:
     automated:

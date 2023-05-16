@@ -9,6 +9,13 @@ The life of a deployed application:
 
 TL;DR Staging = Main branch Head and Prod = prod branch
 
+# How to deploy the app of apps
+
+```bash
+kubectl config use-context k0s-cluster-ci-cd
+kubectl apply -f apps/app_of_apps/deployment.yaml
+```
+
 # Deploying to staging
 
 Add a new application CRD to the apps folder, this application CRD should be include the following stats:

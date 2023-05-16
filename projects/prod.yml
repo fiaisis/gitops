@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: The staging project, all staging stuff happens here
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  clusterResourceBlacklist:
+  - group: cilium.io
+    kind: CiliumIdentity
+  sourceRepos:
+  - 'https://github.com/interactivereduction/gitops'
+  - 'https://traefik.github.io/charts/'
+  - 'https://charts.longhorn.io'
+  - 'https://strimzi.io/charts/'
+  destinations:
+  - namespace: "*"
+    server: "https://172.16.113.58:6443"
+    name: k0s-cluster
+  - namespace: "*"
+    server: "https://kubernetes.default.svc"
+    name: in-cluster

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.longhorn.io
     targetRevision: 1.4.2
-    chart: traefik
+    chart: longhorn
   destination:
     namespace: longhorn-system
     name: k0s-cluster-staging

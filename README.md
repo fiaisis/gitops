@@ -13,7 +13,7 @@ TL;DR Staging = Main branch Head and Prod = prod branch
 
 ```bash
 kubectl config use-context k0s-cluster-ci-cd
-kubectl apply -f apps/app_of_apps/deployment.yaml
+kubectl apply -f apps/app_of_apps/deployment.yml
 ```
 
 # Deploying to staging

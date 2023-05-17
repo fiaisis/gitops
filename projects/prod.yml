@@ -18,6 +18,7 @@ spec:
   - 'https://traefik.github.io/charts/'
   - 'https://charts.longhorn.io'
   - 'https://strimzi.io/charts/'
+  - 'https://k8s.memphis.dev/charts/'
   destinations:
   - namespace: "*"
     server: "https://172.16.113.58:6443"

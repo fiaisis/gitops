@@ -10,7 +10,7 @@ spec:
     targetRevision: 1.4.2
     chart: longhorn
     helm:
-      values:
+      values: |
         longhornManager:
           tolerations:
             - key: queue-worker

@@ -10,7 +10,7 @@ spec:
     targetRevision: 1.0.2
     chart: memphis
     helm:
-      values:
+      values: |
         global:
           cluster:
             enabled: true

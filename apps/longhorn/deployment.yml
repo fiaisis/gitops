@@ -10,17 +10,17 @@ spec:
     targetRevision: 1.4.2
     chart: longhorn
     helm:
-      parameters:
-      - name: "longhornManager.tolerations"
-        value: 
-          - key: queue-worker
-            effect: NoSchedule
-            operator: Exists
-      - name: "longhornDriver.tolerations"
-        value:
-          - key: queue-worker
-            effect: NoSchedule
-            operator: Exists
+      values:
+        longhornManager:
+          tolerations:
+            - key: queue-worker
+              effect: NoSchedule
+              operator: Exists
+        longhornDriver:
+          tolerations:
+            - key: queue-worker
+              effect: NoSchedule
+              operator: Exists
   destination:
     namespace: longhorn-system
     name: k0s-cluster-staging

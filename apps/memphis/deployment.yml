@@ -10,11 +10,11 @@ spec:
     targetRevision: 1.0.1
     chart: memphis
     # Uncommented in production, fine for staging to leave commented out
-    # helm:
-    #   values: |
-    #     global:
-    #       cluster:
-    #         enabled: true
+    helm:
+      values: |
+        global:
+          cluster:
+            enabled: true
   destination:
     namespace: memphis
     name: k0s-cluster-staging

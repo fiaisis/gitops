@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: 'https://k8s.memphis.dev/charts/'
-    targetRevision: 1.0.1
+    targetRevision: 1.0.3
     chart: memphis
     # Uncommented in production, fine for staging to leave commented out
     # helm:

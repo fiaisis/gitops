@@ -19,6 +19,7 @@ spec:
   - 'https://charts.longhorn.io'
   - 'https://strimzi.io/charts/'
   - 'https://k8s.memphis.dev/charts/'
+  - 'https://bitnami-labs.github.io/sealed-secrets'
   destinations:
   - namespace: "*"
     server: "https://172.16.112.199:6443"

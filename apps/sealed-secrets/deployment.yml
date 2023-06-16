@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sealed-secrets-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
+    targetRevision: 0.22.0
+    chart: sealed-secrets
+  destination:
+    namespace: kube-system
+    name: k0s-cluster-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

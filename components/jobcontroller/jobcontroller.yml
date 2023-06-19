@@ -5,7 +5,7 @@ metadata:
   name: jobcontroller
   namespace: ir
 spec:
-  security_context:
+  securityContext:
     runAsUser: '880844730'
   selector:
     matchLabels:

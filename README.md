@@ -39,3 +39,22 @@ Push the wanted changed to the prod branch
 
 - Project: production
 - Branch: prod
+
+# Adding a new secret
+
+Requires you to install kubeseal:
+
+e.g.
+```shell
+wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.22.0/kubeseal-0.22.0-linux-amd64.tar.gz
+    tar -xvzf kubeseal-0.22.0-linux-amd64.tar.gz kubeseal
+    sudo install -m 755 kubeseal /usr/local/bin/kubeseal
+```
+
+Ensure that the secret file (Using bitnami sealedsecrets) exists in the correct folder for it's deployment, so that it is deployed alongside the application it is needed for.
+
+To seal a secret so it can be deployed (replace staging with nothing in the --controller-name arg):
+
+```shell
+kubeseal <secrets.yml>sealedsecrets.yml --namespace ir --controller-name=sealed-secrets-staging --controller-namespace=kube-system --format yaml
+```

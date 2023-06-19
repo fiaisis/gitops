@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ir-api
+  namespace: ir
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ir-api
+  template:
+    metadata:
+      labels:
+        app: ir-api
+    spec:
+      containers:
+      - name: ir-api
+        image: ghcr.io/interactivereduction/ir-api@sha256:fa7d1b7228a1cd3eea5da42b6a29f7a51317d4843db481327d4d50cbe98b42be
+        env:
+        - name: DB_IP
+          value: dbspg-dev.gridpp.rl.ac.uk # Staging
+          # value: dbspgha01.fds.rl.ac.uk # Production
+        - name: DB_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: db_password
+        - name: DB_USERNAME
+          valueFrom: 
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: db_username
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - name: api-port
+            protocol: TCP
+            containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ir-api-service
+  namespace: ir
+spec:
+  selector:
+    app: ir-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

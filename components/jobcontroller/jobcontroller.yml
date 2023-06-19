@@ -6,7 +6,7 @@ metadata:
   namespace: ir
 spec:
   security_context:
-    runAsUser: autoreduce
+    runAsUser: '880844730'
   selector:
     matchLabels:
       app: jobcontroller
@@ -34,7 +34,7 @@ spec:
           value: dbspg-dev.gridpp.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: REDUCE_USER_ID
-          value: autoreduce
+          value: '880844730'
         
         # Secret envs
         - name: DB_PASSWORD

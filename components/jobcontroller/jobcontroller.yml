@@ -1,0 +1,112 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobcontroller
+  namespace: ir
+spec:
+  security_context:
+    runAsUser: "{{ reduce_user_id }}"
+  selector:
+    matchLabels:
+      app: jobcontroller
+  template:
+    metadata:
+      labels:
+        app: jobcontroller
+    spec:
+      serviceAccountName: jobcontroller
+      containers:
+      - name: jobcontroller
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:662617e168d64bd2e3b5a7caf4484a8ea1979854666e2e04e9bc69415b43da3d
+        env:
+
+        # Non secret env vars
+        - name: BROKER_IP
+          value: memphis.memphis.svc.cluster.local
+        - name: IR_API
+          value: ir-api-service.ir.svc.cluster.local:80
+        - name: PYTHONPATH
+          value: /jobcontroller
+        - name: RUNNER_SHA
+          value: fe653e0098e719e197be28bf89dd90e9e20b55ef18b464993f60f5a25943744a
+        - name: DB_IP
+          value: dbspg-dev.gridpp.rl.ac.uk # Staging
+          # value: dbspgha01.fds.rl.ac.uk # Production
+        
+        # Secret envs
+        - name: REDUCE_USER_ID
+          valueFrom: 
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: reduce_user_id
+        - name: DB_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: db_password
+        - name: DB_USERNAME
+          valueFrom: 
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: db_username
+        - name: CONSUMER_USERNAME
+          valueFrom: 
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: consumer_username
+        - name: CONSUMER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: consumer_password
+
+        command: ["jobcontroller"]
+        volumeMounts:
+          - name: ceph-mount
+            mountPath: /ceph
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      volumes:
+        - name: ceph-mount
+          hostPath:
+            type: Directory
+            path: /ceph
+
+# Role and permissions
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jobcontroller
+  namespace: ir
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: jobcontroller
+rules:
+- apiGroups: ["batch"] # "" indicates the core API group
+  resources: ["jobs"]
+  verbs: ["get", "watch", "list", "create"]
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list", "get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: jobcontroller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: jobcontroller
+subjects:
+- kind: ServiceAccount
+  name: jobcontroller
+  namespace: ir

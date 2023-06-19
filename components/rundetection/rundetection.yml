@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rundetection
+  namespace: ir
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rundetection
+  template:
+    metadata:
+      labels:
+        app: rundetection
+    spec:
+      containers:
+      - name: rundetection
+        image: ghcr.io/interactivereduction/rundetection@sha256:d6c89d25c024f7b2e705c6d39534d34fdefecb76da4fb684b4a3f50ad8ed9414
+        env:
+        # None secret env vars
+        - name: MEMPHIS_HOST
+          value: memphis.memphis.svc.cluster.local
+        - name: MEMPHIS_INGRESS
+          value: watched-files
+        - name: MEMPHIS_EGRESS
+          value: requested-jobs
+        
+        # Secret envs
+        - name: MEMPHIS_USER
+          valueFrom: 
+            secretKeyRef:
+              name: rundetection-secrets
+              key: memphis_user
+        - name: MEMPHIS_PASS
+          valueFrom: 
+            secretKeyRef:
+              name: rundetection-secrets
+              key: memphis_password
+        volumeMounts:
+          - name: archive-mount
+            mountPath: /archive
+          - name: ceph-mount
+            mountPath: /ceph
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      volumes:
+        - name: archive-mount
+          hostPath:
+            type: Directory
+            path: /archive
+        - name: ceph-mount
+          hostPath:
+            type: Directory
+            path: /ceph

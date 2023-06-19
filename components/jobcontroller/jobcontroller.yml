@@ -6,7 +6,7 @@ metadata:
   namespace: ir
 spec:
   security_context:
-    runAsUser: "{{ reduce_user_id }}"
+    runAsUser: autoreduce
   selector:
     matchLabels:
       app: jobcontroller
@@ -33,13 +33,10 @@ spec:
         - name: DB_IP
           value: dbspg-dev.gridpp.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
+        - name: REDUCE_USER_ID
+          value: autoreduce
         
         # Secret envs
-        - name: REDUCE_USER_ID
-          valueFrom: 
-            secretKeyRef:
-              name: jobcontroller-secrets
-              key: reduce_user_id
         - name: DB_PASSWORD
           valueFrom: 
             secretKeyRef:

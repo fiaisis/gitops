@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn-staging
+  name: jobcontroller
   namespace: argocd
 spec:
   destination:

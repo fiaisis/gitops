@@ -40,8 +40,8 @@ spec:
               name: filewatcher-secrets
               key: memphis_password
         volumeMounts:
-          - name: ceph-mount
-            mountPath: /ceph
+          - name: archive-mount
+            mountPath: /archive
         resources:
           limits:
             memory: "128Mi"

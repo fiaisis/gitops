@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: filewatcher
-        image: ghcr.io/interactivereduction/filewatcher@sha256:e366f5072a7f27382257d10a65be27f3151328acb7387dcd5afe12c9d94e9fa6
+        image: ghcr.io/interactivereduction/filewatcher@sha256:7093610e2f68f2f6074eb7ac6b03c654762ab4982aba8a1de53b672978d74b28
         env:
         # None secret env vars
         - name: MEMPHIS_HOST

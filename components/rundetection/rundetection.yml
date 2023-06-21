@@ -42,10 +42,6 @@ spec:
             mountPath: /archive
           - name: ceph-mount
             mountPath: /ceph
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
       volumes:
         - name: archive-mount
           hostPath:

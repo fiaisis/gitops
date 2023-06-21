@@ -31,10 +31,6 @@ spec:
             secretKeyRef:
               name: jobcontroller-secrets
               key: db_username
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
           - name: api-port
             protocol: TCP

@@ -42,10 +42,6 @@ spec:
         volumeMounts:
           - name: archive-mount
             mountPath: /archive
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
       volumes:
         - name: archive-mount
           hostPath:

@@ -9,12 +9,11 @@ spec:
     repoURL: 'https://k8s.memphis.dev/charts/'
     targetRevision: 1.0.3
     chart: memphis
-    # Uncommented in production, fine for staging to leave commented out
-    # helm:
-    #   values: |
-    #     global:
-    #       cluster:
-    #         enabled: true
+    helm:
+      values: |
+        global:
+          cluster:
+            enabled: true
   destination:
     namespace: memphis
     name: k0s-cluster-staging

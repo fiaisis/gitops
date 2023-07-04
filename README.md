@@ -17,6 +17,32 @@ The life of a deployed application:
 
 TL;DR Staging = Main branch Head and Prod = prod branch
 
+# Setup:
+
+Add repository in the UI
+
+Login to the CLI:
+
+```bash
+argocd --port-forward --port-forward-namespace=argocd login --username=admin --password="MY_PASSWORD"
+```
+
+Add cluster using CLI for staging:
+
+```bash
+argocd --port-forward --port-forward-namespace=argocd cluster add k0s-cluster-staging --yes
+```
+
+Add cluster using CLI for prod
+
+```bash
+argocd --port-forward --port-forward-namespace=argocd cluster add k0s-cluster --yes
+```
+
+Deploy the app of apps
+
+Reseal all of the secrets for the bitnami sealedsecrets operator in staging and prod then push the changes to Gitops
+
 # How to deploy the app of apps
 
 This will deploy everything using ArgoCD by deploying an application that will deploy everything in the apps folder of this repo.
@@ -47,8 +73,8 @@ Requires you to install kubeseal:
 e.g.
 ```shell
 wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.22.0/kubeseal-0.22.0-linux-amd64.tar.gz
-    tar -xvzf kubeseal-0.22.0-linux-amd64.tar.gz kubeseal
-    sudo install -m 755 kubeseal /usr/local/bin/kubeseal
+tar -xvzf kubeseal-0.22.0-linux-amd64.tar.gz kubeseal
+sudo install -m 755 kubeseal /usr/local/bin/kubeseal
 ```
 
 Ensure that the secret file (Using bitnami sealedsecrets) exists in the correct folder for it's deployment, so that it is deployed alongside the application it is needed for.

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: file-watcher
+  name: file-watcher-operator
   namespace: argocd
 spec:
   destination:
@@ -9,7 +9,7 @@ spec:
     name: k0s-cluster-staging
   project: staging
   source:
-    path: components/file-watcher
+    path: components/file-watcher-operator
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
     directory:

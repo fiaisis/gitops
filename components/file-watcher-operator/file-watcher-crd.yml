@@ -1,0 +1,52 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: file-watchers.ir.com
+spec:
+  group: ir.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                instrumentFolder:
+                  type: string
+                filePrefix:
+                  type: string
+                archiveDir:
+                  type: string
+                memphisHost:
+                  type: string
+                memphisStation:
+                  type: string
+                dbIp:
+                  type: string
+                fileWatcherSha256:
+                  type: string
+  scope: Namespaced
+  names:
+    plural: filewatchers
+    singular: filewatcher
+    kind: FileWatcher
+    shortNames:
+    - fw
+
+# Example custom object
+# apiVersion: "ir.com/v1"
+# kind: FileWatcher
+# metadata:
+#   name: mari
+# spec:
+#   instrumentFolder: NDXMARI
+#   filePrefix: MAR
+#   archiveDir: /archive
+#   memphisHost: memphis.memphis.svc.cluster.local
+#   memphisStation: watched-files
+#   dbIp: dbspg-dev.gridpp.rl.ac.uk
+#   fileWatcherSha256: "7d8d9d46288b58e6505664b2488406e145e1c141ca38cc422c0317b45a3ec924"

@@ -1,0 +1,19 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-watcher-operator
+  namespace: ir
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-watcher-operator
+  template:
+    metadata:
+      labels:
+        app: file-watcher-operator
+    spec:
+      containers:
+      - name: file-watcher-operator
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:a96a8bba0f1fca9f99f1ed0dbd5977b61aecf4642685b43a4dd3aec0d6eb0f8d

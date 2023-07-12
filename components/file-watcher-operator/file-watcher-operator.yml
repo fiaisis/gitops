@@ -38,9 +38,12 @@ rules:
   - apiGroups: [""]
     resources: [namespaces]
     verbs: [list, watch]
-  - apiGroups: ["ir.com"]
+  - apiGroups: [ir.com]
     resources: [filewatchers]
     verbs: [list, watch]
+  - apiGroups: [""]
+    resources: [deployments]
+    verbs: [get, watch, list, create]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

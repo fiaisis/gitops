@@ -40,8 +40,8 @@ rules:
     verbs: [list, watch]
   - apiGroups: [ir.com]
     resources: [filewatchers]
-    verbs: [list, watch]
-  - apiGroups: [""]
+    verbs: [list, watch, patch]
+  - apiGroups: [apps]
     resources: [deployments]
     verbs: [get, watch, list, create]
 ---

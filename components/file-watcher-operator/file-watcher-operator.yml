@@ -17,7 +17,7 @@ spec:
       serviceAccountName: file-watcher-operator
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:a96a8bba0f1fca9f99f1ed0dbd5977b61aecf4642685b43a4dd3aec0d6eb0f8d
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:1d115b98f51ed3f52309dd866cd1dbc32becc93e4aa4ab1289d20882b26a1464
 
 # Role and permissions
 ---

@@ -10,4 +10,4 @@ spec:
   memphisStation: watched-files
   dbIp: dbspg-dev.gridpp.rl.ac.uk # Staging
   # dbIp: dbspgha01.fds.rl.ac.uk # Production
-  fileWatcherSha256: "7be7fa32cc10b24f0c8413bc2d0181f23494a9348d421f6b6fb04f61da8c579f"
+  fileWatcherSha256: "222f4fa78f8d5ff640d25ef0dc7ab5da50293874ed2c22806a791891da00315f"

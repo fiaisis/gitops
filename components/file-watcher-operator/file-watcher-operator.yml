@@ -17,7 +17,7 @@ spec:
       serviceAccountName: file-watcher-operator
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:9fc867a54547e37d805a20c5c7fd6a0ac7cf9079ba7f07b4b971610c13fba666
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:e56a6f73b4d0ff80b5c95dd54e08b0c26b240f47628794d48d776fe2e7e16b2d
         env:
         - name: ARCHIVE_DIR
           value: /archive
@@ -29,7 +29,7 @@ spec:
           value: dbspg-dev.gridpp.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: FILE_WATCHER_SHA256
-          value: "a46b80d0eb0f8f9fd27c2b6a1813bd4f81a2595a9d50ac6a88a2b08b3e2ddca2"
+          value: "222f4fa78f8d5ff640d25ef0dc7ab5da50293874ed2c22806a791891da00315f"
 
 # Role and permissions
 ---

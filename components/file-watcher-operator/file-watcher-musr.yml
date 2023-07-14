@@ -1,0 +1,7 @@
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: musr
+spec:
+  instrumentFolder: NDXMUSR
+  filePrefix: MUSR

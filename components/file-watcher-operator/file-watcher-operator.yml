@@ -18,6 +18,18 @@ spec:
       containers:
       - name: file-watcher-operator
         image: ghcr.io/interactivereduction/filewatcher-operator@sha256:9fc867a54547e37d805a20c5c7fd6a0ac7cf9079ba7f07b4b971610c13fba666
+        env:
+        - name: ARCHIVE_DIR
+          value: /archive
+        - name: MEMPHIS_HOST
+          value: memphis.memphis.svc.cluster.local
+        - name: MEMPHIS_STATION
+          value: watched-files
+        - name: DB_IP
+          value: dbspg-dev.gridpp.rl.ac.uk # Staging
+          # value: dbspgha01.fds.rl.ac.uk # Production
+        - name: FILE_WATCHER_SHA256
+          value: "a46b80d0eb0f8f9fd27c2b6a1813bd4f81a2595a9d50ac6a88a2b08b3e2ddca2"
 
 # Role and permissions
 ---

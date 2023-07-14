@@ -5,9 +5,3 @@ metadata:
 spec:
   instrumentFolder: NDXOSIRIS
   filePrefix: OSIRIS
-  archiveDir: /archive
-  memphisHost: memphis.memphis.svc.cluster.local
-  memphisStation: watched-files
-  dbIp: dbspg-dev.gridpp.rl.ac.uk # Staging
-  # dbIp: dbspgha01.fds.rl.ac.uk # Production
-  fileWatcherSha256: "222f4fa78f8d5ff640d25ef0dc7ab5da50293874ed2c22806a791891da00315f"

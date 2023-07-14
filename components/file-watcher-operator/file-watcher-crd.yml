@@ -19,16 +19,6 @@ spec:
                   type: string
                 filePrefix:
                   type: string
-                archiveDir:
-                  type: string
-                memphisHost:
-                  type: string
-                memphisStation:
-                  type: string
-                dbIp:
-                  type: string
-                fileWatcherSha256:
-                  type: string
   scope: Namespaced
   names:
     plural: filewatchers

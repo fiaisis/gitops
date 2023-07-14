@@ -1,0 +1,7 @@
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: hifi
+spec:
+  instrumentFolder: NDXHIFI
+  filePrefix: HIFI

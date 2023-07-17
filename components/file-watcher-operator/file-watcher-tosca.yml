@@ -1,7 +1,0 @@
-apiVersion: "ir.com/v1"
-kind: FileWatcher
-metadata:
-  name: tosca
-spec:
-  instrumentFolder: NDXTOSCA
-  filePrefix: TSC

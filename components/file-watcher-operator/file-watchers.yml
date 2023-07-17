@@ -1,0 +1,306 @@
+---
+# MuSR
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: musr
+spec:
+  instrumentFolder: NDXMUSR
+  filePrefix: MUSR
+---
+#HiFi
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: hifi
+spec:
+  instrumentFolder: NDXHIFI
+  filePrefix: HIFI
+---
+# Emu
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: emu
+spec:
+  instrumentFolder: NDXEMU
+  filePrefix: EMU
+---
+# Pearl
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: pearl
+spec:
+  instrumentFolder: NDXPEARL
+  filePrefix: PEARL
+---
+# HRPD
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: hrpd
+spec:
+  instrumentFolder: NDXHRPD
+  filePrefix: HRP
+---
+# Engin-X
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: enginx
+spec:
+  instrumentFolder: NDXENGINX
+  filePrefix: ENGINX
+---
+# GEM
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: gem
+spec:
+  instrumentFolder: NDXGEM
+  filePrefix: GEM
+---
+# Mari
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: mari
+spec:
+  instrumentFolder: NDXMARI
+  filePrefix: MAR
+---
+# Merlin
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: merlin
+spec:
+  instrumentFolder: NDXMERLIN
+  filePrefix: MER
+---
+# SXD
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: sxd
+spec:
+  instrumentFolder: NDXSXD
+  filePrefix: SXD
+---
+# Vesuvio
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: vesuvio
+spec:
+  instrumentFolder: NDXVESUVIO
+  filePrefix: VESUVIO
+---
+# Maps
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: maps
+spec:
+  instrumentFolder: NDXMAPS
+  filePrefix: MAP
+---
+# Sandals
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: sandals
+spec:
+  instrumentFolder: NDXSANDALS
+  filePrefix: SLS
+---
+# Alf
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: alf
+spec:
+  instrumentFolder: NDXALF
+  filePrefix: ALF
+---
+# Surf
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: surf
+spec:
+  instrumentFolder: NDXSURF
+  filePrefix: SRF
+---
+# Crisp
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: crisp
+spec:
+  instrumentFolder: NDXCRISP
+  filePrefix: CSP
+---
+# LOQ
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: loq
+spec:
+  instrumentFolder: NDXLOQ
+  filePrefix: LOQ
+---
+# Osiris
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: osiris
+spec:
+  instrumentFolder: NDXOSIRIS
+  filePrefix: OSIRIS
+---
+# Iris
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: iris
+spec:
+  instrumentFolder: NDXIRIS
+  filePrefix: IRIS
+---
+# Polaris
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: polaris
+spec:
+  instrumentFolder: NDXPOLARIS
+  filePrefix: POLARIS
+---
+# INES
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: ines
+spec:
+  instrumentFolder: NDXINES
+  filePrefix: INS
+---
+# Tosca
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: tosca
+spec:
+  instrumentFolder: NDXTOSCA
+  filePrefix: TSC
+---
+# Argus (RIKEN)
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: argus
+spec:
+  instrumentFolder: NDXARGUS
+  filePrefix: ARGUS
+---
+# Chronus (RIKEN)
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: chronus
+spec:
+  instrumentFolder: NDXCHRONUS
+  filePrefix: CHRONUS
+---
+# Wish
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: wish
+spec:
+  instrumentFolder: NDXWISH
+  filePrefix: WISH
+---
+# Larmor
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: larmor
+spec:
+  instrumentFolder: NDXLARMOR
+  filePrefix: LARMOR
+---
+# Offspec
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: offspec
+spec:
+  instrumentFolder: NDXOFFSPEC
+  filePrefix: OFFSPEC
+---
+# Inter
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: inter
+spec:
+  instrumentFolder: NDXINTER
+  filePrefix: INTER
+---
+# Polref
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: polref
+spec:
+  instrumentFolder: NDXPOLREF
+  filePrefix: POLREF
+---
+# Sans2D
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: sans2d
+spec:
+  instrumentFolder: NDXSANS2D
+  filePrefix: SANS2D
+---
+# Zoom
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: zoom
+spec:
+  instrumentFolder: NDXZOOM
+  filePrefix: ZOOM
+---
+# IMAT - Not sure this has useful .nxs files yet
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: imat
+spec:
+  instrumentFolder: NDXIMAT
+  filePrefix: IMAT
+---
+# LET
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: let
+spec:
+  instrumentFolder: NDXLET
+  filePrefix: LET
+---
+# Nimrod
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+  name: nimrod
+spec:
+  instrumentFolder: NDXNIMROD
+  filePrefix: NIMROD

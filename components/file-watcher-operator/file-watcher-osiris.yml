@@ -1,7 +1,0 @@
-apiVersion: "ir.com/v1"
-kind: FileWatcher
-metadata:
-  name: osiris
-spec:
-  instrumentFolder: NDXOSIRIS
-  filePrefix: OSIRIS

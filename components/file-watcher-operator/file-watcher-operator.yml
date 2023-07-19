@@ -29,7 +29,7 @@ spec:
           value: dbspg-dev.gridpp.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: FILE_WATCHER_SHA256
-          value: "a399ae5b7daf3135135f0364000f23c016be4f4731cfd986e5b8c4af54b66a6d"
+          value: "466d50b0196daae0b07f61667c5a08aae31a2cd5b9f10f23ed916a64cd4ea9c3"
 
 # Role and permissions
 ---

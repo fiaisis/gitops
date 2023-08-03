@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: ir-file-watcher
     name: k0s-cluster-staging
   project: staging
   source:

@@ -101,3 +101,10 @@ subjects:
 - kind: ServiceAccount
   name: jobcontroller
   namespace: ir
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ir-jobs
+  labels:
+    name: ir-jobs

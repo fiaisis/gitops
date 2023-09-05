@@ -5,7 +5,7 @@ metadata:
   namespace: ir
 spec:
   accessModes:
-    - ReadMany
+    - ReadOnlyMany
   resources:
     requests:
       storage: 5000Gi

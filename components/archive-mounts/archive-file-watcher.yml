@@ -5,7 +5,7 @@ metadata:
   namespace: ir-file-watcher
 spec:
   accessModes:
-    - ReadMany
+    - ReadOnlyMany
   resources:
     requests:
       storage: 5000Gi

@@ -44,9 +44,8 @@ spec:
             mountPath: /ceph
       volumes:
         - name: archive-mount
-          hostPath:
-            type: Directory
-            path: /archive
+          persistentVolumeClaim:
+            claimName: archive-pvc
         - name: ceph-mount
           hostPath:
             type: Directory

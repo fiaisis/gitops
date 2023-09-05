@@ -1,0 +1,11 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: smb.csi.k8s.io
+provisioner: smb.csi.k8s.io
+parameters:
+  source: "//isis.cclrc.ac.uk/inst$/"
+  csi.storage.k8s.io/provisioner-secret-name: archive-creds
+  csi.storage.k8s.io/provisioner-secret-namespace: ir
+  csi.storage.k8s.io/node-stage-secret-name: archive-creds
+  csi.storage.k8s.io/node-stage-secret-namespace: ir

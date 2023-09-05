@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: archive-pvc
+  namespace: ir-file-watcher
+spec:
+  accessModes:
+    - ReadMany
+  resources:
+    requests:
+      storage: 5000Gi
+  storageClassName: smb.csi.k8s.io

@@ -12,7 +12,7 @@ spec:
     helm:
       values: 
         securityContext:
-          capabilities: CAP_DAC_OVERRIDE }  # Allow the pods to do file operations unrestricted without full root access
+          capabilities: CAP_DAC_OVERRIDE  # Allow the pods to do file operations unrestricted without full root access
   destination:
     namespace: ir
     name: k0s-cluster-staging

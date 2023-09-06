@@ -8,5 +8,5 @@ spec:
     - ReadOnlyMany
   resources:
     requests:
-      storage: 5000Gi
-  storageClassName: smb.csi.k8s.io
+      storage: 100Gi
+  storageClassName: archive-sc

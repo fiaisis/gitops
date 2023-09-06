@@ -29,7 +29,7 @@ spec:
         - name: RUNNER_SHA
           value: fe653e0098e719e197be28bf89dd90e9e20b55ef18b464993f60f5a25943744a
         - name: DB_IP
-          value: dbspg-dev.gridpp.rl.ac.uk # Staging
+          value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: REDUCE_USER_ID
           value: '880844730'

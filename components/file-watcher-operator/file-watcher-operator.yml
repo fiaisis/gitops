@@ -26,7 +26,7 @@ spec:
         - name: MEMPHIS_STATION
           value: watched-files
         - name: DB_IP
-          value: dbspg-dev.gridpp.rl.ac.uk # Staging
+          value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: FILE_WATCHER_SHA256
           value: "7e45bd3cbe8858946854f7585f4746a2801cd1c657a7a5b3245f5085f691ff03"

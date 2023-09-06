@@ -12,8 +12,8 @@ spec:
     helm:
       # Allow the pods to do file operations unrestricted without full root access
       values: |
-        securityContext:
-          capabilities: CAP_DAC_OVERRIDE  
+        controller:
+          workingMountDir: "$HOME/tmp"
   destination:
     namespace: ir
     name: k0s-cluster-staging

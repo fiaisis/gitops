@@ -29,7 +29,7 @@ spec:
           value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: FILE_WATCHER_SHA256
-          value: "7e45bd3cbe8858946854f7585f4746a2801cd1c657a7a5b3245f5085f691ff03"
+          value: "c0258f464bf0e44fff70c124d7b2bf4a2ead3761e89f9091a2cb6ee4322d8308"
 
 # Role and permissions
 ---

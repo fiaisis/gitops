@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: rundetection
-        image: ghcr.io/interactivereduction/rundetection@sha256:d6c89d25c024f7b2e705c6d39534d34fdefecb76da4fb684b4a3f50ad8ed9414
+        image: ghcr.io/interactivereduction/rundetection@sha256:06d1bf28203f3de397e3b49c2e84fdf795486a176c2744d8ff11f72b98bafd8b
         env:
         # None secret env vars
         - name: MEMPHIS_HOST

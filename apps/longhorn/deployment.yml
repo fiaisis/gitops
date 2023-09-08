@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://charts.longhorn.io
+    targetRevision: 1.4.2
+    chart: longhorn
+    helm:
+      values: |
+        longhornManager:
+          tolerations:
+            - key: queue-worker
+              effect: NoSchedule
+              operator: Exists
+        longhornDriver:
+          tolerations:
+            - key: queue-worker
+              effect: NoSchedule
+              operator: Exists
+  destination:
+    namespace: longhorn-system
+    name: k0s-cluster-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

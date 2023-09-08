@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobcontroller
+  namespace: ir
+spec:
+  selector:
+    matchLabels:
+      app: jobcontroller
+    spec:
+      serviceAccountName: jobcontroller
+      containers:
+      - name: jobcontroller
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:fe52fad97705ef1f9ea7bc183b0b5186447317eaf40edff9871e94aa8ea87307
+        env:
+        # Non secret env vars
+        - name: RUNNER_SHA
+          value: fe653e0098e719e197be28bf89dd90e9e20b55ef18b464993f60f5a25943744a
+        - name: DB_IP
+          value: dbspgha01.fds.rl.ac.uk

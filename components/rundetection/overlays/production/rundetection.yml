@@ -1,0 +1,14 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rundetection
+  namespace: ir
+spec:
+  selector:
+    matchLabels:
+      app: rundetection
+    spec:
+      containers:
+      - name: rundetection
+        image: ghcr.io/interactivereduction/rundetection@sha256:06d1bf28203f3de397e3b49c2e84fdf795486a176c2744d8ff11f72b98bafd8b

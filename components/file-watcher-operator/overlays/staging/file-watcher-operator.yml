@@ -1,0 +1,17 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-watcher-operator
+  namespace: ir-file-watcher
+spec:
+  template:
+    spec:
+      containers:
+      - name: file-watcher-operator
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:b8e9580fcbb1cd132fe10bbba38689360aaaae24cf753d4a8de4aa71886096ec
+        env:
+        - name: DB_IP
+          value: dbspg03.fds.rl.ac.uk
+        - name: FILE_WATCHER_SHA256
+          value: "d395b51bfb8c6f51e02621bb8fc402043f8f18106a3351a04768ba489d2e1b2d"

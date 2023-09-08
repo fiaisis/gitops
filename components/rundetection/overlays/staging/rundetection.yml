@@ -5,9 +5,7 @@ metadata:
   name: rundetection
   namespace: ir
 spec:
-  selector:
-    matchLabels:
-      app: rundetection
+  template:
     spec:
       containers:
       - name: rundetection

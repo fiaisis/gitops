@@ -5,9 +5,7 @@ metadata:
   name: ir-api
   namespace: ir
 spec:
-  selector:
-    matchLabels:
-      app: ir-api
+  template:
     spec:
       containers:
       - name: ir-api

@@ -13,8 +13,6 @@ spec:
     path: components/ir-api/overlays/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
-    directory:
-      recurse: false
   syncPolicy:
     automated:
       prune: true

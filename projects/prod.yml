@@ -19,6 +19,8 @@ spec:
   - 'https://charts.longhorn.io'
   - 'https://strimzi.io/charts/'
   - 'https://k8s.memphis.dev/charts/'
+  - 'https://bitnami-labs.github.io/sealed-secrets'
+  - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
   destinations:
   - namespace: "*"
     server: "https://172.16.113.58:6443"

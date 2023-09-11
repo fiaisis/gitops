@@ -30,3 +30,36 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn-production
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://charts.longhorn.io
+    targetRevision: 1.4.2
+    chart: longhorn
+    helm:
+      values: |
+        longhornManager:
+          tolerations:
+            - key: queue-worker
+              effect: NoSchedule
+              operator: Exists
+        longhornDriver:
+          tolerations:
+            - key: queue-worker
+              effect: NoSchedule
+              operator: Exists
+  destination:
+    namespace: longhorn-system
+    name: k0s-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

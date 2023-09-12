@@ -4,3 +4,4 @@ resources:
 - ../../base
 patches:
 - path: file-watcher-operator.yml
+- path: sealedsecrets.yml

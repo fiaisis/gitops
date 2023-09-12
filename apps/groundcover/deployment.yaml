@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: groundcover-production
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://helm.groundcover.com
+    targetRevision: 1.4.2
+    chart: groundcover/groundcover
+    helm:
+      releaseName: groundcover
+
+  destination:
+    namespace: groundcover
+    name: k0s-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - kind: Secret
+      jsonPointers:
+      - /data
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: groundcover-secrets-production
+  namespace: argocd
+spec:
+  destination:
+    namespace: groundcover
+    name: k0s-cluster
+  project: prod
+  source:
+    path: components/groundcover-secrets
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

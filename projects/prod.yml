@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: The staging project, all staging stuff happens here
+  description: The production project, all production stuff happens here
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -21,6 +21,7 @@ spec:
   - 'https://k8s.memphis.dev/charts/'
   - 'https://bitnami-labs.github.io/sealed-secrets'
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
+  - 'https://helm.groundcover.com'
   destinations:
   - namespace: "*"
     server: "https://172.16.113.58:6443"

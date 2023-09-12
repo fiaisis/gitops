@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
       - name: rundetection
-        image: ghcr.io/interactivereduction/rundetection@sha256:06d1bf28203f3de397e3b49c2e84fdf795486a176c2744d8ff11f72b98bafd8b
+        image: ghcr.io/interactivereduction/rundetection@sha256:6c86f658b576f175a8fb9c5508af79bef106df0191a1412971e1d0d75908d279

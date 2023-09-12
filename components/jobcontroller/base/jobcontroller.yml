@@ -16,9 +16,8 @@ spec:
       serviceAccountName: jobcontroller
       containers:
       - name: jobcontroller
-        image: ghcr.io/interactivereduction/jobcontroller@sha256:fe52fad97705ef1f9ea7bc183b0b5186447317eaf40edff9871e94aa8ea87307
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:e1bb88a5380bcc4e9a5b895894dc78969c97554d
         env:
-
         # Non secret env vars
         - name: BROKER_IP
           value: memphis.memphis.svc.cluster.local

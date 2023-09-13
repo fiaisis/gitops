@@ -7,7 +7,6 @@ spec:
   project: prod
   source:
     repoURL: https://helm.groundcover.com
-    targetRevision: 1.5.2
     chart: groundcover/groundcover
     helm:
       releaseName: groundcover

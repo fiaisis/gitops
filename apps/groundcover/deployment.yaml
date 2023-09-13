@@ -15,11 +15,11 @@ spec:
         global:
           groundcoverPredefinedTokenSecret:
             secretKey: API_KEY
-            secretName: groundcover-api-key
+            secretName: groundcover
           clickhouse:
             auth:
-              existingSecretKey: admin-password
-              existingSecret: groundcover-clickhouse
+              existingSecretKey: clickhouse-admin-password
+              existingSecret: groundcover
   destination:
     namespace: groundcover
     name: k0s-cluster

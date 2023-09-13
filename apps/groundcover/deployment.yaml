@@ -11,6 +11,15 @@ spec:
     chart: groundcover
     helm:
       releaseName: groundcover
+      values: |
+        global:
+          groundcoverPredefinedTokenSecret:
+            secretKey: API_KEY
+            secretName: groundcover-api-key
+          clickhouse:
+            auth:
+              existingSecretKey: admin-password
+              existingSecret: groundcover-clickhouse
   destination:
     namespace: groundcover
     name: k0s-cluster

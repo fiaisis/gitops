@@ -7,10 +7,10 @@ spec:
   project: prod
   source:
     repoURL: https://helm.groundcover.com
-    chart: groundcover/groundcover
+    targetRevision: 1.5.2
+    chart: groundcover
     helm:
       releaseName: groundcover
-
   destination:
     namespace: groundcover
     name: k0s-cluster

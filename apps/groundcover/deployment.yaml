@@ -12,6 +12,7 @@ spec:
     helm:
       releaseName: groundcover
       values: |
+        clusterId: prod-cluster
         global:
           groundcoverPredefinedTokenSecret:
             secretKey: API_KEY

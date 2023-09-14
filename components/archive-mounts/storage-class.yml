@@ -15,5 +15,6 @@ mountOptions:
   - noserverino
   - _netdev
   - vers=2.1
+  - username=autoreduction
   - dir_mode=0555
   - file_mode=0444

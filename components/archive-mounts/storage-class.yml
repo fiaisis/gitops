@@ -12,7 +12,7 @@ parameters:
 reclaimPolicy: Delete  # available values: Delete, Retain
 volumeBindingMode: Immediate
 mountOptions:
-  - dir_mode=0777
-  - file_mode=0777
+  - dir_mode=0444
+  - file_mode=0444
   - uid=1001
   - gid=1001

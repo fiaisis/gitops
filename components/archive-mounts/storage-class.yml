@@ -4,7 +4,7 @@ metadata:
   name: archive-sc
 provisioner: smb.csi.k8s.io
 parameters:
-  source: "//isisdatar55/&$"
+  source: "//isisdatar55/&\$"
   csi.storage.k8s.io/provisioner-secret-name: archive-creds
   csi.storage.k8s.io/provisioner-secret-namespace: ir
   csi.storage.k8s.io/node-stage-secret-name: archive-creds

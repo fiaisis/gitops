@@ -12,5 +12,8 @@ parameters:
 reclaimPolicy: Delete  # available values: Delete, Retain
 volumeBindingMode: Immediate
 mountOptions:
+  - noserverino
+  - _netdev
+  - vers=2.1
   - dir_mode=0555
   - file_mode=0444

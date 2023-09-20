@@ -8,7 +8,7 @@ spec:
   capacity:
     storage: 1000Gi
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: smb
   mountOptions:

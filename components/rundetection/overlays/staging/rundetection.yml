@@ -10,8 +10,10 @@ spec:
       containers:
       - name: rundetection
         image: ghcr.io/interactivereduction/rundetection@sha256:20a32ba5421bf52920ea9438804e330dc0c2f0411498e55ab5167b935a9b6106
+        volumeMounts:
+          - name: archive-mount-test
+            mountPath: /archive-test
       volumes:
-      - name: archive-mount
+      - name: archive-mount-test
         persistentVolumeClaim:
           claimName: archive-pvc-smb
-          path: /archive

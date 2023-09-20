@@ -9,11 +9,6 @@ spec:
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
     targetRevision: 1.12.0
     chart: csi-driver-smb
-    helm:
-      # Allow the pods to do file operations unrestricted without full root access
-      values: |
-        controller:
-          workingMountDir: "$HOME"
   destination:
     namespace: ir
     name: k0s-cluster-staging

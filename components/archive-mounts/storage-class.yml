@@ -9,7 +9,8 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-namespace: ir
   csi.storage.k8s.io/node-stage-secret-name: archive-creds
   csi.storage.k8s.io/node-stage-secret-namespace: ir
-reclaimPolicy: Delete  # available values: Delete, Retain
+  createSubDir: "false"
+reclaimPolicy: Retain  # available values: Delete, Retain
 volumeBindingMode: Immediate
 mountOptions:
   - noserverino

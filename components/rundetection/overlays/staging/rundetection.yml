@@ -17,3 +17,4 @@ spec:
       - name: archive-mount-test
         persistentVolumeClaim:
           claimName: archive-pvc-smb
+          readOnly: true

@@ -11,7 +11,7 @@ spec:
       - name: rundetection
         image: ghcr.io/interactivereduction/rundetection@sha256:20a32ba5421bf52920ea9438804e330dc0c2f0411498e55ab5167b935a9b6106
       volumes:
-        - name: archive-mount
-          persistentVolumeClaim:
+        - persistentVolumeClaim:
             claimName: archive-pvc-smb
             readOnly: true
+          name: archive-mount

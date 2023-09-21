@@ -43,10 +43,10 @@ spec:
           - name: ceph-mount
             mountPath: /ceph
       volumes:
-        - name: archive-mount
-          hostPath:
+        - hostPath:
             type: Directory
             path: /archive
+          name: archive-mount
         - name: ceph-mount
           hostPath:
             type: Directory

@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: 'https://k8s.memphis.dev/charts/'
-    targetRevision: 1.0.3
+    targetRevision: 1.2.3
     chart: memphis
     helm:
       values: |
@@ -33,7 +33,7 @@ spec:
   project: prod
   source:
     repoURL: 'https://k8s.memphis.dev/charts/'
-    targetRevision: 1.0.3
+    targetRevision: 1.2.3
     chart: memphis
     helm:
       values: |

@@ -13,5 +13,5 @@ spec:
       volumes:
         - name: archive-mount
           persistentVolumeClaim:
-            claimName: archive-pvc-smb
+            claimName: rundetection-archive-pvc
             readOnly: true

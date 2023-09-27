@@ -2,12 +2,12 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: archive-pvc-smb
+  name: rundetection-archive-pvc
 spec:
   accessModes:
     - ReadOnlyMany
   resources:
     requests:
-      storage: 1000Gi
+      storage: 1Gi
   volumeName: archive-pv-smb
   storageClassName: smb

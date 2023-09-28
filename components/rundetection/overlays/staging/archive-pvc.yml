@@ -8,6 +8,6 @@ spec:
     - ReadOnlyMany
   resources:
     requests:
-      storage: 1Gi
+      storage: 1000Gi
   volumeName: archive-pv-smb
   storageClassName: smb

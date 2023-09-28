@@ -26,7 +26,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: archive-pv
+  name: archive-secrets
   namespace: argocd
 spec:
   destination:
@@ -34,7 +34,7 @@ spec:
     name: k0s-cluster-staging
   project: staging
   source:
-    path: components/archive-mounts
+    path: components/archive-secrets
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
     directory:

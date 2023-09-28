@@ -6,3 +6,4 @@ patches:
 - path: rundetection.yml
 - path: sealedsecrets.yml
 - path: archive-pvc.yml
+- path: archive-pv.yml

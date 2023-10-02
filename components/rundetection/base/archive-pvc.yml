@@ -9,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 1000Gi
-  volumeName: archive-pv-smb
+  volumeName: rundetection-archive-pv-smb
   storageClassName: smb

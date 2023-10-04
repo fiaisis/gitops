@@ -18,5 +18,5 @@ rules:
     verbs: [get, watch, list, create, patch]
   - apiGroups: [""]
     resources: [persistentvolumeclaims, events, persistentvolumes]
-    verbs: [list, watch, create]
+    verbs: [list, watch, create, delete]
 

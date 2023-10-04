@@ -11,7 +11,7 @@ kind: ClusterRole
 metadata:
   name: jobcontroller
 rules:
-- apiGroups: ["batch"] # "" indicates the core API group
+- apiGroups: ["batch"]
   resources: ["jobs"]
   verbs: ["get", "watch", "list", "create"]
 - apiGroups: [""]

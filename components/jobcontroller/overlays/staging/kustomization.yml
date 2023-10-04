@@ -5,3 +5,4 @@ resources:
 patches:
 - path: jobcontroller.yml
 - path: sealedsecrets.yml
+- path: jobcontroller-permissions.yml

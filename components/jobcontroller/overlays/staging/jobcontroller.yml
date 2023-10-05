@@ -10,7 +10,7 @@ spec:
       serviceAccountName: jobcontroller
       containers:
       - name: jobcontroller
-        image: ghcr.io/interactivereduction/jobcontroller@sha256:cc7420c6021788c80957a3705a9977a7f517feb5728da5d1047fa2463a6a767e
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:ef0971b186b9a02be0637f0cec3deca84f071fb4a32127a323e5ddba91a06cc8
         env:
         # Non secret env vars
         - name: RUNNER_SHA

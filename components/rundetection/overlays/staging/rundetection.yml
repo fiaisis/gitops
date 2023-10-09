@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: rundetection
-        image: ghcr.io/interactivereduction/rundetection@sha256:7eb9a30cc5dc90404f4cc422d7fdd440ed055c2ee745d5304f427048b2edacc0
+        image: ghcr.io/interactivereduction/rundetection@sha256:148349971beff4ddf3ad0e0338684e467c5e365549b23430788ac6145e9b4a5f
         env:
         - name: QUEUE_HOST
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local

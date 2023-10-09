@@ -1,0 +1,16 @@
+---
+# 
+apiVersion: rabbitmq.com/v1beta1
+kind: User
+metadata:
+  name: rabbitmq-admin
+spec:
+  tags:
+  - management # available tags are 'management', 'policymaker', 'monitoring' and 'administrator'
+  - policymaker
+  - monitoring
+  - administrator
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster # rabbitmqCluster must exist in the same namespace as this resource
+  importCredentialsSecret:
+    name: rabbitmq-admin

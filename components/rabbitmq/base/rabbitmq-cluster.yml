@@ -4,3 +4,5 @@ metadata:
   name: rabbitmq-cluster
 spec:
   replicas: 3
+service:
+  type: ClusterIP

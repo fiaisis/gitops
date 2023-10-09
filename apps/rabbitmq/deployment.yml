@@ -6,9 +6,9 @@ metadata:
 spec:
   project: staging
   source:
-    repoURL: oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator
+    repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 3.8.3
-    chart: my-release
+    chart: rabbitmq-cluster-operator
   destination:
     namespace: rabbitmq
     name: k0s-cluster-staging

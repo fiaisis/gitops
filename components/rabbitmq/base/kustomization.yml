@@ -6,3 +6,4 @@ resources:
   - ha-policy.yml
   - sealedsecrets.yml
   - users.yml
+  - permissions.yml

@@ -1,0 +1,14 @@
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Permission
+metadata:
+  name: rabbitmq-admin-permission
+spec:
+  vhost: "/"
+  user: "rabbitmq-admin"
+  permissions:
+    write: ".*"
+    configure: ".*"
+    read: ".*"
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster

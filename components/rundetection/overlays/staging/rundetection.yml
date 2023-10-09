@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: rundetection
-        image: ghcr.io/interactivereduction/rundetection@sha256:20a32ba5421bf52920ea9438804e330dc0c2f0411498e55ab5167b935a9b6106
+        image: ghcr.io/interactivereduction/rundetection@sha256:7eb9a30cc5dc90404f4cc422d7fdd440ed055c2ee745d5304f427048b2edacc0
       volumes:
         - name: archive-mount
           persistentVolumeClaim:

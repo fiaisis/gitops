@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 3.9.0
+    chart: rabbitmq-cluster-operator
+  destination:
+    namespace: rabbitmq
+    name: k0s-cluster-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ir-api-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: rabbitmq
+    name: k0s-cluster-staging
+  project: staging
+  source:
+    path: components/rabbitmq/overlays/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

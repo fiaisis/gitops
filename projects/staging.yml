@@ -20,6 +20,7 @@ spec:
   - 'https://strimzi.io/charts/'
   - 'https://k8s.memphis.dev/charts/'
   - 'https://bitnami-labs.github.io/sealed-secrets'
+  - 'https://charts.bitnami.com/bitnami'
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
   destinations:
   - namespace: "*"

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn-staging
+  name: rabbitmq-operator-staging
   namespace: argocd
 spec:
   project: staging
@@ -22,7 +22,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ir-api-staging
+  name: rabbitmq-configs-staging
   namespace: argocd
 spec:
   destination:

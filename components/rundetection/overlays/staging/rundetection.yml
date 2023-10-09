@@ -10,6 +10,13 @@ spec:
       containers:
       - name: rundetection
         image: ghcr.io/interactivereduction/rundetection@sha256:7eb9a30cc5dc90404f4cc422d7fdd440ed055c2ee745d5304f427048b2edacc0
+        env:
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+        - name: INGRESS_QUEUE_NAME
+          value: watched-files
+        - name: EGRESS_QUEUE_NAME
+          value: scheduled-jobs
       volumes:
         - name: archive-mount
           persistentVolumeClaim:

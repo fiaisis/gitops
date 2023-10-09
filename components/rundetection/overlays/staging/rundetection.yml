@@ -17,6 +17,16 @@ spec:
           value: watched-files
         - name: EGRESS_QUEUE_NAME
           value: scheduled-jobs
+        - name: QUEUE_USER
+          valueFrom: 
+            secretKeyRef:
+              name: rundetection-secrets
+              key: queue_user
+        - name: QUEUE_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: rundetection-secrets
+              key: queue_password
       volumes:
         - name: archive-mount
           persistentVolumeClaim:

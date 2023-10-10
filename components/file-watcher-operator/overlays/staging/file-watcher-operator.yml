@@ -9,9 +9,13 @@ spec:
     spec:
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:6e80c6b083ffdc2d65d490ae2bafe83d2c0e2e720a4456281f18a1d6151c947c
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:a0a6a0455f5581e050ccdaa92f581bf965128e0868d96af2e8d2c42eb91f6f62 
         env:
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk
         - name: FILE_WATCHER_SHA256
           value: "3ef33205191dd31eb7ef208b31ab7c0a4b7c3ecf5bb8df891330cbd4b02af2da"
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+        - name: EGRESS_QUEUE_NAME
+          value: watched-files

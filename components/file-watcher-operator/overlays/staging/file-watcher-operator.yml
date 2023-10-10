@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:dc1f398e85a9c27adc49db38cdc91428fb486c2d7d358a8297ad3cdd1f9e7142
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:cb454ad554a03a85d34461dc6aac0a88ff8324457aedd16427899691dc8d6f98
         env:
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk

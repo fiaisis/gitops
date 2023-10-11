@@ -14,7 +14,7 @@ spec:
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk
         - name: FILE_WATCHER_SHA256
-          value: "51cabfb6e4b37ceeb739169cf358474e5db65e38fb3352d6e53fcb7eca73e4ab"
+          value: "4a391ba575352e242d154bef4338f4211239d4ae758606e9cce909c0db16d97d"
         - name: QUEUE_HOST
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: EGRESS_QUEUE_NAME

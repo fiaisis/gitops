@@ -10,10 +10,24 @@ spec:
       serviceAccountName: jobcontroller
       containers:
       - name: jobcontroller
-        image: ghcr.io/interactivereduction/jobcontroller@sha256:6edd63e57d982a4796d38da518623977db1a55397324a9cd88457af1b40a969d
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:d4cb64d44ebb349d295b3c532ced781e181fb0a514fe3fb93d2b39c9f46a0af0
         env:
         # Non secret env vars
         - name: RUNNER_SHA
           value: fe653e0098e719e197be28bf89dd90e9e20b55ef18b464993f60f5a25943744a
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+        - name: INGRESS_QUEUE_NAME
+          value: scheduled-jobs
+        - name: QUEUE_USER
+          valueFrom: 
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: consumer_username
+        - name: QUEUE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: consumer_password

@@ -14,7 +14,7 @@ spec:
         linux:
           kubelet: /var/lib/k0s/kubelet
   destination:
-    namespace: ir
+    namespace: csi-smb
     name: k0s-cluster-staging
   syncPolicy:
     automated:
@@ -30,7 +30,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: csi-smb
     name: k0s-cluster-staging
   project: staging
   source:

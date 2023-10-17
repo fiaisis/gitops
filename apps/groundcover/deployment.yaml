@@ -82,7 +82,7 @@ spec:
               existingSecret: groundcover
   destination:
     namespace: groundcover
-    name: k0s-cluster
+    name: k0s-cluster-staging
   syncPolicy:
     automated:
       prune: true
@@ -103,7 +103,7 @@ metadata:
 spec:
   destination:
     namespace: groundcover
-    name: k0s-cluster
+    name: k0s-cluster-staging
   project: staging
   source:
     path: components/groundcover-secrets/overlays/staging

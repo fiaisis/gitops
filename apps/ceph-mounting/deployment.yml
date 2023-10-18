@@ -29,7 +29,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: csi-ceph
+    namespace: rook-ceph
     name: k0s-cluster-staging
   project: staging
   source:

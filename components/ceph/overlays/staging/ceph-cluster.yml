@@ -1,0 +1,17 @@
+---
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: staging-cluster
+  namespace: rook-ceph
+spec:
+  dataDirHostPath: /var/lib/rook
+  mon:
+    count: 1
+  dashboard:
+    enabled: true
+  storage:
+    useAllNodes: true
+    useAllDevices: false
+    directories:
+    - path: /var/lib/rook

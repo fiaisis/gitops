@@ -1,0 +1,67 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: csi-driver-for-ceph-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://ceph.github.io/csi-charts
+    targetRevision: 3.9.0
+    chart: ceph-csi
+    helm:
+      values: |
+        kubeletDir: /var/lib/k0s/kubelet
+  destination:
+    namespace: ceph-csi-cephfs
+    name: k0s-cluster-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ceph-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: csi-ceph
+    name: k0s-cluster-staging
+  project: staging
+  source:
+    path: components/ceph/overlays/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rook-for-ceph-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://charts.rook.io/release
+    targetRevision: 1.12.5
+    chart: rook-ceph
+  destination:
+    namespace: rook-ceph
+    name: k0s-cluster-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -13,7 +13,7 @@ spec:
       values: |
         kubeletDir: /var/lib/k0s/kubelet
   destination:
-    namespace: ceph-csi-cephfs
+    namespace: csi-ceph
     name: k0s-cluster-staging
   syncPolicy:
     automated:

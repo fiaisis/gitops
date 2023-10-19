@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: csi-driver-for-ceph-staging
+  name: csi-ceph-staging
   namespace: argocd
 spec:
   project: staging

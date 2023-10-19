@@ -1,6 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  # Curiously this generates pod and svc names based on this application name, with a charecter limit of 63 for those, this name must remain this short
   name: csi-ceph-staging
   namespace: argocd
 spec:

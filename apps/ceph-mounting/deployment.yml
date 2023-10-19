@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://ceph.github.io/csi-charts
     targetRevision: 3.9.0
-    chart: ceph-csi
+    chart: ceph-csi-cephfs
     helm:
       values: |
         kubeletDir: /var/lib/k0s/kubelet

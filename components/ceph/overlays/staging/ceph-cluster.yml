@@ -50,12 +50,22 @@ spec:
     managePodBudgets: true
 ---
 apiVersion: ceph.rook.io/v1
-kind: CephBlockPool
+kind: CephFilesystem
 metadata:
-  name: builtin-mgr
+  name: ceph
   namespace: rook-ceph # namespace:cluster
 spec:
-  name: .mgr
-  replicated:
-    size: 1
-    requireSafeReplicaSize: false
+  metadataPool:
+    replicated:
+      size: 1
+      requireSafeReplicaSize: false
+  dataPools:
+    - name: replicated
+      failureDomain: osd
+      replicated:
+        size: 1
+        requireSafeReplicaSize: false
+  preserveFilesystemOnDelete: false
+  metadataServer:
+    activeCount: 1
+    activeStandby: true

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jobcontroller-ceph-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeName: jobcontroller-ceph-pv

@@ -5,4 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Gi
   volumeName: jobcontroller-ceph-pv

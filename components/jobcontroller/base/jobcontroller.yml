@@ -59,8 +59,3 @@ spec:
         volumeMounts:
           - name: ceph-mount
             mountPath: /ceph
-      volumes:
-        - name: ceph-mount
-          hostPath:
-            type: Directory
-            path: /ceph

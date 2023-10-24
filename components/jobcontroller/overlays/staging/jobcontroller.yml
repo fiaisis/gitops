@@ -31,3 +31,8 @@ spec:
             secretKeyRef:
               name: jobcontroller-secrets
               key: consumer_password
+      volumes:
+        - name: ceph-mount
+          persistentVolumeClaim:
+            claimName: jobcontroller-ceph-pvc
+            readOnly: true

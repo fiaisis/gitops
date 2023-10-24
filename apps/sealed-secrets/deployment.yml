@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
-    targetRevision: 2.10.0
+    targetRevision: 2.13.1
     chart: sealed-secrets
   destination:
     namespace: kube-system
@@ -28,7 +28,7 @@ spec:
   project: prod
   source:
     repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
-    targetRevision: 2.10.0
+    targetRevision: 2.13.1
     chart: sealed-secrets
   destination:
     namespace: kube-system

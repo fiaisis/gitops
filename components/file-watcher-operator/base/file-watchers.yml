@@ -63,7 +63,7 @@
 #   filePrefix: GEM
 ---
 # Mari
-apiVersion: "ir.com/v1"
+apiVersion: ir.com/v1
 kind: FileWatcher
 metadata:
   name: mari
@@ -189,7 +189,7 @@ spec:
 #   filePrefix: INS
 ---
 # Tosca
-apiVersion: "ir.com/v1"
+apiVersion: ir.com/v1
 kind: FileWatcher
 metadata:
   name: tosca

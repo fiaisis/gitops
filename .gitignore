@@ -1,3 +1,4 @@
 .monokle
 .vscode
+.idea
 **/secrets.yml

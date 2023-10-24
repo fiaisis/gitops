@@ -4,3 +4,5 @@ resources:
   - jobcontroller.yml
   - jobcontroller-permissions.yml
   - sealedsecrets.yml
+  - ceph-pv.yml
+  - ceph-pvc.yml

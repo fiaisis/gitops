@@ -3,6 +3,7 @@ kind: PersistentVolume
 metadata:
   name: jobcontroller-ceph-pv
 spec:
+  storageClassName: csi-cephfs-sc
   accessModes:
   - ReadWriteMany
   capacity:

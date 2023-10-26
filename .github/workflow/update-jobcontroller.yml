@@ -1,7 +1,10 @@
 name: Check for new image and create PR
 on:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '* * * * *'  # Runs every hour
+    - cron: '0 * * * *'  # Runs every hour
 
 env:
   REGISTRY: ghcr.io

@@ -24,13 +24,15 @@ jobs:
         run: |
           # Use Docker Registry API to check for new image
           LATEST_TAG=$(curl -H "Authorization: Bearer ${TOKEN}" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[0]')
-          echo "::set-output name=latest-tag::${LATEST_TAG}"
+          echo "Latest tag: ${LATEST_TAG}"
+          echo "latest-tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
 
       - name: Update Kubernetes manifest
         run: |
           # Extract current image tag from Kubernetes manifest
           # This is just an example, replace with your own logic
           CURRENT_TAG=$(cat ${MANIFEST_PATH} | grep 'image:' | cut -d':' -f3)
+          echo "Current Tag: ${CURRENT_TAG}"
 
           # If current tag is different from latest tag, update the manifest
           if [[ "${CURRENT_TAG}" != "${{ steps.check-image.outputs.latest-tag }}" ]]; then

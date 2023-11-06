@@ -52,7 +52,7 @@ metadata:
   name: csi-smb-prod
   namespace: argocd
 spec:
-  project: staging
+  project: prod
   source:
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
     targetRevision: 1.12.0
@@ -80,7 +80,7 @@ spec:
   destination:
     namespace: csi-smb
     name: k0s-cluster
-  project: staging
+  project: prod
   source:
     path: components/archive-secrets
     repoURL: https://github.com/interactivereduction/gitops.git

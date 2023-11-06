@@ -9,9 +9,9 @@ spec:
     spec:
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:b8e9580fcbb1cd132fe10bbba38689360aaaae24cf753d4a8de4aa71886096ec
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:4c0c6d4a0618a316bd232c23adeb2ab078dea9a22e6c85f3d1a3bf1ecea12f1e 
         env:
         - name: DB_IP
           value: dbspgha01.fds.rl.ac.uk
         - name: FILE_WATCHER_SHA256
-          value: "4c8f74de1d8643d711bbdd40a758423df6fdaae63ad56b9c93a056b4e7ac2b2b"
+          value: "4a391ba575352e242d154bef4338f4211239d4ae758606e9cce909c0db16d97d"

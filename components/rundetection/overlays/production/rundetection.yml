@@ -9,9 +9,4 @@ spec:
     spec:
       containers:
       - name: rundetection
-        image: ghcr.io/interactivereduction/rundetection@sha256:20a32ba5421bf52920ea9438804e330dc0c2f0411498e55ab5167b935a9b6106
-      volumes:
-        - name: archive-mount
-          hostPath:
-            type: Directory
-            path: /archive
+        image: ghcr.io/interactivereduction/rundetection@sha256:83a006a57e22f4d3761c945e930b563962b42c8eba81f0c7bae477e1bb7364ae

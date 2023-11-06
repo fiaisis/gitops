@@ -39,3 +39,45 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq-operator-prod
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 3.8.3
+    chart: rabbitmq-cluster-operator
+  destination:
+    namespace: rabbitmq
+    name: k0s-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq-configs-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: rabbitmq
+    name: k0s-cluster
+  project: prod
+  source:
+    path: components/rabbitmq/overlays/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

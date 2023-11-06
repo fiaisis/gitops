@@ -45,3 +45,51 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: csi-smb-prod
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+    targetRevision: 1.12.0
+    chart: csi-driver-smb
+    helm:
+      values: |
+        linux:
+          kubelet: /var/lib/k0s/kubelet
+  destination:
+    namespace: csi-smb
+    name: k0s-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: archive-secrets-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: csi-smb
+    name: k0s-cluster
+  project: staging
+  source:
+    path: components/archive-secrets
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -19,14 +19,12 @@ spec:
       - name: file-watcher-operator
         image: ghcr.io/interactivereduction/filewatcher-operator@sha256:b8e9580fcbb1cd132fe10bbba38689360aaaae24cf753d4a8de4aa71886096ec
         env:
-        - name: ARCHIVE_DIR
-          value: /archive
-        - name: MEMPHIS_HOST
-          value: memphis.memphis.svc.cluster.local
-        - name: MEMPHIS_STATION
+        - name: FILE_WATCHER_SHA256
+          value: "4a391ba575352e242d154bef4338f4211239d4ae758606e9cce909c0db16d97d"
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+        - name: EGRESS_QUEUE_NAME
           value: watched-files
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
-        - name: FILE_WATCHER_SHA256
-          value: "4c8f74de1d8643d711bbdd40a758423df6fdaae63ad56b9c93a056b4e7ac2b2b"

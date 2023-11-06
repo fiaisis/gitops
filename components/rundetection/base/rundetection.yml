@@ -18,25 +18,22 @@ spec:
       - name: rundetection
         image: ghcr.io/interactivereduction/rundetection@sha256:6c86f658b576f175a8fb9c5508af79bef106df0191a1412971e1d0d75908d279
         env:
-        # None secret env vars
-        - name: MEMPHIS_HOST
-          value: memphis.memphis.svc.cluster.local
-        - name: MEMPHIS_INGRESS
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+        - name: INGRESS_QUEUE_NAME
           value: watched-files
-        - name: MEMPHIS_EGRESS
-          value: requested-jobs
-        
-        # Secret envs
-        - name: MEMPHIS_USER
+        - name: EGRESS_QUEUE_NAME
+          value: scheduled-jobs
+        - name: QUEUE_USER
           valueFrom: 
             secretKeyRef:
               name: rundetection-secrets
-              key: memphis_user
-        - name: MEMPHIS_PASS
+              key: queue_user
+        - name: QUEUE_PASSWORD
           valueFrom: 
             secretKeyRef:
               name: rundetection-secrets
-              key: memphis_password
+              key: queue_password
         volumeMounts:
           - name: archive-mount
             mountPath: /archive
@@ -47,3 +44,7 @@ spec:
           hostPath:
             type: Directory
             path: /ceph
+        - name: archive-mount
+          persistentVolumeClaim:
+            claimName: rundetection-archive-pvc
+            readOnly: true

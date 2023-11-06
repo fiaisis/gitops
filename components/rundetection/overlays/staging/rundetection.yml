@@ -10,25 +10,3 @@ spec:
       containers:
       - name: rundetection
         image: ghcr.io/interactivereduction/rundetection@sha256:83a006a57e22f4d3761c945e930b563962b42c8eba81f0c7bae477e1bb7364ae
-        env:
-        - name: QUEUE_HOST
-          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
-        - name: INGRESS_QUEUE_NAME
-          value: watched-files
-        - name: EGRESS_QUEUE_NAME
-          value: scheduled-jobs
-        - name: QUEUE_USER
-          valueFrom: 
-            secretKeyRef:
-              name: rundetection-secrets
-              key: queue_user
-        - name: QUEUE_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: rundetection-secrets
-              key: queue_password
-      volumes:
-        - name: archive-mount
-          persistentVolumeClaim:
-            claimName: rundetection-archive-pvc
-            readOnly: true

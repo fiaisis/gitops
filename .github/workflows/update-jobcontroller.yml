@@ -10,7 +10,8 @@ env:
   REGISTRY: ghcr.io
   ORG_NAME: ${{ github.repository_owner }}
   IMAGE: jobcontroller
-  MANIFEST_PATH: components/jobcontroller/overlays/staging/jobcontroller.yml
+  MANIFEST_PATH: components/jobcontroller/overlays/staging/jobcontroller.yml#
+  BRANCH_NAME: update-${IMAGE}-to-${{ steps.check-image.outputs.latest-tag }}
 
 jobs:
   check-and-update:
@@ -46,15 +47,10 @@ jobs:
             sed -i "s/"${{ steps.check-manifest.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
           fi
 
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Update image tag to ${{ steps.check-image.outputs.latest-tag }}"
-          branch: ${{ github.head_ref }}
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Update image tag"
+          commit_message: "Update ${IMAGE} "
+          title: "Update ${IMAGE} to ${{ steps.check-image.outputs.latest-tag }}"
           body: "This PR updates the image tag in the Kubernetes manifest to ${{ steps.check-image.outputs.latest-tag }}"

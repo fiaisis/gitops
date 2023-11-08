@@ -40,7 +40,7 @@ jobs:
         run: |
           # If current tag is different from latest tag, update the manifest
           echo "Comparing current tag vs latest tag - "${{ steps.check-manifest.outputs.current-tag }} vs ${{ steps.check-image.outputs.latest-tag }}""
-          if [[ "${{ steps.check-manifest.outputs.current-tag }}" != "${{ steps.check-image.outputs.latest-tag }}" ]]; then
+          if [[ "${{ steps.check-manifest.outputs.current-tag }}" != "${{ steps.check-image.outputs.latest-tag }}" ] && [ "$steps.check-image.outputs.latest-tag" != null ]]; then
             # Update Kubernetes manifest with new tag
             # This is just an example, replace with your own logic
             sed -i "s/"${{ steps.check-manifest.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}

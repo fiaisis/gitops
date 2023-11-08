@@ -23,7 +23,7 @@ jobs:
         id: check-image
         run: |
           # Use Docker Registry API to check for new image
-          LATEST_TAG=$(curl -H "Authorization: Bearer ${TOKEN}" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[0]')
+          LATEST_TAG=$(curl -u ${{ github.actor }}:${{ secrets.WRITE_PACKAGE_TOKEN }} -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[0]')
           echo "Latest tag: ${LATEST_TAG}"
           echo "latest-tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
 
@@ -44,6 +44,7 @@ jobs:
             # Update Kubernetes manifest with new tag
             # This is just an example, replace with your own logic
             sed -i "s/"${{ steps.check-manifest.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
+          fi
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4

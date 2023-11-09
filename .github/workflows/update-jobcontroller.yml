@@ -11,7 +11,6 @@ env:
   ORG_NAME: ${{ github.repository_owner }}
   IMAGE: jobcontroller
   MANIFEST_PATH: components/jobcontroller/overlays/staging/jobcontroller.yml#
-  BRANCH_NAME: update-${IMAGE}-to-${{ steps.check-image.outputs.latest-tag }}
 
 jobs:
   check-and-update:

@@ -10,7 +10,7 @@ env:
   REGISTRY: ghcr.io
   ORG_NAME: ${{ github.repository_owner }}
   IMAGE: jobcontroller
-  MANIFEST_PATH: components/jobcontroller/overlays/staging/jobcontroller.yml#
+  MANIFEST_PATH: components/jobcontroller/overlays/staging/jobcontroller.yml
 
 jobs:
   check-and-update:

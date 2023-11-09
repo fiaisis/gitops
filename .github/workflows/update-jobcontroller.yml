@@ -23,8 +23,8 @@ jobs:
         id: check-image
         run: |
           # Use Docker Registry API to check for new image
-          GHCR_TOKEN=$(echo ${{ secrets.GITHUB_TOKEN }} | base64)
-          LATEST_TAG=$(curl -H "Authorization: Bearer ${GHCR_TOKEN}" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[0]')
+          GHCR_TOKEN=$(curl https://${REGISTRY}/token\?scope\="repository:interactivereduction/jobcontroller:pull" | jq -r '.token')
+          LATEST_TAG=$(curl -H "Authorization: Bearer ${GHCR_TOKEN}" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[-1]')
           echo "Latest tag: ${LATEST_TAG}"
           echo "latest-tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
 
@@ -51,6 +51,6 @@ jobs:
         uses: peter-evans/create-pull-request@v5.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Update ${IMAGE} "
-          title: "Update ${IMAGE} to ${{ steps.check-image.outputs.latest-tag }}"
-          body: "This PR updates the image tag in the Kubernetes manifest to ${{ steps.check-image.outputs.latest-tag }}"
+          commit-message: Update ${IMAGE}
+          title: Update ${IMAGE} to ${{ steps.check-image.outputs.latest-tag }}
+          body: This PR updates the image tag in the Kubernetes manifest to ${{ steps.check-image.outputs.latest-tag }}

@@ -36,7 +36,7 @@ jobs:
           echo "Current Tag: ${CURRENT_TAG}"
           echo "current-tag=${CURRENT_TAG}" >> $GITHUB_OUTPUT
 
-      - name: Update kubernetes manifest if current TAG
+      - name: Update kubernetes manifest if current new tag
         run: |
           # If current tag is different from latest tag, update the manifest
           echo "Comparing current tag vs latest tag - "${{ steps.check-manifest.outputs.current-tag }} vs ${{ steps.check-image.outputs.latest-tag }}""
@@ -46,10 +46,10 @@ jobs:
             sed -i "s/"${{ steps.check-manifest.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
           fi
 
-      - name: Create Pull Request
+      - name: Create pull request
         uses: peter-evans/create-pull-request@v5.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message: "Update ${IMAGE} "
+          commit-message: "Update ${IMAGE} "
           title: "Update ${IMAGE} to ${{ steps.check-image.outputs.latest-tag }}"
           body: "This PR updates the image tag in the Kubernetes manifest to ${{ steps.check-image.outputs.latest-tag }}"

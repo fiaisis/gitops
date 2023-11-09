@@ -23,7 +23,8 @@ jobs:
         id: check-image
         run: |
           # Use Docker Registry API to check for new image
-          LATEST_TAG=$(curl -u ${{ github.actor }}:${{ secrets.WRITE_PACKAGE_TOKEN }} -H "Accept: application/vnd.docker.distribution.manifest.v2+json" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[0]')
+          GHCR_TOKEN=$(echo ${{ secrets.GITHUB_TOKEN }} | base64)
+          LATEST_TAG=$(curl -H "Authorization: Bearer ${GHCR_TOKEN}" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[0]')
           echo "Latest tag: ${LATEST_TAG}"
           echo "latest-tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
 

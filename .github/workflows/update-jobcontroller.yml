@@ -9,11 +9,12 @@ on:
 env:
   REGISTRY: ghcr.io
   ORG_NAME: ${{ github.repository_owner }}
-  IMAGE: jobcontroller
-  MANIFEST_PATH: components/jobcontroller/overlays/staging/jobcontroller.yml
 
 jobs:
-  check-and-update:
+  check-update-commit-main:
+    strategy:
+      matrix:
+        image: [ir-api, jobcontroller, rundetection]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,7 +24,7 @@ jobs:
         id: check-image
         run: |
           # Use Docker Registry API to check for new image
-          GHCR_TOKEN=$(curl https://${REGISTRY}/token\?scope\="repository:interactivereduction/jobcontroller:pull" | jq -r '.token')
+          GHCR_TOKEN=$(curl https://${REGISTRY}/token\?scope\="repository:${ORG_NAME}/${IMAGE}:pull" | jq -r '.token')
           LATEST_TAG=$(curl -H "Authorization: Bearer ${GHCR_TOKEN}" https://${REGISTRY}/v2/${ORG_NAME}/${IMAGE}/tags/list | jq -r '.tags[-1]')
           echo "Latest tag: ${LATEST_TAG}"
           echo "latest-tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
@@ -33,11 +34,29 @@ jobs:
         run: |
           # Extract current image tag from Kubernetes manifest
           # This is just an example, replace with your own logic
+          MANIFEST_PATH=components/${{ matrix.image }}/overlays/production/${{ matrix.image }}.yml
           CURRENT_TAG=$(cat ${MANIFEST_PATH} | grep 'image:' | cut -d':' -f3)
           echo "Current Tag: ${CURRENT_TAG}"
           echo "current-tag=${CURRENT_TAG}" >> $GITHUB_OUTPUT
 
-      - name: Update kubernetes manifest if current new tag
+      - name: Update staging kubernetes manifest if current new tag
+        run: |
+          # If current tag is different from latest tag, update the manifest
+          MANIFEST_PATH=components/${{ matrix.image }}/overlays/production/${{ matrix.image }}.yml
+          echo "Comparing current tag vs latest tag - "${{ steps.check-manifest.outputs.current-tag }} vs ${{ steps.check-image.outputs.latest-tag }}""
+          if [[ "${{ steps.check-manifest.outputs.current-tag }}" != "${{ steps.check-image.outputs.latest-tag }}" ]] && [[ "$steps.check-image.outputs.latest-tag" != null ]]; then
+            # Update Kubernetes manifest with new tag
+            # This is just an example, replace with your own logic
+            sed -i "s/"${{ steps.check-manifest.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
+          fi
+
+      - name: Commit changes to staging
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update ${{ matrix.image }} tag to ${{ steps.check-image.outputs.latest-tag }}"
+          branch: ${{ github.head_ref }}
+
+      - name: Update production kubernetes manifest if new tag was made
         run: |
           # If current tag is different from latest tag, update the manifest
           echo "Comparing current tag vs latest tag - "${{ steps.check-manifest.outputs.current-tag }} vs ${{ steps.check-image.outputs.latest-tag }}""
@@ -47,10 +66,13 @@ jobs:
             sed -i "s/"${{ steps.check-manifest.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
           fi
 
-      - name: Create pull request
+      - name: Create pull request for prod
         uses: peter-evans/create-pull-request@v5.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update ${IMAGE}
-          title: Update ${IMAGE} to ${{ steps.check-image.outputs.latest-tag }}
-          body: This PR updates the image tag in the Kubernetes manifest to ${{ steps.check-image.outputs.latest-tag }}
+          commit-message: Update images
+          committer: IR-CD-bot <ir@stfc.ac.uk>
+          author: IR-CD-bot <ir@stfc.ac.uk>
+          branch: from-staging-to-prod
+          title: Update images for production
+          body: This PR updates the image tag in the Kubernetes manifest to the most recently created and the one that should be present in staging.

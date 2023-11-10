@@ -13,8 +13,8 @@ env:
 jobs:
   check-for-updates-for-staging:
     strategy:
+      max-parallel: 1
       matrix:
-        max-parallel: 1
         image: [ir-api, jobcontroller, rundetection, runner]
     runs-on: ubuntu-latest
     steps:

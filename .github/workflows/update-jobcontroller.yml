@@ -9,6 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   ORG_NAME: ${{ github.repository_owner }}
+  PROD_BRANCH: from-staging-to-prod
 
 jobs:
   check-update-commit-main:
@@ -50,39 +51,39 @@ jobs:
             sed -i "s/"${{ steps.check-manifest-staging.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
           fi
 
-      - name: Commit changes to staging
+      - name: Commit changes for staging to main
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Update ${{ matrix.image }} tag to ${{ steps.check-image.outputs.latest-tag }}"
           branch: ${{ github.head_ref }}
 
-      - name: Get production Kubernetes manifest tag
-        id: check-manifest-production
-        run: |
-          # Extract current image tag from Kubernetes manifest
-          # This is just an example, replace with your own logic
-          MANIFEST_PATH=components/${{ matrix.image }}/overlays/production/${{ matrix.image }}.yml
-          CURRENT_TAG=$(cat ${MANIFEST_PATH} | grep 'image:' | cut -d':' -f3)
-          echo "Current Tag: ${CURRENT_TAG}"
-          echo "current-tag=${CURRENT_TAG}" >> $GITHUB_OUTPUT
+#      - name: Get production Kubernetes manifest tag
+#        id: check-manifest-production
+#        run: |
+#          # Extract current image tag from Kubernetes manifest
+#          # This is just an example, replace with your own logic
+#          MANIFEST_PATH=components/${{ matrix.image }}/overlays/production/${{ matrix.image }}.yml
+#          CURRENT_TAG=$(cat ${MANIFEST_PATH} | grep 'image:' | cut -d':' -f3)
+#          echo "Current Tag: ${CURRENT_TAG}"
+#          echo "current-tag=${CURRENT_TAG}" >> $GITHUB_OUTPUT
+#
+#      - name: Update production kubernetes manifest if new tag was made
+#        run: |
+#          # If current tag is different from latest tag, update the manifest
+#          MANIFEST_PATH=components/${{ matrix.image }}/overlays/production/${{ matrix.image }}.yml
+#          echo "Comparing current tag vs latest tag - "${{ steps.check-manifest.outputs.current-tag }} vs ${{ steps.check-image.outputs.latest-tag }}""
+#          if [[ "${{ steps.check-manifest-production.outputs.current-tag }}" != "${{ steps.check-image.outputs.latest-tag }}" ]] && [[ "$steps.check-image.outputs.latest-tag" != null ]]; then
+#            # Update Kubernetes manifest with new tag
+#            # This is just an example, replace with your own logic
+#            sed -i "s/"${{ steps.check-manifest-production.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
+#          fi
 
-      - name: Update production kubernetes manifest if new tag was made
-        run: |
-          # If current tag is different from latest tag, update the manifest
-          MANIFEST_PATH=components/${{ matrix.image }}/overlays/production/${{ matrix.image }}.yml
-          echo "Comparing current tag vs latest tag - "${{ steps.check-manifest.outputs.current-tag }} vs ${{ steps.check-image.outputs.latest-tag }}""
-          if [[ "${{ steps.check-manifest-production.outputs.current-tag }}" != "${{ steps.check-image.outputs.latest-tag }}" ]] && [[ "$steps.check-image.outputs.latest-tag" != null ]]; then
-            # Update Kubernetes manifest with new tag
-            # This is just an example, replace with your own logic
-            sed -i "s/"${{ steps.check-manifest-production.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
-          fi
-
-      - name: Create pull request for prod
-        uses: peter-evans/create-pull-request@v5.0.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update images
-          committer: IR-CD-bot <ir@stfc.ac.uk>
-          author: IR-CD-bot <ir@stfc.ac.uk>
-          title: Update images for production
-          body: This PR updates the image tag in the Kubernetes manifest to the most recently created and the one that should be present in staging.
+#      - name: Create pull request for prod
+#        uses: peter-evans/create-pull-request@v5.0.2
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          commit-message: Update images
+#          committer: IR-CD-bot <ir@stfc.ac.uk>
+#          author: IR-CD-bot <ir@stfc.ac.uk>
+#          title: Update images for production
+#          body: This PR updates the image tag in the Kubernetes manifest to the most recently created and the one that should be present in staging.

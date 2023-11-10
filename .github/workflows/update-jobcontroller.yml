@@ -84,6 +84,5 @@ jobs:
           commit-message: Update images
           committer: IR-CD-bot <ir@stfc.ac.uk>
           author: IR-CD-bot <ir@stfc.ac.uk>
-          branch: from-staging-to-prod
           title: Update images for production
           body: This PR updates the image tag in the Kubernetes manifest to the most recently created and the one that should be present in staging.

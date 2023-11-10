@@ -27,27 +27,38 @@ jobs:
           GHCR_TOKEN=$(curl https://ghcr.io/token\?scope\="repository:${ORG_NAME}/${{ matrix.image }}:pull" | jq -r '.token')
           LATEST_TAG=$(curl -H "Authorization: Bearer ${GHCR_TOKEN}" https://ghcr.io/v2/${ORG_NAME}/${{ matrix.image }}/tags/list | jq -r '.tags[-1]')
           echo "Latest tag: ${LATEST_TAG}"
-          echo "latest-tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
+          LATEST_SHA256_VALUE=$(docker manifest ghcr.io/${ORG_NAME}/${{ matrix.image }}:${LATEST_TAG} | jq -r '.config.digest')
+          LATEST_SHA="${LATEST_SHA256_VALUE#*:}"
+          echo "Latest sha: ${LATEST_SHA}"
+          echo "latest-sha=${LATEST_SHA}" >> $GITHUB_OUTPUT
 
-      - name: Get staging Kubernetes manifest tag
+      - name: Get staging Kubernetes manifest sha
         id: check-manifest-staging
         run: |
           # Extract current image tag from Kubernetes manifest
           # This is just an example, replace with your own logic
-          MANIFEST_PATH=components/${{ matrix.image }}/overlays/staging/${{ matrix.image }}.yml
-          CURRENT_TAG=$(cat ${MANIFEST_PATH} | grep 'image:' | cut -d':' -f3)
-          echo "Current Tag: ${CURRENT_TAG}"
-          echo "current-tag=${CURRENT_TAG}" >> $GITHUB_OUTPUT
+          if [[ ${{ matrix.image }} == "runner" ]]; then
+            MANIFEST_PATH=components/jobcontroller/overlays/staging/jobcontroller.yml
+            CURRENT_SHA=$(awk '/- name: RUNNER_SHA/{getline; print $2}') ${MANIFEST_PATH}
+          else
+            MANIFEST_PATH=components/${{ matrix.image }}/overlays/staging/${{ matrix.image }}.yml
+            CURRENT_SHA=$(cat ${MANIFEST_PATH} | grep 'image:' | cut -d':' -f3)
+          fi
+          echo "Current sha: ${CURRENT_SHA}"
+          echo "current-sha=${CURRENT_SHA}" >> $GITHUB_OUTPUT
 
-      - name: Update staging kubernetes manifest if current new tag
+      - name: Update staging kubernetes manifest if current new sha
         run: |
           # If current tag is different from latest tag, update the manifest
           MANIFEST_PATH=components/${{ matrix.image }}/overlays/staging/${{ matrix.image }}.yml
-          echo "Comparing current tag vs latest tag - "${{ steps.check-manifest.outputs.current-tag }} vs ${{ steps.check-image.outputs.latest-tag }}""
-          if [[ "${{ steps.check-manifest-staging.outputs.current-tag }}" != "${{ steps.check-image.outputs.latest-tag }}" ]] && [[ "$steps.check-image.outputs.latest-tag" != null ]]; then
-            # Update Kubernetes manifest with new tag
+          if [[ ${{ matrix.image }} == "runner" ]]; then
+            MANIFEST_PATH=components/jobcontroller/overlays/staging/jobcontroller.yml
+          fi
+          echo "Comparing current sha vs latest sha - "${{ steps.check-manifest.outputs.current-sha }} vs ${{ steps.check-image.outputs.latest-sha }}""
+          if [[ "${{ steps.check-manifest-staging.outputs.current-sha }}" != "${{ steps.check-image.outputs.latest-sha }}" ]] && [[ "$steps.check-image.outputs.latest-sha" != null ]]; then
+            # Update Kubernetes manifest with new sha
             # This is just an example, replace with your own logic
-            sed -i "s/"${{ steps.check-manifest-staging.outputs.current-tag }}"/${{ steps.check-image.outputs.latest-tag }}/g" ${MANIFEST_PATH}
+            sed -i "s/"${{ steps.check-manifest-staging.outputs.current-sha }}"/${{ steps.check-image.outputs.latest-sha }}/g" ${MANIFEST_PATH}
           fi
 
       - name: Commit changes for staging to main

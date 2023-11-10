@@ -18,8 +18,12 @@ jobs:
         image: [ir-api, jobcontroller, rundetection, runner]
     runs-on: ubuntu-latest
     steps:
+      - name: Sleep for 2 seconds
+        run: sleep 2s
+        shell: bash
+
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Check for new image
         id: check-image

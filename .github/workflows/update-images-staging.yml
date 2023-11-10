@@ -32,7 +32,7 @@ jobs:
           GHCR_TOKEN=$(curl https://ghcr.io/token\?scope\="repository:${ORG_NAME}/${{ matrix.image }}:pull" | jq -r '.token')
           LATEST_TAG=$(curl -H "Authorization: Bearer ${GHCR_TOKEN}" https://ghcr.io/v2/${ORG_NAME}/${{ matrix.image }}/tags/list | jq -r '.tags[-1]')
           echo "Latest tag: ${LATEST_TAG}"
-          LATEST_SHA256_VALUE=$(docker manifest ghcr.io/${ORG_NAME}/${{ matrix.image }}:${LATEST_TAG} | jq -r '.config.digest')
+          LATEST_SHA256_VALUE=$(docker manifest inspect ghcr.io/${ORG_NAME}/${{ matrix.image }}:${LATEST_TAG} | jq -r '.config.digest')
           LATEST_SHA="${LATEST_SHA256_VALUE#*:}"
           echo "Latest sha: ${LATEST_SHA}"
           echo "latest-sha=${LATEST_SHA}" >> $GITHUB_OUTPUT
@@ -44,7 +44,7 @@ jobs:
           # This is just an example, replace with your own logic
           if [[ ${{ matrix.image }} == "runner" ]]; then
             MANIFEST_PATH=components/jobcontroller/overlays/staging/jobcontroller.yml
-            CURRENT_SHA=$(awk '/- name: RUNNER_SHA/{getline; print $2}') ${MANIFEST_PATH}
+            CURRENT_SHA=$(sed -n '/- name: RUNNER_SHA/{n;p;}' ${MANIFEST_PATH} | cut -d':' -f2)
           else
             MANIFEST_PATH=components/${{ matrix.image }}/overlays/staging/${{ matrix.image }}.yml
             CURRENT_SHA=$(cat ${MANIFEST_PATH} | grep 'image:' | cut -d':' -f3)

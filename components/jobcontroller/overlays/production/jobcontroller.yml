@@ -14,7 +14,7 @@ spec:
         env:
         # Non secret env vars
         - name: RUNNER_SHA
-          value: 3a9bed69f0e077b749000ce5c662427a4ec611abbca3f238b5cf706f829c247f
+          value: d62411020195ad6686eff29456ffb792e77d1b52f9b08beb9193cdea02147c81
         - name: DB_IP
           value: dbspgha01.fds.rl.ac.uk 
         - name: QUEUE_HOST

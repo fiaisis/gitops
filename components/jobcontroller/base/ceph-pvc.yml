@@ -9,4 +9,5 @@ spec:
     requests:
       storage: 1000Gi
   volumeName: jobcontroller-ceph-pv
+  volumeMode: Filesystem
   storageClassName: csi-cephfs-sc

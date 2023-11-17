@@ -16,23 +16,35 @@ spec:
       serviceAccountName: jobcontroller
       containers:
       - name: jobcontroller
-        image: ghcr.io/interactivereduction/jobcontroller@sha256:e1bb88a5380bcc4e9a5b895894dc78969c97554d
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:a63de7d376f1133c4a51a42809b9387f78fdacbd6f1844cf6115be0e15782a87
         env:
         # Non secret env vars
-        - name: BROKER_IP
-          value: memphis.memphis.svc.cluster.local
         - name: IR_API
           value: ir-api-service.ir.svc.cluster.local:80
         - name: PYTHONPATH
           value: /jobcontroller
         - name: RUNNER_SHA
-          value: fe653e0098e719e197be28bf89dd90e9e20b55ef18b464993f60f5a25943744a
+          value: 1888b2346edbdfcccebeb5b2d6cb0ce273fe2ac2d8a546deaaa7f8f7cf1f0dcd
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: REDUCE_USER_ID
           value: '880844730'
-        
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.default.svc.cluster.local
+        - name: INGRESS_QUEUE_NAME
+          value: scheduled-jobs
+        - name: QUEUE_USER
+          valueFrom:
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: consumer_username
+        - name: QUEUE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: jobcontroller-secrets
+              key: consumer_password
+
         # Secret envs
         - name: DB_PASSWORD
           valueFrom: 
@@ -44,17 +56,6 @@ spec:
             secretKeyRef:
               name: jobcontroller-secrets
               key: db_username
-        - name: CONSUMER_USERNAME
-          valueFrom: 
-            secretKeyRef:
-              name: jobcontroller-secrets
-              key: consumer_username
-        - name: CONSUMER_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: jobcontroller-secrets
-              key: consumer_password
-
         command: ["jobcontroller"]
         volumeMounts:
           - name: ceph-mount

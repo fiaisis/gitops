@@ -35,4 +35,3 @@ spec:
         - name: ceph-mount
           persistentVolumeClaim:
             claimName: jobcontroller-ceph-pvc
-            readOnly: true

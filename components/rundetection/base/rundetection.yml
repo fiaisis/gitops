@@ -48,6 +48,7 @@ spec:
                 exit 1
               fi
           initialDelaySeconds: 10
+          failureThreshold: 3
           periodSeconds: 10
         env:
         - name: QUEUE_HOST

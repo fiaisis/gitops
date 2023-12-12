@@ -8,9 +8,9 @@ data:
       {
         "clusterID": "ba68226a-672f-4ba5-97bc-22840318b2ec",
         "monitors": [
-          "deneb-mon1.nubes.rl.ac.uk:6789",
-          "deneb-mon2.nubes.rl.ac.uk:6789",
-          "deneb-mon3.nubes.rl.ac.uk:6789"
+          "deneb-mon1.nubes.rl.ac.uk",
+          "deneb-mon2.nubes.rl.ac.uk",
+          "deneb-mon3.nubes.rl.ac.uk"
         ]
       }
     ]

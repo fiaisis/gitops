@@ -66,11 +66,11 @@ jobs:
             sed -i "s/"${{ steps.check-manifest-staging.outputs.current-sha }}"/${{ steps.check-image.outputs.latest-sha }}/g" ${MANIFEST_PATH}
           fi
 
-      - name: Commit changes for staging to main
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Update ${{ matrix.image }} tag to ${{ steps.check-image.outputs.latest-tag }}"
-          branch: ${{ github.head_ref }}
+#      - name: Commit changes for staging to main
+#        uses: stefanzweifel/git-auto-commit-action@v4
+#        with:
+#          commit_message: "Update ${{ matrix.image }} tag to ${{ steps.check-image.outputs.latest-tag }}"
+#          branch: ${{ github.head_ref }}
 
 #      - name: Get production Kubernetes manifest tag
 #        id: check-manifest-production

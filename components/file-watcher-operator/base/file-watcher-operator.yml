@@ -17,7 +17,7 @@ spec:
       serviceAccountName: file-watcher-operator
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:b8e9580fcbb1cd132fe10bbba38689360aaaae24cf753d4a8de4aa71886096ec
+        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:c60454b5da938cbb1bc3a79ecd79b41e3f9899a4d31ec8fadcf33a95c488d5a3
         env:
         - name: FILE_WATCHER_SHA256
           value: "4a391ba575352e242d154bef4338f4211239d4ae758606e9cce909c0db16d97d"
@@ -25,6 +25,8 @@ spec:
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: EGRESS_QUEUE_NAME
           value: watched-files
+        - name: FILEWATCHER_NAMESPACE
+          value: ir
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production

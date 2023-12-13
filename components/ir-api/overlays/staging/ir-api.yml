@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: ir-api
-        image: ghcr.io/interactivereduction/ir-api@sha256:db2b452c90019cf4025285506a51969ef1bd79b91ee875a577efbfb7dbc81521
+        image: ghcr.io/interactivereduction/ir-api@sha256:335a528243ef9ccfdfbd4629e98ac4afebcb2441b1a5e37283456e735f09edd9
         env:
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk

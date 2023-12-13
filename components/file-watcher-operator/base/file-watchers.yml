@@ -70,15 +70,15 @@ metadata:
 spec:
   instrumentFolder: NDXMARI
   filePrefix: MAR
-# ---
-# # Merlin
-# apiVersion: "ir.com/v1"
-# kind: FileWatcher
-# metadata:
-#   name: merlin
-# spec:
-#   instrumentFolder: NDXMERLIN
-#   filePrefix: MER
+---
+ # Merlin
+apiVersion: "ir.com/v1"
+kind: FileWatcher
+metadata:
+ name: merlin
+spec:
+ instrumentFolder: NDXMERLIN
+ filePrefix: MER
 # ---
 # # SXD
 # apiVersion: "ir.com/v1"

@@ -38,4 +38,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: file-watcher-operator
-  namespace: ir-file-watcher
+  namespace: ir

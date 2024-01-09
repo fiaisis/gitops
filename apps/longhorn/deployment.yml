@@ -23,7 +23,7 @@ spec:
               operator: Exists
   destination:
     namespace: longhorn-system
-    name: k0s-cluster-staging
+    name: staging
   syncPolicy:
     automated:
       prune: true
@@ -56,7 +56,7 @@ spec:
               operator: Exists
   destination:
     namespace: longhorn-system
-    name: k0s-cluster
+    name: prod
   syncPolicy:
     automated:
       prune: true

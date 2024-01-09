@@ -15,7 +15,7 @@ spec:
         kubeletDir: /var/lib/k0s/kubelet
   destination:
     namespace: ir
-    name: k0s-cluster-staging
+    name: staging
   syncPolicy:
     automated:
       prune: true
@@ -31,7 +31,7 @@ metadata:
 spec:
   destination:
     namespace: ir
-    name: k0s-cluster-staging
+    name: staging
   project: staging
   source:
     path: components/ceph/overlays/staging

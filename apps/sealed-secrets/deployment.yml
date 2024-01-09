@@ -11,7 +11,7 @@ spec:
     chart: sealed-secrets
   destination:
     namespace: kube-system
-    name: k0s-cluster-staging
+    name: staging
   syncPolicy:
     automated:
       prune: true
@@ -32,7 +32,7 @@ spec:
     chart: sealed-secrets
   destination:
     namespace: kube-system
-    name: k0s-cluster
+    name: prod
   syncPolicy:
     automated:
       prune: true

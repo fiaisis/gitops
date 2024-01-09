@@ -11,7 +11,7 @@ spec:
     chart: rabbitmq-cluster-operator
   destination:
     namespace: rabbitmq
-    name: k0s-cluster-staging
+    name: staging
   syncPolicy:
     automated:
       prune: true
@@ -27,7 +27,7 @@ metadata:
 spec:
   destination:
     namespace: rabbitmq
-    name: k0s-cluster-staging
+    name: staging
   project: staging
   source:
     path: components/rabbitmq/overlays/staging
@@ -53,7 +53,7 @@ spec:
     chart: rabbitmq-cluster-operator
   destination:
     namespace: rabbitmq
-    name: k0s-cluster
+    name: prod
   syncPolicy:
     automated:
       prune: true
@@ -69,7 +69,7 @@ metadata:
 spec:
   destination:
     namespace: rabbitmq
-    name: k0s-cluster
+    name: prod
   project: prod
   source:
     path: components/rabbitmq/overlays/production

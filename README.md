@@ -76,3 +76,37 @@ To seal a secret so it can be deployed (replace staging with nothing in the --co
 ```shell
 kubeseal <secrets.yml>sealedsecrets.yml --namespace ir --controller-name=sealed-secrets-staging --controller-namespace=kube-system --format yaml
 ```
+
+Setup a local cluster by installing the following
+-------------------------------------------------
+
+Run the following from inside the gitops repository with the context set to your local cluster.
+
+```shell
+kubectl create namespace rabbitmq
+kubectl create namespace ir
+
+helm install ceph-csi-cephfs ceph-csi-charts/ceph-csi-cephfs --namespace ir
+helm install rabbitmq-cluster-operator bitnami/rabbitmq-cluster-operator --namespace rabbitmq
+helm install csi-driver-smb csi-driver-smb/csi-driver-smb -n kube-system
+
+cd components/ir-api/base
+kubectl apply -f ir-api.yml -f ir-api-service.yml -f secrets.yml -n ir
+cd ../../..
+
+cd components/rabbitmq/base
+kubectl apply -f ha-policy.yml -f permissions.yml -f queues.yml -f rabbitmq-cluster.yml -f secrets.yml -f users.yml -n rabbitmq
+cd ../../..
+
+cd components/rundetection/base
+kubectl apply -f archive-pvc.yml -f archive-pv.yml -f rundetection.yml -f secrets.yml -n ir
+cd ../../..
+
+cd components/archive-secrets/base
+kubectl apply -f secrets.yml -n ir
+cd ../../..
+
+cd components/ceph/base
+kubectl apply -f ceph-configmap.yml -f secrets.yml -n ir
+cd ../../..
+```

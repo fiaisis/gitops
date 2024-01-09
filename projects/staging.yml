@@ -27,8 +27,8 @@ spec:
   - 'https://charts.rook.io/release'
   destinations:
   - namespace: "*"
-    server: "https://172.16.112.199:6443"
-    name: k0s-cluster-staging
+    server: "https://130.246.214.191:6443"
+    name: staging
   - namespace: "*"
     server: "https://kubernetes.default.svc"
     name: in-cluster

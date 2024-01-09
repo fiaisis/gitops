@@ -26,7 +26,7 @@ spec:
   destinations:
   - namespace: "*"
     server: "https://172.16.113.58:6443"
-    name: k0s-cluster
+    name: prod
   - namespace: "*"
     server: "https://kubernetes.default.svc"
     name: in-cluster

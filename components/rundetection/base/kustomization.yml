@@ -3,5 +3,7 @@ kind: Kustomization
 resources:
   - archive-pv.yml
   - archive-pvc.yml
+  - ceph-pv.yml
+  - ceph-pvc.yml
   - rundetection.yml
   - sealedsecrets.yml

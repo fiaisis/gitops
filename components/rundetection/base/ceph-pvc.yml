@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rundetection-ceph-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Gi
+  volumeName: rundetection-ceph-pv
+  volumeMode: Filesystem
+  storageClassName: ""

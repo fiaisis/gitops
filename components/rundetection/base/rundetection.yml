@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: rundetection
-        image: ghcr.io/interactivereduction/rundetection@sha256:6c86f658b576f175a8fb9c5508af79bef106df0191a1412971e1d0d75908d279
+        image: ghcr.io/interactivereduction/rundetection@sha256:6f32d9bcbe756f2b37c04bdae1732e6db5b8cddacf4bef4e612f39fc74421a62
         readinessProbe:
           exec:
             command:
@@ -70,13 +70,12 @@ spec:
         volumeMounts:
           - name: archive-mount
             mountPath: /archive
-          - name: ceph-mount
+          - name: cephfs-mount
             mountPath: /ceph
       volumes:
-        - name: ceph-mount
-          hostPath:
-            type: Directory
-            path: /ceph
+        - name: cephfs-mount
+          persistentVolumeClaim:
+            claimName: rundetection-ceph-pvc
         - name: archive-mount
           persistentVolumeClaim:
             claimName: rundetection-archive-pvc

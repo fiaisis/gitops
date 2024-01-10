@@ -10,9 +10,6 @@ spec:
     repoURL: https://ceph.github.io/csi-charts
     targetRevision: 3.9.0
     chart: ceph-csi-cephfs
-    helm:
-      values: |
-        kubeletDir: /var/lib/k0s/kubelet
   destination:
     namespace: ir
     name: staging

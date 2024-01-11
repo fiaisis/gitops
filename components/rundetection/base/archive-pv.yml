@@ -15,8 +15,6 @@ spec:
     - noserverino
     - _netdev
     - vers=2.1
-    - dir_mode=0766
-    - file_mode=0766
   csi:
     driver: smb.csi.k8s.io
     readOnly: true

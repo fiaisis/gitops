@@ -11,8 +11,6 @@ spec:
   accessModes:
     - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
-  mountOptions:
-    - vers=2.1
   csi:
     driver: smb.csi.k8s.io
     readOnly: true

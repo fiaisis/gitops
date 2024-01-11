@@ -11,6 +11,8 @@ spec:
   accessModes:
     - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - nodfs
   csi:
     driver: smb.csi.k8s.io
     readOnly: true

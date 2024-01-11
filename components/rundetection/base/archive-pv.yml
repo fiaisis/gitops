@@ -15,6 +15,7 @@ spec:
     - vers=2.1
     - noserverino
     - _netdev
+    - nodfs
   csi:
     driver: smb.csi.k8s.io
     readOnly: true
@@ -22,7 +23,7 @@ spec:
     # make sure this value is unique for every share in the cluster
     volumeHandle: rundetection-archive-smb
     volumeAttributes:
-      source: "//isisdatar55.isis.cclrc.ac.uk/inst$/"
+      source: "//isisdatar55.isis.cclrc.ac.uk/inst/"
     nodeStageSecretRef:
       name: archive-creds
       namespace: ir

@@ -12,7 +12,6 @@ spec:
     - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
-    - noserverino
     - vers=2.1
   csi:
     driver: smb.csi.k8s.io

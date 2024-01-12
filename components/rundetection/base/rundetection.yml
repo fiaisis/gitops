@@ -14,6 +14,9 @@ spec:
       labels:
         app: rundetection
     spec:
+      dnsConfig:
+        searches:
+          - isis.cclrc.ac.uk
       containers:
       - name: rundetection
         image: ghcr.io/interactivereduction/rundetection@sha256:6f32d9bcbe756f2b37c04bdae1732e6db5b8cddacf4bef4e612f39fc74421a62

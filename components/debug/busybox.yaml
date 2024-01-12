@@ -27,10 +27,16 @@ spec:
           volumeMounts:
             - mountPath: /mnt/var
               name: host-var
+            - mountPath: /mnt/sbin
+              name: sbin
       restartPolicy: Always
       volumes:
         - name: host-var
           hostPath:
             type: Directory
             path: /var
+        - name: sbin
+          hostPath:
+            path: /usr/sbin
+            type: Directory
       

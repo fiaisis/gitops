@@ -8,7 +8,7 @@ data:
     grep -q "Domains=isis.cclrc.ac.uk" /mnt/systemd-host/resolved.conf
  
     if [ $? != 0 ]; then
-      set -euo -pipefail
+      set -euo -x pipefail
       sed -i 's|#Domains=|Domains=isis.cclrc.ac.uk|g' /mnt/systemd-host/resolved.conf
       echo "Added isis.cclrc.ac.uk to domains"
     else

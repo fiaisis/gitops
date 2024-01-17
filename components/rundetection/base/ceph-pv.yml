@@ -21,6 +21,7 @@ spec:
       "fsName": "deneb"
       "staticVolume": "true"
       "rootPath": /isis/instrument
+#      "rootPath": /isis/instrument_data/cache
     # volumeHandle can be anything, need not to be same
     # as PV name or volume name. keeping same for brevity
     volumeHandle: rundetection-ceph-pv

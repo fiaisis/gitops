@@ -36,7 +36,7 @@ spec:
         securityContext:
           privileged: true
         command: ["/bin/bash", "-c", "--"]
-        args: ["chmod +x /var/run/resolved-script/resolved-script.sh && /var/run/resolved-script/resolved-script.sh"]
+        args: ["/var/run/resolved-script/resolved-script.sh"]
         volumeMounts:
         - name: host-root
           mountPath: /host-root
@@ -46,7 +46,7 @@ spec:
       - name: host-root
         hostPath:
           path: /
-
       - name: resolved-script
         configMap:
           name: resolved-script
+          defaultMode: 0777

@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resolved-script
+data:
+  resolved-script.sh: |
+    #!/usr/bin/env bash
+    grep -q "Domains=isis.cclrc.ac.uk" /etc/systemd/resolved.conf
+ 
+    if [ $? != 0 ]; then
+      set -euo -pipefail
+      sed -i 's|#Domains=|Domains=isis.cclrc.ac.uk|g' /etc/systemd/resolved.conf
+      sudo systemctl restart systemd-resolved
+      echo "Added isis.cclrc.ac.uk to domains"
+    else
+      echo "Already patched"
+    fi
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: resolved-fix-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: resolved-fix
+  template:
+    metadata:
+      labels:
+        app: resolved-fix
+    spec:
+      containers:
+      - name: ubuntu-container
+        image: ubuntu
+        securityContext:
+          privileged: true
+        command: ["/bin/bash", "-c", "--"]
+        args: ["chmod +x /var/run/resolved-script/resolved-script.sh && /var/run/resolved-script/resolved-script.sh"]
+        volumeMounts:
+        - name: host-root
+          mountPath: /host-root
+        - name: resolved-script
+          mountPath: /var/run/resolved-script
+      volumes:
+      - name: host-root
+        hostPath:
+          path: /
+
+      - name: resolved-script
+        configMap:
+          name: resolved-script

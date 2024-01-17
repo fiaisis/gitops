@@ -1,25 +1,9 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: resolved-script
-data:
-  resolved-script.sh: |
-    #!/usr/bin/env bash
-    grep -q "Domains=isis.cclrc.ac.uk" /mnt/systemd-host/resolved.conf
- 
-    if [ $? != 0 ]; then
-      set -euo -x pipefail
-      sed -i 's|#Domains=|Domains=isis.cclrc.ac.uk|g' /mnt/systemd-host/resolved.conf
-      echo "Added isis.cclrc.ac.uk to domains"
-    else
-      echo "Already patched"
-    fi
-    sleep 30d
----
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: resolved-fix-daemonset
+  annotations:
+    command: &cmd grep -q "Domains=isis.cclrc.ac.uk" /etc/systemd/resolved.conf; if [ $? != 0 ]; then sed -i 's|#Domains=|Domains=isis.cclrc.ac.uk|g' /etc/systemd/resolved.conf && systemctl restart systemd-resolved && echo "Added isis.cclrc.ac.uk to domains"; else echo "Already patched"; fi
 spec:
   selector:
     matchLabels:
@@ -29,23 +13,22 @@ spec:
       labels:
         app: resolved-fix
     spec:
+      hostNetwork: true
+      hostPID: true
+      initContainers:
+        - name: search-domains-installation
+          command:
+            - nsenter
+            - --mount=/proc/1/ns/mnt
+            - --
+            - bash
+            - -c
+            - *cmd
+          image: ubuntu:latest
+          securityContext:
+            privileged: true
       containers:
-      - name: ubuntu-container
-        image: ubuntu
-        securityContext:
-          privileged: true
-        command: ["/bin/bash", "-c", "--"]
-        args: ["/var/run/resolved-script/resolved-script.sh"]
-        volumeMounts:
-        - name: host-root
-          mountPath: /mnt/systemd-host
-        - name: resolved-script
-          mountPath: /var/run/resolved-script
-      volumes:
-      - name: host-root
-        hostPath:
-          path: /etc/systemd
-      - name: resolved-script
-        configMap:
-          name: resolved-script
-          defaultMode: 0777
+        - name: sleep
+          image: registry.k8s.io/pause:3.1
+  updateStrategy:
+    type: RollingUpdate

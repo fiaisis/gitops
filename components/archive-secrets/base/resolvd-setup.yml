@@ -10,12 +10,12 @@ data:
     if [ $? != 0 ]; then
       set -euo -pipefail
       sed -i 's|#Domains=|Domains=isis.cclrc.ac.uk|g' /etc/systemd/resolved.conf
-      sudo systemctl restart systemd-resolved
+      systemctl restart systemd-resolved
       echo "Added isis.cclrc.ac.uk to domains"
     else
       echo "Already patched"
     fi
-
+    sleep 30d
 ---
 apiVersion: apps/v1
 kind: DaemonSet

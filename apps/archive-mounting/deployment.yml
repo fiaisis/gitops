@@ -22,7 +22,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: archive-secrets-staging
+  name: archive-staging
   namespace: argocd
 spec:
   destination:
@@ -30,7 +30,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/archive-secrets/overlays/staging
+    path: components/archive/overlays/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:
@@ -64,7 +64,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: archive-secrets-prod
+  name: archive-prod
   namespace: argocd
 spec:
   destination:
@@ -72,7 +72,7 @@ spec:
     name: prod
   project: prod
   source:
-    path: components/archive-secrets/overlays/production
+    path: components/archive/overlays/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

@@ -40,3 +40,46 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  # Curiously this generates pod and svc names based on this application name, with a character limit of 63 for those, this name must remain this short
+  name: csi-ceph-prod
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://ceph.github.io/csi-charts
+    targetRevision: 3.9.0
+    chart: ceph-csi-cephfs
+  destination:
+    namespace: ir
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ceph-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: ir
+    name: prod
+  project: prod
+  source:
+    path: components/ceph/overlays/prod
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

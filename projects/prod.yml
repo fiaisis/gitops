@@ -25,7 +25,7 @@ spec:
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
   destinations:
   - namespace: "*"
-    server: "https://172.16.113.58:6443"
+    server: "https://130.246.81.17:6443"
     name: prod
   - namespace: "*"
     server: "https://kubernetes.default.svc"

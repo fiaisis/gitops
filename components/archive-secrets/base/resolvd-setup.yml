@@ -1,7 +1,18 @@
+# The point of this deamonset is to ensure that when we mount the archive that the
+# DistributedFS calls can resolve using the isis.cclrc.ac.uk as an additional search
+# Without this change on the nodes the archive DFS calls will fail as it will attempt to
+# just use isisdatar55, isisdatar3, or isisdatar80, which will fail without the added
+# search domain: isis.cclrc.ac.uk. This is a more hacky solution than is ideal, in the
+# best scenario a fix would be properly implemented on the side of the Archive.
+# However, this works.
+
+# This finishes its job after init, and afterward it is just a paused container that
+# does nothing.
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: resolved-fix-daemonset
+  name: archive-domain-search-fix-daemonset
+  namespace: kube-system
   annotations:
     command: &cmd grep -q "Domains=isis.cclrc.ac.uk" /etc/systemd/resolved.conf; if [ $? != 0 ]; then sed -i 's|#Domains=|Domains=isis.cclrc.ac.uk|g' /etc/systemd/resolved.conf && systemctl restart systemd-resolved && echo "Added isis.cclrc.ac.uk to domains"; else echo "Already patched"; fi
 spec:

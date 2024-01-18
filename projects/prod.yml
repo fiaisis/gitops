@@ -23,6 +23,7 @@ spec:
   - 'https://helm.groundcover.com'
   - 'https://charts.bitnami.com/bitnami'
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
+  - 'https://ceph.github.io/csi-charts'
   destinations:
   - namespace: "*"
     server: "https://130.246.81.17:6443"

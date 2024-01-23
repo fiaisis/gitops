@@ -5,3 +5,4 @@ resources:
 patches:
 - path: rundetection.yml
 - path: sealedsecrets.yml
+- path: ceph-pv.yml

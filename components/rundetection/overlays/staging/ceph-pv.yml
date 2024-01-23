@@ -6,4 +6,4 @@ metadata:
 spec:
   csi:
     volumeAttributes:
-      "rootPath": /volumes/_nogroup/1be37fff-313f-4928-b1a0-fc32e3d56283
+      "rootPath": "/volumes/_nogroup/1be37fff-313f-4928-b1a0-fc32e3d56283"

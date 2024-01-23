@@ -6,5 +6,5 @@ metadata:
 spec:
   csi:
     volumeAttributes:
-      "fsName": "ceph-output-staging"
+      "fsName": "cephfs"
       "rootPath": "/volumes/_nogroup/1be37fff-313f-4928-b1a0-fc32e3d56283"

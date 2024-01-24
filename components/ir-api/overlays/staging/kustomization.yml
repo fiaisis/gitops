@@ -5,4 +5,3 @@ resources:
 patches:
 - path: ir-api.yml
 - path: sealedsecrets.yml
-- path: ir-api-service.yml

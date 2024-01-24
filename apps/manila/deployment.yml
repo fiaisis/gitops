@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://kubernetes.github.io/cloud-provider-openstack
     targetRevision: 2.29.0
-    chart: manila-csi
+    chart: openstack-manila-csi
     helm:
       valuesObject:
         shareProtocols:
@@ -58,7 +58,7 @@ spec:
   source:
     repoURL: https://kubernetes.github.io/cloud-provider-openstack
     targetRevision: 2.29.0
-    chart: manila-csi
+    chart: openstack-manila-csi
     helm:
       valuesObject:
         shareProtocols:

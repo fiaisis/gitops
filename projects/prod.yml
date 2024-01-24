@@ -24,6 +24,7 @@ spec:
   - 'https://charts.bitnami.com/bitnami'
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
   - 'https://ceph.github.io/csi-charts'
+  - 'https://kubernetes.github.io/cloud-provider-openstack'
   destinations:
   - namespace: "*"
     server: "https://130.246.81.17:6443"

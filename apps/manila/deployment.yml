@@ -80,7 +80,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: manila-staging
+  name: manila-prod
   namespace: argocd
 spec:
   destination:

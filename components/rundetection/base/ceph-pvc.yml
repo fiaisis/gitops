@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: rundetection-ceph-pvc
+  name: shared-files-manila-rundetection-pvc
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1000Gi
-  volumeName: rundetection-ceph-pv
+  volumeName: shared-files-manila-rundetection
   volumeMode: Filesystem
   storageClassName: ""

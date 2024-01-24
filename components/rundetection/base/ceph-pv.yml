@@ -2,28 +2,23 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rundetection-ceph-pv
+  name: shared-files-manila-rundetection
+  labels:
+    name: shared-files-manila-rundetection
 spec:
-  storageClassName: ""
   accessModes:
-  - ReadWriteMany
+  - ReadOnlyMany
   capacity:
-    storage: 1000Gi
+    storage: 1Gi
   csi:
-    driver: cephfs.csi.ceph.com
+    driver: cephfs.manila.csi.openstack.org
+    volumeHandle: shared-files-manila-rundetection
     nodeStageSecretRef:
-      name: ceph-creds
+      name: manila-creds
+      namespace: ir
+    nodePublishSecretRef:
+      name: manila-creds
       namespace: ir
     volumeAttributes:
-      # Required options from storageclass parameters need to be added in volumeAttributes
-      "clusterID": "ba68226a-672f-4ba5-97bc-22840318b2ec"
-      "mounter": fuse
-      "fsName": "deneb"
-      "staticVolume": "true"
-      "rootPath": /isis/instrument
-#      "rootPath": /isis/instrument_data/cache
-    # volumeHandle can be anything, need not to be same
-    # as PV name or volume name. keeping same for brevity
-    volumeHandle: rundetection-ceph-pv
-  persistentVolumeReclaimPolicy: Retain
-  volumeMode: Filesystem
+      shareID: 52b4e136-7894-460f-a633-c19237ac2dc8 # the share ID of the share you want to use as the persistent volume in the cluster
+      shareAccessID: 1b88144f-ad88-4700-a6f2-f8a1a90a3b4e # the ID of a cephx access rule created for the share.

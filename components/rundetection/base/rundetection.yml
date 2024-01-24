@@ -73,12 +73,12 @@ spec:
         volumeMounts:
           - name: archive-mount
             mountPath: /archive
-          - name: cephfs-mount
-            mountPath: /ceph
+          - name: runner-files-mount
+            mountPath: /runner-files
       volumes:
-        - name: cephfs-mount
+        - name: runner-files-mount
           persistentVolumeClaim:
-            claimName: rundetection-ceph-pvc
+            claimName: shared-files-manila-rundetection-pvc
         - name: archive-mount
           persistentVolumeClaim:
             claimName: rundetection-archive-pvc

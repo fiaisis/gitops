@@ -85,8 +85,8 @@ metadata:
 spec:
   destination:
     namespace: ir
-    name: staging
-  project: staging
+    name: prod
+  project: prod
   source:
     path: components/manila/overlays/production
     repoURL: https://github.com/interactivereduction/gitops.git

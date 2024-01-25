@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
 - ../../base
 patches:
-- path: ceph-configmap.yml
 - path: sealedsecrets.yml

@@ -12,5 +12,13 @@ data:
           "deneb-mon2.nubes.rl.ac.uk",
           "deneb-mon3.nubes.rl.ac.uk"
         ]
+      },
+      {
+        "clusterID": "45938904-f57d-4ea3-a8fc-6dad80dc3a81",
+        "monitors": [
+          "130.246.208.244:6789",
+          "130.246.208.244:6789",
+          "130.246.208.244:6789"
+        ]
       }
     ]

@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: jobcontroller-staging
+  name: jobcreator-staging
   namespace: argocd
 spec:
   destination:
@@ -10,7 +10,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/jobcontroller/overlays/staging
+    path: components/jobcreator/overlays/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

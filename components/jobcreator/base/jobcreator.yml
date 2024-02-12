@@ -2,29 +2,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jobcontroller
+  name: jobcreator
   namespace: ir
 spec:
   selector:
     matchLabels:
-      app: jobcontroller
+      app: jobcreator
   template:
     metadata:
       labels:
-        app: jobcontroller
+        app: jobcreator
     spec:
-      serviceAccountName: jobcontroller
+      serviceAccountName: jobcreator
       containers:
-      - name: jobcontroller
-        image: ghcr.io/interactivereduction/jobcontroller@sha256:9f28998ac4644562eaa1b3a0bd9014eff1d36e82c3b1e6e0972ed0b8ab6cfcd8
+      - name: jobcreator
+        image: ghcr.io/interactivereduction/jobcreator@sha256:b3e5f38f5c9ae05adeacc2c42254471ee153c2aa1a84fad2b0e6aa4accee6584
         env:
         # Non secret env vars
         - name: IR_API
           value: ir-api-service.ir.svc.cluster.local:80
         - name: PYTHONPATH
           value: /jobcontroller
-        - name: RUNNER_SHA
+        - name: MANTID_SHA
           value: 1888b2346edbdfcccebeb5b2d6cb0ce273fe2ac2d8a546deaaa7f8f7cf1f0dcd
+        - name: WATCHER_SHA
+          value: 7d0c1707209668681077a692d8e78cb1a0a611be6cf66f0f6eff8d4b4cb909b0
+        - name: MAX_TIME_TO_COMPLETE
+          value: "21600"
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
@@ -34,29 +38,29 @@ spec:
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: INGRESS_QUEUE_NAME
           value: scheduled-jobs
-        - name: QUEUE_USER
-          valueFrom:
-            secretKeyRef:
-              name: jobcontroller-secrets
-              key: consumer_username
-        - name: QUEUE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: jobcontroller-secrets
-              key: consumer_password
 
         # Secret envs
         - name: DB_PASSWORD
           valueFrom: 
             secretKeyRef:
-              name: jobcontroller-secrets
+              name: jobcreator-secrets
               key: db_password
         - name: DB_USERNAME
           valueFrom: 
             secretKeyRef:
-              name: jobcontroller-secrets
+              name: jobcreator-secrets
               key: db_username
-        command: ["jobcontroller"]
+        - name: QUEUE_USER
+          valueFrom:
+            secretKeyRef:
+              name: jobcreator-secrets
+              key: consumer_username
+        - name: QUEUE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: jobcreator-secrets
+              key: consumer_password
+        command: ["job_creator"]
         volumeMounts:
           - name: cephfs-mount
             mountPath: /ceph
@@ -66,4 +70,4 @@ spec:
             secretName: ceph-secret
         - name: cephfs-mount
           persistentVolumeClaim:
-            claimName: jobcontroller-ceph-pvc
+            claimName: jobcreator-ceph-pvc

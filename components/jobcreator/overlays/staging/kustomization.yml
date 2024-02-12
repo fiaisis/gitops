@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - ../../base
 patches:
-- path: jobcontroller.yml
+- path: jobcreator.yml
 - path: sealedsecrets.yml

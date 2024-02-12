@@ -1,0 +1,17 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobcreator
+  namespace: ir
+spec:
+  template:
+    spec:
+      serviceAccountName: jobcreator
+      containers:
+      - name: jobcreator
+        image: ghcr.io/interactivereduction/jobcreator@sha256:a63de7d376f1133c4a51a42809b9387f78fdacbd6f1844cf6115be0e15782a87
+        env:
+        # Non secret env vars
+        - name: DB_IP
+          value: dbspg03.fds.rl.ac.uk

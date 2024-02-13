@@ -60,7 +60,7 @@ spec:
             secretKeyRef:
               name: jobcreator-secrets
               key: consumer_password
-        command: ["job_creator"]
+        command: ["jobcreator"]
         volumeMounts:
           - name: cephfs-mount
             mountPath: /ceph

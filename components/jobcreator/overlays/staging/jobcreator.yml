@@ -15,3 +15,5 @@ spec:
         # Non secret env vars
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk
+        - name: DEV_MODE
+          value: "True"

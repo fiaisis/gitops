@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - jobcreator.yml
   - jobcreator-permissions.yml
+  - jobwatcher-permissions.yml
   - sealedsecrets.yml
   - ceph-pv.yml
   - ceph-pvc.yml

@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobcontroller
+  namespace: ir
+spec:
+  selector:
+    matchLabels:
+      app: jobcontroller
+  template:
+    metadata:
+      labels:
+        app: jobcontroller
+    spec:
+      serviceAccountName: jobcontroller
+      containers:
+      - name: jobcontroller
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:41e2483b04f9e169efdcc19b2a1890e57f5932dc0b123f3902eac6f87ccec76d
+        env:
+        # Non secret env vars
+        - name: IR_API
+          value: ir-api-service.ir.svc.cluster.local:80
+        - name: PYTHONPATH
+          value: /jobcontroller
+        - name: RUNNER_SHA
+          value: c167f65af1a4d2e51eec468b5ac97759a353d5a963ce2f01f6a959c5d957118d
+        - name: DB_IP
+          value: dbspg03.fds.rl.ac.uk # Staging
+          # value: dbspgha01.fds.rl.ac.uk # Production
+        - name: REDUCE_USER_ID
+          value: '880844730'
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+        - name: INGRESS_QUEUE_NAME
+          value: scheduled-jobs
+
+        # Secret envs
+        - name: DB_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: jobcreator-secrets
+              key: db_password
+        - name: DB_USERNAME
+          valueFrom: 
+            secretKeyRef:
+              name: jobcreator-secrets
+              key: db_username
+        - name: QUEUE_USER
+          valueFrom:
+            secretKeyRef:
+              name: jobcreator-secrets
+              key: consumer_username
+        - name: QUEUE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: jobcreator-secrets
+              key: consumer_password
+        command: ["job_controller"]
+        volumeMounts:
+          - name: cephfs-mount
+            mountPath: /ceph
+      volumes:
+        - name: ceph-secret-volume
+          secret:
+            secretName: ceph-secret
+        - name: cephfs-mount
+          persistentVolumeClaim:
+            claimName: jobcontroller-ceph-pvc

@@ -1,4 +1,10 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ir-jobs
+  namespace: ir
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +22,7 @@ spec:
       serviceAccountName: jobcontroller
       containers:
       - name: jobcontroller
-        image: ghcr.io/interactivereduction/jobcontroller@sha256:41e2483b04f9e169efdcc19b2a1890e57f5932dc0b123f3902eac6f87ccec76d
+        image: ghcr.io/interactivereduction/jobcontroller@sha256:97f5ea75c4521f264d28ddf200035ed6c175a8994aff4fef4e062cdeac545f5f
         env:
         # Non secret env vars
         - name: IR_API
@@ -34,6 +40,8 @@ spec:
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: INGRESS_QUEUE_NAME
           value: scheduled-jobs
+        - name: JOBS_NAMESPACE
+          value: "ir"
 
         # Secret envs
         - name: DB_PASSWORD

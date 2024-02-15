@@ -16,7 +16,7 @@ spec:
       serviceAccountName: jobcreator
       containers:
       - name: jobcreator
-        image: ghcr.io/interactivereduction/jobcreator@sha256:f0a3f2cbc4929fbf67d8e831a0c2ab7ff449390d55af9e18a9643a9dae0c2033
+        image: ghcr.io/interactivereduction/jobcreator@sha256:ff32efaf512369cb2df5f23fb233bf4fd315eb84cca05869e28a21561eef84af
         env:
         # Non secret env vars
         - name: IR_API
@@ -24,7 +24,7 @@ spec:
         - name: PYTHONPATH
           value: /jobcontroller
         - name: MANTID_SHA
-          value: 5c863b6d55ce1ec760b37ee54851b60c3c3fa54757ad6c0131d332811e6a54d2
+          value: 39f79cc8d3730434b931181e0033c5d75f2651792715d04762d427cd3f68e548
         - name: WATCHER_SHA
           value: 4fb7be458b1f6bf7a92f32d5f41f7657504464f5cade1b456dd1bf50502dfef7
         - name: MAX_TIME_TO_COMPLETE

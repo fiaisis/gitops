@@ -15,5 +15,5 @@ spec:
     spec:
       containers:
       - name: infinite-runner
-        image: ghcr.io/interactivereduction/runner@sha256:d62411020195ad6686eff29456ffb792e77d1b52f9b08beb9193cdea02147c81
+        image: ghcr.io/interactivereduction/runner@sha256:c167f65af1a4d2e51eec468b5ac97759a353d5a963ce2f01f6a959c5d957118d
         args: ["import time; time.sleep(60*60*24*365)"]

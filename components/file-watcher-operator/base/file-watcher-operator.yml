@@ -20,7 +20,7 @@ spec:
         image: ghcr.io/interactivereduction/filewatcher-operator@sha256:5f9c0864f505698e3c390b3944c6e3e1ee856377780a0ac32feaf7e407d95845
         env:
         - name: FILE_WATCHER_SHA256
-          value: "4a391ba575352e242d154bef4338f4211239d4ae758606e9cce909c0db16d97d"
+          value: "c7777320ce599f3655cf93a066cdaf9f313e8c7c91c498ce80a0b01aef212e39"
         - name: QUEUE_HOST
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: EGRESS_QUEUE_NAME

@@ -12,8 +12,8 @@ metadata:
   name: jobcontroller
 rules:
 - apiGroups: ["batch"]
-  resources: ["get", "watch", "list", "jobs"]
-  verbs: ["create"]
+  resources: ["jobs"]
+  verbs: ["get", "watch", "list", "create"]
 - apiGroups: [""]
   resources: ["pods/log"]
   verbs: ["get"]

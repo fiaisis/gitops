@@ -24,7 +24,7 @@ spec:
         - name: PYTHONPATH
           value: /jobcontroller
         - name: MANTID_SHA
-          value: ae0d9a1036cc3c3c65fe3aa4133c26b466f7d11f2dda665f67de866c28ee49eb
+          value: 5c863b6d55ce1ec760b37ee54851b60c3c3fa54757ad6c0131d332811e6a54d2
         - name: WATCHER_SHA
           value: 4fb7be458b1f6bf7a92f32d5f41f7657504464f5cade1b456dd1bf50502dfef7
         - name: MAX_TIME_TO_COMPLETE

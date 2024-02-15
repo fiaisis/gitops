@@ -19,25 +19,24 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: jobcontroller-prod
-#  namespace: argocd
-#spec:
-#  destination:
-#    namespace: ir
-#    name: prod
-#  project: prod
-#  source:
-#    path: components/jobcontroller/overlays/production
-#    repoURL: https://github.com/interactivereduction/gitops.git
-#    targetRevision: HEAD
-#  syncPolicy:
-#    automated:
-#      prune: true
-#      selfHeal: true
-#    syncOptions:
-#      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jobcreator-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: ir
+    name: prod
+  project: prod
+  source:
+    path: components/jobcreator/overlays/production
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

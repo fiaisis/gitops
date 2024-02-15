@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: jobcreator-ceph-pv
+  name: jocontroller-ceph-pv
 spec:
   storageClassName: ""
   accessModes:
@@ -23,6 +23,6 @@ spec:
       "rootPath": /isis/instrument
     # volumeHandle can be anything, need not to be same
     # as PV name or volume name. keeping same for brevity
-    volumeHandle: jobcreator-ceph-pv
+    volumeHandle: jobcontroller-ceph-pv
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem

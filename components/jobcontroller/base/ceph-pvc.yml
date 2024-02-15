@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jobcreator-ceph-pvc
+  name: jobcontroller-ceph-pvc
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1000Gi
-  volumeName: jobcreator-ceph-pv
+  volumeName: jobcontroller-ceph-pv
   volumeMode: Filesystem
   storageClassName: ""

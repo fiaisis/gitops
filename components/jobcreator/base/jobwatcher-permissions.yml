@@ -16,7 +16,7 @@ rules:
 - apiGroups: [""]
   resources: ["pods/log"]
   verbs: ["get"]
-- apiGroups: [""]
+- apiGroups: ["batch"]
   resources: ["pods/job-tracking"]
   verbs: ["get"]
 - apiGroups: [""]

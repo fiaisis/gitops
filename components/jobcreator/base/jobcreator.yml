@@ -26,7 +26,7 @@ spec:
         - name: MANTID_SHA
           value: b985ff0b8731e455e5b057f7d05f367f3543f3714ebfb4145b94a878c74b93cb
         - name: WATCHER_SHA
-          value: 7a5bb10c3f17b61d91e3a6d62d09657e061b7d257d6dca88a40679205ab6d090
+          value: 1f2cd34ce301ddec5cd3968f7fd35360b47f887cbf124aacec783ae548962229
         - name: MAX_TIME_TO_COMPLETE
           value: "21600"
         - name: DB_IP

@@ -35,8 +35,3 @@ spec:
 # spec:
 #   instrumentFolder: NDXMARI
 #   filePrefix: MAR
-#   archiveDir: /archive
-#   memphisHost: memphis.memphis.svc.cluster.local
-#   memphisStation: watched-files
-#   dbIp: dbspg-dev.gridpp.rl.ac.uk
-#   fileWatcherSha256: "7d8d9d46288b58e6505664b2488406e145e1c141ca38cc422c0317b45a3ec924"

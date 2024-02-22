@@ -1,0 +1,99 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-stack-prod
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 1.4.2
+    chart: k8s-monitoring
+    helm:
+      values: |
+        cluster:
+          name: prod
+        externalServices:
+          prometheus:
+            host: https://prometheus-prod-01-eu-west-0.grafana.net
+            basicAuth:
+              usernameKey: usernamePrometheus
+              passwordKey: password
+            secret:
+              create: false
+              name: monitoring-creds
+              namespace: monitoring-system
+          loki:
+            host: https://logs-prod-eu-west-0.grafana.net
+            basicAuth:
+              usernameKey: usernameLoki
+              passwordKey: password
+            secret:
+              create: false
+              name: monitoring-creds
+              namespace: monitoring-system
+          tempo:
+            host: https://tempo-eu-west-0.grafana.net:443
+            basicAuth:
+              usernameKey: usernameTempo
+              passwordKey: password
+            secret:
+              create: false
+              name: monitoring-creds
+              namespace: monitoring-system
+        metrics:
+          enabled: true
+          cost:
+            enabled: false
+          node-exporter:
+            enabled: true
+        logs:
+          enabled: true
+          pod_logs:
+            enabled: true
+            namespaces: ["ir", "ir-jobs", "rabbitmq"]
+          cluster_events:
+            enabled: true
+        traces:
+          enabled: true
+        opencost:
+          enabled: false
+        kube-state-metrics:
+          enabled: true
+        prometheus-node-exporter:
+          enabled: true
+        prometheus-operator-crds:
+          enabled: true
+        grafana-agent: {}
+        grafana-agent-logs: {}
+  destination:
+    namespace: monitoring-system
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-stack-extras-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: ir
+    name: prod
+  project: prod
+  source:
+    path: components/monitoring/overlays/production
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

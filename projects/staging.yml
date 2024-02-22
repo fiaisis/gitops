@@ -26,6 +26,7 @@ spec:
   - 'https://ceph.github.io/csi-charts'
   - 'https://charts.rook.io/release'
   - 'https://kubernetes.github.io/cloud-provider-openstack'
+  - 'https://grafana.github.io/helm-charts'
   destinations:
   - namespace: "*"
     server: "https://130.246.214.191:6443"

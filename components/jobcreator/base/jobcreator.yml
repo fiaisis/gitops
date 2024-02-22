@@ -16,7 +16,7 @@ spec:
       serviceAccountName: jobcreator
       containers:
       - name: jobcreator
-        image: ghcr.io/interactivereduction/jobcreator@sha256:897142234a58e6a433a754212c23252fe2a275180e993f28ba043d6fdd5f267e
+        image: ghcr.io/interactivereduction/jobcreator@sha256:4fbbbee573a2dfa16f353ba64ad0b00dee0b25d7b7654ecebd32bd82aadb47a4
         env:
         # Non secret env vars
         - name: IR_API

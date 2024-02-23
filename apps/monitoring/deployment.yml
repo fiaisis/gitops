@@ -83,6 +83,7 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
+      - ServerSideApply=true
       - CreateNamespace=true
 ---
 apiVersion: argoproj.io/v1alpha1

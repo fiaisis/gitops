@@ -52,7 +52,6 @@ spec:
           enabled: true
           pod_logs:
             enabled: true
-            namespaces: ["ir", "ir-jobs", "rabbitmq"]
           cluster_events:
             enabled: true
         traces:
@@ -60,7 +59,11 @@ spec:
         opencost:
           enabled: true
           opencost:
+            exporter:
+              defaultClusterId: prod
             prometheus:
+              external:
+                url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom
               secret_name: monitoring-creds
               username_key: usernamePrometheus
               password_key: password

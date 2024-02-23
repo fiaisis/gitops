@@ -55,7 +55,7 @@ spec:
           cluster_events:
             enabled: true
         traces:
-          enabled: false
+          enabled: true
         opencost:
           enabled: true
           opencost:

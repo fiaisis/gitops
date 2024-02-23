@@ -56,9 +56,9 @@ spec:
           cluster_events:
             enabled: true
         traces:
-          enabled: true
-        opencost:
           enabled: false
+        opencost:
+          enabled: true
         kube-state-metrics:
           enabled: true
         prometheus-node-exporter:

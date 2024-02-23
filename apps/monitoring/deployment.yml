@@ -59,6 +59,10 @@ spec:
           enabled: false
         opencost:
           enabled: true
+          prometheus:
+            secret_name: monitoring-creds
+            username_key: usernamePrometheus
+            password_key: password
         kube-state-metrics:
           enabled: true
         prometheus-node-exporter:

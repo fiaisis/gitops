@@ -16,7 +16,7 @@ spec:
           name: prod
         externalServices:
           prometheus:
-            host: https://prometheus-prod-01-eu-west-0.grafana.net
+            hostKey: hostPrometheus
             basicAuth:
               usernameKey: usernamePrometheus
               passwordKey: password
@@ -25,7 +25,7 @@ spec:
               name: monitoring-creds
               namespace: monitoring-system
           loki:
-            host: https://logs-prod-eu-west-0.grafana.net
+            hostKey: hostLoki
             basicAuth:
               usernameKey: usernameLoki
               passwordKey: password
@@ -34,7 +34,7 @@ spec:
               name: monitoring-creds
               namespace: monitoring-system
           tempo:
-            host: https://tempo-eu-west-0.grafana.net:443
+            hostKey: hostTempo
             basicAuth:
               usernameKey: usernameTempo
               passwordKey: password

@@ -23,12 +23,13 @@ spec:
           prometheusSpec:
             remoteWrite:
               - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
-                username:
-                  name: prom-creds
-                  key: username
-                password:
-                  name: prom-creds
-                  key: password
+                basicAuth:
+                  username:
+                    name: prom-creds
+                    key: username
+                  password:
+                    name: prom-creds
+                    key: password
                 writeRelabelConfigs:
                   - sourceLabels:
                       - __name__

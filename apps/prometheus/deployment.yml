@@ -8,38 +8,29 @@ spec:
   project: prod
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 25.14.0
-    chart: prometheus
+    targetRevision: 56.9.0
+    chart: kube-prometheus-stack
     helm:
       values: |
         alertmanager:
           enabled: false
-        prometheus-pushgateway:
+        grafana:
           enabled: false
-        prometheus-node-exporter:
-          tolerations:
-            - effect: NoSchedule
-              operator: Exists
-            - effect: NoSchedule
-              key: queue-worker
-              operator: Exists
-          server:
-            persistentVolume:
-              enabled: true
-              accessModes:
-                - ReadWriteOnce
-              storageClass: csi-cinder
+        prometheus:
+          service:
+            type: LoadBalancer
+            loadBalancerIP: ""
+          prometheusSpec:
             remoteWrite:
               - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
-                basic_auth:
-                  username:
-                    name: prom-creds
-                    key: username
-                  password:
-                    name: prom-creds
-                    key: password
-                write_relabel_configs:
-                  - source_labels:
+                username:
+                  name: prom-creds
+                  key: username
+                password:
+                  name: prom-creds
+                  key: password
+                writeRelabelConfigs:
+                  - sourceLabels:
                       - __name__
                       - device
                     regex: "node_network.*;veth.*"

@@ -46,3 +46,24 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-extras-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: ir
+    name: prod
+  project: prod
+  source:
+    path: components/prometheus/overlays/production
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

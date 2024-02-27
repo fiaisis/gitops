@@ -24,7 +24,7 @@ spec:
             additionalScrapeConfigs:
               - job_name: rabbitmq
                 static_configs:
-                  - targets: ["prometheus-rabbitmq-exporter-prod.monitoring-system.svc.cluster.local:9100"]
+                  - targets: ["prometheus-rabbitmq-exporter-prod.monitoring-system.svc.cluster.local:9419"]
             remoteWrite:
               - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
                 basicAuth:

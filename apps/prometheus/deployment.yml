@@ -66,7 +66,7 @@ spec:
     helm:
       values: |
         rabbitmq:
-          url: https://rabbitmq-cluster.rabbitmq.svc.cluster.local
+          url: http://rabbitmq-cluster.rabbitmq.svc.cluster.local
           existingUserSecret: prom-creds
           existingUserSecretKey: rabbitmqUsername
           existingPasswordSecret: prom-creds

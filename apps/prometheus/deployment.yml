@@ -62,10 +62,10 @@ spec:
       values: |
         rabbitmq:
           url: rabbitmq-cluster.rabbitmq.svc.cluster.local
-          existingUserSecret: rabbitmq-admin
-          existingUserSecretKey: username
-          existingPasswordSecret: rabbitmq-admin
-          existingPasswordSecretKey: password
+          existingUserSecret: prom-creds
+          existingUserSecretKey: rabbitmqUsername
+          existingPasswordSecret: prom-creds
+          existingPasswordSecretKey: rabbitmqPassword
   destination:
     namespace: monitoring-system
     name: prod

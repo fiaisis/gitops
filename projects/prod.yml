@@ -16,6 +16,7 @@ spec:
   sourceRepos:
   - 'https://github.com/interactivereduction/gitops'
   - 'https://traefik.github.io/charts/'
+  - 'https://charts.longhorn.io'
   - 'https://strimzi.io/charts/'
   - 'https://bitnami-labs.github.io/sealed-secrets'
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'

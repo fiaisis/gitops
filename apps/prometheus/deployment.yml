@@ -21,6 +21,10 @@ spec:
             type: LoadBalancer
             loadBalancerIP: "130.246.80.72"
           prometheusSpec:
+            additionalScrapeConfigs:
+              - job_name: rabbitmq
+                static_configs:
+                  - targets: ["prometheus-rabbitmq-exporter-prod.monitoring-system.svc.cluster.local:9100"]
             remoteWrite:
               - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
                 basicAuth:
@@ -47,6 +51,7 @@ spec:
       - ServerSideApply=true
       - CreateNamespace=true
 ---
+# May not be needed as there is a rabbitmq plugin that should enable this?
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

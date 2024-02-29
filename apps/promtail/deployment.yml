@@ -1,0 +1,64 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: promtail-prod
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.15.5
+    chart: promtail
+    helm:
+      values: |
+        extraEnv:
+          - name: LOKI_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: loki-creds
+                key: username
+          - name: LOKI_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: loki-creds
+                key: password
+        config:
+          clients:
+            - https://logs-prod-eu-west-0.grafana.net
+          snippets:
+            extraClientConfigs: |
+              basic_auth:
+                username: ${LOKI_USERNAME}
+                password: ${LOKI_PASSWORD}
+  destination:
+    namespace: monitoring-system
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: promtail-extras-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: ir
+    name: prod
+  project: prod
+  source:
+    path: components/promtail/overlays/production
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

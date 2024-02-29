@@ -29,7 +29,11 @@ spec:
         
         config:
           clients:
-            - https://logs-prod-eu-west-0.grafana.net
+            - url: https://logs-prod-eu-west-0.grafana.net
+          extraRelabelConfigs:
+            - source_labels: [__meta_kubernetes_pod_name]
+              regex: '.*konnectivity.*'
+              action: drop
           snippets:
             extraClientConfigs: |
               basic_auth:

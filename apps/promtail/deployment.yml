@@ -31,8 +31,8 @@ spec:
           clients:
             - url: https://logs-prod-eu-west-0.grafana.net/loki/api/v1/push
               basic_auth:
-                username: ${LOKI_USERNAME}
-                password: ${LOKI_PASSWORD}
+                username: '${LOKI_USERNAME}'
+                password: '${LOKI_PASSWORD}'
           extraRelabelConfigs:
             - source_labels: [__meta_kubernetes_pod_name]
               regex: '.*konnectivity.*'

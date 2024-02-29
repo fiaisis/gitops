@@ -29,7 +29,7 @@ spec:
         
         config:
           clients:
-            - url: https://logs-prod-eu-west-0.grafana.net
+            - url: https://logs-prod-eu-west-0.grafana.net/loki/api/v1/push
               basic_auth:
                 username: ${LOKI_USERNAME}
                 password: ${LOKI_PASSWORD}

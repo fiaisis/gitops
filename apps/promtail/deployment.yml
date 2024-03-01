@@ -33,17 +33,11 @@ spec:
               basic_auth:
                 username: '${LOKI_USERNAME}'
                 password: '${LOKI_PASSWORD}'
-#          snippets:
-#            extraRelabelConfigs:
-#              - source_labels: [__meta_kubernetes_pod_name]
-#                regex: '.*konnectivity.*'
-#                action: drop
-#              - source_labels: [__meta_kubernetes_pod_name]
-#                regex: '.*csi.*'
-#                action: drop
-#              - source_labels: [__meta_kubernetes_namespace]
-#                regex: '.*ir.*'
-#                action: keep
+          snippets:
+            extraRelabelConfigs:
+              - source_labels: [__meta_kubernetes_pod_name]
+                regex: '(.*konnectivity.*|.*csi.*|.*cilium.*|.*coredns.*|.*etcd.*|.*longhorn.*|.*prometheus.*|.*promtail.*|.*openstack.*)'
+                action: drop
   destination:
     namespace: monitoring-system
     name: prod

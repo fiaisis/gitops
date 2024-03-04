@@ -32,20 +32,29 @@ spec:
                 static_configs:
                   - targets: ["csi-ceph-prod-ceph-csi-cephfs-provisioner-http-metrics.ir.svc.cluster.local:8080", "csi-ceph-prod-ceph-csi-cephfs-nodeplugin-http-metrics.ir.svc.cluster.local:8080"]
             remoteWrite:
-              - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
+              - url: https://influxdb06.gridpp.rl.ac.uk/api/v1/prom/write?db=isis
                 basicAuth:
                   username:
                     name: prom-creds
-                    key: username
+                    key: writeUsername
                   password:
                     name: prom-creds
-                    key: password
+                    key: writePassword
                 writeRelabelConfigs:
                   - sourceLabels:
                       - __name__
                       - device
                     regex: "node_network.*;veth.*"
                     action: drop
+            remoteRead:
+              - url: https://influxdb06.gridpp.rl.ac.uk/api/v1/prom/read?db=isis
+                basicAuth:
+                  username:
+                    name: prom-creds
+                    key: readUsername
+                  password:
+                    name: prom-creds
+                    key: readPassword
   destination:
     namespace: monitoring-system
     name: prod

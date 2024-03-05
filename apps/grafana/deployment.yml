@@ -12,27 +12,7 @@ spec:
     chart: grafana
     helm:
       values: |
-        env:
-          - name: INFLUXDB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: influxDBReadUsername
-          - name: INFLUXDB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: influxDBReadPassword
-          - name: LOKI_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: lokiUsername
-          - name: LOKI_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: lokiPassword
+        envFromSecret: grafana-creds
         service:
           type: LoadBalancer
           loadBalancerIP: "130.246.80.52"
@@ -66,40 +46,6 @@ spec:
           existingSecret: grafana-creds
           userKey: username
           passwordKey: password
-#        alerting:
-#      dashboards:
-#        default:
-#          some-dashboard:
-#            json: |
-#              {
-#                "annotations":
-#
-#                ...
-#                # Complete json file here
-#                ...
-#
-#                "title": "Some Dashboard",
-#                "uid": "abcd1234",
-#                "version": 1
-#              }
-#          custom-dashboard:
-#            # This is a path to a file inside the dashboards directory inside the chart directory
-#            file: dashboards/custom-dashboard.json
-#          prometheus-stats:
-#            # Ref: https://grafana.com/dashboards/2
-#            gnetId: 2
-#            revision: 2
-#            datasource: Prometheus
-#          loki-dashboard-quick-search:
-#            gnetId: 12019
-#            revision: 2
-#            datasource:
-#              - name: DS_PROMETHEUS
-#                value: Prometheus
-#              - name: DS_LOKI
-#                value: Loki
-#          local-dashboard:
-#            url: https://raw.githubusercontent.com/user/repository/master/dashboards/dashboard.json
   destination:
     namespace: grafana
     server: https://kubernetes.default.svc

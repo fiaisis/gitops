@@ -12,23 +12,24 @@ spec:
     chart: grafana
     helm:
       values: |
-        envValueFrom:
-          - INFLUXDB_USERNAME:
-              secretKeyRef:
-                name: grafana-creds
-                key: influxDBReadUsername
-          - INFLUXDB_PASSWORD:
-              secretKeyRef:
-                name: grafana-creds
-                key: influxDBReadPassword
-          - LOKI_USERNAME
-              secretKeyRef:
-                name: grafana-creds
-                key: lokiUsername
-          - LOKI_PASSWORD
-              secretKeyRef:
-                name: grafana-creds
-                key: lokiPassword
+        envValueFrom: {
+          INFLUXDB_USERNAME:
+            secretKeyRef:
+              name: grafana-creds
+              key: influxDBReadUsername
+          INFLUXDB_PASSWORD:
+            secretKeyRef:
+              name: grafana-creds
+              key: influxDBReadPassword
+          LOKI_USERNAME
+            secretKeyRef:
+              name: grafana-creds
+              key: lokiUsername
+          LOKI_PASSWORD
+            secretKeyRef:
+              name: grafana-creds
+              key: lokiPassword
+        }
         service:
           type: LoadBalancer
           loadBalancerIP: "130.246.80.52"

@@ -23,6 +23,7 @@ spec:
         datasources:
           datasources.yaml:
             apiVersion: 1
+            editable: true
             datasources:
               - name: Prod-InfluxDB
                 type: influxdb

@@ -49,12 +49,12 @@ spec:
           userKey: username
           passwordKey: password
         env:
-          - name: INFLUXDB_USERNAME:
+          - name: INFLUXDB_USERNAME
             valueFrom:
               secretKeyRef:
                 name: grafana-creds
                 key: influxDBReadUsername
-          - name: INFLUXDB_PASSWORD:
+          - name: INFLUXDB_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: grafana-creds

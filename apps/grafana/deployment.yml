@@ -49,6 +49,16 @@ spec:
           userKey: username
           passwordKey: password
         env:
+          - name: GF_SECURITY_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                name: grafana-creds
+                key: username
+          - name: GF_SECURITY_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: grafana-creds
+                key: password
           - name: INFLUXDB_USERNAME
             valueFrom:
               secretKeyRef:

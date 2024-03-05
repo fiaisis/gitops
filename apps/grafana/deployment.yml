@@ -12,24 +12,20 @@ spec:
     chart: grafana
     helm:
       values: |
-        env:
-          - name: INFLUXDB_USERNAME
-            valueFrom:
+        envValueFrom:
+          - INFLUXDB_USERNAME:
               secretKeyRef:
                 name: grafana-creds
                 key: influxDBReadUsername
-          - name: INFLUXDB_PASSWORD
-            valueFrom:
+          - INFLUXDB_PASSWORD:
               secretKeyRef:
                 name: grafana-creds
                 key: influxDBReadPassword
-          - name: LOKI_USERNAME
-            valueFrom:
+          - LOKI_USERNAME
               secretKeyRef:
                 name: grafana-creds
                 key: lokiUsername
-          - name: LOKI_PASSWORD
-            valueFrom:
+          - LOKI_PASSWORD
               secretKeyRef:
                 name: grafana-creds
                 key: lokiPassword

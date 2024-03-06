@@ -46,8 +46,8 @@ spec:
                   basicAuthPassword: $lokiPassword        
         admin:
           existingSecret: grafana-creds
-          userKey: $username
-          passwordKey: $password
+          userKey: username
+          passwordKey: password
         envFromSecret: grafana-creds
   destination:
     namespace: grafana

@@ -46,15 +46,10 @@ spec:
                       - device
                     regex: "node_network.*;veth.*"
                     action: drop
-            remoteRead:
-              - url: https://influxdb06.gridpp.rl.ac.uk/api/v1/prom/read?db=isis
-                basicAuth:
-                  username:
-                    name: prom-creds
-                    key: readUsername
-                  password:
-                    name: prom-creds
-                    key: readPassword
+                  - sourceLabels:
+                      - __name__
+                    regex: "apiserver.*;kubeproxy.*;etcd.*;erlang"
+                    action: drop
   destination:
     namespace: monitoring-system
     name: prod

@@ -27,58 +27,28 @@ spec:
                 type: influxdb
                 access: proxy
                 url: https://influxdb06.gridpp.rl.ac.uk
-                user: $INFLUXDB_USERNAME
+                user: $influxDBReadUsername
                 jsonData:
                   dbName: isis
                   httpMode: GET
                 secureJsonData:
-                  password: $INFLUXDB_PASSWORD
+                  password: $influxDBReadPassword
               - name: Prod-Cloud-Loki
                 type: loki
                 access: proxy
                 url: https://logs-prod-eu-west-0.grafana.net
                 basicAuth: true
-                basicAuthUser: $LOKI_USERNAME
+                basicAuthUser: $lokiUsername
                 jsonData:
                   timeout: 60
                   maxLines: 1000
                 secureJsonData:
-                  basicAuthPassword: $LOKI_PASSWORD          
+                  basicAuthPassword: $lokiPassword        
         admin:
           existingSecret: grafana-creds
-          userKey: username
-          passwordKey: password
-        env:
-          - name: GF_SECURITY_ADMIN_USER
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: username
-          - name: GF_SECURITY_ADMIN_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: password
-          - name: INFLUXDB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: influxDBReadUsername
-          - name: INFLUXDB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: influxDBReadPassword
-          - name: LOKI_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: lokiUsername
-          - name: LOKI_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: grafana-creds
-                key: lokiPassword
+          userKey: $username
+          passwordKey: $password
+        envFromSecret: grafana-creds
   destination:
     namespace: grafana
     server: https://kubernetes.default.svc

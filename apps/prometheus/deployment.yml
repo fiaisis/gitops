@@ -32,7 +32,7 @@ spec:
                 static_configs:
                   - targets: ["csi-ceph-prod-ceph-csi-cephfs-provisioner-http-metrics.ir.svc.cluster.local:8080", "csi-ceph-prod-ceph-csi-cephfs-nodeplugin-http-metrics.ir.svc.cluster.local:8080"]
             remoteWrite:
-              - url: https://influxdb06.gridpp.rl.ac.uk/api/v1/prom/write?db=isis
+              - url: http://influxdb06.gridpp.rl.ac.uk:8086/api/v1/prom/write?db=isis
                 basicAuth:
                   username:
                     name: prom-creds

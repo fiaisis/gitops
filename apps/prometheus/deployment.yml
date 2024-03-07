@@ -23,9 +23,6 @@ spec:
           prometheusSpec:
             serviceMonitorSelectorNilUsesHelmValues: false
             additionalScrapeConfigs:
-              - job_name: ingress-nginx
-                static_configs:
-                  - targets: ["ingress-nginx-controller-metrics.ingress-nginx.svc.cluster.local:10254"]
               - job_name: csi-ceph
                 static_configs:
                   - targets: ["csi-ceph-prod-ceph-csi-cephfs-provisioner-http-metrics.ir.svc.cluster.local:8080", "csi-ceph-prod-ceph-csi-cephfs-nodeplugin-http-metrics.ir.svc.cluster.local:8080"]

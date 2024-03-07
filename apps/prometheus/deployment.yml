@@ -21,6 +21,7 @@ spec:
             type: LoadBalancer
             loadBalancerIP: "130.246.80.72"
           prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
             additionalScrapeConfigs:
               - job_name: ingress-nginx
                 static_configs:

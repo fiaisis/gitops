@@ -13,12 +13,13 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
+          scan-ref: '.'
           hide-progress: false
           format: 'table'
           output: table.txt
           exit-code: '1'
           ignore-unfixed: true
-          severity: 'CRITICAL,HIGH'
+          severity: 'LOW,MEDIUM,CRITICAL,HIGH'
 
       - name: Show results
         if: always()

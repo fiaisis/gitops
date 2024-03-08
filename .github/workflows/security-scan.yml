@@ -20,9 +20,6 @@ jobs:
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
 
-      - name: Upload trivy report as a Github artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: table
-          path: '${{ github.workspace }}/table.txt'
-          retention-days: 1 # 90 is the default
+      - name: Show results
+        if: always()
+        run: cat table.txt

@@ -26,25 +26,6 @@ spec:
               - job_name: csi-ceph
                 static_configs:
                   - targets: ["csi-ceph-prod-ceph-csi-cephfs-provisioner-http-metrics.ir.svc.cluster.local:8080", "csi-ceph-prod-ceph-csi-cephfs-nodeplugin-http-metrics.ir.svc.cluster.local:8080"]
-            remoteWrite:
-              - url: http://influxdb06.gridpp.rl.ac.uk:8086/api/v1/prom/write?db=isis
-                basicAuth:
-                  username:
-                    name: prom-creds
-                    key: writeUsername
-                  password:
-                    name: prom-creds
-                    key: writePassword
-                writeRelabelConfigs:
-                  - sourceLabels:
-                      - __name__
-                      - device
-                    regex: "node_network.*;veth.*"
-                    action: drop
-                  - sourceLabels:
-                      - __name__
-                    regex: "apiserver.*;kubeproxy.*;etcd.*;erlang"
-                    action: drop
   destination:
     namespace: monitoring-system
     name: prod
@@ -54,25 +35,4 @@ spec:
       selfHeal: true
     syncOptions:
       - ServerSideApply=true
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: prometheus-extras-prod
-  namespace: argocd
-spec:
-  destination:
-    namespace: ir
-    name: prod
-  project: prod
-  source:
-    path: components/prometheus/overlays/production
-    repoURL: https://github.com/interactivereduction/gitops.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
       - CreateNamespace=true

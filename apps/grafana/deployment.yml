@@ -45,76 +45,76 @@ spec:
                   timeout: 300
                   maxLines: 1000
                 secureJsonData:
-                  basicAuthPassword: $lokiPassword        
-        dashboards:
-          default:
-            kubernetes-dense:
-              gnetId: 15661
-              revision: 1
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            kubernetes-views-namespaces:
-              gnetId: 15758
-              revision: 34
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            kubernetes-views-global:
-              gnetId: 15757
-              revision: 37
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            kubernetes-views-nodes:
-              gnetId: 15759
-              revision: 29
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            kubernetes-views-pods:
-              gnetId: 15760
-              revision: 26
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            kubernetes-views-apiserver:
-              gnetId: 15761
-              revision: 16
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            kubernetes-views-coredns:
-              gnetId: 15762
-              revision: 17
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            kubernetes-troubleshoot:
-              gnetId: 15196
-              revision: 3
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-                - name: DS_LOKI
-                  value: Prod-Cloud-Loki
-            rabbitmq:
-              gnetId: 10991
-              revision: 14
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
-            rabbitmq-dense:
-              gnetId: 10982
-              revision: 1
-              datasource:
-                - name: DS_PROMETHEUS: 
-                  value: Prod-Prom
+                  basicAuthPassword: $lokiPassword
         admin:
           existingSecret: grafana-creds
           userKey: username
           passwordKey: password
         envFromSecret: grafana-creds
+#        dashboards:
+#          default:
+#            kubernetes-dense:
+#              gnetId: 15661
+#              revision: 1
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            kubernetes-views-namespaces:
+#              gnetId: 15758
+#              revision: 34
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            kubernetes-views-global:
+#              gnetId: 15757
+#              revision: 37
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            kubernetes-views-nodes:
+#              gnetId: 15759
+#              revision: 29
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            kubernetes-views-pods:
+#              gnetId: 15760
+#              revision: 26
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            kubernetes-views-apiserver:
+#              gnetId: 15761
+#              revision: 16
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            kubernetes-views-coredns:
+#              gnetId: 15762
+#              revision: 17
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            kubernetes-troubleshoot:
+#              gnetId: 15196
+#              revision: 3
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#                - name: DS_LOKI
+#                  value: Prod-Cloud-Loki
+#            rabbitmq:
+#              gnetId: 10991
+#              revision: 14
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
+#            rabbitmq-dense:
+#              gnetId: 10982
+#              revision: 1
+#              datasource:
+#                - name: DS_PROMETHEUS:
+#                  value: Prod-Prom
   destination:
     namespace: grafana
     server: https://kubernetes.default.svc

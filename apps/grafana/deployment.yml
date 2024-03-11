@@ -51,49 +51,49 @@ spec:
             kubernetes-dense:
               gnetId: 15661
               revision: 1
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             kubernetes-views-namespaces:
               gnetId: 15758
               revision: 34
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             kubernetes-views-global:
               gnetId: 15757
               revision: 37
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             kubernetes-views-nodes:
               gnetId: 15759
               revision: 29
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             kubernetes-views-pods:
               gnetId: 15760
               revision: 26
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             kubernetes-views-apiserver:
               gnetId: 15761
               revision: 16
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             kubernetes-views-coredns:
               gnetId: 15762
               revision: 17
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             kubernetes-troubleshoot:
               gnetId: 15196
               revision: 3
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
                 - name: DS_LOKI
@@ -101,13 +101,13 @@ spec:
             rabbitmq:
               gnetId: 10991
               revision: 14
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
             rabbitmq-dense:
               gnetId: 10982
               revision: 1
-              datasources:
+              datasource:
                 - name: DS_PROMETHEUS: 
                   value: Prod-Prom
         admin:

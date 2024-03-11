@@ -51,14 +51,14 @@ spec:
           userKey: username
           passwordKey: password
         envFromSecret: grafana-creds
-#        dashboards:
-#          default:
-#            kubernetes-dense:
-#              gnetId: 15661
-#              revision: 1
-#              datasource:
-#                - name: DS_PROMETHEUS:
-#                  value: Prod-Prom
+        dashboards:
+          default:
+            kubernetes-dense:
+              gnetId: 15661
+              revision: 1
+              datasource:
+                - name: DS_PROMETHEUS:
+                  value: Prod-Prom
 #            kubernetes-views-namespaces:
 #              gnetId: 15758
 #              revision: 34

@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+  labels:
+    grafana_datasource: 'true' # default value for: sidecar.datasources.label
+data:
+  prometheus.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: Prod-Prom
+        type: prometheus
+        access: proxy
+        url: http://130.246.80.72:9090
+        jsonData:
+          httpMethod: POST
+          manageAlerts: false
+          prometheusType: Prometheus
+          prometheusVersion: 2.49.1
+          cacheLevel: 'High'
+          disableRecordingRules: false
+          incrementalQueryOverlapWindow: 10m
+  loki.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: Prod-Cloud-Loki
+        type: loki
+        access: proxy
+        url: https://logs-prod-eu-west-0.grafana.net
+        basicAuth: true
+        basicAuthUser: $lokiUsername
+        jsonData:
+          timeout: 300
+          maxLines: 1000
+        secureJsonData:
+          basicAuthPassword: $lokiPassword

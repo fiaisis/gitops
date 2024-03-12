@@ -10,6 +10,7 @@ data:
     datasources:
       - name: Prod-Prom
         type: prometheus
+        uid: PD00A5B2EA89EE16D
         access: proxy
         url: http://130.246.80.72:9090
         jsonData:

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-notification-policies
+  labels:
+    grafana_alert: 'true'
+data:
+  notification-policies.yml: |-
+    apiVersion: 1
+    policies:
+        - orgId: 1
+          receiver: Main email
+          group_by:
+            - grafana_folder
+            - alertname
+          routes:
+            - receiver: Teams

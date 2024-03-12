@@ -12,13 +12,14 @@ spec:
     chart: grafana
     helm:
       values: |
+        grafana.ini:
+          smtp:
+            enabled: true
         service:
           type: LoadBalancer
           loadBalancerIP: "130.246.80.52"
         persistence:
           enabled: true
-        plugins:
-          - grafana-oncall-app
         sidecar:
           alerts:
             enabled: true

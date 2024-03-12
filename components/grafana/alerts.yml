@@ -1,0 +1,222 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-alerts
+  labels:
+    grafana_alert: 'true'
+data:
+  infrastructure-health.yml: |-
+    apiVersion: 1
+    groups:
+        - orgId: 1
+          name: Infrastructure Health
+          folder: Infrastructure Health
+          interval: 1m
+          rules:
+            - uid: c968b2c1-8116-4939-adae-e07868a96633
+              title: Worker node missing
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    disableTextWrap: false
+                    editorMode: code
+                    exemplar: false
+                    expr: sum(kube_node_info{node!~".*control-plane.*"})
+                    fullMetaSearch: false
+                    includeNullMetadata: true
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                    useBackend: false
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 5
+                                - 0
+                            type: lt
+                          operator:
+                            type: and
+                          query:
+                            params: []
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 5m
+              annotations: {}
+              labels: {}
+              isPaused: false
+            - uid: bbdfd300-d47c-4bc8-a10e-8d4eec57c4e0
+              title: Control-plane missing
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: sum(kube_node_info{node=~".*control-plane.*"})
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 3
+                                - 0
+                            type: lt
+                          operator:
+                            type: and
+                          query:
+                            params: []
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 5m
+              annotations: {}
+              labels: {}
+              isPaused: false
+            - uid: a908542e-d909-475d-a09c-b57ed9feb463
+              title: Kubernetes node not ready
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: kube_node_status_condition{job!="",condition="Ready",status="true"} == 0
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations: {}
+              labels:
+                severity: warning
+              isPaused: false
+            - uid: cd7549ee-6fba-4cbf-8d79-7b9a55edee5b
+              title: Kubernetes node unreachable
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: (kube_node_spec_taint{job!="",key="node.kubernetes.io/unreachable",effect="NoSchedule"} unless ignoring(key,value) kube_node_spec_taint{job!="",key=~"ToBeDeletedByClusterAutoscaler"}) == 1
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations: {}
+              labels:
+                severity: warning
+              isPaused: false
+            - uid: c38f03f7-e741-4630-a87a-56519df00c0e
+              title: Kubelet near pod capacity
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: |
+                        count by(cluster, node) (
+                          (kube_pod_status_phase{job!="",phase="Running"} == 1) * on(instance,pod,namespace,cluster) group_left(node) topk by(instance,pod,namespace,cluster) (1, kube_pod_info{job!=""})
+                        )
+                        /
+                        max by(cluster, node) (
+                          kube_node_status_capacity{job!="",resource="pods"} != 1
+                        ) > 0.95
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              labels:
+                severity: info
+              isPaused: false

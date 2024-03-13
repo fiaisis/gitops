@@ -8,215 +8,527 @@ data:
   infrastructure-health.yml: |-
     apiVersion: 1
     groups:
-        - orgId: 1
-          name: Infrastructure Health
-          folder: Infrastructure Health
-          interval: 1m
-          rules:
-            - uid: c968b2c1-8116-4939-adae-e07868a96633
-              title: Worker node missing
-              condition: B
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PD00A5B2EA89EE16D
-                  model:
-                    datasource:
-                        type: prometheus
-                        uid: PD00A5B2EA89EE16D
-                    disableTextWrap: false
-                    editorMode: code
-                    exemplar: false
-                    expr: sum(kube_node_info{node!~".*control-plane.*"})
-                    fullMetaSearch: false
-                    includeNullMetadata: true
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: __auto
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-                    useBackend: false
-                - refId: B
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 4
-                                - 0
-                            type: lt
-                          operator:
-                            type: and
-                          query:
-                            params: []
-                          reducer:
-                            params: []
-                            type: avg
-                          type: query
-                    datasource:
-                        name: Expression
-                        type: __expr__
-                        uid: __expr__
-                    expression: A
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: B
-                    type: threshold
-              noDataState: NoData
-              execErrState: Error
-              for: 5m
-              annotations: {}
-              labels: {}
-              isPaused: false
-            - uid: bbdfd300-d47c-4bc8-a10e-8d4eec57c4e0
-              title: Control-plane missing
-              condition: B
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PD00A5B2EA89EE16D
-                  model:
-                    datasource:
-                        type: prometheus
-                        uid: PD00A5B2EA89EE16D
-                    editorMode: code
-                    expr: sum(kube_node_info{node=~".*control-plane.*"})
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: __auto
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-                - refId: B
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 3
-                                - 0
-                            type: lt
-                          operator:
-                            type: and
-                          query:
-                            params: []
-                          reducer:
-                            params: []
-                            type: avg
-                          type: query
-                    datasource:
-                        name: Expression
-                        type: __expr__
-                        uid: __expr__
-                    expression: A
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: B
-                    type: threshold
-              noDataState: NoData
-              execErrState: Error
-              for: 5m
-              annotations: {}
-              labels: {}
-              isPaused: false
-            - uid: a908542e-d909-475d-a09c-b57ed9feb463
-              title: Kubernetes node not ready
-              condition: A
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PD00A5B2EA89EE16D
-                  model:
-                    datasource:
-                        type: prometheus
-                        uid: PD00A5B2EA89EE16D
-                    editorMode: code
-                    expr: kube_node_status_condition{job!="",condition="Ready",status="true"} == 0
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: __auto
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-              noDataState: OK
-              execErrState: Error
-              for: 5m
-              annotations: {}
-              labels:
-                severity: warning
-              isPaused: false
-            - uid: cd7549ee-6fba-4cbf-8d79-7b9a55edee5b
-              title: Kubernetes node unreachable
-              condition: A
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PD00A5B2EA89EE16D
-                  model:
-                    datasource:
-                        type: prometheus
-                        uid: PD00A5B2EA89EE16D
-                    editorMode: code
-                    expr: (kube_node_spec_taint{job!="",key="node.kubernetes.io/unreachable",effect="NoSchedule"} unless ignoring(key,value) kube_node_spec_taint{job!="",key=~"ToBeDeletedByClusterAutoscaler"}) == 1
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: __auto
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-              noDataState: OK
-              execErrState: Error
-              for: 5m
-              annotations: {}
-              labels:
-                severity: warning
-              isPaused: false
-            - uid: c38f03f7-e741-4630-a87a-56519df00c0e
-              title: Kubelet near pod capacity
-              condition: A
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PD00A5B2EA89EE16D
-                  model:
-                    datasource:
-                        type: prometheus
-                        uid: PD00A5B2EA89EE16D
-                    editorMode: code
-                    expr: |
-                        count by(cluster, node) (
-                          (kube_pod_status_phase{job!="",phase="Running"} == 1) * on(instance,pod,namespace,cluster) group_left(node) topk by(instance,pod,namespace,cluster) (1, kube_pod_info{job!=""})
+      - orgId: 1
+        name: Service Health
+        folder: Infrastructure Health
+        interval: 1m
+        rules:
+          - uid: ce5998c4-3e04-4dd5-a718-5d63bd1cad98
+            title: Pod crash looping
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", job!=""}[5m]) >= 1
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: |-
+                  Pod {{ $labels.namespace }}
+                  /{{ $labels.pod }}
+                   ({{ $labels.container }}
+                  ) is in waiting state (reason: "CrashLoopBackOff").
+              summary: Pod is crash looping.
+            labels:
+              severity: warning
+            isPaused: false
+          - uid: a0dbc9c3-fa4a-4dd1-9907-7c7bfa7f85f7
+            title: Pod not ready
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: |
+                      sum by (namespace, pod, job, cluster) (
+                        max by(namespace, pod, job, cluster) (
+                          kube_pod_status_phase{job!="", phase=~"Pending|Unknown|Failed"}
+                        ) * on(namespace, pod, cluster) group_left(owner_kind) topk by(namespace, pod, cluster) (
+                          1, max by(namespace, pod, owner_kind, cluster) (kube_pod_owner{owner_kind!="Job"})
                         )
-                        /
-                        max by(cluster, node) (
-                          kube_node_status_capacity{job!="",resource="pods"} != 1
-                        ) > 0.95
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: __auto
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-              noDataState: OK
-              execErrState: Error
-              for: 5m
-              labels:
-                severity: info
-              isPaused: false
+                      ) > 0
+                  hide: false
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 15m
+            annotations:
+              description: |-
+                  Pod {{ $labels.namespace }}
+                  /{{ $labels.pod }}
+                   has been in a non-ready state for longer than 15 minutes.
+              summary: Pod has been in a non-ready state for more than 15 minutes.
+            labels:
+              severity: warning
+            isPaused: false
+          - uid: d81029f0-8810-4280-bc06-c86b5721e9c8
+            title: Deployment rollout stuck
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: |
+                      kube_deployment_status_condition{condition="Progressing", status="false",job!=""}
+                      != 0
+                  hide: false
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: |-
+                  Rollout of deployment {{ $labels.namespace }}
+                  /{{ $labels.deployment }}
+                   is not progressing for longer than 15 minutes.
+              summary: Deployment rollout is not progressing.
+            labels:
+              severity: warning
+            isPaused: false
+          - uid: fecc31e5-40a9-4265-a1cb-44cbf2db98d4
+            title: Job has not completed in 6 hours
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: |-
+                      time() - max by(namespace, job_name, cluster) (kube_job_status_start_time{job!=""}
+                        and
+                      kube_job_status_active{job!=""} > 0) > 21600
+                  hide: false
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: |-
+                  Job {{ $labels.namespace }}
+                  /{{ $labels.job_name }}
+                   is taking more than {{ "43200" | humanizeDuration }}
+                   to complete.
+              summary: Job did not complete in 6 hours.
+            labels:
+              severity: warning
+            isPaused: false
+          - uid: c13c2723-12da-4bc7-82ad-6f950e2f9953
+            title: File watcher is not ready
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: kube_pod_status_ready{namespace="ir", pod=~".*file-watcher.*", condition="true"} != 1
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: '{{ $labels.pod }} is not currently reporting as ready.'
+              summary: Checks if the file watchers and it's operator report ready.
+            labels:
+              severity: critical
+            isPaused: false
+          - uid: cf90cc7c-5ecd-4c66-a44a-c74feb817c3e
+            title: IR-API is not ready
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: kube_pod_status_ready{namespace="ir", pod=~".*ir-api.*", condition="true"} != 1
+                  hide: false
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: '{{ $labels.pod }} is not currently reporting as ready.'
+              summary: Checks if the ir-api reports as ready.
+            labels:
+              severity: critical
+            isPaused: false
+          - uid: b8be2547-0c50-4b63-bd76-5055f14d1d8d
+            title: JobCreator is not ready
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: kube_pod_status_ready{namespace="ir", pod=~".*jobcreator.*", condition="true"} != 1
+                  hide: false
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: '{{ $labels.pod }} is not currently reporting as ready.'
+              summary: Checks if the jobcreator reports as ready.
+            labels:
+              severity: critical
+            isPaused: false
+          - uid: ffb4dc39-848e-4a15-a58d-d6d0ff36e2f3
+            title: Rundetection is not ready
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: kube_pod_status_ready{namespace="ir", pod=~".*rundetection.*", condition="true"} != 1
+                  hide: false
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: '{{ $labels.pod }} is not currently reporting as ready.'
+              summary: Checks if rundetection reports as ready.
+            labels: {}
+            isPaused: false
+      - orgId: 1
+        name: Infrastructure Health
+        folder: Infrastructure Health
+        interval: 1m
+        rules:
+          - uid: c968b2c1-8116-4939-adae-e07868a96633
+            title: Worker node missing
+            condition: B
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  disableTextWrap: false
+                  editorMode: code
+                  exemplar: false
+                  expr: sum(kube_node_info{node!~".*control-plane.*"})
+                  fullMetaSearch: false
+                  includeNullMetadata: true
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+                  useBackend: false
+              - refId: B
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: __expr__
+                model:
+                  conditions:
+                      - evaluator:
+                          params:
+                              - 4
+                              - 0
+                          type: lt
+                        operator:
+                          type: and
+                        query:
+                          params: []
+                        reducer:
+                          params: []
+                          type: avg
+                        type: query
+                  datasource:
+                      name: Expression
+                      type: __expr__
+                      uid: __expr__
+                  expression: A
+                  intervalMs: 1000
+                  maxDataPoints: 43200
+                  refId: B
+                  type: threshold
+            noDataState: NoData
+            execErrState: Error
+            for: 5m
+            annotations: {}
+            labels: {}
+            isPaused: false
+          - uid: bbdfd300-d47c-4bc8-a10e-8d4eec57c4e0
+            title: Control-plane missing
+            condition: B
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: sum(kube_node_info{node=~".*control-plane.*"})
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+              - refId: B
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: __expr__
+                model:
+                  conditions:
+                      - evaluator:
+                          params:
+                              - 3
+                              - 0
+                          type: lt
+                        operator:
+                          type: and
+                        query:
+                          params: []
+                        reducer:
+                          params: []
+                          type: avg
+                        type: query
+                  datasource:
+                      name: Expression
+                      type: __expr__
+                      uid: __expr__
+                  expression: A
+                  intervalMs: 1000
+                  maxDataPoints: 43200
+                  refId: B
+                  type: threshold
+            noDataState: NoData
+            execErrState: Error
+            for: 5m
+            annotations: {}
+            labels: {}
+            isPaused: false
+          - uid: a908542e-d909-475d-a09c-b57ed9feb463
+            title: Kubernetes node not ready
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: kube_node_status_condition{job!="",condition="Ready",status="true"} == 0
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              summary: Node is not ready.
+              description: '{{ $labels.node }} has been unready for more than 15 minutes.'
+            labels:
+              severity: warning
+            isPaused: false
+          - uid: cd7549ee-6fba-4cbf-8d79-7b9a55edee5b
+            title: Kubernetes node unreachable
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: (kube_node_spec_taint{job!="",key="node.kubernetes.io/unreachable",effect="NoSchedule"} unless ignoring(key,value) kube_node_spec_taint{job!="",key=~"ToBeDeletedByClusterAutoscaler"}) == 1
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: {{ $labels.node }} is unreachable and some workloads may be rescheduled.
+            labels:
+              severity: warning
+            isPaused: false
+          - uid: c38f03f7-e741-4630-a87a-56519df00c0e
+            title: Kubelet near pod capacity
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: |
+                      count by(cluster, node) (
+                        (kube_pod_status_phase{job!="",phase="Running"} == 1) * on(instance,pod,namespace,cluster) group_left(node) topk by(instance,pod,namespace,cluster) (1, kube_pod_info{job!=""})
+                      )
+                      /
+                      max by(cluster, node) (
+                        kube_node_status_capacity{job!="",resource="pods"} != 1
+                      ) > 0.95
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: Kubelet '{{ $labels.node }}' is running at {{ $value | humanizePercentage }} of its Pod capacity.
+            labels:
+              severity: info
+            isPaused: false
+          - uid: c0d2e78c-6d91-421e-9642-fbc943f16cec
+            title: CPU pressure on instance is too high
+            condition: A
+            data:
+              - refId: A
+                relativeTimeRange:
+                  from: 600
+                  to: 0
+                datasourceUid: PD00A5B2EA89EE16D
+                model:
+                  datasource:
+                      type: prometheus
+                      uid: PD00A5B2EA89EE16D
+                  editorMode: code
+                  expr: rate(node_pressure_cpu_waiting_seconds_total[1m]) > 0.1
+                  hide: false
+                  instant: true
+                  intervalMs: 1000
+                  legendFormat: __auto
+                  maxDataPoints: 43200
+                  range: false
+                  refId: A
+            noDataState: OK
+            execErrState: Error
+            for: 5m
+            annotations:
+              description: 'CPU pressure on an instance: ${{ $labels.node }} is too high'
+              summary: CPU pressure on an instance is too high
+            labels:
+              severity: warning
+            isPaused: false

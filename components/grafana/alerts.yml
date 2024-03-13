@@ -9,6 +9,282 @@ data:
     apiVersion: 1
     groups:
         - orgId: 1
+          name: Service Health
+          folder: Infrastructure Health
+          interval: 1m
+          rules:
+            - uid: ce5998c4-3e04-4dd5-a718-5d63bd1cad98
+              title: Pod crash looping
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", job!=""}[5m]) >= 1
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: |-
+                    Pod {{ $labels.namespace }}
+                    /{{ $labels.pod }}
+                     ({{ $labels.container }}
+                    ) is in waiting state (reason: "CrashLoopBackOff").
+                summary: Pod is crash looping.
+              labels:
+                severity: warning
+              isPaused: false
+            - uid: a0dbc9c3-fa4a-4dd1-9907-7c7bfa7f85f7
+              title: Pod not ready
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: |
+                        sum by (namespace, pod, job, cluster) (
+                          max by(namespace, pod, job, cluster) (
+                            kube_pod_status_phase{job!="", phase=~"Pending|Unknown|Failed"}
+                          ) * on(namespace, pod, cluster) group_left(owner_kind) topk by(namespace, pod, cluster) (
+                            1, max by(namespace, pod, owner_kind, cluster) (kube_pod_owner{owner_kind!="Job"})
+                          )
+                        ) > 0
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 15m
+              annotations:
+                description: |-
+                    Pod {{ $labels.namespace }}
+                    /{{ $labels.pod }}
+                     has been in a non-ready state for longer than 15 minutes.
+                summary: Pod has been in a non-ready state for more than 15 minutes.
+              labels:
+                severity: warning
+              isPaused: false
+            - uid: d81029f0-8810-4280-bc06-c86b5721e9c8
+              title: Deployment rollout stuck
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: |
+                        kube_deployment_status_condition{condition="Progressing", status="false",job!=""}
+                        != 0
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: |-
+                    Rollout of deployment {{ $labels.namespace }}
+                    /{{ $labels.deployment }}
+                     is not progressing for longer than 15 minutes.
+                summary: Deployment rollout is not progressing.
+              labels:
+                severity: warning
+              isPaused: false
+            - uid: fecc31e5-40a9-4265-a1cb-44cbf2db98d4
+              title: Job has not completed in 6 hours
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: |-
+                        time() - max by(namespace, job_name, cluster) (kube_job_status_start_time{job!=""}
+                          and
+                        kube_job_status_active{job!=""} > 0) > 21600
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: |-
+                    Job {{ $labels.namespace }}
+                    /{{ $labels.job_name }}
+                     is taking more than {{ "43200" | humanizeDuration }}
+                     to complete.
+                summary: Job did not complete in 6 hours.
+              labels:
+                severity: warning
+              isPaused: false
+            - uid: c13c2723-12da-4bc7-82ad-6f950e2f9953
+              title: File watcher is not ready
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: kube_pod_status_ready{namespace="ir", pod=~".*file-watcher.*", condition="true"} != 1
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: '{{ $labels.pod }} is not currently reporting as ready.'
+                summary: Checks if the file watchers and it's operator report ready.
+              labels:
+                severity: critical
+              isPaused: false
+            - uid: cf90cc7c-5ecd-4c66-a44a-c74feb817c3e
+              title: IR-API is not ready
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: kube_pod_status_ready{namespace="ir", pod=~".*ir-api.*", condition="true"} != 1
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: '{{ $labels.pod }} is not currently reporting as ready.'
+                summary: Checks if the ir-api reports as ready.
+              labels:
+                severity: critical
+              isPaused: false
+            - uid: b8be2547-0c50-4b63-bd76-5055f14d1d8d
+              title: JobCreator is not ready
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: kube_pod_status_ready{namespace="ir", pod=~".*jobcreator.*", condition="true"} != 1
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: '{{ $labels.pod }} is not currently reporting as ready.'
+                summary: Checks if the jobcreator reports as ready.
+              labels:
+                severity: critical
+              isPaused: false
+            - uid: ffb4dc39-848e-4a15-a58d-d6d0ff36e2f3
+              title: Rundetection is not ready
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: kube_pod_status_ready{namespace="ir", pod=~".*rundetection.*", condition="true"} != 1
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: '{{ $labels.pod }} is not currently reporting as ready.'
+                summary: Checks if rundetection reports as ready.
+              labels: {}
+              isPaused: false
+        - orgId: 1
           name: Infrastructure Health
           folder: Infrastructure Health
           interval: 1m

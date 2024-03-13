@@ -496,3 +496,34 @@ data:
               labels:
                 severity: info
               isPaused: false
+            - uid: c0d2e78c-6d91-421e-9642-fbc943f16cec
+              title: CPU pressure on instance is too high
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: rate(node_pressure_cpu_waiting_seconds_total[1m]) > 0.1
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: 'CPU pressure on an instance: ${{ $labels.node }} is too high'
+                summary: CPU pressure on an instance is too high
+              labels:
+                severity: warning
+              isPaused: false

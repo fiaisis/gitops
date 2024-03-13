@@ -26,5 +26,5 @@ data:
           - uid: f14cc18e-c167-4684-83ba-53ab5351d52a
             type: teams
             settings:
-              url: $teamsNotificationURL
+              url: $teamsNotificationUrl
             disableResolveMessage: false

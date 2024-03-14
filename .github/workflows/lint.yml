@@ -15,4 +15,4 @@ jobs:
           directory: .
           format: sarif
           output-file: kube-linter.sarif
-        continue-on-error: true
+#        continue-on-error: true

@@ -284,6 +284,37 @@ data:
                 summary: Checks if rundetection reports as ready.
               labels: {}
               isPaused: false
+            - uid: d298f818-84c8-4c25-869a-495fe79b8044
+              title: Job stuck pending
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    editorMode: code
+                    expr: kube_pod_status_phase{phase="Pending", namespace="ir", pod=~"run-.*"} == 1
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+              noDataState: OK
+              execErrState: Error
+              for: 5m
+              annotations:
+                description: Job {{ $labels.pod }} is pending, and merits investigation.
+                summary: If a job is stuck pending, then it isn't processing.
+              labels:
+                severity: critical
+              isPaused: false
         - orgId: 1
           name: Infrastructure Health
           folder: Infrastructure Health

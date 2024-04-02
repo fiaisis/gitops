@@ -6,7 +6,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: fia
     name: staging
   project: staging
   source:
@@ -27,7 +27,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: fia
     name: prod
   project: prod
   source:

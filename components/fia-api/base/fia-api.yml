@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ir-api
-  namespace: ir
+  name: fia-api
+  namespace: fia
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ir-api
+      app: fia-api
   template:
     metadata:
       labels:
-        app: ir-api
+        app: fia-api
     spec:
       containers:
-      - name: ir-api
-        image: ghcr.io/interactivereduction/ir-api@sha256:0a438d592a7ba5537fa5c8cc942a103dd9bab6a1eb96485f68e8f82a19e0b5c3
+      - name: fia-api
+        image: ghcr.io/fiaisis/fia-api@sha256:0a438d592a7ba5537fa5c8cc942a103dd9bab6a1eb96485f68e8f82a19e0b5c3
         env:
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk # Staging
@@ -24,18 +24,18 @@ spec:
         - name: DB_PASSWORD
           valueFrom: 
             secretKeyRef:
-              name: ir-api
+              name: fia-api
               key: db_password
         - name: DB_USERNAME
           valueFrom: 
             secretKeyRef:
-              name: ir-api
+              name: fia-api
               key: db_username
         - name: GITHUB_API_TOKEN
           valueFrom:
             secretKeyRef:
-              name: ir-api
-              key: ir_github_api_token
+              name: fia-api
+              key: fia_github_api_token
         ports:
           - name: api-port
             protocol: TCP

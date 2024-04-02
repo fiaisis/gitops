@@ -11,7 +11,7 @@ spec:
     targetRevision: 3.9.0
     chart: ceph-csi-cephfs
   destination:
-    namespace: ir
+    namespace: fia
     name: staging
   syncPolicy:
     automated:
@@ -27,7 +27,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: fia
     name: staging
   project: staging
   source:
@@ -54,7 +54,7 @@ spec:
     targetRevision: 3.9.0
     chart: ceph-csi-cephfs
   destination:
-    namespace: ir
+    namespace: fia
     name: prod
   syncPolicy:
     automated:
@@ -70,7 +70,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: fia
     name: prod
   project: prod
   source:

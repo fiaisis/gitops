@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: file-watcher-operator
-  namespace: ir
+  namespace: fia
 spec:
   template:
     spec:

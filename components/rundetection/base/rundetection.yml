@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rundetection
-  namespace: ir
+  namespace: fia
 spec:
   replicas: 1
   selector:
@@ -19,7 +19,7 @@ spec:
           - isis.cclrc.ac.uk
       containers:
       - name: rundetection
-        image: ghcr.io/interactivereduction/rundetection@sha256:574afe6b27e3de8863aa0ec7829eaa0ba0154c419297fe3e4b426f92485d066c
+        image: ghcr.io/fiaisis/rundetection@sha256:574afe6b27e3de8863aa0ec7829eaa0ba0154c419297fe3e4b426f92485d066c
         readinessProbe:
           exec:
             command:

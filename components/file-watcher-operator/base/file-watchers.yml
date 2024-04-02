@@ -1,6 +1,6 @@
 # ---
 # # MuSR
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: musr
@@ -9,7 +9,7 @@
 #   filePrefix: MUSR
 # ---
 # #HiFi
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: hifi
@@ -18,7 +18,7 @@
 #   filePrefix: HIFI
 # ---
 # # Emu
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: emu
@@ -27,7 +27,7 @@
 #   filePrefix: EMU
 # ---
 # # Pearl
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: pearl
@@ -36,7 +36,7 @@
 #   filePrefix: PEARL
 # ---
 # # HRPD
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: hrpd
@@ -45,7 +45,7 @@
 #   filePrefix: HRP
 # ---
 # # Engin-X
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: enginx
@@ -54,7 +54,7 @@
 #   filePrefix: ENGINX
 # ---
 # # GEM
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: gem
@@ -63,7 +63,7 @@
 #   filePrefix: GEM
 ---
 # Mari
-apiVersion: ir.com/v1
+apiVersion: fia.com/v1
 kind: FileWatcher
 metadata:
   name: mari
@@ -72,7 +72,7 @@ spec:
   filePrefix: MAR
 # ---
 # # Merlin
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: merlin
@@ -81,7 +81,7 @@ spec:
 #   filePrefix: MER
 # ---
 # # SXD
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: sxd
@@ -90,7 +90,7 @@ spec:
 #   filePrefix: SXD
 # ---
 # # Vesuvio
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: vesuvio
@@ -99,7 +99,7 @@ spec:
 #   filePrefix: VESUVIO
 # ---
 # # Maps
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: maps
@@ -108,7 +108,7 @@ spec:
 #   filePrefix: MAP
 # ---
 # # Sandals
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: sandals
@@ -117,7 +117,7 @@ spec:
 #   filePrefix: SLS
 # ---
 # # Alf
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: alf
@@ -126,7 +126,7 @@ spec:
 #   filePrefix: ALF
 # ---
 # # Surf
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: surf
@@ -135,7 +135,7 @@ spec:
 #   filePrefix: SRF
 # ---
 # # Crisp
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: crisp
@@ -144,7 +144,7 @@ spec:
 #   filePrefix: CSP
 # ---
 # # LOQ
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: loq
@@ -153,7 +153,7 @@ spec:
 #   filePrefix: LOQ
 # ---
 # # Osiris
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: osiris
@@ -162,7 +162,7 @@ spec:
 #   filePrefix: OSIRIS
 # ---
 # # Iris
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: iris
@@ -171,7 +171,7 @@ spec:
 #   filePrefix: IRIS
 # ---
 # # Polaris
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: polaris
@@ -180,7 +180,7 @@ spec:
 #   filePrefix: POLARIS
 # ---
 # # INES
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: ines
@@ -189,7 +189,7 @@ spec:
 #   filePrefix: INS
 ---
 # Tosca
-apiVersion: ir.com/v1
+apiVersion: fia.com/v1
 kind: FileWatcher
 metadata:
   name: tosca
@@ -198,7 +198,7 @@ spec:
   filePrefix: TSC
 # ---
 # # Argus (RIKEN)
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: argus
@@ -207,7 +207,7 @@ spec:
 #   filePrefix: ARGUS
 # ---
 # # Chronus (RIKEN)
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: chronus
@@ -216,7 +216,7 @@ spec:
 #   filePrefix: CHRONUS
 # ---
 # # Wish
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: wish
@@ -225,7 +225,7 @@ spec:
 #   filePrefix: WISH
 # ---
 # # Larmor
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: larmor
@@ -234,7 +234,7 @@ spec:
 #   filePrefix: LARMOR
 # ---
 # # Offspec
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: offspec
@@ -243,7 +243,7 @@ spec:
 #   filePrefix: OFFSPEC
 # ---
 # # Inter
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: inter
@@ -252,7 +252,7 @@ spec:
 #   filePrefix: INTER
 # ---
 # # Polref
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: polref
@@ -261,7 +261,7 @@ spec:
 #   filePrefix: POLREF
 # ---
 # # Sans2D
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: sans2d
@@ -270,7 +270,7 @@ spec:
 #   filePrefix: SANS2D
 # ---
 # # Zoom
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: zoom
@@ -279,7 +279,7 @@ spec:
 #   filePrefix: ZOOM
 # ---
 # # IMAT - Not sure this has useful .nxs files yet
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: imat
@@ -288,7 +288,7 @@ spec:
 #   filePrefix: IMAT
 # ---
 # # LET
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: let
@@ -297,7 +297,7 @@ spec:
 #   filePrefix: LET
 # ---
 # # Nimrod
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: nimrod

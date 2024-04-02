@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
 - ../../base
 patches:
-- path: jobcontroller.yml
+- path: fia-api.yml
 - path: sealedsecrets.yml
+

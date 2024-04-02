@@ -13,7 +13,7 @@ spec:
     driver: cephfs.csi.ceph.com
     nodeStageSecretRef:
       name: ceph-creds
-      namespace: ir
+      namespace: fia
     volumeAttributes:
       # Required options from storageclass parameters need to be added in volumeAttributes
       "clusterID": "ba68226a-672f-4ba5-97bc-22840318b2ec"

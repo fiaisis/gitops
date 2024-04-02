@@ -17,10 +17,10 @@ spec:
       serviceAccountName: file-watcher-operator
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/fiaisis/filewatcher-operator@sha256:5f9c0864f505698e3c390b3944c6e3e1ee856377780a0ac32feaf7e407d95845
+        image: ghcr.io/fiaisis/filewatcher-operator@sha256:de6c82f07166c4c6ad6ede95e829768cd42b9198c8eedd09023500c1e42c44cb
         env:
         - name: FILE_WATCHER_SHA256
-          value: "903ce89ca56dacc50b348a11390b3a91de28bb1aae1181ec2035894fed956fee"
+          value: "8ccc3b4ebca7164b23401bff7c584c7a85e03d5bb36927f2d1127d07fba6a763"
         - name: QUEUE_HOST
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: EGRESS_QUEUE_NAME

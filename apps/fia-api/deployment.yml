@@ -2,15 +2,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ir-api-staging
+  name: fia-api-staging
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: fia
     name: staging
   project: staging
   source:
-    path: components/ir-api/overlays/staging
+    path: components/fia-api/overlays/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:
@@ -23,15 +23,15 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ir-api-prod
+  name: fia-api-prod
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: fia
     name: prod
   project: prod
   source:
-    path: components/ir-api/overlays/production
+    path: components/fia-api/overlays/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

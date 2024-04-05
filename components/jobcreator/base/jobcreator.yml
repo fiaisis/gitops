@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jobcreator
-  namespace: ir
+  namespace: fia
 spec:
   selector:
     matchLabels:
@@ -16,13 +16,13 @@ spec:
       serviceAccountName: jobcreator
       containers:
       - name: jobcreator
-        image: ghcr.io/interactivereduction/jobcreator@sha256:4fbbbee573a2dfa16f353ba64ad0b00dee0b25d7b7654ecebd32bd82aadb47a4
+        image: ghcr.io/fiaisis/jobcreator@sha256:4fbbbee573a2dfa16f353ba64ad0b00dee0b25d7b7654ecebd32bd82aadb47a4
         env:
         # Non secret env vars
-        - name: IR_API
-          value: ir-api-service.ir.svc.cluster.local:80
+        - name: FIA_API
+          value: fia-api-service.fia.svc.cluster.local:80
         - name: PYTHONPATH
-          value: /jobcontroller
+          value: /jobcreator
         - name: MANTID_SHA
           value: b985ff0b8731e455e5b057f7d05f367f3543f3714ebfb4145b94a878c74b93cb
         - name: WATCHER_SHA

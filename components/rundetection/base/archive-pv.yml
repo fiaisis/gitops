@@ -25,4 +25,4 @@ spec:
       source: "//isisdatar55.isis.cclrc.ac.uk/inst$/"
     nodeStageSecretRef:
       name: archive-creds
-      namespace: ir
+      namespace: fia

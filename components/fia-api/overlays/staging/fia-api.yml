@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fia-api
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+      - name: fia-api
+        image: ghcr.io/interactivereduction/fia-api@sha256:c33815d73a31d8b308806844d1f1a21d51bd7b0bc3aef1898dc9ee10f51b21dd
+        env:
+        - name: DB_IP
+          value: dbspg03.fds.rl.ac.uk

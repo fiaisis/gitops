@@ -6,11 +6,11 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: fia
     name: staging
   project: staging
   source:
-    path: components/ir-api/overlays/staging
+    path: components/scigateway/
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

@@ -43,8 +43,6 @@ Deploy the app of apps
 
 Reseal all of the secrets for the bitnami sealedsecrets operator in staging and prod then push the changes to Gitops
 
-Go into Memphis and setup the required user using UI
-
 # How to deploy the app of apps
 
 This will deploy everything using ArgoCD by deploying an application that will deploy everything in the apps folder of this repo.
@@ -74,7 +72,7 @@ Ensure that the secret file (Using bitnami sealedsecrets) exists in the correct 
 To seal a secret so it can be deployed (replace staging with nothing in the --controller-name arg):
 
 ```shell
-kubeseal <secrets.yml>sealedsecrets.yml --namespace ir --controller-name=sealed-secrets-staging --controller-namespace=kube-system --format yaml
+kubeseal <secrets.yml>sealedsecrets.yml --namespace fia --controller-name=sealed-secrets-staging --controller-namespace=kube-system --format yaml
 ```
 
 Setup a local cluster by installing the following
@@ -84,14 +82,14 @@ Run the following from inside the gitops repository with the context set to your
 
 ```shell
 kubectl create namespace rabbitmq
-kubectl create namespace ir
+kubectl create namespace fia
 
-helm install ceph-csi-cephfs ceph-csi-charts/ceph-csi-cephfs --namespace ir
+helm install ceph-csi-cephfs ceph-csi-charts/ceph-csi-cephfs --namespace fia
 helm install rabbitmq-cluster-operator bitnami/rabbitmq-cluster-operator --namespace rabbitmq
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb -n kube-system
 
-cd components/ir-api/base
-kubectl apply -f ir-api.yml -f ir-api-service.yml -f secrets.yml -n ir
+cd components/fia-api/base
+kubectl apply -f fia-api.yml -f fia-api-service.yml -f secrets.yml -n fia
 cd ../../..
 
 cd components/rabbitmq/base
@@ -99,14 +97,14 @@ kubectl apply -f ha-policy.yml -f permissions.yml -f queues.yml -f rabbitmq-clus
 cd ../../..
 
 cd components/rundetection/base
-kubectl apply -f archive-pvc.yml -f archive-pv.yml -f rundetection.yml -f secrets.yml -n ir
+kubectl apply -f archive-pvc.yml -f archive-pv.yml -f rundetection.yml -f secrets.yml -n fia
 cd ../../..
 
 cd components/archive-secrets/base
-kubectl apply -f secrets.yml -n ir
+kubectl apply -f secrets.yml -n fia
 cd ../../..
 
 cd components/ceph/base
-kubectl apply -f ceph-configmap.yml -f secrets.yml -n ir
+kubectl apply -f ceph-configmap.yml -f secrets.yml -n fia
 cd ../../..
 ```

@@ -14,7 +14,7 @@ data:
             - uid: e7df02d8-1cee-49df-9090-05a3b8168269
               type: email
               settings:
-                addresses: ir@stfc.ac.uk
+                addresses: fia@stfc.ac.uk
                 singleEmail: false
               disableResolveMessage: false
   teams-contact-points.yml: |-

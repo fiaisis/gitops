@@ -84,14 +84,14 @@ Run the following from inside the gitops repository with the context set to your
 
 ```shell
 kubectl create namespace rabbitmq
-kubectl create namespace ir
+kubectl create namespace fia
 
 helm install ceph-csi-cephfs ceph-csi-charts/ceph-csi-cephfs --namespace ir
 helm install rabbitmq-cluster-operator bitnami/rabbitmq-cluster-operator --namespace rabbitmq
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb -n kube-system
 
-cd components/ir-api/base
-kubectl apply -f ir-api.yml -f ir-api-service.yml -f secrets.yml -n ir
+cd components/fia-api/base
+kubectl apply -f fia-api.yml -f fia-api-service.yml -f secrets.yml -n fia
 cd ../../..
 
 cd components/rabbitmq/base
@@ -99,14 +99,14 @@ kubectl apply -f ha-policy.yml -f permissions.yml -f queues.yml -f rabbitmq-clus
 cd ../../..
 
 cd components/rundetection/base
-kubectl apply -f archive-pvc.yml -f archive-pv.yml -f rundetection.yml -f secrets.yml -n ir
+kubectl apply -f archive-pvc.yml -f archive-pv.yml -f rundetection.yml -f secrets.yml -n fia
 cd ../../..
 
 cd components/archive-secrets/base
-kubectl apply -f secrets.yml -n ir
+kubectl apply -f secrets.yml -n fia
 cd ../../..
 
 cd components/ceph/base
-kubectl apply -f ceph-configmap.yml -f secrets.yml -n ir
+kubectl apply -f ceph-configmap.yml -f secrets.yml -n fia
 cd ../../..
 ```

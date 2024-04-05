@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ir-api-service
-  namespace: ir
+  name: fia-api-service
+  namespace: fia
 spec:
   selector:
-    app: ir-api
+    app: fia-api
   ports:
     - protocol: TCP
       port: 80

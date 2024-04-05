@@ -28,7 +28,7 @@ spec:
     - fw
 
 # Example custom object
-# apiVersion: "ir.com/v1"
+# apiVersion: "fia.com/v1"
 # kind: FileWatcher
 # metadata:
 #   name: mari

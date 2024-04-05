@@ -56,7 +56,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ir
+    namespace: monitoring-system
     name: prod
   project: prod
   source:

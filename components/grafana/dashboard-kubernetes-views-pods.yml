@@ -2533,8 +2533,8 @@ data:
           {
             "current": {
               "selected": true,
-              "text": "ir",
-              "value": "ir"
+              "text": "fia",
+              "value": "fia"
             },
             "datasource": {
               "type": "prometheus",

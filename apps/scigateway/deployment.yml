@@ -10,7 +10,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/ir-api/overlays/staging
+    path: components/scigateway/overlays/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

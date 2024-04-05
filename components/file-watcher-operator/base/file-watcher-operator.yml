@@ -17,7 +17,7 @@ spec:
       serviceAccountName: file-watcher-operator
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/fiaisis/filewatcher-operator@sha256:de6c82f07166c4c6ad6ede95e829768cd42b9198c8eedd09023500c1e42c44cb
+        image: ghcr.io/fiaisis/filewatcher-operator@sha256:b5142a164853ddd532da6bddfd4dc4f66a751356b0db4c5c28516448410280d6
         env:
         - name: FILE_WATCHER_SHA256
           value: "8ccc3b4ebca7164b23401bff7c584c7a85e03d5bb36927f2d1127d07fba6a763"

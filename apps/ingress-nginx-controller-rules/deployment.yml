@@ -9,6 +9,9 @@ spec:
     path: components/ingress-nginx-controller-rules
     repoUrl: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
+  destination:
+    namespace: fia
+    name: staging
   syncPolicy:
     automated:
       prune: true

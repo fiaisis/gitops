@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     path: components/ingress-nginx-controller-rules
-    repoUrl: https://github.com/interactivereduction/gitops.git
+    repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
     namespace: fia

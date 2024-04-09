@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scigateway-service
+  namespace: fia
+spec:
+  selector:
+    app: scigateway
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

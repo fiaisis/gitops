@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx-controller-rules
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    path: components/ingress-nginx-controller-rules
+    repoUrl: https://github.com/fia/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

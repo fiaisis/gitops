@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: shared-files-manila-rundetection-pvc
+  name: runner-extra-files-manila-rundetection-pvc
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1000Gi
-  volumeName: shared-files-manila-rundetection
+  volumeName: runner-extra-files-manila-rundetection
   volumeMode: Filesystem
   storageClassName: ""

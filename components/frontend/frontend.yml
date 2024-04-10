@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scigateway
+  name: frontend
   namespace: fia
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scigateway
+      app: frontend
   template:
     metadata:
       labels:
-        app: scigateway
+        app: frontend
     spec:
       containers:
-      - name: scigateway
-        image: ghcr.io/fiaisis/scigateway:test
+      - name: frontend
+        image: ghcr.io/fiaisis/frontend:test
         ports:
           - name: api-port
             protocol: TCP

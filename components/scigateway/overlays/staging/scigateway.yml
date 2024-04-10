@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: scigateway
-        image: ghcr.io/fiaisis/scigateway:test
+        image: ghcr.io/fiaisis/scigateway@sha256:d2e8637fd8d0a10fac5f0804b6ff360396e85171e7afcd0ab8b785e8e7871a1d
         ports:
           - name: api-port
             protocol: TCP

@@ -17,13 +17,13 @@ spec:
             name: fia-api-service
             port:
               number: 80
-#      - path: /fia
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: frontend-service
-#            port:
-#              number: 80
+      - path: /f-i-a(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 80
       - path: /
         pathType: Prefix
         backend:

@@ -21,4 +21,7 @@ spec:
           - name: api-port
             protocol: TCP
             containerPort: 80
+        env:
+          REACT_APP_FIA_REST_API_URL: "http://130.246.81.87/api"
+          REACT_APP_PLUGIN_URL: "http://130.246.81.87/f-i-a"
 

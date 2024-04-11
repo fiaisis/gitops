@@ -21,4 +21,4 @@ spec:
       namespace: fia
     volumeAttributes:
       shareID: 05b75577-a8fb-4c87-a3f3-6a07012e80bc # the share ID of the share you want to use as the persistent volume in the cluster
-      shareAccessID: 608b18da-6c0f-4734-bbd7-ce7b8e9e5678 # the ID of a cephx access rule created for the share.
+      shareAccessID: 8045701a-0c3e-486b-a89b-4fd741d04f69 # the ID of a cephx access rule created for the share.

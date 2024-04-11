@@ -16,7 +16,7 @@ spec:
       serviceAccountName: jobcreator
       containers:
       - name: jobcreator
-        image: ghcr.io/fiaisis/jobcreator@sha256:ca2eca7a4977868eeafdb27e517be9e0ae09cd67bf24ddaaa1c62f3a9ce2bec8
+        image: ghcr.io/fiaisis/jobcreator@sha256:e842c577a9574574571b42cb63397046cb2a7b41fc262d77a39b526354923ecb
         env:
         # Non secret env vars
         - name: FIA_API

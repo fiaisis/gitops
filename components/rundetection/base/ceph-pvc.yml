@@ -9,6 +9,9 @@ spec:
   resources:
     requests:
       storage: 1000Gi
-  volumeName: runner-extra-files-manila-rundetection
-  volumeMode: Filesystem
   storageClassName: ""
+  selector:
+    matchExpressions:
+      - key: name
+        operator: In
+        values: [ "runner-extra-files-manila-rundetection" ]

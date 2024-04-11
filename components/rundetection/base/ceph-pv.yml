@@ -12,7 +12,7 @@ spec:
     storage: 1000Gi
   csi:
     driver: cephfs.manila.csi.openstack.org
-    volumeHandle: shared-files-manila-rundetection
+    volumeHandle: runner-extra-files-manila-rundetection
     nodeStageSecretRef:
       name: manila-creds
       namespace: fia

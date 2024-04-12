@@ -1,0 +1,62 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-rules-prod
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    path: components/ingress-rules/overlays/production
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  destination:
+    namespace: fia
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-rules-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    path: components/ingress-rules/overlays/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  destination:
+    namespace: fia
+    name: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-rules-management
+  namespace: argocd
+spec:
+  source:
+    path: components/ingress-rules/overlays/management
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  destination:
+    namespace: ingress-nginx
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

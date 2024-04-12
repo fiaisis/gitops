@@ -16,8 +16,7 @@ spec:
           smtp:
             enabled: true
         service:
-          type: LoadBalancer
-          loadBalancerIP: "130.246.80.52"
+          type: ClusterIP
         persistence:
           enabled: true
         sidecar:

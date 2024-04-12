@@ -6,7 +6,7 @@ metadata:
 spec:
   project: prod
   source:
-    path: components/ingress-rules/overlays/production
+    path: components/ingress-rules/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
@@ -27,7 +27,7 @@ metadata:
 spec:
   project: staging
   source:
-    path: components/ingress-rules/overlays/staging
+    path: components/ingress-rules/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
@@ -47,11 +47,10 @@ metadata:
   namespace: argocd
 spec:
   source:
-    path: components/ingress-rules/overlays/management
+    path: components/ingress-rules/management
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
-    namespace: ingress-nginx
     server: https://kubernetes.default.svc
   project: default
   syncPolicy:

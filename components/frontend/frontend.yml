@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/fiaisis/frontend@sha256:0e18ad8cec23ca0a0f7d48144157a425dc3b6f6d2f849e6ea3cc5d922dc6969c
+        image: ghcr.io/fiaisis/frontend@sha256:80d392ca5fb890808b15cc516b0ad08808f4f3493b337adbb29542a85925e84f
         ports:
           - name: api-port
             protocol: TCP

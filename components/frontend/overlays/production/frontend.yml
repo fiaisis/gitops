@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: fia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ghcr.io/fiaisis/frontend@sha256:8364e5ffad2453a5e4b9cffcbb7cab8339603eb3148ca30389808689f034a10a
+        ports:
+          - name: api-port
+            protocol: TCP
+            containerPort: 80

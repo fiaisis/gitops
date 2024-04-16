@@ -15,8 +15,10 @@ spec:
         grafana.ini:
           smtp:
             enabled: true
-        service:
-          type: ClusterIP
+        ingress:
+          enabled: true
+          ingressClassName: nginx
+          path: /grafana
         persistence:
           enabled: true
         sidecar:

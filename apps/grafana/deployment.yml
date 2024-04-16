@@ -19,6 +19,8 @@ spec:
           enabled: true
           ingressClassName: nginx
           path: /grafana
+          hosts:
+            - *
         persistence:
           enabled: true
         sidecar:

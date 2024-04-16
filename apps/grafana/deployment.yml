@@ -20,7 +20,7 @@ spec:
           ingressClassName: nginx
           path: /grafana
           hosts:
-            - 130.246.214.230
+            - "*."
         persistence:
           enabled: true
         sidecar:

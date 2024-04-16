@@ -5,20 +5,10 @@ metadata:
   name: scigateway
   namespace: fia
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: scigateway
   template:
-    metadata:
-      labels:
-        app: scigateway
     spec:
       containers:
       - name: scigateway
         image: ghcr.io/fiaisis/scigateway@sha256:a4abe627464aed40607ec6027a6be3c88357649ae76c061d91b2c996dca3c7a4
-        ports:
-          - name: api-port
-            protocol: TCP
-            containerPort: 80
+
 

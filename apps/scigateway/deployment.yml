@@ -10,7 +10,28 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/scigateway/
+    path: components/scigateway/overlays/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scigateway-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: fia
+    name: prod
+  project: prod
+  source:
+    path: components/scigateway/overlays/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

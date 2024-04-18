@@ -48,7 +48,7 @@ Reseal all of the secrets for the bitnami sealedsecrets operator in staging and 
 This will deploy everything using ArgoCD by deploying an application that will deploy everything in the apps folder of this repo.
 
 ```bash
-kubectl config use-context k0s-cluster-ci-cd
+kubectl config use-context management
 kubectl apply -f apps/app_of_apps/deployment.yml
 ```
 

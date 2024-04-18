@@ -17,6 +17,8 @@ spec:
             enabled: true
           server:
             root_url: https://130.246.214.230/grafana
+          database:
+            wal: true
         persistence:
           enabled: true
         sidecar:

@@ -16,12 +16,12 @@ spec:
           service:
             name: argocd-server
             port:
-              number: 8080
-#      - path: /grafana/?(.*)
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: grafana
-#            port:
-#              number: 3000
+              number: 80
+      - path: /grafana/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80
 

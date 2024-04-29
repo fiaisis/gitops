@@ -7,4 +7,4 @@ resources:
   - sealedsecrets.yml
   - users.yml
   - permissions.yml
-  - servicemonitor.yml
+  - ../overlays/production/servicemonitor.yml

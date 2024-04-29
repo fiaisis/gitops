@@ -7,4 +7,3 @@ resources:
   - sealedsecrets.yml
   - users.yml
   - permissions.yml
-  - servicemonitor.yml

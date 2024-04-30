@@ -6,13 +6,12 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/app-root: /
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-        - path: /argocd
+        - path: /
           pathType: Prefix
           backend:
             service:

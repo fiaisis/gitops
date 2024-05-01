@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    name: default
+    name: in-cluster
   project: default
   source:
     path: components/argocd

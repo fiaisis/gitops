@@ -34,7 +34,7 @@ spec:
             name: scigateway-service
             port:
               number: 80
-      - path: /data-viewer
+      - path: /data-viewer/?(.*)
         pathType: Prefix
         backend:
           service:

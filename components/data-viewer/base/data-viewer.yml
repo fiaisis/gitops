@@ -21,4 +21,6 @@ spec:
           - name: api-port
             protocol: TCP
             containerPort: 3000
-
+        env:
+          - name: API_URL
+            value: /plottingapi

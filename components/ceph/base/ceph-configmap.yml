@@ -16,9 +16,9 @@ data:
       {
         "clusterID": "ke68226i-672r-4an5-97pr-22840318i2ce",
         "monitors": [
-          "130.246.208.244:6789",
-          "130.246.208.244:6789",
-          "130.246.208.244:6789"
+          "deneb-mon1.nubes.rl.ac.uk",
+          "deneb-mon2.nubes.rl.ac.uk",
+          "deneb-mon3.nubes.rl.ac.uk"
         ]
       },
       {

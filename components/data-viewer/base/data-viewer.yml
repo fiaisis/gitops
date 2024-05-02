@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-viewer
+  namespace: fia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-viewer
+  template:
+    metadata:
+      labels:
+        app: data-viewer
+    spec:
+      containers:
+      - name: data-viewer
+        image: ghcr.io/fiaisis/data-viewer@sha256:5f16d66521309fad0e4558667958033ef1f517aa07f599fb063a2d86c9d35555
+        ports:
+          - name: api-port
+            protocol: TCP
+            containerPort: 3000
+

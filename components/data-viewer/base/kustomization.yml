@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - data-viewer.yml
   - data-viewer-service.yml
-  -

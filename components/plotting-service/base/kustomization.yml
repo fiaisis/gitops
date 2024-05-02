@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
   - plotting-service.yml
   - plotting-service-service.yml
+  - ceph-pv.yml
+  - ceph-pvc.yml
+

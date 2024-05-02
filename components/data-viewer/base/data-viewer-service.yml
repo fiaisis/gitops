@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: data-viewer
+  name: data-viewer-service
   namespace: fia
 spec:
   selector:

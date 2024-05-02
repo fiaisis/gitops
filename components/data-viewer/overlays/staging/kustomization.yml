@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ../../base
 patches:
-- path: data-viewer.yml
+  - path: data-viewer.yml

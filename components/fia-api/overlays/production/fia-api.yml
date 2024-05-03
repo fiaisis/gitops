@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: fia-api
-#        image: ghcr.io/interactivereduction/fia-api@sha256:c33815d73a31d8b308806844d1f1a21d51bd7b0bc3aef1898dc9ee10f51b21dd
+#        image: ghcr.io/interactivereduction/fia-api@sha256:56d10299f446aba8409c1797fad90c2eaa8a7598f4b34cd68eadd7b08598553e
         env:
         - name: DB_IP
           value: dbspgha01.fds.rl.ac.uk

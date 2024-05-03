@@ -30,13 +30,13 @@ argocd --port-forward --port-forward-namespace=argocd login --username=admin --p
 Add cluster using CLI for staging:
 
 ```bash
-argocd --port-forward --port-forward-namespace=argocd cluster add k0s-cluster-staging --yes
+argocd --port-forward --port-forward-namespace=argocd cluster add staging --yes
 ```
 
 Add cluster using CLI for prod
 
 ```bash
-argocd --port-forward --port-forward-namespace=argocd cluster add k0s-cluster --yes
+argocd --port-forward --port-forward-namespace=argocd cluster add prod --yes
 ```
 
 Deploy the app of apps

@@ -41,10 +41,3 @@ spec:
             name: data-viewer-service
             port:
               number: 3000
-      - path: /plottingapi/?(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: plotting-service-service
-            port:
-              number: 80

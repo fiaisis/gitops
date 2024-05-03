@@ -19,7 +19,7 @@ spec:
           - isis.cclrc.ac.uk
       containers:
       - name: rundetection
-        image: ghcr.io/fiaisis/rundetection@sha256:e2d6149d6ef9af25d21f875ae5e9b57c4246dee0b5fc1f0a3be5326a40f9e72d
+        image: ghcr.io/fiaisis/rundetection@sha256:a04db12744641ee552da67fb345a2dfbfe3fd5e6f2c1fcf4bc23da8ba97533fa
         readinessProbe:
           exec:
             command:

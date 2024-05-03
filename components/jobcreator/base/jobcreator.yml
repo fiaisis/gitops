@@ -38,10 +38,6 @@ spec:
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: INGRESS_QUEUE_NAME
           value: scheduled-jobs
-        - name: MANILA_SHARE_ID
-          value: 05b75577-a8fb-4c87-a3f3-6a07012e80bc
-        - name: MANILA_SHARE_ACCESS_ID
-          value: 8045701a-0c3e-486b-a89b-4fd741d04f69
 
         # Secret envs
         - name: DB_PASSWORD

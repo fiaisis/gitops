@@ -8,8 +8,8 @@ spec:
   template:
     spec:
       containers:
-      - name: fia-api
-        image: ghcr.io/fiaisis/fia-api@sha256:56d10299f446aba8409c1797fad90c2eaa8a7598f4b34cd68eadd7b08598553e
-        env:
-        - name: DB_IP
-          value: dbspg03.fds.rl.ac.uk
+        - name: fia-api
+          image: ghcr.io/fiaisis/fia-api@sha256:sha256:4ffcfdd36cbe84acf87309ee99f631b587748b2639cf280ba59e20fd3cb70df8
+          env:
+            - name: DB_IP
+              value: dbspg03.fds.rl.ac.uk

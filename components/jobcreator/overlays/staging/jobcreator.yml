@@ -10,7 +10,7 @@ spec:
       serviceAccountName: jobcreator
       containers:
       - name: jobcreator
-        image: ghcr.io/fiaisis/jobcreator@sha256:48402d3e26a14806a8da027c82f89e9076e23dd50ca5d092aa88266362ecfc75
+        image: ghcr.io/fiaisis/jobcreator@sha256:278123cbdd2b30d7d911b2b1456882c027388a45692a623c9bae58beca64e564
         env:
         # Non secret env vars
         - name: DB_IP

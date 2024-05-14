@@ -12,14 +12,17 @@ spec:
     chart: argo-cd
     helm:
       values: |
-        server:
-          ingress:
-            enabled: true
-          annotations:
-            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-            nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-          ingressClassName: "nginx"
-          path: /argocd
+        configs:
+          params:
+            server.rootpath: argocd
+#        server:
+#          ingress:
+#            enabled: true
+#          annotations:
+#            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#            nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+#          ingressClassName: "nginx"
+#          path: /argocd
   destination:
     namespace: argocd
     name: in-cluster

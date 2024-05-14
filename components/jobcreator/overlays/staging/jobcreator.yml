@@ -9,13 +9,13 @@ spec:
     spec:
       serviceAccountName: jobcreator
       containers:
-      - name: jobcreator
-        image: ghcr.io/fiaisis/jobcreator@sha256:278123cbdd2b30d7d911b2b1456882c027388a45692a623c9bae58beca64e564
-        env:
-        # Non secret env vars
-        - name: DB_IP
-          value: dbspg03.fds.rl.ac.uk
-        - name: DEV_MODE
-          value: "True"
-        - name: WATCHER_SHA
-          value: 6673cac483396dc9dee7709d7c71ed7015f747fda24a08929d972ba0ef3a1e80
+        - name: jobcreator
+          image: ghcr.io/fiaisis/jobcreator@sha256:278123cbdd2b30d7d911b2b1456882c027388a45692a623c9bae58beca64e564
+          env:
+            # Non secret env vars
+            - name: DB_IP
+              value: dbspg03.fds.rl.ac.uk
+            - name: DEV_MODE
+              value: "True"
+            - name: WATCHER_SHA
+              value: sha256:996c54d67f411f9224f3ebcc5e6db01f074d80a92a26a5d991ae5f84fc927894

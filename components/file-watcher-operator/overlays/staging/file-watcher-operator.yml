@@ -8,10 +8,10 @@ spec:
   template:
     spec:
       containers:
-      - name: file-watcher-operator
-        image: ghcr.io/interactivereduction/filewatcher-operator@sha256:b5142a164853ddd532da6bddfd4dc4f66a751356b0db4c5c28516448410280d6
-        env:
-        - name: DB_IP
-          value: dbspg03.fds.rl.ac.uk
-        - name: FILE_WATCHER_SHA256
-          value: "8ccc3b4ebca7164b23401bff7c584c7a85e03d5bb36927f2d1127d07fba6a763"
+        - name: file-watcher-operator
+          image: ghcr.io/fiaisis/filewatcher-operator@sha256:ec2f108e9c5092845ace52d6749fe7d7c4783d32f112048892046c4a025a593e
+          env:
+            - name: DB_IP
+              value: dbspg03.fds.rl.ac.uk
+            - name: FILE_WATCHER_SHA256
+              value: "8ccc3b4ebca7164b23401bff7c584c7a85e03d5bb36927f2d1127d07fba6a763"

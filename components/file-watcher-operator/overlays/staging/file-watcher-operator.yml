@@ -14,4 +14,4 @@ spec:
             - name: DB_IP
               value: dbspg03.fds.rl.ac.uk
             - name: FILE_WATCHER_SHA256
-              value: "8ccc3b4ebca7164b23401bff7c584c7a85e03d5bb36927f2d1127d07fba6a763"
+              value: "sha256:f03b455d7e6f231fea16ea2b5bc2d5ed9fa67a3a721f0e0e3d3b51bac80ffdba"

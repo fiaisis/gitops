@@ -8,5 +8,5 @@ spec:
   template:
     spec:
       containers:
-      - name: data-viewer
-        image: ghcr.io/fiaisis/data-viewer@sha256:6acaa20e252115cabbf3083e3e76994ea6c1d99fec5708d3cc2c2b6875e478d2
+        - name: data-viewer
+          image: ghcr.io/fiaisis/data-viewer@sha256:f81109ae3513a088be2403e840c2bd3f35a7c79ad5d718583e1e003e66b276eb

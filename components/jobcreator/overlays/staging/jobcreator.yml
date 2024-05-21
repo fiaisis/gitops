@@ -20,4 +20,4 @@ spec:
             - name: WATCHER_SHA
               value: 99cb5266ed9c5c63682b97a40027c135d3d504e7532c6527439ac48b78fb60ab
             - name: MANTID_SHA
-              value: b985ff0b8731e455e5b057f7d05f367f3543f3714ebfb4145b94a878c74b93cb
+              value: ""

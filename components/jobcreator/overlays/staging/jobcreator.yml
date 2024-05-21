@@ -10,7 +10,7 @@ spec:
       serviceAccountName: jobcreator
       containers:
         - name: jobcreator
-          image: ghcr.io/fiaisis/jobcreator@sha256:edab721c582d6658176bc9a1cac8b92891db95fb0336619b411f6acddfe40fbd
+          image: ghcr.io/fiaisis/jobcreator@sha256:01cee6560bd612bf4438c8ba14fbe33c35045f6a5b121208b9b03b40e0459680
           env:
             # Non secret env vars
             - name: DB_IP
@@ -18,4 +18,4 @@ spec:
             - name: DEV_MODE
               value: "True"
             - name: WATCHER_SHA
-              value: 99cb5266ed9c5c63682b97a40027c135d3d504e7532c6527439ac48b78fb60ab
+              value: f353da062518bbe9945f7e25733d25275b4d95e9c9114abaa6b45064d1fb3922

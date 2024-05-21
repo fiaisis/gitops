@@ -18,4 +18,4 @@ spec:
             - name: DEV_MODE
               value: "True"
             - name: WATCHER_SHA
-              value: fabe9bbd128a57a8fb5704f247fc55a4919a147f291c032bf897b2b0af72daf5
+              value: e72602a90240668797857c3d8012387ae8d715fa10bfa2ba51cab78955f6e4e8

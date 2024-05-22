@@ -13,40 +13,6 @@ data:
           folder: Infrastructure Health
           interval: 1m
           rules:
-            - uid: bdmh9pz4asttsf
-              title: Job Failed
-              condition: A
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PD00A5B2EA89EE16D
-                  model:
-                    datasource:
-                        type: prometheus
-                        uid: PD00A5B2EA89EE16D
-                    editorMode: code
-                    expr: kube_pod_status_phase{namespace="fia", pod=~"run-.*", phase="Failed"} == 1
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: __auto
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-              noDataState: OK
-              execErrState: Error
-              for: 5m
-              annotations:
-                description: ""
-                runbook_url: ""
-                summary: |-
-                    Job {{ $labels.pod }}
-                     is pending, and merits investigation.
-              labels:
-                "": ""
-                severity: warning
-              isPaused: false
             - uid: ce5998c4-3e04-4dd5-a718-5d63bd1cad98
               title: Pod crash looping
               condition: A

@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: fia-api
-          image: ghcr.io/fiaisis/fia-api@sha256:62b4251eee7d8467f556d8a028a6c2297d57482d931c99ce6618b9542ac5890b
+          image: ghcr.io/fiaisis/fia-api@sha256:13eba50c848700d1b8c5a6e11f820761507f750d06c7222a34eec53d1fd5ac2e
           env:
             - name: DB_IP
               value: dbspg03.fds.rl.ac.uk

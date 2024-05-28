@@ -19,3 +19,5 @@ spec:
               value: "True"
             - name: DEFAULT_RUNNER_SHA
               value: 6e5f2d070bb67742f354948d68f837a740874d230714eaa476d35ab6ad56caec
+            - name: WATCHER_SHA
+              value: e72602a90240668797857c3d8012387ae8d715fa10bfa2ba51cab78955f6e4e8

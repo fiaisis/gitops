@@ -6,6 +6,33 @@
 - components: Contains custom kubernetes manifests used to define the cluster's components, such as Kafka Clusters, our software and others. 
 - projects: Contains the ArgoCD project definitions
 
+Components structure:
+```
+component_name/
+    base/
+        thing_to_deploy.yml
+        kustomization.yml
+    envs/
+        staging/
+            thing_to_deploy.yml
+            kustomization.yml
+        prod/
+            thing_to_deploy.yml
+            kustomization.yml
+    variants/
+        staging/
+            thing_to_deploy.yml
+            kustomization.yml
+        prod/
+            thing_to_deploy.yml
+            kustomization.yml
+```
+
+- base: The base image, every single version of this component needs these, includes env vars that should be on every deployment.
+- envs (previously overlays): This deployment specifics, new env vars, etc. This is where the ArgoCD apps should be aimed at.
+- variants: Components that can be used for multiple deployments, usually long-running env vars that can't be promoted to prod.
+
+
 # Summary:
 
 The app of apps will deploy changes of the CRDs to the ArgoCD cluster automatically, the only thing that needs to be manually applied is that app of apps CRD.

@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobcreator
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+      - name: jobcreator
+        env:
+        # Non secret env vars
+        - name: DB_IP
+          value: dbspgha01.fds.rl.ac.uk

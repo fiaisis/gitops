@@ -10,7 +10,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/frontend/overlays/staging
+    path: components/frontend/envs/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:
@@ -31,7 +31,7 @@ spec:
     name: prod
   project: prod
   source:
-    path: components/frontend/overlays/production
+    path: components/frontend/envs/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

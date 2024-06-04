@@ -1,0 +1,38 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  SERVICES_TO_UDPATE: (data-viewer fia-api file-watcher-operator frontend jobcreator plotting-service rundetection scigateway)
+
+jobs:
+  make_pr_for_prod:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Copy staging to prod for our microservices
+        run: |
+          cd components
+          Services=${{ SERVICES_TO_UPDATE }}
+          for Service in ${Services[*]}
+          do
+            cp -rf $Service/envs/staging/* $Service/envs/production/
+          done
+
+      - name: Create Pull Request with changes
+        uses: peter-evans/create-pull-request@v6.0.5
+        with:
+          commit-message: Update prod with staging
+          committer: GitHub Action <action@github.com>
+          branch: staging_to_prod
+          title: Update prod from staging
+          body: This is the automated PR made to perform the changes required to update production with changes made on staging. It will update the following services ${{ SERVICES_TO_UDPATE }}.
+          assignees: Pasarus
+          reviewers: Pasarus

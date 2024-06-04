@@ -1,0 +1,12 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plotting-service
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: plotting-service
+          image: ghcr.io/fiaisis/plotting-service@sha256:7022618775945991ec0ae10548ab8d2606a82a8510900bee59f91f2be06dd848

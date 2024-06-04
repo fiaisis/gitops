@@ -38,7 +38,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/manila/overlays/staging
+    path: components/manila/envs/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:
@@ -88,7 +88,7 @@ spec:
     name: prod
   project: prod
   source:
-    path: components/manila/overlays/production
+    path: components/manila/envs/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

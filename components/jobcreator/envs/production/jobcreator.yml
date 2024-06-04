@@ -11,7 +11,3 @@ spec:
       containers:
       - name: jobcreator
         image: ghcr.io/fiaisis/jobcreator@sha256:e842c577a9574574571b42cb63397046cb2a7b41fc262d77a39b526354923ecb
-        env:
-        # Non secret env vars
-        - name: DB_IP
-          value: dbspgha01.fds.rl.ac.uk

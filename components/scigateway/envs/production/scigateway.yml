@@ -1,0 +1,12 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scigateway
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: scigateway
+          image: ghcr.io/fiaisis/scigateway@sha256:ca4b51fda4691a56fc8c7807fd66177d5bc5a15690ac53aabcf62d268e86ee4f

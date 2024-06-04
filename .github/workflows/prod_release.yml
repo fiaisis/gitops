@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  SERVICES_TO_UDPATE: (data-viewer fia-api file-watcher-operator frontend jobcreator plotting-service rundetection scigateway)
+  SERVICES_TO_UPDATE: (data-viewer fia-api file-watcher-operator frontend jobcreator plotting-service rundetection scigateway)
 
 jobs:
   make_pr_for_prod:
@@ -33,6 +33,6 @@ jobs:
           committer: GitHub Action <action@github.com>
           branch: staging_to_prod
           title: Update prod from staging
-          body: This is the automated PR made to perform the changes required to update production with changes made on staging. It will update the following services ${{ SERVICES_TO_UDPATE }}.
+          body: This is the automated PR made to perform the changes required to update production with changes made on staging. It will update the following services ${{ SERVICES_TO_UPDATE }}.
           assignees: Pasarus
           reviewers: Pasarus

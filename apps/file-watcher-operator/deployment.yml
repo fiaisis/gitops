@@ -10,7 +10,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/file-watcher-operator/overlays/staging
+    path: components/file-watcher-operator/envs/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:
@@ -32,7 +32,7 @@ spec:
     name: prod
   project: prod
   source:
-    path: components/file-watcher-operator/overlays/production
+    path: components/file-watcher-operator/envs/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

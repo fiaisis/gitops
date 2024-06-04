@@ -1,0 +1,14 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-watcher-operator
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: file-watcher-operator
+          env:
+            - name: DB_IP
+              value: dbspgha01.fds.rl.ac.uk

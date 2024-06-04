@@ -1,0 +1,12 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-viewer
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: data-viewer
+          image: ghcr.io/fiaisis/data-viewer@sha256:f81109ae3513a088be2403e840c2bd3f35a7c79ad5d718583e1e003e66b276eb

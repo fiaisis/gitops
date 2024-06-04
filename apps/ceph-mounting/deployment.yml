@@ -31,7 +31,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/ceph/overlays/staging
+    path: components/ceph/envs/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:
@@ -74,7 +74,7 @@ spec:
     name: prod
   project: prod
   source:
-    path: components/ceph/overlays/production
+    path: components/ceph/envs/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

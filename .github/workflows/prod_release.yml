@@ -12,7 +12,8 @@ jobs:
   make_pr_for_prod:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      pull-requests: write
     steps:
       - name: Check out code
         uses: actions/checkout@v4

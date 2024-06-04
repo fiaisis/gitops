@@ -30,7 +30,7 @@ component_name/
 
 - base: The base image, every single version of this component needs these, includes env vars that should be on every deployment.
 - envs (previously overlays): This deployment specifics, new env vars, etc. This is where the ArgoCD apps should be aimed at.
-- variants: Components that can be used for multiple deployments, usually long-running env vars that can't be promoted to prod.
+- variants: Components that can be used for multiple deployments, usually long-running env vars that can't be promoted to prod. Job creator is a good example of staging and prod having different environment variables required.
 
 
 # Summary:

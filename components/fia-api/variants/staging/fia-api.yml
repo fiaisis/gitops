@@ -1,0 +1,14 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fia-api
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: fia-api
+          env:
+            - name: DB_IP
+              value: dbspg03.fds.rl.ac.uk

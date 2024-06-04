@@ -33,6 +33,6 @@ jobs:
           committer: GitHub Action <action@github.com>
           branch: staging_to_prod
           title: "[Automatic] Update prod from staging"
-          body: "This is the automated PR made to perform the changes required to update production with changes made on staging. It will update the following services ${{ SERVICES_TO_UPDATE }}."
+          body: "This is the automated PR made to perform the changes required to update production with changes made on staging. It will update the microservices we have made not the infrastructure that staging and prod are independently dependent on."
           assignees: Pasarus
           reviewers: Pasarus

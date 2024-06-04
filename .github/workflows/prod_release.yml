@@ -20,7 +20,7 @@ jobs:
       - name: Copy staging to prod for our microservices
         run: |
           cd components
-          Services=${{ SERVICES_TO_UPDATE }}
+          Services=$SERVICES_TO_UPDATE
           for Service in ${Services[*]}
           do
             cp -rf $Service/envs/staging/* $Service/envs/production/
@@ -33,6 +33,6 @@ jobs:
           committer: GitHub Action <action@github.com>
           branch: staging_to_prod
           title: Update prod from staging
-          body: This is the automated PR made to perform the changes required to update production with changes made on staging. It will update the following services ${{ SERVICES_TO_UPDATE }}.
+          body: This is the automated PR made to perform the changes required to update production with changes made on staging. It will update the following services $SERVICES_TO_UPDATE.
           assignees: Pasarus
           reviewers: Pasarus

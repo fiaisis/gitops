@@ -23,7 +23,7 @@ jobs:
           Services=$SERVICES_TO_UPDATE
           for Service in ${Services[*]}
           do
-            cp -rf ./components/$Service/envs/staging/$Service ./components/$Service/envs/production/$Service
+            cp -rf ./components/$Service/envs/staging/$Service.yml ./components/$Service/envs/production/$Service.yml
           done
 
       - name: Create Pull Request with changes

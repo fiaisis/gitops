@@ -12,7 +12,7 @@ jobs:
   make_pr_for_prod:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - name: Check out code

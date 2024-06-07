@@ -25,8 +25,6 @@ spec:
           value: /jobcreator
         - name: MANTID_SHA
           value: b985ff0b8731e455e5b057f7d05f367f3543f3714ebfb4145b94a878c74b93cb
-        - name: WATCHER_SHA
-          value: d39760f28868fbff8b40df462a0bd34b27f1ec1aeabf35ca475f395945b80ef9
         - name: MAX_TIME_TO_COMPLETE
           value: "21600"
         - name: DB_IP
@@ -38,6 +36,10 @@ spec:
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
         - name: INGRESS_QUEUE_NAME
           value: scheduled-jobs
+        - name: DEFAULT_RUNNER_SHA
+          value: 6e5f2d070bb67742f354948d68f837a740874d230714eaa476d35ab6ad56caec
+        - name: WATCHER_SHA
+          value: 791f4ece261c9ad5d349c29e23543ce1c2140afb3ee7625b3abfd77741523958
 
         # Secret envs
         - name: DB_PASSWORD

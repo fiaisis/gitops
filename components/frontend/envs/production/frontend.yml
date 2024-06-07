@@ -8,5 +8,5 @@ spec:
   template:
     spec:
       containers:
-      - name: frontend
-        image: ghcr.io/fiaisis/frontend@sha256:60b3499f554cec709b5a15ea299ffb8585005d6698976d836bd6cfef75ff6369
+        - name: frontend
+          image: ghcr.io/fiaisis/frontend@sha256:b6188df92bcd4841e139d026e4eba4a550fe9266a631201eb21d4db6e94cdf09

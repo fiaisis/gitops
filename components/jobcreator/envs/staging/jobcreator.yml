@@ -10,7 +10,7 @@ spec:
       serviceAccountName: jobcreator
       containers:
         - name: jobcreator
-          image: ghcr.io/fiaisis/jobcreator@sha256:bfd759ee1f194b17906cf8cdb020691cdceffccdbf54e83a09c51f3f538f683d
+          image: ghcr.io/fiaisis/jobcreator@sha256:1d3fd17f4a269c80ed6cb0ec2bd54308d6ef509225ef15654d528eff27791747
           readinessProbe:
             exec:
               command:

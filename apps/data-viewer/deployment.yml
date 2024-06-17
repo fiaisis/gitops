@@ -7,8 +7,8 @@ metadata:
 spec:
   destination:
     namespace: fia
-    name: staging
-  project: staging
+    name: prod
+  project: prod
   source:
     path: components/data-viewer/envs/production
     repoURL: https://github.com/interactivereduction/gitops.git

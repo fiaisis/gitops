@@ -11,39 +11,6 @@ spec:
       containers:
         - name: jobcreator
           image: ghcr.io/fiaisis/jobcreator@sha256:2b20453f0e4cddf6a61bc3a220ac3430b563c9a3133febad61dc7419a0a36c4f
-          readinessProbe:
-            exec:
-              command:
-                - sh
-                - -c
-                - |
-                  CURRENT_TIME=$(date +%s)
-                  FILE_TIME=$(date -r /tmp/heartbeat +%s)
-                  DIFF=$((CURRENT_TIME - FILE_TIME))
-                  if [ $DIFF -lt 20 ]; then
-                    exit 0
-                  else
-                    exit 1
-                  fi
-            initialDelaySeconds: 10
-            periodSeconds: 10
-          livenessProbe:
-            exec:
-              command:
-                - sh
-                - -c
-                - |
-                  CURRENT_TIME=$(date +%s)
-                  FILE_TIME=$(date -r /tmp/heartbeat +%s)
-                  DIFF=$((CURRENT_TIME - FILE_TIME))
-                  if [ $DIFF -lt 20 ]; then
-                    exit 0
-                  else
-                    exit 1
-                  fi
-            initialDelaySeconds: 10
-            failureThreshold: 3
-            periodSeconds: 10
           env:
             - name: WATCHER_SHA
               value: 7d601eee4bb2c2e27593ce11d091539daeeb2e90b0dd33fc808cd335a67c3fbc

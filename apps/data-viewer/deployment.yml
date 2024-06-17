@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: data-viewer-staging
+  name: data-viewer-prod
   namespace: argocd
 spec:
   destination:
@@ -10,7 +10,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/data-viewer/envs/staging
+    path: components/data-viewer/envs/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:
@@ -31,7 +31,7 @@ spec:
     name: staging
   project: staging
   source:
-    path: components/data-viewer/envs/production
+    path: components/data-viewer/envs/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

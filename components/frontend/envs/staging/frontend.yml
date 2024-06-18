@@ -10,3 +10,15 @@ spec:
       containers:
         - name: frontend
           image: ghcr.io/fiaisis/frontend@sha256:96619ab786bd7314dca8996f4a6d7e55df97ec54ac5420e6fc1ab4b4026e5905
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5

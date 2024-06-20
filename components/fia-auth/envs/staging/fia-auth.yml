@@ -1,0 +1,19 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fia-auth
+  namespace: fia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fia-auth
+  template:
+    metadata:
+      labels:
+        app: fia-auth
+    spec:
+      containers:
+      - name: fia-auth
+        image: ghcr.io/fiaisis/fia-auth@sha256:4368759bc098b67eb9d34ecc644dac4b8ed5a7bf8fcc75b2fd564b5c0494dbf9

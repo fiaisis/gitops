@@ -18,13 +18,36 @@ spec:
       - name: fia-auth
         image: ghcr.io/fiaisis/fia-auth@sha256:4368759bc098b67eb9d34ecc644dac4b8ed5a7bf8fcc75b2fd564b5c0494dbf9
         env:
-            - name: ALLOCATIONS_URL
-              value: https://devapi.facilities.rl.ac.uk/proposal-allocations/graphql
-            - name: UOWS_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: fia-auth
-                  key: uows_api_key
+          - name: ALLOCATIONS_URL
+            value: https://devapi.facilities.rl.ac.uk/proposal-allocations/graphql
+          - name: FIA_AUTH_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: fia-auth
+                key: fia_auth_api_key
+          - name: UOWS_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: fia-auth
+                key: uows_api_key
+          - name: DB_IP
+            value: dbspg03.fds.rl.ac.uk # Staging
+            # value: dbspgha01.fds.rl.ac.uk # Production
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: fia-auth
+                key: db_password
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: fia-auth
+                key: db_username
+          - name: PRIVATE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: fia-auth
+                key: jwt_signing_key
         ports:
           - name: api-port
             protocol: TCP

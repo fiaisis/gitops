@@ -12,5 +12,3 @@ spec:
           env:
             - name: ALLOCATIONS_URL
               value: https://devapi.facilities.rl.ac.uk/proposal-allocations/graphql
-            - name: UOWS_API_KEY
-              value: aisbf

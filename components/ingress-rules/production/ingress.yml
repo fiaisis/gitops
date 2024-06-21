@@ -12,7 +12,8 @@ spec:
         - reduce.isis.cclrc.ac.uk
       secretName: prod-reduce-isis-tls
   rules:
-  - http:
+  - host: reduce.isis.cclrc.ac.uk
+    http:
       paths:
       - path: /api/?(.*)
         pathType: Prefix

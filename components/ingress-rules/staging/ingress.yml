@@ -13,6 +13,13 @@ spec:
   rules:
   - http:
       paths:
+      - path: /auth/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: fia-auth-service
+            port:
+              number: 80
       - path: /api/?(.*)
         pathType: Prefix
         backend:

@@ -14,3 +14,6 @@ spec:
               value: https://devapi.facilities.rl.ac.uk/proposal-allocations/graphql
             - name: UOWS_URL
               value: https://api.facilities.rl.ac.uk/users-service
+            - name: DB_IP
+              value: dbspg03.fds.rl.ac.uk # Staging
+              # value: dbspgha01.fds.rl.ac.uk # Production

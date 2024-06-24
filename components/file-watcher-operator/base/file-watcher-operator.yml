@@ -30,6 +30,10 @@ spec:
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
+        ports:
+          - name: health-port
+            protocol: TCP
+            containerPort: 8080
         readinessProbe:
           httpGet:
             path: /healthz

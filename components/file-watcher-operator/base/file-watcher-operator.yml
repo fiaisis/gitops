@@ -17,7 +17,7 @@ spec:
       serviceAccountName: file-watcher-operator
       containers:
       - name: file-watcher-operator
-        image: ghcr.io/fiaisis/filewatcher-operator@sha256:b5142a164853ddd532da6bddfd4dc4f66a751356b0db4c5c28516448410280d6
+        image: ghcr.io/fiaisis/filewatcher-operator@sha256:06898bac56909d395681b05a8bd36897760af038d0be3155b410d7baeef348be
         env:
         - name: FILE_WATCHER_SHA256
           value: "8ccc3b4ebca7164b23401bff7c584c7a85e03d5bb36927f2d1127d07fba6a763"
@@ -30,3 +30,15 @@ spec:
         - name: DB_IP
           value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: scigateway
-          image: ghcr.io/fiaisis/scigateway@sha256:5db7c3fc50b016d7f7bbc9e225650681d5aa8c1400dc10c2c1698a4bd7b3301a
+          image: ghcr.io/fiaisis/scigateway@sha256:d4790f018dd177efdb263daf7eab4456de7745fe8bd2b039f83545f8bf588cf6

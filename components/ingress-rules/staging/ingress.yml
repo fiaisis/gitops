@@ -14,6 +14,13 @@ spec:
   - host: dev.reduce.isis.cclrc.ac.uk
     http:
       paths:
+      - path: /plottingapi/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: plotting-service-service
+            port:
+              number: 80
       - path: /auth/?(.*)
         pathType: Prefix
         backend:

@@ -18,6 +18,16 @@ spec:
       - name: fia-api
         image: ghcr.io/fiaisis/fia-api@sha256:56d10299f446aba8409c1797fad90c2eaa8a7598f4b34cd68eadd7b08598553e
         env:
+        - name: FIA_AUTH_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: fia-auth
+              key: fia_auth_api_key
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: fia-auth
+              key: jwt_signing_key
         - name: AUTH_API_URL
           value: http://fia-auth-service.fia.svc.cluster.local:80
         - name: DB_IP

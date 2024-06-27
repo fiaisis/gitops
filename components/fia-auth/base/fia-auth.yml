@@ -43,7 +43,7 @@ spec:
               secretKeyRef:
                 name: fia-auth
                 key: db_username
-          - name: PRIVATE_KEY
+          - name: JWT_SECRET
             valueFrom:
               secretKeyRef:
                 name: fia-auth

@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/fiaisis/frontend@sha256:87332d3f702a7aeaedb035661be39d2aeb96ba03e120cdab259b46faaca7eec4
+          image: ghcr.io/fiaisis/frontend@sha256:25a721597711896854786f59b7b1252b163fd188f79cc24f961f66788d327366
           readinessProbe:
             httpGet:
               path: /healthz

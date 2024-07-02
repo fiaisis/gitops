@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fia-auth
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: fia-auth
+          env:
+            - name: ALLOCATIONS_URL
+              value: https://api.facilities.rl.ac.uk/proposal-allocations/graphql
+            - name: UOWS_URL
+              value: https://api.facilities.rl.ac.uk/users-service
+            - name: DB_IP
+              value: dbspgha01.fds.rl.ac.uk # Production

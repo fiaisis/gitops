@@ -23,6 +23,11 @@ spec:
             secretKeyRef:
               name: fia-auth
               key: fia_auth_api_key
+        - name: FIA_API_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: fia-auth
+              key: fia_api_api_key
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:

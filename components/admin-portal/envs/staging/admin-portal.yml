@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: admin-portal
-          image: ghcr.io/fiaisis/admin-portal@sha256:96efe5996a0ffd2724b96902d1294f5cb0e3ca3a791903144394752a89f41dfd
+          image: ghcr.io/fiaisis/admin-portal@sha256:2dc4c9dd9360c77afb082a75a3b3295d6e0562e3fa8445fcb824bee57aed84df

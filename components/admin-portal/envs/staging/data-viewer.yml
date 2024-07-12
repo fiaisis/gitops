@@ -1,0 +1,12 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-portal
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: admin-portal
+          image: ghcr.io/fiaisis/admin-portal@sha256:2dbe822447a2d616dc0e23dc4a6dafc80965c4c43f825465e50bb5a39082784b

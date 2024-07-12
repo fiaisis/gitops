@@ -1,0 +1,42 @@
+---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: admin-portal-prod
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: fia
+#     name: prod
+#   project: prod
+#   source:
+#     path: components/admin-portal/envs/production
+#     repoURL: https://github.com/fiaisis/gitops.git
+#     targetRevision: HEAD
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: admin-portal-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: fia
+    name: staging
+  project: staging
+  source:
+    path: components/admin-portal/envs/staging
+    repoURL: https://github.com/fiaisis/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

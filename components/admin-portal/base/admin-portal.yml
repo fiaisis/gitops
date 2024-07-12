@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-portal
+  namespace: fia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-portal
+  template:
+    metadata:
+      labels:
+        app: admin-portal
+    spec:
+      containers:
+        - name: admin-portal
+          image: ghcr.io/fiaisis/admin-portal@sha256:2dbe822447a2d616dc0e23dc4a6dafc80965c4c43f825465e50bb5a39082784b
+          ports:
+            - name: api-port
+              protocol: TCP
+              containerPort: 3000
+          env:
+            - name: API_BASE_URL
+              value: /api
+          # readinessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5

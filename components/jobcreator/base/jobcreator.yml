@@ -99,6 +99,8 @@ spec:
         volumeMounts:
           - name: cephfs-mount
             mountPath: /ceph
+          - name: extras-mount
+            mountPath: /extras
       volumes:
         - name: ceph-secret-volume
           secret:
@@ -106,3 +108,6 @@ spec:
         - name: cephfs-mount
           persistentVolumeClaim:
             claimName: jobcreator-ceph-pvc
+        - name: extras-mount
+          persistentVolumeClaim:
+            claimName: jobcreator-extras-pvc

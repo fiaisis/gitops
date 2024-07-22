@@ -7,3 +7,5 @@ resources:
   - sealedsecrets.yml
   - ceph-pv.yml
   - ceph-pvc.yml
+  - extras-pv.yml
+  - extras-pvc.yml

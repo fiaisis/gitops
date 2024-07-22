@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jobcreator-extras-pv
+  labels:
+    name: jobcreator-extras-pv
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  csi:
+    driver: cephfs.manila.csi.openstack.org
+    volumeHandle: jobcreator-extras-pv
+    nodeStageSecretRef:
+      name: manila-creds
+      namespace: fia
+    nodePublishSecretRef:
+      name: manila-creds
+      namespace: fia
+    volumeAttributes:
+      shareID: 05b75577-a8fb-4c87-a3f3-6a07012e80bc
+      shareAccessID: 8045701a-0c3e-486b-a89b-4fd741d04f69

@@ -151,15 +151,15 @@ spec:
 # spec:
 #   instrumentFolder: NDXLOQ
 #   filePrefix: LOQ
-#---
-## Osiris
-#apiVersion: "fia.com/v1"
-#kind: FileWatcher
-#metadata:
-# name: osiris
-#spec:
-# instrumentFolder: NDXOSIRIS
-# filePrefix: OSIRIS
+---
+# Osiris
+apiVersion: "fia.com/v1"
+kind: FileWatcher
+metadata:
+ name: osiris
+spec:
+ instrumentFolder: NDXOSIRIS
+ filePrefix: OSIRIS
 # ---
 # # Iris
 # apiVersion: "fia.com/v1"

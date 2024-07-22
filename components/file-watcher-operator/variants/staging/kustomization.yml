@@ -3,3 +3,4 @@ kind: Component
 
 patchesStrategicMerge:
 - file-watcher-operator.yml
+- file-watchers.yml

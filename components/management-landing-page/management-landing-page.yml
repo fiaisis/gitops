@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: management-landing-page
+  namespace: management-landing-page
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: management-landing-page
+  template:
+    metadata:
+      labels:
+        app: management-landing-page
+    spec:
+      containers:
+      - name: manage-ment-landing-page
+        image: ghcr.io/fiaisis/management-landing-page@sha256:ad24db3c98b306547e0d19ef8f6737dfd6c676c25bb86b4b723c32504e5edf0a
+        ports:
+          - name: api-port
+            protocol: TCP
+            containerPort: 3000

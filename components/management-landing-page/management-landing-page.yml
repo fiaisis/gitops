@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: management-landing-page
-  namespace: fia
+  namespace: landing-page
 spec:
   replicas: 1
   selector:

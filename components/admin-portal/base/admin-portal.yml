@@ -24,6 +24,11 @@ spec:
           env:
             - name: API_BASE_URL
               value: /api
+            - name: FIA_API_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fia-api
+                  key: fia_api_api_key
           # readinessProbe:
           #   httpGet:
           #     path: /healthz

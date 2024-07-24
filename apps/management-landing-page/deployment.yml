@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: management-landing-page
+  namespace: argocd
+spec:
+  destination:
+    namespace: landing-page
+    name: in-cluster
+  project: default
+  source:
+    path: components/management-landing-page
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

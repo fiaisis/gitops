@@ -21,13 +21,6 @@ spec:
                 name: plotting-service-service
                 port:
                   number: 80
-          - path: /api/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: fia-api-service
-                port:
-                  number: 80
           - path: /f-i-a/?(.*)
             pathType: Prefix
             backend:
@@ -74,7 +67,31 @@ spec:
                 name: fia-auth-service
                 port:
                   number: 80
-
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/limit-rps: "25"
+spec:
+  tls:
+    - hosts:
+        - dev.reduce.isis.cclrc.ac.uk
+      secretName: staging-reduce-isis-tls
+  rules:
+    - host: dev.reduce.isis.cclrc.ac.uk
+      http:
+        paths:
+          - path: /api/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: fia-api-service
+                port:
+                  number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

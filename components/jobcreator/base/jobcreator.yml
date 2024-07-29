@@ -23,8 +23,6 @@ spec:
           value: fia-api-service.fia.svc.cluster.local:80
         - name: PYTHONPATH
           value: /jobcreator
-        - name: MANTID_SHA
-          value: b985ff0b8731e455e5b057f7d05f367f3543f3714ebfb4145b94a878c74b93cb
         - name: MAX_TIME_TO_COMPLETE
           value: "21600"
         - name: DB_IP
@@ -40,6 +38,10 @@ spec:
           value: 6e5f2d070bb67742f354948d68f837a740874d230714eaa476d35ab6ad56caec
         - name: WATCHER_SHA
           value: 791f4ece261c9ad5d349c29e23543ce1c2140afb3ee7625b3abfd77741523958
+        - name: MANILA_SHARE_ID
+          value: 05b75577-a8fb-4c87-a3f3-6a07012e80bc
+        - name: MANILA_SHARE_ACCESS_ID
+          value: 8045701a-0c3e-486b-a89b-4fd741d04f69
 
         # Secret envs
         - name: DB_PASSWORD

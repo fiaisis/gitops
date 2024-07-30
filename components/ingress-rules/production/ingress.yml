@@ -48,10 +48,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - dev.reduce.isis.cclrc.ac.uk
+        - reduce.isis.cclrc.ac.uk
       secretName: staging-reduce-isis-tls
   rules:
-    - host: dev.reduce.isis.cclrc.ac.uk
+    - host: reduce.isis.cclrc.ac.uk
       http:
         paths:
           - path: /auth/?(.*)
@@ -73,10 +73,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - dev.reduce.isis.cclrc.ac.uk
+        - reduce.isis.cclrc.ac.uk
       secretName: staging-reduce-isis-tls
   rules:
-    - host: dev.reduce.isis.cclrc.ac.uk
+    - host: reduce.isis.cclrc.ac.uk
       http:
         paths:
           - path: /api/?(.*)
@@ -98,10 +98,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - dev.reduce.isis.cclrc.ac.uk
+        - reduce.isis.cclrc.ac.uk
       secretName: staging-reduce-isis-tls
   rules:
-    - host: dev.reduce.isis.cclrc.ac.uk
+    - host: reduce.isis.cclrc.ac.uk
       http:
         paths:
           - path: /plottingapi/?(.*)

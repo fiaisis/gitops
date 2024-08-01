@@ -23,7 +23,7 @@ spec:
               containerPort: 3000
           env:
             - name: API_BASE_URL
-              value: fia-api-service.fia.svc.cluster.local:80
+              value: http://fia-api-service.fia.svc.cluster.local:80
             - name: FIA_API_API_KEY
               valueFrom:
                 secretKeyRef:

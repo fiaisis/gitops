@@ -12,3 +12,9 @@ spec:
           env:
             - name: DB_IP
               value: dbspg03.fds.rl.ac.uk
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5

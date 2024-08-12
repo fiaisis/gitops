@@ -30,3 +30,25 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: falco-extras-management
+  namespace: argocd
+spec:
+  destination:
+    namespace: security
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: components/falco
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

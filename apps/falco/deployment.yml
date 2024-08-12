@@ -12,9 +12,8 @@ spec:
     chart: falco
     helm:
       values: |
-
         driver:
-          kind: "ebpf"
+          kind: ebpf
   destination:
     namespace: security
     name: staging

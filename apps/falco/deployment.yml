@@ -14,6 +14,12 @@ spec:
       values: |
         driver:
           kind: ebpf
+        falcosidekick:
+          enabled: true
+        webui:
+          enabled: true
+#       config:
+#         teams:
   destination:
     namespace: security
     name: staging

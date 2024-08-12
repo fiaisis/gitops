@@ -1,0 +1,26 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: falco-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://falcosecurity.github.io/charts
+#    targetRevision:
+    chart: falco
+    helm:
+      values: |
+        falco:
+          driver.kind: "ebpf"
+  destination:
+    namespace: security
+    name: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

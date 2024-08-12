@@ -35,7 +35,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: falco-secrets
+  name: falco-secrets-staging
   namespace: argocd
 spec:
   destination:

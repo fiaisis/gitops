@@ -41,7 +41,7 @@ spec:
   destination:
     namespace: security
     server: https://kubernetes.default.svc
-  project: default
+  project: staging
   source:
     path: components/falco
     repoURL: https://github.com/interactivereduction/gitops.git

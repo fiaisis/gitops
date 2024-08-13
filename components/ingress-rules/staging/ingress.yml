@@ -15,7 +15,7 @@ spec:
       http:
         paths:
           - path: /f-i-a/?(.*)
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: frontend-service
@@ -36,7 +36,7 @@ spec:
                 port:
                   number: 3000
           - path: /falco
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: falco-falcosidekick-ui

@@ -87,7 +87,7 @@ spec:
             existingSecret: falco-config
   destination:
     namespace: security
-    name: management
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true

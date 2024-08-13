@@ -18,6 +18,7 @@ spec:
           enabled: true
           webui:
             enabled: true
+            existingSecret: falco-config
           config:
             existingSecret: falco-config
   destination:
@@ -50,6 +51,7 @@ spec:
           enabled: true
           webui:
             enabled: true
+            existingSecret: falco-config
           config:
             existingSecret: falco-config
   destination:

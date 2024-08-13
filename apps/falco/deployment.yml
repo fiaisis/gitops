@@ -40,7 +40,7 @@ metadata:
 spec:
   destination:
     namespace: security
-    server: https://kubernetes.default.svc
+    name: staging
   project: staging
   source:
     path: components/falco/staging
@@ -62,7 +62,7 @@ spec:
   destination:
     namespace: security
     server: https://kubernetes.default.svc
-  project: staging
+  project: management
   source:
     path: components/falco/management
     repoURL: https://github.com/interactivereduction/gitops.git
@@ -82,8 +82,8 @@ metadata:
 spec:
   destination:
     namespace: security
-    server: https://kubernetes.default.svc
-  project: staging
+    name: prod
+  project: prod
   source:
     path: components/falco/production
     repoURL: https://github.com/interactivereduction/gitops.git

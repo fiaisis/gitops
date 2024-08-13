@@ -34,7 +34,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: falco-prof
+  name: falco-prod
   namespace: argocd
 spec:
   project: prod

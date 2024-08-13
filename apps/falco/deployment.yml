@@ -18,8 +18,9 @@ spec:
           enabled: true
           webui:
             enabled: true
-#       config:
-#         teams:
+          config:
+            existingSecret: falco-config
+
   destination:
     namespace: security
     name: staging

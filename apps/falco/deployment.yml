@@ -20,7 +20,6 @@ spec:
             enabled: true
           config:
             existingSecret: falco-config
-
   destination:
     namespace: security
     name: staging
@@ -31,6 +30,72 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: falco-prof
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://falcosecurity.github.io/charts
+    targetRevision: 4.7.2
+    chart: falco
+    helm:
+      values: |
+        driver:
+          kind: ebpf
+        falcosidekick:
+          enabled: true
+          webui:
+            enabled: true
+          config:
+            existingSecret: falco-config
+  destination:
+    namespace: security
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: falco-management
+  namespace: argocd
+spec:
+  project: management
+  source:
+    repoURL: https://falcosecurity.github.io/charts
+    targetRevision: 4.7.2
+    chart: falco
+    helm:
+      values: |
+        driver:
+          kind: ebpf
+        falcosidekick:
+          enabled: true
+          webui:
+            enabled: true
+          config:
+            existingSecret: falco-config
+  destination:
+    namespace: security
+    name: management
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+
 
 ---
 apiVersion: argoproj.io/v1alpha1

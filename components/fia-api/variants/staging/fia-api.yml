@@ -12,6 +12,20 @@ spec:
           env:
             - name: DB_IP
               value: dbspg03.fds.rl.ac.uk
+            - name: QUEUE_HOST
+              value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+            - name: EGRESS_QUEUE_NAME
+              value: scheduled-jobs
+            - name: QUEUE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fia-api
+                  key: queue_password
+            - name: QUEUE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: fia-api
+                  key: queue_username
           readinessProbe:
             httpGet:
               path: /ready

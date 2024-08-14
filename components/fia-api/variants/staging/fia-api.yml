@@ -21,7 +21,7 @@ spec:
                 secretKeyRef:
                   name: fia-api
                   key: queue_password
-            - name: QUEUE_USERNAME
+            - name: QUEUE_USER
               valueFrom:
                 secretKeyRef:
                   name: fia-api

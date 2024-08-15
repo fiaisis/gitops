@@ -35,13 +35,6 @@ spec:
                 name: data-viewer-service
                 port:
                   number: 3000
-          - path: /falco
-            pathType: Prefix
-            backend:
-              service:
-                name: falco-staging-falcosidekick-ui
-                port:
-                  number: 2802
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -169,3 +162,4 @@ spec:
               service:
                 name: falco-staging-falcosidekick-ui
                 port:
+                  number: 2802

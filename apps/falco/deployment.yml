@@ -145,7 +145,7 @@ spec:
               desc: >-
                 Malicious script or binary detected in pod or host. 
                 The rule was triggered by the execve syscall.
-              condition: >
+              condition: >-
                 spawned_process and (in_malicious_binaries or (proc.name in (shell_binaries)
                 and scripts_in_or and not proc.args startswith "-c"))
               output: >-

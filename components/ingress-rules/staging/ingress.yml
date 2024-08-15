@@ -40,8 +40,8 @@ spec:
             backend:
               service:
                 name: falco-staging-falcosidekick-ui
-                port:
-                  number: 2802
+                port: http
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

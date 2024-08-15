@@ -39,7 +39,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: falco-staging-service
+                name: falco-staging-sidekick-ui
                 port:
                   number: 2802
 ---

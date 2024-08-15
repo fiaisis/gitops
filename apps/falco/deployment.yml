@@ -21,6 +21,7 @@ spec:
             existingSecret: falco-config
           config:
             existingSecret: falco-config
+        rule_matching: all
         customRules:
           crypto-rules.yml: |-
             - list: miner_ports

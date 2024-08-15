@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: falco-staging-service
+  namespace: security
+spec:
+  selector:
+    app.kubernetes.io/name: falco-staging
+    app.kubernetes.io/component: falcosidekick-ui
+  ports:
+    - protocol: TCP
+      port: 2802
+      targetPort: 2802

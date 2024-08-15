@@ -41,7 +41,7 @@ spec:
               service:
                 name: falco-staging-falcosidekick-ui
                 port:
-                  name: http
+                  number: 2802
 
 ---
 apiVersion: networking.k8s.io/v1

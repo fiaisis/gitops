@@ -23,6 +23,14 @@ spec:
             existingSecret: falco-config
         customRules:
           crypto-rules.yml: |-
+            - list: miner_ports
+              items: [
+                      25, 3333, 3334, 3335, 3336, 3357, 4444,
+                      5555, 5556, 5588, 5730, 6099, 6666, 7777,
+                      7778, 8000, 8001, 8008, 8080, 8118, 8333,
+                      8888, 8899, 9332, 9999, 14433, 14444,
+                      45560, 45700
+              ]
             - list: miner_domains
               items: [
                   "asia1.ethpool.org","ca.minexmr.com",

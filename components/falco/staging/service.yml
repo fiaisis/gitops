@@ -5,8 +5,8 @@ metadata:
   namespace: security
 spec:
   selector:
-    app.kubernetes.io/name: falco-staging
-    app.kubernetes.io/component: falcosidekick-ui
+    app.kubernetes.io/name: falcosidekick
+    app.kubernetes.io/component: ui
   ports:
     - protocol: TCP
       port: 2802

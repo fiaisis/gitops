@@ -19,7 +19,7 @@ spec:
           webui:
             enabled: true
             existingSecret: falco-config
-            url: https://dev.reduce.isis.cclrc.ac.uk/falco
+
           config:
             existingSecret: falco-config
   destination:

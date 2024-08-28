@@ -14,3 +14,5 @@ spec:
           env:
             - name: WATCHER_SHA
               value: 0ff97cdafc188ca181c50da59cefa888e957e1e0b7074f8a3d20cabf7c7558cf
+            - name: DEFAULT_RUNNER_SHA
+              value: 6e5f2d070bb67742f354948d68f837a740874d230714eaa476d35ab6ad56caec

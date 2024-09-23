@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
+  - file-watchers.yml
 
 
 components:
@@ -11,4 +12,3 @@ components:
 patchesStrategicMerge:
   - file-watcher-operator.yml
   - sealedsecrets.yml
-  - file-watchers.yml

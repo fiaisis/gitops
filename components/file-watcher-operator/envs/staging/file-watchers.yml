@@ -1,0 +1,9 @@
+---
+# LOQ
+apiVersion: "fia.com/v1"
+kind: FileWatcher
+metadata:
+ name: loq
+spec:
+ instrumentFolder: NDXLOQ
+ filePrefix: LOQ

@@ -4,9 +4,11 @@ kind: Kustomization
 resources:
   - ../../base
 
+
 components:
   - ../../variants/staging
 
 patchesStrategicMerge:
   - file-watcher-operator.yml
   - sealedsecrets.yml
+  - file-watchers.yml

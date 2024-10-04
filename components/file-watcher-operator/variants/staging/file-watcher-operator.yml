@@ -11,4 +11,4 @@ spec:
         - name: file-watcher-operator
           env:
             - name: DB_IP
-              value: dbspg03.fds.rl.ac.uk
+              value: dbspgha03.fds.rl.ac.uk

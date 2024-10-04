@@ -28,7 +28,7 @@ spec:
         - name: FILEWATCHER_NAMESPACE
           value: fia
         - name: DB_IP
-          value: dbspg03.fds.rl.ac.uk # Staging
+          value: dbspgha03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         ports:
           - name: health-port

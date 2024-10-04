@@ -36,7 +36,7 @@ spec:
         - name: AUTH_API_URL
           value: http://fia-auth-service.fia.svc.cluster.local:80
         - name: DB_IP
-          value: dbspgha03.fds.rl.ac.uk # Staging
+          value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: DB_PASSWORD
           valueFrom: 

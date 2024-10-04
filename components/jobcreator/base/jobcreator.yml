@@ -26,7 +26,7 @@ spec:
         - name: MAX_TIME_TO_COMPLETE
           value: "21600"
         - name: DB_IP
-          value: dbspgha03.fds.rl.ac.uk # Staging
+          value: dbspg03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: REDUCE_USER_ID
           value: '880844730'

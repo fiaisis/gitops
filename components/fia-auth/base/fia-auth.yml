@@ -31,7 +31,7 @@ spec:
                 name: fia-auth
                 key: uows_api_key
           - name: DB_IP
-            value: dbspg03.fds.rl.ac.uk # Staging
+            value: dbspgha03.fds.rl.ac.uk # Staging
             # value: dbspgha01.fds.rl.ac.uk # Production
           - name: DB_PASSWORD
             valueFrom:

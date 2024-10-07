@@ -11,7 +11,7 @@ spec:
         - name: fia-api
           env:
             - name: DB_IP
-              value: dbspg03.fds.rl.ac.uk
+              value: dbspgha03.fds.rl.ac.uk
             - name: QUEUE_HOST
               value: rabbitmq-cluster.rabbitmq.svc.cluster.local
             - name: EGRESS_QUEUE_NAME

@@ -142,15 +142,15 @@ spec:
 # spec:
 #   instrumentFolder: NDXCRISP
 #   filePrefix: CSP
-# ---
-# # LOQ
-# apiVersion: "fia.com/v1"
-# kind: FileWatcher
-# metadata:
-#   name: loq
-# spec:
-#   instrumentFolder: NDXLOQ
-#   filePrefix: LOQ
+---
+# LOQ
+apiVersion: "fia.com/v1"
+kind: FileWatcher
+metadata:
+ name: loq
+spec:
+ instrumentFolder: NDXLOQ
+ filePrefix: LOQ
 ---
 # Osiris
 apiVersion: "fia.com/v1"

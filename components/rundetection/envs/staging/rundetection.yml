@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: rundetection
-          image: ghcr.io/fiaisis/rundetection@sha256:1dcaeb3b137a96269a1d27025695d0f1a4646578b079b8a034d5ca8b51adbf1f
+          image: ghcr.io/fiaisis/rundetection@sha256:b8d61ae62123884246c04bc038acc97f33e3092084aff870293fddb848210434

@@ -160,15 +160,15 @@ metadata:
 spec:
  instrumentFolder: NDXOSIRIS
  filePrefix: OSIRIS
-# ---
-# # Iris
-# apiVersion: "fia.com/v1"
-# kind: FileWatcher
-# metadata:
-#   name: iris
-# spec:
-#   instrumentFolder: NDXIRIS
-#   filePrefix: IRIS
+---
+# Iris
+apiVersion: "fia.com/v1"
+kind: FileWatcher
+metadata:
+ name: iris
+spec:
+ instrumentFolder: NDXIRIS
+ filePrefix: IRIS
 # ---
 # # Polaris
 # apiVersion: "fia.com/v1"

@@ -53,6 +53,11 @@ spec:
             secretKeyRef:
               name: fia-api
               key: fia_github_api_token
+        - name: GITHUB_PACKAGE_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: fia-api
+              key: fia_github_package_token
         ports:
           - name: api-port
             protocol: TCP

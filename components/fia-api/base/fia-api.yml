@@ -74,4 +74,4 @@ spec:
       volumes:
         - name: runner-extra-files
           persistentVolumeClaim:
-            claimName: runner-extra-files-manila-fia-pvc
+            claimName: runner-extra-files-manila-fia-api-pvc

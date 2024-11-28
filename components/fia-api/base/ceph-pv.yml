@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: runner-extra-files-manila-fia
+  name: runner-extra-files-manila-fia-api
   labels:
-    name: runner-extra-files-manila-fia
+    name: runner-extra-files-manila-fia-api
 spec:
   accessModes:
   - ReadWriteMany
@@ -12,7 +12,7 @@ spec:
     storage: 1000Gi
   csi:
     driver: cephfs.manila.csi.openstack.org
-    volumeHandle: runner-extra-files-manila-fia
+    volumeHandle: runner-extra-files-manila-fia-api
     nodeStageSecretRef:
       name: manila-creds
       namespace: fia

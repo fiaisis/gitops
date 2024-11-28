@@ -68,3 +68,10 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+        volumeMounts:
+          - name: runner-extra-files
+            mountPath: /extras
+      volumes:
+        - name: runner-extra-files
+          persistentVolumeClaim:
+            claimName: runner-extra-files-manila-fia-pvc

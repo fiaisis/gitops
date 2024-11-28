@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: runner-extra-files-manila-fia-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Gi
+  storageClassName: ""
+  selector:
+    matchExpressions:
+      - key: name
+        operator: In
+        values: [ "runner-extra-files-manila-fia" ]

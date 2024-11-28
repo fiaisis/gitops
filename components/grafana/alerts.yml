@@ -308,7 +308,7 @@ data:
                     refId: A
               noDataState: OK
               execErrState: Error
-              for: 5m
+              for: 10m
               annotations:
                 description: Job {{ $labels.pod }} is pending, and merits investigation.
                 summary: If a job is stuck pending, then it isn't processing.
@@ -551,7 +551,7 @@ data:
                     refId: A
               noDataState: OK
               execErrState: Error
-              for: 5m
+              for: 10m
               annotations:
                 description: 'CPU pressure on an instance: ${{ $labels.node }} is too high'
                 summary: CPU pressure on an instance is too high

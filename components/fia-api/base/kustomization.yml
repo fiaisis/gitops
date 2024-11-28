@@ -3,4 +3,6 @@ kind: Kustomization
 resources:
   - fia-api.yml
   - fia-api-service.yml
+  - ceph-pv.yml
+  - ceph-pvc.yml
   - sealedsecrets.yml

@@ -71,7 +71,7 @@ spec:
               name: rundetection-secrets
               key: queue_password
         - name: FIA_API_URL
-          value: fia-api-service.fia.svc.cluster.local:80
+          value: https://fia-api-service.fia.svc.cluster.local:80
         - name: FIA_API_API_KEY
           valueFrom:
             secretKeyRef:

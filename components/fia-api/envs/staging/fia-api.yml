@@ -5,7 +5,6 @@ metadata:
   name: fia-api
   namespace: fia
 spec:
-  replicas: 3
   template:
     spec:
       containers:

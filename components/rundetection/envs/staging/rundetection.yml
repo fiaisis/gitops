@@ -5,6 +5,7 @@ metadata:
   name: rundetection
   namespace: fia
 spec:
+  replicas: 3
   template:
     spec:
       containers:

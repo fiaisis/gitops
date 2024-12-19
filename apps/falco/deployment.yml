@@ -18,9 +18,6 @@ spec:
           enabled: true
           webui:
             enabled: true
-            existingSecret: falco-config
-          config:
-            existingSecret: falco-config
         rule_matching: all
         customRules:
           crypto-rules.yml: |-
@@ -190,9 +187,6 @@ spec:
           enabled: true
           webui:
             enabled: true
-            existingSecret: falco-config
-          config:
-            existingSecret: falco-config
         rule_matching: all
         customRules:
           crypto-rules.yml: |-
@@ -362,9 +356,6 @@ spec:
           enabled: true
           webui:
             enabled: true
-            existingSecret: falco-config
-          config:
-            existingSecret: falco-config
         rule_matching: all
         customRules:
           crypto-rules.yml: |-

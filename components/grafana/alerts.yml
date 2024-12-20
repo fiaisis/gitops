@@ -541,7 +541,7 @@ data:
                         type: prometheus
                         uid: PD00A5B2EA89EE16D
                     editorMode: code
-                    expr: rate(node_pressure_cpu_waiting_seconds_total[1m]) > 0.1
+                    expr: rate(node_pressure_cpu_waiting_seconds_total[1m]) > 1
                     hide: false
                     instant: true
                     intervalMs: 1000

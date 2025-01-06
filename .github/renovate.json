@@ -3,6 +3,7 @@
   "username": "renovate",
   "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
   "platform": "github",
+  "autodiscover": true,
   "argocd": {
     "fileMatch": ["\\deployment.yaml$"]
   },

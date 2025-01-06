@@ -4,6 +4,7 @@
   "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
   "platform": "github",
   "autodiscover": true,
+  "autodiscoverFilter": ["fiaisis/gitops"],
   "argocd": {
     "fileMatch": ["\\deployment.yaml$"]
   },

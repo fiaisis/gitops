@@ -4,6 +4,8 @@ on:
     # Run daily once at a relatively random time in the morning
     - cron: "39 3 * * *"
   workflow_dispatch:
+  push:
+    branches: ["main"]
 jobs:
   renovate:
     runs-on: ubuntu-latest

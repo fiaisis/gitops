@@ -43,7 +43,7 @@ metadata:
   name: prometheus-messaging
   namespace: argocd
 spec:
-  project: prod
+  project: messaging
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 67.9.0
@@ -77,7 +77,7 @@ metadata:
   name: prometheus-staging
   namespace: argocd
 spec:
-  project: prod
+  project: staging
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 67.9.0
@@ -115,7 +115,7 @@ metadata:
   name: prometheus-management
   namespace: argocd
 spec:
-  project: prod
+  project: default
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 67.9.0
@@ -134,7 +134,7 @@ spec:
                 name: thanos
   destination:
     namespace: monitoring-system
-    name: default
+    name: in-cluster
   syncPolicy:
     automated:
       prune: true

@@ -8,7 +8,7 @@ spec:
   project: prod
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 56.9.0
+    targetRevision: 67.9.0
     chart: kube-prometheus-stack
     helm:
       values: |
@@ -17,11 +17,11 @@ spec:
         grafana:
           enabled: false
         prometheus:
-          service:
-            type: LoadBalancer
-            loadBalancerIP: "130.246.80.72"
           prometheusSpec:
             serviceMonitorSelectorNilUsesHelmValues: false
+            remoteWrite:
+              - url: https://management.reduce.isis.cclrc.ac.uk/receive
+                name: thanos
             additionalScrapeConfigs:
               - job_name: csi-ceph
                 static_configs:
@@ -29,6 +29,112 @@ spec:
   destination:
     namespace: monitoring-system
     name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-messaging
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 67.9.0
+    chart: kube-prometheus-stack
+    helm:
+      values: |
+        alertmanager:
+          enabled: false
+        grafana:
+          enabled: false
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
+            remoteWrite:
+              - url: https://management.reduce.isis.cclrc.ac.uk/receive
+                name: thanos
+  destination:
+    namespace: monitoring-system
+    name: messaging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-staging
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 67.9.0
+    chart: kube-prometheus-stack
+    helm:
+      values: |
+        alertmanager:
+          enabled: false
+        grafana:
+          enabled: false
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
+            remoteWrite:
+              - url: https://management.reduce.isis.cclrc.ac.uk/receive
+                name: thanos
+            additionalScrapeConfigs:
+              - job_name: csi-ceph
+                static_configs:
+                  - targets: ["csi-ceph-prod-ceph-csi-cephfs-provisioner-http-metrics.ir.svc.cluster.local:8080", "csi-ceph-prod-ceph-csi-cephfs-nodeplugin-http-metrics.ir.svc.cluster.local:8080"]
+  destination:
+    namespace: monitoring-system
+    name: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-management
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 67.9.0
+    chart: kube-prometheus-stack
+    helm:
+      values: |
+        alertmanager:
+          enabled: false
+        grafana:
+          enabled: false
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
+            remoteWrite:
+              - url: https://management.reduce.isis.cclrc.ac.uk/receive
+                name: thanos
+  destination:
+    namespace: monitoring-system
+    name: default
   syncPolicy:
     automated:
       prune: true

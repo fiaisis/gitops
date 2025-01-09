@@ -1,0 +1,19 @@
+---
+# Initially gleamed from: https://www.infracloud.io/blogs/setup-rabbitmq-ha-mode-kubernetes-operator/#managing-rabbitmq-using-kubernetes-operators
+apiVersion: rabbitmq.com/v1beta1
+kind: Policy
+metadata:
+  name: ha-policy
+  namespace: rabbitmq
+spec:
+  name: transient # name of the policy
+  vhost: "/" # default to '/' if not provided
+  pattern: "" # regex used to match queues and exchanges
+  applyTo: "all" # set to 'queues', 'exchanges', or 'all'
+  definition:
+    ha-mode:
+     all
+    ha-sync-mode:
+     automatic
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster #name of the rabbitmqcluster

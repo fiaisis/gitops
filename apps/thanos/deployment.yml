@@ -10,8 +10,6 @@ spec:
     repoURL: registry-1.docker.io/bitnamicharts
     targetRevision: 15.9.2
     chart: thanos
-    helm:
-      values: |
   destination:
     namespace: monitoring-system
     name: in-cluster

@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rabbitmq
+  namespace: rabbitmq
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: 130.246.83.190
+    http:
+      paths:
+      - path: /?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: rabbitmq-cluster
+            port:
+              number: 5672
+      - path: /management/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: rabbitmq-cluster
+            port:
+              number: 15672
+      - path: /prometheus/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: rabbitmq-cluster
+            port:
+              number: 15672

@@ -10,9 +10,6 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
-  clusterResourceBlacklist:
-  - group: cilium.io
-    kind: CiliumIdentity
   sourceRepos:
   - 'https://github.com/interactivereduction/gitops'
   - 'https://traefik.github.io/charts/'

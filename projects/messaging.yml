@@ -1,34 +1,32 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: staging
+  name: messaging
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: The staging project, all staging stuff happens here
+  description: The messaging project, all messaging cluster specific stuff happens here
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
   sourceRepos:
   - 'https://github.com/interactivereduction/gitops'
-  - 'https://traefik.github.io/charts/'
-  - 'https://charts.longhorn.io'
   - 'https://strimzi.io/charts/'
   - 'https://bitnami-labs.github.io/sealed-secrets'
+  - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
+  - 'https://helm.groundcover.com'
   - 'https://charts.bitnami.com/bitnami'
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
-  - 'oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator'
-  - 'https://helm.groundcover.com'
   - 'https://ceph.github.io/csi-charts'
-  - 'https://charts.rook.io/release'
   - 'https://kubernetes.github.io/cloud-provider-openstack'
   - 'https://grafana.github.io/helm-charts'
+  - 'https://prometheus-community.github.io/helm-charts'
   - 'https://falcosecurity.github.io/charts'
   destinations:
   - namespace: "*"
-    server: "https://130.246.214.191:6443"
-    name: staging
+    server: "https://130.246.80.191:6443"
+    name: messaging
   - namespace: "*"
     server: "https://kubernetes.default.svc"
     name: in-cluster

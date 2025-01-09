@@ -60,3 +60,24 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sealed-secrets-messaging
+  namespace: argocd
+spec:
+  project: messaging
+  source:
+    repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
+    targetRevision: 2.13.1
+    chart: sealed-secrets
+  destination:
+    namespace: kube-system
+    server: messaging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

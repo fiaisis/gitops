@@ -25,10 +25,3 @@ spec:
             name: rabbitmq-cluster
             port:
               number: 15672
-      - path: /prometheus/?(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: rabbitmq-cluster
-            port:
-              number: 15672

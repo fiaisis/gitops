@@ -74,7 +74,7 @@ spec:
     chart: sealed-secrets
   destination:
     namespace: kube-system
-    server: messaging
+    name: messaging
   syncPolicy:
     automated:
       prune: true

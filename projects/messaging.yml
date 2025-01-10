@@ -11,18 +11,11 @@ spec:
   - group: '*'
     kind: '*'
   sourceRepos:
-  - 'https://github.com/interactivereduction/gitops'
-  - 'https://strimzi.io/charts/'
   - 'https://bitnami-labs.github.io/sealed-secrets'
-  - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
-  - 'https://helm.groundcover.com'
   - 'https://charts.bitnami.com/bitnami'
-  - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
-  - 'https://ceph.github.io/csi-charts'
   - 'https://kubernetes.github.io/cloud-provider-openstack'
   - 'https://grafana.github.io/helm-charts'
   - 'https://prometheus-community.github.io/helm-charts'
-  - 'https://falcosecurity.github.io/charts'
   destinations:
   - namespace: "*"
     server: "https://130.246.80.191:6443"

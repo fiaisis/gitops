@@ -12,7 +12,7 @@ data:
         type: prometheus
         uid: PD00A5B2EA89EE16D
         access: proxy
-        url: https://management.reduce.isis.cclrc.ac.uk/query
+        url: http://130.246.80.72:9090
         jsonData:
           httpMethod: POST
           manageAlerts: false

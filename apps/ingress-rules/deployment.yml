@@ -59,23 +59,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: ingress-rules-messaging
-  namespace: argocd
-spec:
-  source:
-    path: components/ingress-rules/messaging
-    repoURL: https://github.com/interactivereduction/gitops.git
-    targetRevision: HEAD
-  destination:
-    server: messaging
-  project: messaging
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true

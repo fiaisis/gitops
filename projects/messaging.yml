@@ -11,6 +11,7 @@ spec:
   - group: '*'
     kind: '*'
   sourceRepos:
+  - 'https://github.com/interactivereduction/gitops.git'
   - 'https://bitnami-labs.github.io/sealed-secrets'
   - 'https://charts.bitnami.com/bitnami'
   - 'https://kubernetes.github.io/cloud-provider-openstack'

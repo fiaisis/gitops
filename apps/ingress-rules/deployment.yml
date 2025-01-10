@@ -67,12 +67,12 @@ metadata:
   namespace: argocd
 spec:
   source:
-    path: components/ingress-rules/management
+    path: components/ingress-rules/messaging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
-    server: https://kubernetes.default.svc
-  project: default
+    name: messaging
+  project: messaging
   syncPolicy:
     automated:
       prune: true

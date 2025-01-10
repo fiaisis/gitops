@@ -11,13 +11,6 @@ spec:
   - host: messaging.reduce.isis.cclrc.ac.uk
     http:
       paths:
-      - path: /?(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: rabbitmq-cluster
-            port:
-              number: 5672
       - path: /management/?(.*)
         pathType: Prefix
         backend:

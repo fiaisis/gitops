@@ -10,7 +10,6 @@ spec:
       - weight: 1
         podAffinityTerm:
           labelSelector:
-          - key: "app.kubernetes.io/component"
-            operator: In
-            values:
-            - rabbitmq
+            matchLabels:
+              app.kubernetes.io/component: rabbitmq
+          topologyKey: "kubernetes.io/hostname"

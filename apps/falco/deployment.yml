@@ -8,7 +8,7 @@ spec:
   project: staging
   source:
     repoURL: https://falcosecurity.github.io/charts
-    targetRevision: 4.7.2
+    targetRevision: 4.17.0
     chart: falco
     helm:
       values: |
@@ -177,7 +177,7 @@ spec:
   project: prod
   source:
     repoURL: https://falcosecurity.github.io/charts
-    targetRevision: 4.7.2
+    targetRevision: 4.17.0
     chart: falco
     helm:
       values: |
@@ -346,7 +346,7 @@ spec:
   project: default
   source:
     repoURL: https://falcosecurity.github.io/charts
-    targetRevision: 4.7.2
+    targetRevision: 4.17.0
     chart: falco
     helm:
       values: |

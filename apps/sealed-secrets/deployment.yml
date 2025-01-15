@@ -49,7 +49,7 @@ spec:
   project: default
   source:
     repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
-    targetRevision: 2.13.1
+    targetRevision: 2.17.0
     chart: sealed-secrets
   destination:
     namespace: kube-system

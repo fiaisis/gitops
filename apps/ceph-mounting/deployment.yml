@@ -8,7 +8,7 @@ spec:
   project: staging
   source:
     repoURL: https://ceph.github.io/csi-charts
-    targetRevision: 3.9.0
+    targetRevision: 3.13.0
     chart: ceph-csi-cephfs
   destination:
     namespace: fia
@@ -51,7 +51,7 @@ spec:
   project: prod
   source:
     repoURL: https://ceph.github.io/csi-charts
-    targetRevision: 3.9.0
+    targetRevision: 3.13.0
     chart: ceph-csi-cephfs
   destination:
     namespace: fia

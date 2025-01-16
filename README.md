@@ -135,3 +135,17 @@ cd components/ceph/base
 kubectl apply -f ceph-configmap.yml -f secrets.yml -n fia
 cd ../../..
 ```
+
+# Deploying to staging using WSL
+
+If you are needing to test changes in a repository without wanting to merge here's how using WSL:
+
+1. Make Changes to the relevant FIAISIS repository.
+2. Launch Windows Subsystem for Linux (WSL). Ensure you are using a Bash-compatible shell.
+3. Navigate to the relevant repository folder in the terminal.
+4. Build the Docker image with `docker build . -t ghcr.io/fiaisis/{repo-name} -f ./container/{repo-name}.D`.
+5. Push the image to the GitHub Container Registry `docker push ghcr.io/fiaisis/{repo-name} -a`.
+6. A SHA value will be printed to the terminal. Copy this and replace the current one in the relevant `yml` file in your local GitOps repository.
+7. Commit the GitOps changes and push to main.
+8. Open FIAISIS's management portal and navigate to ARGO CD.
+9. Refresh the relevant repository node and the changes should be in effect.

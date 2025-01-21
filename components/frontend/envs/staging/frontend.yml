@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/fiaisis/frontend@sha256:75626a3acd65e94672f181ff605d46bc05c2c35dd4d17128ed319a194ca9b35d
+          image: ghcr.io/fiaisis/frontend@sha256:8d10f7b3bdc8c43165137de748ae61979a6f10f2237c7a38310a42f9f2abf8f6

@@ -21,13 +21,18 @@ spec:
           - name: FIA_AUTH_API_KEY
             valueFrom:
               secretKeyRef:
-                name: fia-auth
+                name: plotting_service
                 key: fia_auth_api_key
           - name: JWT_SECRET
             valueFrom:
               secretKeyRef:
-                name: fia-auth
+                name: plotting_service
                 key: jwt_signing_key
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: plotting_service
+                key: api_key
           - name: FIA_AUTH_URL
             value: fia-auth-service.fia.svc.cluster.local:80
         ports:

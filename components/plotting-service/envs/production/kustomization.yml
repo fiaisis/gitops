@@ -4,4 +4,4 @@ resources:
   - ../../base
 patches:
   - path: plotting-service.yml
-  - path: sealed-secrets.yml
+  - path: sealedsecrets.yml

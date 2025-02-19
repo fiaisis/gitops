@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  SERVICES_TO_UPDATE: data-viewer fia-api file-watcher-operator frontend jobcreator plotting-service rundetection scigateway
+  SERVICES_TO_UPDATE: data-viewer fia-api file-watcher-operator frontend jobcreator plotting-service rundetection scigateway fia-auth
 
 jobs:
   make_pr_for_prod:

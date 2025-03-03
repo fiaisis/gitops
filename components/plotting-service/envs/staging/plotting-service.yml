@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: plotting-service
-          image: ghcr.io/fiaisis/plotting-service@sha256:a32c946fd08754cb2bf4a6a9fcda6fb07ac384849232ce1587aeb344a2afb605
+          image: ghcr.io/fiaisis/plotting-service@sha256:3571e82aae2b6822855e8cad2f114d5fe8b6425a0ab4bba68d13bd15d7bb52a6

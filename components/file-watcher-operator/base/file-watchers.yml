@@ -88,15 +88,15 @@ spec:
 # spec:
 #   instrumentFolder: NDXSXD
 #   filePrefix: SXD
-# ---
-# # Vesuvio
-# apiVersion: "fia.com/v1"
-# kind: FileWatcher
-# metadata:
-#   name: vesuvio
-# spec:
-#   instrumentFolder: NDXVESUVIO
-#   filePrefix: VESUVIO
+---
+# Vesuvio
+apiVersion: "fia.com/v1"
+kind: FileWatcher
+metadata:
+  name: vesuvio
+spec:
+  instrumentFolder: NDXVESUVIO
+  filePrefix: VESUVIO
 # ---
 # # Maps
 # apiVersion: "fia.com/v1"

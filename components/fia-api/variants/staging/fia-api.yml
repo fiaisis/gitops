@@ -26,9 +26,3 @@ spec:
                 secretKeyRef:
                   name: fia-api
                   key: queue_user
-          readinessProbe:
-            httpGet:
-              path: /ready
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 600

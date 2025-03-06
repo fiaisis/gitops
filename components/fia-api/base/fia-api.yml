@@ -68,6 +68,12 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 300
         volumeMounts:
           - name: runner-extra-files
             mountPath: /extras

@@ -35,6 +35,8 @@ spec:
               key: jwt_signing_key
         - name: AUTH_API_URL
           value: http://fia-auth-service.fia.svc.cluster.local:80
+        - name: CEPH_DIR
+          value: /ceph
         - name: DB_IP
           value: dbspgha03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
@@ -77,7 +79,12 @@ spec:
         volumeMounts:
           - name: runner-extra-files
             mountPath: /extras
+          - name: cephfs-mount
+            mountPath: /ceph
       volumes:
         - name: runner-extra-files
           persistentVolumeClaim:
             claimName: runner-extra-files-manila-fia-api-pvc
+        - name: cephfs-mount
+          persistentVolumeClaim:
+            claimName: plotting-service-ceph-pvc

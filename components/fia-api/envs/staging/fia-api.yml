@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: fia-api
-          image: ghcr.io/fiaisis/fia-api@sha256:17fcd79e91c9bd1c9d61e9a6ebb19ccf01e46e71c1a91347cccceae7a4eaac20
+          image: ghcr.io/fiaisis/fia-api@sha256:e797148c87dd87decac29f50d6f52567e7a54e94c88949705fd60684b570c00c

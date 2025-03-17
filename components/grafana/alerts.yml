@@ -156,7 +156,7 @@ data:
                 description: |-
                     Job {{ $labels.namespace }}
                     /{{ $labels.job_name }}
-                     is taking more than {{ "43200" | humanizeDuration }}
+                     is taking more than {{ "21600" | humanizeDuration }}
                      to complete.
                 summary: Job did not complete in 6 hours.
               labels:

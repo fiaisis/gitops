@@ -64,6 +64,11 @@ spec:
             secretKeyRef:
               name: jobcreator-secrets
               key: consumer_password
+        - name: FIA_API_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: fia-api
+              key: fia_api_api_key
         readinessProbe:
           exec:
             command:

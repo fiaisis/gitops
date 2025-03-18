@@ -1,0 +1,18 @@
+---
+Name: default
+Annotations:
+  operator.tigera.io/bpfEnabled: false
+API Version: projectcalico.org/v3
+Kind: FelixConfiguration
+Spec:
+ Bpf Connect Time Load Balancing: TCP
+ Bpf Enabled: false
+ Bpf Host Networked NAT Without CTLB: Enabled
+ Floating IPs: Disabled
+ Health Port: 9099
+ Log Severity Screen: Info
+ Nftables Mode: Disabled
+ Reporting Interval: 0s
+ Vxlan VNI: 4096
+ wireguardEnabled: true
+ wireguardEnabledV6: true

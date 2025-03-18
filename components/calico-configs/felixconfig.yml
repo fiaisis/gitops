@@ -1,9 +1,8 @@
 ---
 apiVersion: projectcalico.org/v3
-name: default
-annotations:
-  operator.tigera.io/bpfEnabled: false
 kind: FelixConfiguration
+metadata:
+  name: default
 spec:
  wireguardEnabled: true
  wireguardEnabledV6: true

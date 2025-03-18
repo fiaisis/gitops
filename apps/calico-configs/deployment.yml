@@ -1,13 +1,53 @@
-
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: calico-configs
+  name: calico-configs-staging
   namespace: argocd
 spec:
   destination:
     name: staging
   project: staging
+  source:
+    path: components/calico-configs
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: calico-configs-prod
+  namespace: argocd
+spec:
+  destination:
+    name: prod
+  project: prod
+  source:
+    path: components/calico-configs
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: calico-configs-management
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
   source:
     path: components/calico-configs
     repoURL: https://github.com/interactivereduction/gitops.git

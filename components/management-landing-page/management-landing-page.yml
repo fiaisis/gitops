@@ -15,9 +15,9 @@ spec:
         app: management-landing-page
     spec:
       containers:
-      - name: management-landing-page
-        image: ghcr.io/fiaisis/management-landing-page@sha256:93a9a537c3f75924a07b6b84808a0f5e2d1c4cdc424edaa586cc3929c55e74a1
-        ports:
-          - name: web-port
-            protocol: TCP
-            containerPort: 3000
+        - name: management-landing-page
+          image: ghcr.io/fiaisis/management-landing-page@
+          ports:
+            - name: web-port
+              protocol: TCP
+              containerPort: 3000

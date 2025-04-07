@@ -5,7 +5,7 @@ metadata:
   name: scigateway
   namespace: fia
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: scigateway

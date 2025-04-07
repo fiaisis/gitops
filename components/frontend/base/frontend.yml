@@ -5,7 +5,7 @@ metadata:
   name: frontend
   namespace: fia
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: frontend

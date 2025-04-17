@@ -9,6 +9,6 @@ spec:
   resources:
     requests:
       storage: 1000Gi
-  volumeName: plotting-service-ceph-pv
+  volumeName: fia-api-ceph-pv
   volumeMode: Filesystem
   storageClassName: ""

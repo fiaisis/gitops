@@ -7,7 +7,7 @@ resources:
 
 
 components:
-  - ../../variants/staging
+  - ./live-data-operator.yml
 
 patchesStrategicMerge:
   - liva-data-operator.yml

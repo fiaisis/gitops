@@ -5,9 +5,5 @@ kind: Kustomization
 resources:
   - ../../base
 
-
-components:
-  - ./live-data-operator.yml
-
 patchesStrategicMerge:
   - liva-data-operator.yml

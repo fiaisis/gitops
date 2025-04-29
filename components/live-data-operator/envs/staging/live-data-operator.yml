@@ -1,0 +1,11 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: live-data-operator
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: live-data-operator

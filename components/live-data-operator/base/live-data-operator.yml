@@ -17,7 +17,7 @@ spec:
       serviceAccountName: live-data-operator
       containers:
       - name: live-data-operator
-        image: ghcr.io/fiaisis/live-data-operator@sha256:06898bac56909d395681b05a8bd36897760af038d0be3155b410d7baeef348be
+        image: ghcr.io/fiaisis/live-data-operator:1ae8f973899e5720649ed3af5b947dd1f01470bf
         ports:
           - name: health-port
             protocol: TCP

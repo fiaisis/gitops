@@ -4,3 +4,4 @@ resources:
   - live-data-crd.yml
   - live-data-operator.yml
   - live-data-processors.yml
+  - live-data-operator-permissions.yml

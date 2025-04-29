@@ -1,0 +1,8 @@
+---
+# Example custom object
+apiVersion: "fia.com/v1"
+kind: LiveDataProcessor
+metadata:
+ name: merlin
+spec:
+ instrument: MERLIN

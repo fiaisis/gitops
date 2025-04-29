@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: live-data-operator-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: fia
+    name: staging
+  project: staging
+  source:
+    path: components/live-data-operator/envs/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

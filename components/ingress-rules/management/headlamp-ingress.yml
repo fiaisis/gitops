@@ -19,7 +19,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: headlamp-service
+            name: headlamp
             port:
               name: http
 

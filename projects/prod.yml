@@ -25,6 +25,7 @@ spec:
   - 'https://grafana.github.io/helm-charts'
   - 'https://prometheus-community.github.io/helm-charts'
   - 'https://falcosecurity.github.io/charts'
+  - 'https://headlamp-k8s.github.io/headlamp/'
   destinations:
   - namespace: "*"
     server: "https://130.246.81.17:6443"

@@ -1,5 +1,9 @@
 # GitOps repository
 
+# Recommended installs for cluster visualisation:
+Headlamp (GUI): https://headlamp.dev/
+K9s (GUI in CLI): https://k9scli.io/
+
 # Structure:
 
 - apps: Contains the ArgoCD application definitions

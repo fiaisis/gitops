@@ -11,5 +11,5 @@ spec:
         - name: live-data-operator
           image: ghcr.io/fiaisis/live-data-operator@sha256:a7506b5ecdef3bc4b1a2fc2f4960df020df3f4c7e8355b37e657d52414485fbf
           env:
-            - name: PROCESSOR_IMAGE_URL
+            - name: LIVE_DATA_PROCESSOR_IMAGE_URL
               value: foo

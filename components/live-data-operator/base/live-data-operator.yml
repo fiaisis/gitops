@@ -34,3 +34,16 @@ spec:
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
+        env:
+          - name: LIVE_DATA_PROCESSOR_IMAGE
+            value: ghcr.io/fiaisis/live-data-processor:50f170947badb84cac95e094cdd245df6ca3bfb6
+          - name: CEPH_CREDS_SECRET_NAME
+            valueFrom:
+              secretKeyRef:
+                name: ceph-creds
+                key: db_password
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: jobcreator-secrets
+                key: db_username

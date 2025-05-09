@@ -13,3 +13,4 @@ spec:
           env:
             - name: LIVE_DATA_PROCESSOR_IMAGE_URL
               value: foo
+    containers: []

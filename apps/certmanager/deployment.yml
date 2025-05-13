@@ -16,6 +16,8 @@ spec:
           enabled: true
           servicemonitor:
             enabled: true
+        crds:
+          enabled: true
   destination:
     namespace: cert-manager
     name: prod

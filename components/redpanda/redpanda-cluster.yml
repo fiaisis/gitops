@@ -1,0 +1,21 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Redpanda
+metadata:
+  name: redpanda-cluster
+  namespace: redpanda
+spec:
+  clusterSpec:
+    external:
+      enabled: true
+      domain: livedata.isis.cclrc.ac.uk
+      type: LoadBalancer
+      # addresses:
+      #   - 
+      #   - 
+      #   - 
+      service:
+        enabled: true
+    statefulset:
+      initContainers:
+        setDataDirOwnership:
+          enabled: true

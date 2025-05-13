@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certmanager
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://charts.jetstack.io
+    targetRevision: v1.17.2
+    chart: cert-manager
+    helm:
+      values: |
+        prometheus:
+          enabled: true
+          servicemonitor:
+            enabled: true
+  destination:
+    namespace: cert-manager
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true

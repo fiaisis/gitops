@@ -7,9 +7,9 @@ metadata:
 spec:
   project: prod
   source:
-    repoURL: https://charts.redpanda.com
+    repoURL: https://charts.redpanda.com/operator
     targetRevision: v25.1.1-beta3
-    chart: redpanda
+    chart: redpanda-controller
   destination:
     namespace: redpanda
     name: prod

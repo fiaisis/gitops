@@ -26,7 +26,7 @@ spec:
   - 'https://prometheus-community.github.io/helm-charts'
   - 'https://falcosecurity.github.io/charts'
   - 'https://kubernetes-sigs.github.io/headlamp/'
-  - 'https://charts.redpanda.com/operator'
+  - 'https://charts.redpanda.com'
   - 'https://charts.jetstack.io'
   destinations:
   - namespace: "*"

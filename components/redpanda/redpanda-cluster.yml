@@ -10,9 +10,9 @@ spec:
       # domain: livedata.isis.cclrc.ac.uk
       type: LoadBalancer
       addresses:
-        - 130.246.81.134
-        - 130.246.81.196
-        - 130.246.81.38
+        - 130.246.81.45
+        - 130.246.81.166
+        - 130.246.81.188
       service:
         enabled: true
     tls:

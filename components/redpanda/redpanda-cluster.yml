@@ -7,12 +7,12 @@ spec:
   clusterSpec:
     external:
       enabled: true
-      domain: livedata.isis.cclrc.ac.uk
+      # domain: livedata.isis.cclrc.ac.uk
       type: LoadBalancer
-      # addresses:
-      #   - 
-      #   - 
-      #   - 
+      addresses:
+        - 130.246.81.134
+        - 130.246.81.196
+        - 130.246.81.38
       service:
         enabled: true
     statefulset:

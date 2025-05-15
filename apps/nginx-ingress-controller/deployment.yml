@@ -16,8 +16,8 @@ spec:
         controller:
           service:
             loadBalancerIP: 130.246.81.192
-          extraArgs:
-            tcp-services-configmap: "ingress-nginx/tcp-services"
+          args: 
+            - tcp-services-configmap: "ingress-nginx/tcp-services"
   destination:
     namespace: ingress-nginx
     name: prod

@@ -15,6 +15,10 @@ spec:
         - 130.246.81.188
       service:
         enabled: true
+    console:
+      enabled: true
+      config:
+        basePath: /redpanda-console
     tls:
       enabled: false
     statefulset:

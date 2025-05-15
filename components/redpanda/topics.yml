@@ -56,8 +56,9 @@
 apiVersion: cluster.redpanda.com/v1alpha2
 kind: Topic
 metadata:
-  name: MERLIN_monitors
+  name: MERLIN-monitors
 spec:
+  overwriteTopicName: MERLIN_monitors
   kafkaApiSpec:
     brokers:
       - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:9093"

@@ -2,5 +2,5 @@
 .vscode
 .idea
 **/secrets.yml
-**/*-secrets.yml
+**/certs-secrets.yml
 **/auth

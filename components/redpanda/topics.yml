@@ -1,57 +1,63 @@
-# apiVersion: cluster.redpanda.com/v1alpha2
-# kind: Topic
-# metadata:
-#   name: MERLIN_events
-# spec:
-#   kafkaApiSpec:
-#     brokers:
-#       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-# ---
-# apiVersion: cluster.redpanda.com/v1alpha2
-# kind: Topic
-# metadata:
-#   name: MERLIN_eventSum
-# spec:
-#   kafkaApiSpec:
-#     brokers:
-#       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-# ---
-# apiVersion: cluster.redpanda.com/v1alpha2
-# kind: Topic
-# metadata:
-#   name: MERLIN_runInfo
-# spec:
-#   kafkaApiSpec:
-#     brokers:
-#       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-# ---
-# apiVersion: cluster.redpanda.com/v1alpha2
-# kind: Topic
-# metadata:
-#   name: MERLIN_sampleEnv
-# spec:
-#   kafkaApiSpec:
-#     brokers:
-#       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-# ---
-# apiVersion: cluster.redpanda.com/v1alpha2
-# kind: Topic
-# metadata:
-#   name: MERLIN_choppers
-# spec:
-#   kafkaApiSpec:
-#     brokers:
-#       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
+---
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Topic
+metadata:
+  name: merlin-events
+spec:
+  overwriteTopicName: MERLIN_events
+  kafkaApiSpec:
+    brokers:
+      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:31092"
+---
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Topic
+metadata:
+  name: merlin-eventsum
+spec:
+  overwriteTopicName: MERLIN_eventSum
+  kafkaApiSpec:
+    brokers:
+      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:31092"
+---
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Topic
+metadata:
+  name: merlin-runInfo
+spec:
+  overwriteTopicName: MERLIN_runInfo
+  kafkaApiSpec:
+    brokers:
+      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:31092"
+---
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Topic
+metadata:
+  name: merlin-sampleEnv
+spec:
+  overwriteTopicName: MERLIN_sampleEnv
+  kafkaApiSpec:
+    brokers:
+      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:31092"
+---
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Topic
+metadata:
+  name: merlin-choppers
+spec:
+  overwriteTopicName: MERLIN_choppers
+  kafkaApiSpec:
+    brokers:
+      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:31092"
 ---
 apiVersion: cluster.redpanda.com/v1alpha2
 kind: Topic

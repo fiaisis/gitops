@@ -61,6 +61,6 @@ spec:
   overwriteTopicName: MERLIN_monitors
   kafkaApiSpec:
     brokers:
-      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:9093"
-      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:9093"
-      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:9093"
+      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:31092"
+      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:31092"

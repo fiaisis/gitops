@@ -8,4 +8,4 @@ data:
   8082: "redpanda/redpanda-cluster:8082"
   9093: "redpanda/redpanda-cluster:9093"
   8081: "redpanda/redpanda-cluster:8081"
-  8080: "redpanda/redpanda-cluster-console:8080"
+  8080: "redpanda/redpanda-cluster:8080"

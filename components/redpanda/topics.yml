@@ -8,10 +8,6 @@
 #       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-#     tls:
-#       caCertSecretRef:
-#         name: "redpanda-default-cert"
-#         key: "ca.crt"
 # ---
 # apiVersion: cluster.redpanda.com/v1alpha2
 # kind: Topic
@@ -23,10 +19,6 @@
 #       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-#     tls:
-#       caCertSecretRef:
-#         name: "redpanda-default-cert"
-#         key: "ca.crt"
 # ---
 # apiVersion: cluster.redpanda.com/v1alpha2
 # kind: Topic
@@ -38,10 +30,6 @@
 #       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-#     tls:
-#       caCertSecretRef:
-#         name: "redpanda-default-cert"
-#         key: "ca.crt"
 # ---
 # apiVersion: cluster.redpanda.com/v1alpha2
 # kind: Topic
@@ -53,10 +41,6 @@
 #       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-#     tls:
-#       caCertSecretRef:
-#         name: "redpanda-default-cert"
-#         key: "ca.crt"
 # ---
 # apiVersion: cluster.redpanda.com/v1alpha2
 # kind: Topic
@@ -68,22 +52,14 @@
 #       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
 #       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-#     tls:
-#       caCertSecretRef:
-#         name: "redpanda-default-cert"
-#         key: "ca.crt"
-# ---
-# apiVersion: cluster.redpanda.com/v1alpha2
-# kind: Topic
-# metadata:
-#   name: MERLIN_monitors
-# spec:
-#   kafkaApiSpec:
-#     brokers:
-#       - "redpanda-0.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-1.redpanda.<namespace>.svc.cluster.local:9093"
-#       - "redpanda-2.redpanda.<namespace>.svc.cluster.local:9093"
-#     tls:
-#       caCertSecretRef:
-#         name: "redpanda-default-cert"
-#         key: "ca.crt"
+---
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Topic
+metadata:
+  name: MERLIN_monitors
+spec:
+  kafkaApiSpec:
+    brokers:
+      - "lb-redpanda-cluster-0.redpanda.svc.cluster.local:9093"
+      - "lb-redpanda-cluster-1.redpanda.svc.cluster.local:9093"
+      - "lb-redpanda-cluster-2.redpanda.svc.cluster.local:9093"

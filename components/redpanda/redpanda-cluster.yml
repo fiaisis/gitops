@@ -18,7 +18,8 @@ spec:
     console:
       enabled: true
       config:
-        basePath: /redpanda-console
+        server:
+          basePath: /redpanda-console
     tls:
       enabled: false
     statefulset:

@@ -119,7 +119,7 @@ metadata:
   namespace: redpanda
   annotations:
     kubernetes.io/ingress.class: nginx
-    # nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   tls:
     - hosts:
@@ -129,17 +129,17 @@ spec:
   - host: reduce.isis.cclrc.ac.uk
     http:
       paths:
-        - path: /redpanda-console/?(.*)
-          pathType: Prefix
-          backend:
-            service:
-              name: redpanda-cluster-console
-              port:
-                number: 8080
-        # - path: /redpanda/?(.*)
-        #   pathType: Prefix
-        #   backend:
-        #     service:
-        #       name: redpanda-cluster
-        #       port:
-        #         number: 8080
+      - path: /redpanda-console/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: redpanda-cluster-console
+            port:
+              number: 8080
+#       - path: /redpanda/?(.*)
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: redpanda-cluster
+#             port:
+#               number: 8080

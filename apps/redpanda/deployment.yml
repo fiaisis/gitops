@@ -34,8 +34,6 @@ spec:
     path: components/redpanda
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
-    directory:
-      recurse: true
   syncPolicy:
     automated:
       prune: true

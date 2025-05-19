@@ -1,0 +1,32 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: f141_epics_nt
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "file_identifier \"f141\";\n\nnamespace BrightnESS.FlatBufs.f141_epics_nt;\n\
+    \nstruct timeStamp_t {\n\tsecondsPastEpoch: ulong;\n\tnanoseconds: int;\n}\n\n\
+    table NTScalarByte   { value:  byte;   }\ntable NTScalarUByte  { value: ubyte;\
+    \   }\ntable NTScalarShort  { value:  short;  }\ntable NTScalarUShort { value:\
+    \ ushort;  }\ntable NTScalarInt    { value:  int;    }\ntable NTScalarUInt   {\
+    \ value: uint;    }\ntable NTScalarLong   { value:  long;   }\ntable NTScalarULong\
+    \  { value: ulong;   }\ntable NTScalarFloat  { value:  float;  }\ntable NTScalarDouble\
+    \ { value:  double; }\n\ntable NTScalarArrayByte   { value: [ byte];   }\ntable\
+    \ NTScalarArrayUByte  { value: [ubyte];   }\ntable NTScalarArrayShort  { value:\
+    \ [ short];  }\ntable NTScalarArrayUShort { value: [ushort];  }\ntable NTScalarArrayInt\
+    \    { value: [ int];    }\ntable NTScalarArrayUInt   { value: [uint];    }\n\
+    table NTScalarArrayLong   { value: [ long];   }\ntable NTScalarArrayULong  { value:\
+    \ [ulong];   }\ntable NTScalarArrayFloat  { value: [ float];  }\ntable NTScalarArrayDouble\
+    \ { value: [ double]; }\n\nunion PV {\n\tNTScalarByte,\n\tNTScalarUByte,\n\tNTScalarShort,\n\
+    \tNTScalarUShort,\n\tNTScalarInt,\n\tNTScalarUInt,\n\tNTScalarLong,\n\tNTScalarULong,\n\
+    \tNTScalarFloat,\n\tNTScalarDouble,\n\tNTScalarArrayByte,\n\tNTScalarArrayUByte,\n\
+    \tNTScalarArrayShort,\n\tNTScalarArrayUShort,\n\tNTScalarArrayInt,\n\tNTScalarArrayUInt,\n\
+    \tNTScalarArrayLong,\n\tNTScalarArrayULong,\n\tNTScalarArrayFloat,\n\tNTScalarArrayDouble\n\
+    }\n\nstruct fwdinfo_t {\n\tseq: ulong;\n\tts_data: ulong;\n\tts_fwd: ulong;\n\t\
+    fwdix: ubyte;\n\tteamid: ulong;\n}\n\ntable fwdinfo_2_t {\n\tseq_data: ulong;\n\
+    \tseq_fwd: ulong;\n\tts_data: ulong;\n\tts_fwd: ulong;\n\tfwdix: uint;\n\tteamid:\
+    \ ulong;\n}\n\nunion fwdinfo_u {\n\tfwdinfo_2_t,\n}\n\ntable EpicsPV {\n\tname:\
+    \ string;\n\tpv: PV;\n\ttimeStamp: timeStamp_t;\n\tfwdinfo: fwdinfo_t;\n\tfwdinfo2:\
+    \ fwdinfo_u;\n}\n\nroot_type EpicsPV;\n"

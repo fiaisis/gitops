@@ -1,0 +1,12 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: amo0_psi_sinq
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "\nfile_identifier \"amo0\";\n\ntable EventMessage {\n    source_name : string;\
+    \    // used to be htype\n    message_id : ulong;      //      \t   pid\n    pulse_time\
+    \ : ulong;      //\t\t   ts\n    time_of_flight : [uint]; // \t   timestamp\n\
+    \    detector_id : [uint];    // \t   data\n}\nroot_type EventMessage;\n"

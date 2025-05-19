@@ -1,0 +1,22 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: ev42_events
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "// Schema for neutron detection event data\n\ninclude \"is84_isis_events.fbs\"\
+    ;\ninclude \"dtdb_adc_pulse_debug.fbs\";\n\nfile_identifier \"ev42\";\n\nunion\
+    \ FacilityData { ISISData, AdcPulseDebug }\n\ntable EventMessage {\n    source_name\
+    \ : string;    // optional field identifying the producer type, for example detector\
+    \ type\n    message_id : ulong;      // consecutive numbers, to detect missing\
+    \ or unordered messages\n    pulse_time : ulong;      // Nanoseconds since Unix\
+    \ epoch (1 Jan 1970)\n                             // If a pulse time is available\
+    \ in the aquisition system, this field holds\n                             //\
+    \ that timestamp. Holds wall time otherwise.\n    time_of_flight : [uint]; //\
+    \ Nanoseconds\n                             // Time of flight for each event if\
+    \ pulse time is available. If not, a\n                             // (positive)\
+    \ offset from the wall time stored in the `pulse_time`.\n    detector_id : [uint];\
+    \    // Identifiers that represent the positions of the events in the detector(s).\n\
+    \    facility_specific_data : FacilityData;  // optional field\n}\nroot_type EventMessage;\n"

@@ -1,0 +1,15 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: ep00_epics_connection_info
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "// Represent events about the underlying EPICS connection.\n\nfile_identifier\
+    \ \"ep00\";\n\nenum EventType: ushort {\n  UNKNOWN,\n  NEVER_CONNECTED,\n  CONNECTED,\n\
+    \  DISCONNECTED,\n  DESTROYED,\n}\n\ntable EpicsConnectionInfo {\n  // Nanoseconds\
+    \ since UNIX epoch\n  timestamp: ulong;\n  type: EventType;\n  // The channel\
+    \ name, called `source_name` to stay in sync with `f142`\n  source_name: string;\n\
+    \  // Identifies the client which has observed the event\n  service_id: string;\n\
+    }\n\nroot_type EpicsConnectionInfo;\n"

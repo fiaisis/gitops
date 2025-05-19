@@ -1,0 +1,23 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: answ_action_response
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "// A message for holding information on the (immediate) outcome of a command\
+    \ to (or state change of) a filewriter\n\nfile_identifier \"answ\";\n\nenum ActionType\
+    \ : byte { StartJob = 0, SetStopTime }\nenum ActionOutcome : byte { Success =\
+    \ 0, Failure }\n\ntable ActionResponse {\n    service_id : string (required);\
+    \       // The identifier for the instance of the file-writer that responded to\
+    \ the command\n    job_id : string (required);           // Uuid identifier for\
+    \ the file writing job.\n    action : ActionType;                  // What type\
+    \ of command is this a response to?\n    outcome : ActionOutcome;            \
+    \  // Was the command accepted (action successfull)?\n    status_code: int32;\
+    \                   // A status/response code modelled on the HTTP status codes.\n\
+    \    stop_time : uint64;                   // Holds the current stop time of the\
+    \ job\n    message : string;                     // Must hold an error message\
+    \ if outcome was \"Failure\", is optional otherwise.\n    command_id : string;\
+    \                  // The command uuid that this is the response to. In the case\
+    \ of start commands, the id is the job-id.\n}\n\nroot_type ActionResponse;\n"

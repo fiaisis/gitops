@@ -1,0 +1,11 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: json_json
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "file_identifier \"json\";\n\n// A simple schema to carry a JSON payload.\n\
+    // Use when set flatbuffer structures are too inflexible,\n\ntable JsonData {\n\
+    \tjson: string; // must be valid json with utf8 encoding\n}\n\nroot_type JsonData;\n"

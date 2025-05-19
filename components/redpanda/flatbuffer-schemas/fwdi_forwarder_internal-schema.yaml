@@ -1,0 +1,12 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: fwdi_forwarder_internal
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "file_identifier \"fwdi\";\n\n// optional, currently only used by forwarder\n\
+    table fwdinfo_1_t {\n\tseq_data: ulong;\n\tseq_fwd: ulong;\n\tts_data: ulong;\n\
+    \tts_fwd: ulong;\n\tfwdix: uint;\n\tteamid: ulong;\n}\n\nunion forwarder_internal\
+    \ {\n\tfwdinfo_1_t,\n}\n"

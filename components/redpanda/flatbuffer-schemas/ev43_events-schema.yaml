@@ -1,0 +1,23 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: ev43_events
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "// Schema for neutron detection event data with multiple pulse events\n\n\
+    file_identifier \"ev43\";\n\ntable Event43Message {\n    source_name : string;\
+    \    // optional field identifying the producer type, for example detector type\n\
+    \    message_id : ulong;      // consecutive numbers, to detect missing or unordered\
+    \ messages\n    pulse_time : [ulong];    // Nanoseconds since Unix epoch (1 Jan\
+    \ 1970)\n                             // If pulse times are available in the aquisition\
+    \ system, this field holds\n                             // those timestamps.\
+    \ Holds wall time otherwise.\n    pulse_index : [uint];    // Index into the array\
+    \ for the start of the neutron events linked to the \n                       \
+    \      // corresponding pulse time. Pulse index and pulse time are the same length.\n\
+    \    time_of_flight : [uint]; // Nanoseconds\n                             //\
+    \ Time of flight for each event if pulse time is available. If not, a\n      \
+    \                       // (positive) offset from the wall time stored in the\
+    \ `pulse_time`.\n    detector_id : [uint];    // Identifiers that represent the\
+    \ positions of the events in the detector(s).\n}\nroot_type Event43Message;\n"

@@ -1,0 +1,19 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: wrdn_finished_writing
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "// A message to tell the world that the (current) filewriter is done writing\
+    \ to file (for whatever reason).\n\nfile_identifier \"wrdn\";\n\ntable FinishedWriting\
+    \ {\n    service_id : string (required);     // milliseconds since Unix epoch\
+    \ (1 Jan 1970). When set to 0, will trigger a \"stop NOW\" code path in the file\
+    \ writer.\n    job_id : string (required);         // Uuid of the file writing\
+    \ job.\n    error_encountered : bool;           // True if stopped due to error\n\
+    \    file_name : string (required);      // Name of file that was just closed.\n\
+    \    metadata : string;                  // JSON string with metadata about the\
+    \ file that was just closed.\n    message : string;                   // Must\
+    \ hold an error message if filewriting was stopped due to an error, is optional\
+    \ otherwise.\n}\n\nroot_type FinishedWriting;\n"

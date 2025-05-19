@@ -1,0 +1,30 @@
+apiVersion: cluster.redpanda.com/v1alpha2
+kind: Schema
+metadata:
+  name: rf5k_forwarder_config
+  namespace: redpanda
+spec:
+  cluster: redpanda-cluster
+  schemaType: flatbuffers
+  text: "// Forwarder Configuration Update\n// Add or remove channels from a Forwarder\
+    \ configuration\n//\n// Typical producers and consumers:\n// Produced by NICOS\n\
+    // Consumed by Forwarder\n\nfile_identifier \"rf5k\";\n\nenum UpdateType: ushort\
+    \ {\n  ADD,\n  REMOVE,\n  REMOVEALL\n}\n\nenum Protocol: ushort {\n  PVA,  //\
+    \ EPICS PV access\n  CA,   // EPICS channel access\n  FAKE  // Forwarder generates\
+    \ fake updates, frequency configurable with command line argument\n}\n\ntable\
+    \ Stream {\n  // If config_change=ADD then all fields of Stream must be populated.\n\
+    \  // If config_change=REMOVE then at least one of the string fields must be populated,\n\
+    \  // and the Forwarder will remove any streams which match all of the populated\
+    \ string fields.\n  // \"populated\" here means supplying a non-empty string for\
+    \ the field.\n  // Wildcards '?' (single character) and '*' (multi-character)\
+    \ can be used to match topic or channel name,\n  // Wildcards cannot be used to\
+    \ match schema as they are valid characters in schema identifiers.\n  channel:\
+    \ string;           // Name of the EPICS channel/pv (e.g. \"MYIOC:VALUE1\")\n\
+    \  schema: string;            // Identify the output format for updates from the\
+    \ named channel (e.g. \"f142\" or \"tdct\")\n  topic: string;             // Name\
+    \ of the output topic for updates from the named channel (e.g. \"LOKI_motionControl\"\
+    )\n  protocol: Protocol = PVA;  // Protocol for channel, EPICS PV access by default\n\
+    }\n\ntable ConfigUpdate {\n    config_change: UpdateType;   // Type of config\
+    \ change, add streams, remove streams or remove all streams\n    streams: [Stream];\
+    \           // Details what should be forwarded where, empty if config_change=REMOVEALL\n\
+    }\n\nroot_type ConfigUpdate;\n"

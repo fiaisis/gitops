@@ -1,4 +1,4 @@
-apiVersion: schemas.vectorized.io/v1alpha1
+apiVersion: schemas.vectorized.io/v1alpha2
 kind: Schema
 metadata:
   name: f143_structure

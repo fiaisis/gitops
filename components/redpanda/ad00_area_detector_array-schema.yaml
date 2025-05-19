@@ -1,4 +1,4 @@
-apiVersion: schemas.vectorized.io/v1alpha1
+apiVersion: schemas.vectorized.io/v1alpha2
 kind: Schema
 metadata:
   name: ad00_area_detector_array

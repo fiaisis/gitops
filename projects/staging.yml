@@ -13,7 +13,6 @@ spec:
   sourceRepos:
   - 'https://github.com/interactivereduction/gitops'
   - 'https://traefik.github.io/charts/'
-  - 'https://charts.longhorn.io'
   - 'https://strimzi.io/charts/'
   - 'https://bitnami-labs.github.io/sealed-secrets'
   - 'https://charts.bitnami.com/bitnami'

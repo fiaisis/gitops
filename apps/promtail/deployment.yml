@@ -36,7 +36,7 @@ spec:
           snippets:
             extraRelabelConfigs:
               - source_labels: [__meta_kubernetes_pod_name]
-                regex: '(.*konnectivity.*|.*csi.*|.*cilium.*|.*coredns.*|.*etcd.*|.*longhorn.*|.*prometheus.*|.*promtail.*|.*openstack.*|.*redpanda.*)'
+                regex: '(.*konnectivity.*|.*csi.*|.*cilium.*|.*coredns.*|.*etcd.*|.*prometheus.*|.*promtail.*|.*openstack.*|.*redpanda.*)'
                 action: drop
   destination:
     namespace: monitoring-system

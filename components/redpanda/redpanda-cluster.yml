@@ -29,11 +29,3 @@ spec:
       initContainers:
         setDataDirOwnership:
           enabled: true
-      volumes:
-        - name: flatbuffer-schemas
-          secret:
-            secretName: flatbuffer-schemas
-      volumeMounts:
-        - name: flatbuffer-schemas
-          mountPath: /etc/redpanda/flatbuffers
-          readOnly: true

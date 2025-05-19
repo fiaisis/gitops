@@ -8,9 +8,10 @@ spec:
     config:
       cluster:
         data_transforms_enabled: true
+        auto_create_topics_enabled: true
     external:
       enabled: true
-      domain: livedata.isis.cclrc.ac.uk
+      # domain: livedata.isis.cclrc.ac.uk
       type: LoadBalancer
       addresses:
         - 130.246.81.45

@@ -1,0 +1,155 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.29.0
+    chart: loki
+    helm:
+      values: |
+        loki:
+          schemaConfig:
+            configs:
+              - from: "2024-04-01"
+                store: tsdb
+                object_store: s3
+                schema: v13
+                index:
+                  prefix: loki_index_
+                  period: 24h
+          storage:
+            bucketNames:
+              chunks: fia-loki
+              ruler: fia-loki
+            s3:
+              accessKeyId: ${S3_LOKI_ACCESS_KEY_ID}
+              secretAccessKey: ${S3_LOKI_SECRET_ACCESS_KEY}
+              endpoint: https://s3.echo.stfc.ac.uk
+              region: RegionOne
+              s3ForcePathStyle: true #Required to make our S3 compatability work
+          ingester:
+            chunk_encoding: snappy
+          querier:
+            max_concurrent: 4
+          pattern_ingester:
+            enabled: true
+          limits_config:
+            allow_structured_metadata: true
+            volume_enabled: true
+
+
+        deploymentMode: SimpleScalable
+
+        minio:
+          enabled: false
+
+        backend:
+          replicas: 3
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_LOKI_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: loki-s3-secret
+                  key: S3_LOKI_ACCESS_KEY_ID
+            - name: S3_LOKI_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: loki-s3-secret
+                  key: S3_LOKI_SECRET_ACCESS_KEY
+        read:
+          replicas: 3
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_LOKI_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: loki-s3-secret
+                  key: S3_LOKI_ACCESS_KEY_ID
+            - name: S3_LOKI_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: loki-s3-secret
+                  key: S3_LOKI_SECRET_ACCESS_KEY
+        write:
+          replicas: 3
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_LOKI_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: loki-s3-secret
+                  key: S3_LOKI_ACCESS_KEY_ID
+            - name: S3_LOKI_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: loki-s3-secret
+                  key: S3_LOKI_SECRET_ACCESS_KEY
+
+        gateway:
+          enabled: true
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+            hosts:
+              - host: management.reduce.isis.cclrc.ac.uk
+                paths:
+                  - path: /loki/?(.*)
+                    pathType: Prefix
+            tls:
+              - secretName: management-reduce-isis-tls
+                hosts:
+                  - management.reduce.isis.cclrc.ac.uk
+          basicAuth:
+            enabled: true
+            existingSecret: loki-secret
+
+        lokiCanary:
+          extraArgs:
+            - -pass=$(LOKI_PASS)
+            - -user=admin
+          extraEnv:
+            - name: LOKI_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: loki-secret
+                  key: SELF_MONITORING_PASSWORD
+  destination:
+    namespace: loki
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki-extras-management
+  namespace: argocd
+spec:
+  destination:
+    namespace: loki
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: components/loki
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: live-data-operator
-          image: ghcr.io/fiaisis/live-data-operator@sha256:26ae1563fd9e2ce041039fd13d168d456b92a5ee06456c8b4e201b39f083f802
+          image: ghcr.io/fiaisis/live-data-operator@sha256:f738a6d77a1562305b5acebeacae9fdc4634aeaa5d3342e32f0c88127411592b
           env:
             - name: LIVE_DATA_PROCESSOR_IMAGE_SHA
               value: "0a951bdd12f953b315f0a2cbb06fd87f7c490e92c85b76400bd177643c7a3d10"

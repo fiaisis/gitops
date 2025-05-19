@@ -1,0 +1,3 @@
+# Downloaded and copied from: https://github.com/ess-dmsc/streaming-data-types/tree/master/schemas under the BSD 2-Clause simplified license: https://github.com/ess-dmsc/streaming-data-types/blob/master/LICENSE
+
+Run the build.sh script and it will build the flatbuffers for you. Requires flatc installed. Run from this dir. It will also make the secret in the correct dir that will try to seal the secret for you.

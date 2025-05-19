@@ -1,0 +1,38 @@
+apiVersion: schemas.vectorized.io/v1alpha1
+kind: Schema
+metadata:
+  name: f142_logdata
+spec:
+  subject: f142_logdata-value
+  schemaType: flatbuffers
+  schema: "// Log data, for example \"slow\" sample environment measurements\n//\n\
+    // Typical producers and consumers:\n// Produced by EPICS forwarder from EPICS\
+    \ PV\n// Produced by NeXus-Streamer from NXlogs\n// Consumed by NeXus file writer\
+    \ -> NXLog\n// Consumed by Mantid -> Workspace log\n\nfile_identifier \"f142\"\
+    ;\n\ntable Byte   { value:  byte;   }\ntable UByte  { value: ubyte;   }\ntable\
+    \ Short  { value:  short;  }\ntable UShort { value: ushort;  }\ntable Int    {\
+    \ value:  int;    }\ntable UInt   { value: uint;    }\ntable Long   { value: \
+    \ long;   }\ntable ULong  { value: ulong;   }\ntable Float  { value:  float; \
+    \ }\ntable Double { value:  double; }\n\ntable ArrayByte   { value: [ byte]; \
+    \  }\ntable ArrayUByte  { value: [ubyte];   }\ntable ArrayShort  { value: [ short];\
+    \  }\ntable ArrayUShort { value: [ushort];  }\ntable ArrayInt    { value: [ int];\
+    \    }\ntable ArrayUInt   { value: [uint];    }\ntable ArrayLong   { value: [\
+    \ long];   }\ntable ArrayULong  { value: [ulong];   }\ntable ArrayFloat  { value:\
+    \ [ float];  }\ntable ArrayDouble { value: [ double]; }\n\nunion Value {\n\tByte,\n\
+    \tUByte,\n\tShort,\n\tUShort,\n\tInt,\n\tUInt,\n\tLong,\n\tULong,\n\tFloat,\n\t\
+    Double,\n\tArrayByte,\n\tArrayUByte,\n\tArrayShort,\n\tArrayUShort,\n\tArrayInt,\n\
+    \tArrayUInt,\n\tArrayLong,\n\tArrayULong,\n\tArrayFloat,\n\tArrayDouble,\n}\n\n\
+    enum AlarmStatus: ushort {\n    NO_ALARM,\n    READ,\n    WRITE,\n    HIHI,\n\
+    \    HIGH,\n    LOLO,\n    LOW,\n    STATE,\n    COS,\n    COMM,\n    TIMED,\n\
+    \    HWLIMIT,\n    CALC,\n    SCAN,\n    LINK,\n    SOFT,\n    BAD_SUB,\n    UDF,\n\
+    \    DISABLE,\n    SIMM,\n    READ_ACCESS,\n    WRITE_ACCESS,\n    NO_CHANGE\n\
+    }\n\nenum AlarmSeverity: ushort {\n    MINOR,\n    MAJOR,\n    NO_ALARM,\n   \
+    \ INVALID,\n    NO_CHANGE\n}\n\ntable LogData {\n\tsource_name: string;      \
+    \            // identify source on multiplexed topics, e.g. PV name if from EPICS\n\
+    \tvalue: Value;                         // may be scalar or array\n\ttimestamp:\
+    \ ulong;                     // nanoseconds past epoch (1 Jan 1970), zero reserved\
+    \ for invalid timestamp\n\tstatus: AlarmStatus = NO_CHANGE;      // details of\
+    \ EPICS alarm, default being NO_CHANGE: file writer only records changes\n\tseverity:\
+    \ AlarmSeverity = NO_CHANGE;  // severity of current EPICS alarm status, default\
+    \ of NO_CHANGE should be used if status has value of NO_CHANGE\n}\n\nroot_type\
+    \ LogData;\n"

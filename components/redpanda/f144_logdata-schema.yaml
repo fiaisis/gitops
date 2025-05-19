@@ -1,0 +1,24 @@
+apiVersion: schemas.vectorized.io/v1alpha1
+kind: Schema
+metadata:
+  name: f144_logdata
+spec:
+  subject: f144_logdata-value
+  schemaType: flatbuffers
+  schema: "// Controls related log data, typically from EPICS or NICOS.\n\nfile_identifier\
+    \ \"f144\";\n\ntable Byte   { value:  byte;   }\ntable UByte  { value: ubyte;\
+    \   }\ntable Short  { value:  short;  }\ntable UShort { value: ushort;  }\ntable\
+    \ Int    { value:  int;    }\ntable UInt   { value: uint;    }\ntable Long   {\
+    \ value:  long;   }\ntable ULong  { value: ulong;   }\ntable Float  { value: \
+    \ float;  }\ntable Double { value:  double; }\n\ntable ArrayByte   { value: [\
+    \ byte];   }\ntable ArrayUByte  { value: [ubyte];   }\ntable ArrayShort  { value:\
+    \ [ short];  }\ntable ArrayUShort { value: [ushort];  }\ntable ArrayInt    { value:\
+    \ [ int];    }\ntable ArrayUInt   { value: [uint];    }\ntable ArrayLong   { value:\
+    \ [ long];   }\ntable ArrayULong  { value: [ulong];   }\ntable ArrayFloat  { value:\
+    \ [ float];  }\ntable ArrayDouble { value: [ double]; }\n\nunion Value {\n\tByte,\n\
+    \tUByte,\n\tShort,\n\tUShort,\n\tInt,\n\tUInt,\n\tLong,\n\tULong,\n\tFloat,\n\t\
+    Double,\n\tArrayByte,\n\tArrayUByte,\n\tArrayShort,\n\tArrayUShort,\n\tArrayInt,\n\
+    \tArrayUInt,\n\tArrayLong,\n\tArrayULong,\n\tArrayFloat,\n\tArrayDouble,\n}\n\n\
+    table f144_LogData {\n  source_name: string (required);      // EPICS PV name\n\
+    \  timestamp: long;                     // Nanoseconds since UNIX epoch\n  value:\
+    \ Value (required);             // May be scalar or array\n}\n\nroot_type f144_LogData;\n"

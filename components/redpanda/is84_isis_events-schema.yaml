@@ -1,0 +1,12 @@
+apiVersion: schemas.vectorized.io/v1alpha1
+kind: Schema
+metadata:
+  name: is84_isis_events
+spec:
+  subject: is84_isis_events-value
+  schemaType: flatbuffers
+  schema: "// Schema for ISIS specific fields to be added to neutron event messages\n\
+    \nfile_identifier \"is84\";\n\nenum RunState : byte { SETUP=0, RUNNING=1 }\n\n\
+    table ISISData {\n  period_number : uint;\n  run_state : RunState;  // current\
+    \ instrument run state\n  proton_charge : float; // at ESS this will likely come\
+    \ through EPICS forwarder instead\n}\n"

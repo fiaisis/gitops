@@ -1,0 +1,25 @@
+apiVersion: schemas.vectorized.io/v1alpha1
+kind: Schema
+metadata:
+  name: da00_dataarray
+spec:
+  subject: da00_dataarray-value
+  schemaType: flatbuffers
+  schema: "\n// A flatbuffer schema for holding histogram data or EPICS area detector\
+    \ updates\n// A merger of hs00/hs01 and ADAr aimed at compatibility with scipp\
+    \ DataArrays\n\nfile_identifier \"da00\";\n\nenum da00_dtype: byte {none, int8,\
+    \ uint8, int16, uint16, int32, uint32, int64, uint64, float32, float64, c_string}\n\
+    \ntable da00_Variable {\n    name: string (required);   // What this data represents:\
+    \ e.g., 'data', 'errors', '{axis_name}'\n    unit: string;              // (optional)\
+    \ unit name for the represented data [expected for datasets]\n    label: string;\
+    \             // (optional) label describing the data\n    source: string;   \
+    \         // (optional) EPICS PV name, DRV_INFO string, etc. [expected for attributes]\n\
+    \    data_type: da00_dtype;     // data type for the stored data in the array\n\
+    \    axes: [string];            // (optional) The ordered names of the axes of\
+    \ this data [expected if meaningful]\n    shape: [long] (required);  // Shape\
+    \ of the multi-dimensional array\n    data: [ubyte] (required);  // C-ordered\
+    \ flat array interpreted as unsigned 8-bit integers\n}\n\ntable da00_DataArray\
+    \ {\n    source_name: string (required);   // Source name of array\n    timestamp:\
+    \ long;                  // Timestamp in nanoseconds since UNIX epoch\n    data:\
+    \ [da00_Variable] (required); // One or more dataset/attribute\n}\n\nroot_type\
+    \ da00_DataArray;\n"

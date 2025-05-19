@@ -1,0 +1,14 @@
+apiVersion: schemas.vectorized.io/v1alpha1
+kind: Schema
+metadata:
+  name: ep00_epics_connection_info
+spec:
+  subject: ep00_epics_connection_info-value
+  schemaType: flatbuffers
+  schema: "// Represent events about the underlying EPICS connection.\n\nfile_identifier\
+    \ \"ep00\";\n\nenum EventType: ushort {\n  UNKNOWN,\n  NEVER_CONNECTED,\n  CONNECTED,\n\
+    \  DISCONNECTED,\n  DESTROYED,\n}\n\ntable EpicsConnectionInfo {\n  // Nanoseconds\
+    \ since UNIX epoch\n  timestamp: ulong;\n  type: EventType;\n  // The channel\
+    \ name, called `source_name` to stay in sync with `f142`\n  source_name: string;\n\
+    \  // Identifies the client which has observed the event\n  service_id: string;\n\
+    }\n\nroot_type EpicsConnectionInfo;\n"

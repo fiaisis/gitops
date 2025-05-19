@@ -1,0 +1,16 @@
+apiVersion: schemas.vectorized.io/v1alpha1
+kind: Schema
+metadata:
+  name: dtdb_adc_pulse_debug
+spec:
+  subject: dtdb_adc_pulse_debug-value
+  schemaType: flatbuffers
+  schema: "// Schema for transmitting additonal (debug) event information.\n// All\
+    \ fields are optional.\n\nfile_identifier \"dtdb\";\n\ntable AdcPulseDebug {\n\
+    \  amplitude : [uint32];         // Amplitude of the pulse above bkg.\n  peak_area\
+    \ : [uint32];         // Area under the curve of the pulse.\n  background : [uint32];\
+    \        // Background level of pulses.\n  threshold_time : [uint64];    // Timestamp\
+    \ in (ns) UNIX epoch when the pulse\n                                // passed\
+    \ the threshold on the rising edge\n  peak_time : [uint64];         // Timestamp\
+    \ in (ns) UNIX epoch when the pulse\n                                // reached\
+    \ its peak value\n}\n"

@@ -1,0 +1,31 @@
+apiVersion: schemas.vectorized.io/v1alpha1
+kind: Schema
+metadata:
+  name: senv_data
+spec:
+  subject: senv_data-value
+  schemaType: flatbuffers
+  schema: "//Used to transmit fast sample environment data\n// NOTE: THIS SCHEMA HAS\
+    \ BEEN DEPRECATED\n\nfile_identifier \"senv\";\n\nenum Location : byte { Unknown\
+    \ = 0, Start, Middle, End }\n\ntable Int8Array   { value: [ byte] (required);\
+    \   }\ntable UInt8Array  { value: [ubyte] (required);   }\ntable Int16Array  {\
+    \ value: [ short] (required);  }\ntable UInt16Array { value: [ushort] (required);\
+    \  }\ntable Int32Array    { value: [ int] (required);    }\ntable UInt32Array\
+    \   { value: [uint] (required);    }\ntable Int64Array   { value: [ long] (required);\
+    \   }\ntable UInt64Array  { value: [ulong] (required);   }\n\nunion ValueUnion\
+    \ {\n    Int8Array,\n    UInt8Array,\n    Int16Array,\n    UInt16Array,\n    Int32Array,\n\
+    \    UInt32Array,\n    Int64Array,\n    UInt64Array\n}\n\ntable SampleEnvironmentData\
+    \ {\n    Name: string (required);     // Name of the device/source of the data.\n\
+    \    Channel: int;                // Can be used to store the ADC channel number.\
+    \ Should be set to -1 if not used.\n    PacketTimestamp: ulong;      // The timestamp\
+    \ (in nanoseconds since UNIX epoch) of the first sample in the value vector.\n\
+    \    TimeDelta: double;           // Time in nanoseconds between samples. Available\
+    \ for \"compression\" of the schema. Should\n                                \
+    \ // be set to <= 0 if not used.\n    TimestampLocation: Location; // Relevant\
+    \ when the delta time between two consecutive timestamps is long in comparison\n\
+    \                                 // to the resolution of the timestamp. For example,\
+    \ when using oversampling.\n                                 // middle or end\
+    \ of the samples that were summed to produce each oversampled sample.\n    Values:\
+    \ ValueUnion (required); // The sample values.\n    Timestamps: [ulong];     \
+    \    // OPTIONAL (nanosecond) timestamps of each individual sample.\n    MessageCounter:\
+    \ ulong;       // Monotonically increasing counter.\n}\n\nroot_type SampleEnvironmentData;\n"

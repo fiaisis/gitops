@@ -1,0 +1,53 @@
+# Generated and adjusted
+import os
+import sys
+import yaml
+
+def fbs_to_schema_crd(fbs_path, subject_prefix=""):
+    """
+    Convert .fbs file content into a Schema CRD dict.
+    subject_prefix is prepended to the subject name.
+    """
+    filename = os.path.basename(fbs_path)
+    name = os.path.splitext(filename)[0]
+    subject = f"{subject_prefix}{name}-value"
+
+    with open(fbs_path, "r") as f:
+        schema_content = f.read()
+
+    schema_crd = {
+        "apiVersion": "schemas.vectorized.io/v1alpha1",
+        "kind": "Schema",
+        "metadata": {
+            "name": name,
+            # You can add namespace here or rely on kubectl namespace
+        },
+        "spec": {
+            "subject": subject,
+            "schemaType": "flatbuffers",
+            "schema": schema_content
+        }
+    }
+    return schema_crd
+
+def main(src_dir, dest_dir, subject_prefix=""):
+    if not os.path.isdir(dest_dir):
+        os.makedirs(dest_dir)
+
+    for fname in os.listdir(src_dir):
+        if fname.endswith(".fbs"):
+            fbs_file = os.path.join(src_dir, fname)
+            crd = fbs_to_schema_crd(fbs_file, subject_prefix)
+            out_file = os.path.join(dest_dir, f"{crd['metadata']['name']}-schema.yaml")
+            with open(out_file, "w") as yf:
+                yaml.dump(crd, yf, sort_keys=False)
+            print(f"Wrote {out_file}")
+
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python fbs-to-schema-crd.py <source_fbs_dir> <output_yaml_dir> [subject_prefix]")
+        sys.exit(1)
+    src = sys.argv[1]
+    dst = sys.argv[2]
+    prefix = sys.argv[3] if len(sys.argv) > 3 else ""
+    main(src, dst, prefix)

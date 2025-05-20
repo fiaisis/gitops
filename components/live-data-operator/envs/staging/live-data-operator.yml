@@ -12,4 +12,4 @@ spec:
           image: ghcr.io/fiaisis/live-data-operator@sha256:947e25f6da362ca1495aef5455b253a95ba0b41983892d23dfb5f2a048d89435
           env:
             - name: LIVE_DATA_PROCESSOR_IMAGE_SHA
-              value: "763462a1e0f85d22602d63044c06b5467a55cbaba9e553101ba544e647933261"
+              value: "63e798c1a41ec6c9f9d2e1cec38ee74401bffe0ffc2a168b8fd342a3fbfc684c"

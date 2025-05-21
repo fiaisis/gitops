@@ -142,15 +142,15 @@ spec:
 # spec:
 #   instrumentFolder: NDXCRISP
 #   filePrefix: CSP
----
-# LOQ
-apiVersion: "fia.com/v1"
-kind: FileWatcher
-metadata:
- name: loq
-spec:
- instrumentFolder: NDXLOQ
- filePrefix: LOQ
+# ---
+# # LOQ
+# apiVersion: "fia.com/v1"
+# kind: FileWatcher
+# metadata:
+#  name: loq
+# spec:
+#  instrumentFolder: NDXLOQ
+#  filePrefix: LOQ
 ---
 # Osiris
 apiVersion: "fia.com/v1"
@@ -259,15 +259,15 @@ spec:
 # spec:
 #   instrumentFolder: NDXPOLREF
 #   filePrefix: POLREF
----
-# Sans2D
-apiVersion: "fia.com/v1"
-kind: FileWatcher
-metadata:
- name: sans2d
-spec:
- instrumentFolder: NDXSANS2D
- filePrefix: SANS2D
+# ---
+# # Sans2D
+# apiVersion: "fia.com/v1"
+# kind: FileWatcher
+# metadata:
+#  name: sans2d
+# spec:
+#  instrumentFolder: NDXSANS2D
+#  filePrefix: SANS2D
 # ---
 # # Zoom
 # apiVersion: "fia.com/v1"

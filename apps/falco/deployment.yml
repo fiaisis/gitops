@@ -14,10 +14,6 @@ spec:
       values: |
         driver:
           kind: ebpf
-        falcosidekick:
-          enabled: true
-          webui:
-            enabled: true
         rule_matching: all
         customRules:
           crypto-rules.yml: |-
@@ -183,10 +179,6 @@ spec:
       values: |
         driver:
           kind: ebpf
-        falcosidekick:
-          enabled: true
-          webui:
-            enabled: true
         rule_matching: all
         customRules:
           crypto-rules.yml: |-
@@ -352,10 +344,6 @@ spec:
       values: |
         driver:
           kind: ebpf
-        falcosidekick:
-          enabled: true
-          webui:
-            enabled: true
         rule_matching: all
         customRules:
           crypto-rules.yml: |-

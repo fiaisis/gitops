@@ -25,7 +25,7 @@ spec:
         server:
           basePath: /redpanda-console
     tls:
-      enabled: true
+      enabled: false
     statefulset:
       initContainers:
         setDataDirOwnership:

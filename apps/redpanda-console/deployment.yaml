@@ -11,13 +11,12 @@ spec:
     targetRevision: 3.1.0
     helm:
       values: |
-        console:
-          config:
-            kafka:
-              brokers:
-                - 130.246.81.45:9092
-                - 130.246.81.166:9092
-                - 130.246.81.188:9092
+        config:
+          kafka:
+            brokers:
+              - 130.246.81.45:9092
+              - 130.246.81.166:9092
+              - 130.246.81.188:9092
   destination:
     namespace: redpanda
     name: prod

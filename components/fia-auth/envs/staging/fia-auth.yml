@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: fia-auth
-          image: ghcr.io/fiaisis/fia-auth@sha256:c9c016c7317abc13f64d9bccc955ee0d8ed74e4dd229aa2bc5f3fedc69629ded
+          image: ghcr.io/fiaisis/fia-auth@sha256:6501116a8ab27f1e0bbaaea038a4fdf601c654e4ed4fa8fb188f0e90917fac3e

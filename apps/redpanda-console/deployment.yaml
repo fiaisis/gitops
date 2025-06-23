@@ -17,8 +17,6 @@ spec:
               - "130.246.81.45:9092"
               - "130.246.81.166:9092"
               - "130.246.81.188:9092"
-        ingress:
-          enabled: false
   destination:
     namespace: redpanda
     name: prod

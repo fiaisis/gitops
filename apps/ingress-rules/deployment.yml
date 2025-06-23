@@ -10,7 +10,6 @@ spec:
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
-    namespace: fia
     name: prod
   syncPolicy:
     automated:
@@ -31,7 +30,6 @@ spec:
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
-    namespace: fia
     name: staging
   syncPolicy:
     automated:

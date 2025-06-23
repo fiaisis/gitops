@@ -18,19 +18,7 @@ spec:
               - "130.246.81.166:9092"
               - "130.246.81.188:9092"
         ingress:
-          enabled: true
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            nginx.ingress.kubernetes.io/rewrite-target: /$1
-          hosts:
-            - host: reduce.isis.cclrc.ac.uk
-              paths:
-                - path: /redpanda-console/?(.*)
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - reduce.isis.cclrc.ac.uk
-              secretName: prod-reduce-isis-tls
+          enabled: false
   destination:
     namespace: redpanda
     name: prod

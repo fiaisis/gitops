@@ -33,7 +33,7 @@ spec:
           - https://your-prod-api.company.com/health  # Pending
 
   destination:
-    server: https://kubernetes.default.svc
+    name: prod
     namespace: monitoring
   syncPolicy:
     automated:

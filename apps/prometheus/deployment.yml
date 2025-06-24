@@ -26,6 +26,20 @@ spec:
               - job_name: csi-ceph
                 static_configs:
                   - targets: ["csi-ceph-prod-ceph-csi-cephfs-provisioner-http-metrics.ir.svc.cluster.local:8080", "csi-ceph-prod-ceph-csi-cephfs-nodeplugin-http-metrics.ir.svc.cluster.local:8080"]
+              - job_name: blackbox-prod-api
+                metrics_path: /probe
+                params:
+                  module: [http_2xx]
+                static_configs:
+                  - targets:
+                      - https://prod.api.yourcompany.com  # Pending
+                relabel_configs:
+                  - source_labels: [__address__]
+                    target_label: __param_target
+                  - source_labels: [__param_target]
+                    target_label: instance
+                  - target_label: __address__
+                    replacement: blackbox-exporter.monitoring-system.svc.cluster.local:9115
   destination:
     namespace: monitoring-system
     name: prod

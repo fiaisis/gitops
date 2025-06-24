@@ -4,7 +4,7 @@ metadata:
   name: blackbox-exporter
   namespace: argocd
 spec:
-  project: default
+  project: prod
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: prometheus-blackbox-exporter

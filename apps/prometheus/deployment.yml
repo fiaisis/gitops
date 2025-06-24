@@ -32,7 +32,7 @@ spec:
                   module: [http_2xx]
                 static_configs:
                   - targets:
-                      - https://prod.api.yourcompany.com  # Pending
+                      - https://reduce.isis.cclrc.ac.uk/fia/healthz
                 relabel_configs:
                   - source_labels: [__address__]
                     target_label: __param_target

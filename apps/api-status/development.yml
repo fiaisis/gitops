@@ -34,7 +34,7 @@ spec:
 
   destination:
     name: prod
-    namespace: monitoring
+    namespace: monitoring-system
   syncPolicy:
     automated:
       prune: true

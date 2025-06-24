@@ -1,1 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: blackbox-exporter
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: prometheus-blackbox-exporter
+    targetRevision: 8.17.0
+    helm:
+      values: |
+        config:
+          modules:
+            http_2xx:
+              prober: http
+              timeout: 5s
+              http:
+                method: GET
 
+        serviceMonitor:
+          enabled: true
+          additionalRelabelings:
+            - sourceLabels: [__address__]
+              targetLabel: __param_target
+            - sourceLabels: [__param_target]
+              targetLabel: instance
+            - targetLabel: __address__
+              replacement: blackbox-exporter.monitoring.svc.cluster.local:9115
+
+        targets:
+          - https://your-prod-api.company.com/health  # Pending
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

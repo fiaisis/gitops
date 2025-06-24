@@ -30,7 +30,7 @@ spec:
               replacement: blackbox-exporter.monitoring.svc.cluster.local:9115
 
         targets:
-          - https://your-prod-api.company.com/health  # Pending
+          - https://reduce.isis.cclrc.ac.uk/fia/healthz  # Pending
 
   destination:
     name: prod

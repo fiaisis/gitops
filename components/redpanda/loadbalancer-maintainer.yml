@@ -1,75 +1,75 @@
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: worker-lb
-  namespace: kube-system
-spec:
-  schedule: "*/10 * * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          serviceAccountName: worker-lb
-          containers:
-            - name: worker-lb-updater
-              image: ghcr.io/fiaisis/openstack-cli@sha256:58ff87b788beb72d28f6f35d775120453139e932a01cd57427de960dd795ade6
-              command: ["/bin/bash", "/scripts/update-lb.sh"]
-              volumeMounts:
-                - name: script
-                  mountPath: /scripts
-              env:
-                - name: POOL_ID
-                  value: "9da1466a-d45c-40b7-9795-02d355b6b251"
-                - name: SUBNET_ID
-                  value: "544b87e3-34a5-41b6-b6ca-b7fe2626d0cd"
-                - name: LB_PROTOCOL_PORT
-                  value: "31092"
-                - name: OS_INTERFACE
-                  value: "public"
-                - name: OS_IDENTITY_API_VERSION
-                  value: "3"
-                - name: OS_REGION_NAME
-                  value: "RegionOne"
-                - name: OS_PROJECT_ID
-                  valueFrom:
-                    secretKeyRef:
-                      name: worker-lb
-                      key: os_project_id
-                - name: OS_PROJECT_NAME
-                  valueFrom:
-                    secretKeyRef:
-                      name: worker-lb
-                      key: os_project_name
-                - name: OS_USER_DOMAIN_NAME
-                  valueFrom:
-                    secretKeyRef:
-                      name: worker-lb
-                      key: os_project_domain_name
-                - name: OS_PROJECT_DOMAIN_ID
-                  valueFrom:
-                    secretKeyRef:
-                      name: worker-lb
-                      key: os_project_domain_id
-                - name: OS_USERNAME
-                  valueFrom:
-                    secretKeyRef:
-                      name: worker-lb
-                      key: os_username
-                - name: OS_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      name: worker-lb
-                      key: os_password
-                - name: OS_AUTH_URL
-                  valueFrom:
-                    secretKeyRef:
-                      name: worker-lb
-                      key: os_auth_url
-          restartPolicy: OnFailure
-          volumes:
-            - name: script
-              configMap:
-                name: update-lb
+#apiVersion: batch/v1
+#kind: CronJob
+#metadata:
+#  name: worker-lb
+#  namespace: kube-system
+#spec:
+#  schedule: "*/10 * * * *"
+#  jobTemplate:
+#    spec:
+#      template:
+#        spec:
+#          serviceAccountName: worker-lb
+#          containers:
+#            - name: worker-lb-updater
+#              image: ghcr.io/fiaisis/openstack-cli@sha256:58ff87b788beb72d28f6f35d775120453139e932a01cd57427de960dd795ade6
+#              command: ["/bin/bash", "/scripts/update-lb.sh"]
+#              volumeMounts:
+#                - name: script
+#                  mountPath: /scripts
+#              env:
+#                - name: POOL_ID
+#                  value: "9da1466a-d45c-40b7-9795-02d355b6b251"
+#                - name: SUBNET_ID
+#                  value: "544b87e3-34a5-41b6-b6ca-b7fe2626d0cd"
+#                - name: LB_PROTOCOL_PORT
+#                  value: "31092"
+#                - name: OS_INTERFACE
+#                  value: "public"
+#                - name: OS_IDENTITY_API_VERSION
+#                  value: "3"
+#                - name: OS_REGION_NAME
+#                  value: "RegionOne"
+#                - name: OS_PROJECT_ID
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: worker-lb
+#                      key: os_project_id
+#                - name: OS_PROJECT_NAME
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: worker-lb
+#                      key: os_project_name
+#                - name: OS_USER_DOMAIN_NAME
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: worker-lb
+#                      key: os_project_domain_name
+#                - name: OS_PROJECT_DOMAIN_ID
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: worker-lb
+#                      key: os_project_domain_id
+#                - name: OS_USERNAME
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: worker-lb
+#                      key: os_username
+#                - name: OS_PASSWORD
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: worker-lb
+#                      key: os_password
+#                - name: OS_AUTH_URL
+#                  valueFrom:
+#                    secretKeyRef:
+#                      name: worker-lb
+#                      key: os_auth_url
+#          restartPolicy: OnFailure
+#          volumes:
+#            - name: script
+#              configMap:
+#                name: update-lb
 ---
 apiVersion: v1
 kind: ConfigMap

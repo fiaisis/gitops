@@ -39,7 +39,7 @@ spec:
                   - source_labels: [__param_target]
                     target_label: instance
                   - target_label: __address__
-                    replacement: blackbox-exporter.monitoring-system.svc.cluster.local:9115
+                    replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring-system.svc.cluster.local:9115
   destination:
     namespace: monitoring-system
     name: prod

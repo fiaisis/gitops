@@ -1,0 +1,94 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: worker-lb
+  namespace: kube-system
+spec:
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: worker-lb
+          containers:
+            - name: worker-lb-updater
+              image: ghcr.io/fiaisis/openstack-cli@sha256:58ff87b788beb72d28f6f35d775120453139e932a01cd57427de960dd795ade6
+              command: ["/bin/bash", "/scripts/update-lb.sh"]
+              volumeMounts:
+                - name: script
+                  mountPath: /scripts
+              env:
+                - name: POOL_ID
+                  value: 9da1466a-d45c-40b7-9795-02d355b6b251
+                - name: SUBNET_ID
+                  value: 544b87e3-34a5-41b6-b6ca-b7fe2626d0cd
+                - name: LB_PROTOCOL_PORT
+                  value: 31092
+          restartPolicy: OnFailure
+          volumes:
+            - name: script
+              configMap:
+                name: update-lb
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: update-lb
+  namespace: kube-system
+data:
+  update-lb.sh: |
+    #!/bin/bash
+
+    set -e
+
+    # Get list of existing IPs in the load balancer pool
+    EXISTING_IPS=$(openstack loadbalancer member list "$POOL_ID" -f value -c address)
+
+    # Get all non-control-plane node names
+    NODE_NAMES=$(kubectl get nodes -l '!node-role.kubernetes.io/control-plane' -o jsonpath='{.items[*].metadata.name}')
+
+    for NODE in $NODE_NAMES; do
+      NODE_IP=$(openstack server show -f json $NODE | jq .addresses.[].[0])
+      if [ -z "$NODE_IP" ]; then
+        echo "Failed to resolve IP for $NODE"
+        continue
+      fi
+    
+      if echo "$EXISTING_IPS" | grep -q "^$NODE_IP$"; then
+        echo "Node $NODE ($NODE_IP) already exists in the pool. Skipping."
+      else
+        echo "Adding node $NODE ($NODE_IP) to pool $POOL_ID..."
+        openstack loadbalancer member create --subnet-id "$SUBNET_ID" \
+        --address "$NODE_IP" \
+        --protocol-port "$LB_PROTOCOL_PORT" \
+        "$POOL_ID"
+      fi
+    done
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: worker-lb
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: redpanda-lb
+rules:
+- apiGroups: [""]
+  resources: [pods]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: redpanda-lb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: redpanda-lb
+subjects:
+- kind: ServiceAccount
+  name: redpanda-lb
+  namespace: redpanda

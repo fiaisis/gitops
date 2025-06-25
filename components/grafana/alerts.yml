@@ -13,6 +13,40 @@ data:
           folder: Infrastructure Health
           interval: 1m
           rules:
+            - uid: eeq0l9nhtiygwa
+              title: Ingress for API probe
+              condition: A
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PD00A5B2EA89EE16D
+                  model:
+                    datasource:
+                        type: prometheus
+                        uid: PD00A5B2EA89EE16D
+                    disableTextWrap: false
+                    editorMode: code
+                    expr: probe_success{instance="https://reduce.isis.cclrc.ac.uk/fia/healthz"} != 1
+                    fullMetaSearch: false
+                    includeNullMetadata: true
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                    useBackend: false
+              noDataState: OK
+              execErrState: OK
+              for: 5m
+              annotations:
+                description: https://reduce.isis.cclrc.ac.uk/fia/healthz is unreachable
+                summary: Ingress to the API is not reachable
+              labels:
+                severity: critical
+              isPaused: false
             - uid: ce5998c4-3e04-4dd5-a718-5d63bd1cad98
               title: Pod crash looping
               condition: A

@@ -115,7 +115,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: redpanda-lb
+  name: worker-lb
 rules:
 - apiGroups: [""]
   resources: [nodes]
@@ -124,12 +124,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: redpanda-lb
+  name: worker-lb
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: redpanda-lb
+  name: worker-lb
 subjects:
 - kind: ServiceAccount
-  name: redpanda-lb
+  name: worker-lb
   namespace: redpanda

@@ -132,4 +132,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: worker-lb
-  namespace: redpanda
+  namespace: kube-system

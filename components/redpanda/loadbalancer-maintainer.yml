@@ -100,7 +100,7 @@ data:
       else
         echo "Adding node $NODE ($NODE_IP) to pool $POOL_ID..."
         openstack loadbalancer member create --subnet-id "$SUBNET_ID" \
-        --address "$NODE_IP" \
+        --address $(echo $NODE_IP) \
         --protocol-port "$LB_PROTOCOL_PORT" \
         "$POOL_ID"
       fi

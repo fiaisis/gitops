@@ -44,7 +44,7 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: worker-lb
-                      key: os_project_domain_name
+                      key: os_user_domain_name
                 - name: OS_PROJECT_DOMAIN_ID
                   valueFrom:
                     secretKeyRef:

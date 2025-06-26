@@ -80,8 +80,6 @@ data:
   update-lb.sh: |
     #!/bin/bash
 
-    set -e
-
     # Get list of existing IPs in the load balancer pool
     EXISTING_IPS=$(openstack loadbalancer member list "$POOL_ID" -f value -c address)
 

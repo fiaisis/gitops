@@ -13,7 +13,7 @@ spec:
           containers:
             - name: worker-lb-updater
               image: ghcr.io/fiaisis/openstack-cli@sha256:58ff87b788beb72d28f6f35d775120453139e932a01cd57427de960dd795ade6
-              command: ["/bin/bash", "/scripts/update-lb.sh"]
+              command: ["/bin/bash", "/scripts/update-redpanda.sh"]
               volumeMounts:
                 - name: script
                   mountPath: /scripts
@@ -69,22 +69,25 @@ spec:
           volumes:
             - name: script
               configMap:
-                name: update-lb
+                name: redpanda-update-script
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: update-lb
+  name: redpanda-update-script
   namespace: kube-system
 data:
-  update-lb.sh: |
+  update-redpanda.sh: |
     #!/bin/bash
 
     # Get list of existing IPs in the load balancer pool
     EXISTING_IPS=$(openstack loadbalancer member list "$POOL_ID" -f value -c address)
 
     # Get all non-control-plane node names
-    NODE_NAMES=$(kubectl get nodes -l '!node-role.kubernetes.io/control-plane' -o jsonpath='{.items[*].metadata.name}')
+    NODE0=$(kubectl get pods redpanda-cluster-0 -n redpanda -o jsonpath='{.spec.nodeName}')
+    NODE1=$(kubectl get pods redpanda-cluster-1 -n redpanda -o jsonpath='{.spec.nodeName}')
+    NODE2=$(kubectl get pods redpanda-cluster-2 -n redpanda -o jsonpath='{.spec.nodeName}')
+    NODE_IPS=($NODE0 $NODE1 $NODE2)
 
     for NODE in $NODE_NAMES; do
       NODE_IP=$(openstack server show -f json $NODE | jq .addresses.[].[0])
@@ -103,6 +106,15 @@ data:
         "$POOL_ID"
       fi
     done
+    
+    # Now that has succeeded point the FIPs at the correct nodes for advertising from kafka
+    FIP0=130.246.81.166
+    FIP1=130.246.81.188
+    FIP2=130.246.80.191
+    openstack server add floating ip $NODE0 $FIP0
+    openstack server add floating ip $NODE1 $FIP1
+    openstack server add floating ip $NODE2 $FIP2
+
     exit 0
 ---
 apiVersion: v1

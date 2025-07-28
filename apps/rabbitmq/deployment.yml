@@ -1,8 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq-operator-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 3.8.3
+    chart: rabbitmq-cluster-operator
+  destination:
+    namespace: rabbitmq
+    name: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rabbitmq-staging
+  name: rabbitmq-configs-staging
   namespace: argocd
 spec:
   destination:
@@ -23,7 +43,28 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rabbitmq-prod
+  name: rabbitmq-operator-prod
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 3.8.3
+    chart: rabbitmq-cluster-operator
+  destination:
+    namespace: rabbitmq
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq-configs-prod
   namespace: argocd
 spec:
   destination:

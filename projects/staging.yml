@@ -17,6 +17,7 @@ spec:
   - 'https://bitnami-labs.github.io/sealed-secrets'
   - 'https://charts.bitnami.com/bitnami'
   - 'https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts'
+  - 'oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator'
   - 'https://helm.groundcover.com'
   - 'https://ceph.github.io/csi-charts'
   - 'https://charts.rook.io/release'

@@ -7,3 +7,5 @@ resources:
   - sealedsecrets.yml
   - users.yml
   - permissions.yml
+  - rabbitmq-cluster-crd.yml
+  - rabbitmq-cluster-operator.yaml

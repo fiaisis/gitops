@@ -43,15 +43,15 @@
 # spec:
 #   instrumentFolder: NDXHRPD
 #   filePrefix: HRP
-# ---
-# # Engin-X
-# apiVersion: "fia.com/v1"
-# kind: FileWatcher
-# metadata:
-#   name: enginx
-# spec:
-#   instrumentFolder: NDXENGINX
-#   filePrefix: ENGINX
+---
+# Engin-X
+apiVersion: "fia.com/v1"
+kind: FileWatcher
+metadata:
+ name: enginx
+spec:
+ instrumentFolder: NDXENGINX
+ filePrefix: ENGINX
 # ---
 # # GEM
 # apiVersion: "fia.com/v1"

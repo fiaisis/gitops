@@ -5,7 +5,13 @@ metadata:
   namespace: redpanda
 spec:
   clusterSpec:
+    storage:
+      persistentVolume:
+        size: 500Gi
     config:
+      tunable:
+        retention_bytes: 107374182400     # 100 GiB
+        retention_ms: 604800000           # 7 days in milliseconds (7 * 24 * 60 * 60 * 1000)
       cluster:
         data_transforms_enabled: true
         auto_create_topics_enabled: true

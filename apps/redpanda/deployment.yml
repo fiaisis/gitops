@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: redpanda-operator
+  name: redpanda-console
   namespace: argocd
 spec:
   project: prod

@@ -13,6 +13,8 @@ spec:
     helm:
       values: |
         config:
+          server:
+            basePath: "/redpanda-console"
           kafka:
             brokers:
               - "130.246.81.166:9092"

@@ -136,6 +136,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: redpanda-console-prod
+                name: redpanda-console
                 port:
                   number: 8080

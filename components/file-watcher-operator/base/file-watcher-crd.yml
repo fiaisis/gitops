@@ -14,7 +14,16 @@ spec:
           properties:
             spec:
               type: object
+              required:
+                - instrumentFolder
+                - filePrefix
+                - lastrunFilePath
               properties:
+                lastrunFilePath:
+                  type: string
+                specialPV:
+                  type: string
+                  default: "None"
                 instrumentFolder:
                   type: string
                 filePrefix:

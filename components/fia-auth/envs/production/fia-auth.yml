@@ -5,7 +5,7 @@ metadata:
   name: fia-auth
   namespace: fia
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: fia-auth
@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: fia-auth
-          image: ghcr.io/fiaisis/fia-auth@sha256:b4b016ce03447faeb71f18ba8f11af7028c10a1e963001f492bb538e681b4838
+          image: ghcr.io/fiaisis/fia-auth@sha256:45ca6505261e337aa7ec9fac152f06e862a10dca4b79014c7f32462b161472f9

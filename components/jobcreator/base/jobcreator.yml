@@ -5,7 +5,7 @@ metadata:
   name: jobcreator
   namespace: fia
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: jobcreator

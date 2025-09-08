@@ -31,7 +31,7 @@ spec:
           value: dbspgha03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: FIA_API_URL
-          value: fia-api-service.fia.svc.cluster.local:80
+          value: http://fia-api-service.fia.svc.cluster.local:80
         ports:
           - name: health-port
             protocol: TCP

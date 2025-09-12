@@ -1,13 +1,13 @@
 ---
 # Engin-X
-apiVersion: "fia.com/v1"
-kind: FileWatcher
-metadata:
- name: enginx
-spec:
- lastrunFilePath: "/archive/NDXENGINX/Instrument/logs/lastrun.txt"
- instrumentFolder: NDXENGINX
- filePrefix: ENGINX
+#apiVersion: "fia.com/v1"
+#kind: FileWatcher
+#metadata:
+# name: enginx
+#spec:
+# lastrunFilePath: "/archive/NDXENGINX/Instrument/logs/lastrun.txt"
+# instrumentFolder: NDXENGINX
+# filePrefix: ENGINX
 ---
 # Mari
 apiVersion: fia.com/v1

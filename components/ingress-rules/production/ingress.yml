@@ -16,21 +16,21 @@ spec:
     http:
       paths:
       - path: /f-i-a/?(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: frontend-service
             port:
               number: 80
       - path: /?(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: scigateway-service
             port:
               number: 80
       - path: /data-viewer/?(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: data-viewer-service
@@ -56,7 +56,7 @@ spec:
       http:
         paths:
           - path: /auth/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: fia-auth-service
@@ -82,7 +82,7 @@ spec:
       http:
         paths:
           - path: /api/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: fia-api-service
@@ -108,7 +108,7 @@ spec:
       http:
         paths:
           - path: /plottingapi/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: plotting-service-service
@@ -133,7 +133,7 @@ spec:
       http:
         paths:
           - path: /redpanda-console/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: redpanda-console

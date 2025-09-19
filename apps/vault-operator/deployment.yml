@@ -1,0 +1,144 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-operator-prod
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: prod
+  source:
+    repoURL: https://helm.releases.hashicorp.com
+    targetRevision: 0.10.0
+    chart: vault-secrets-operator
+  destination:
+    namespace: vault-op
+    server: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-operator-staging
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: staging
+  source:
+    repoURL: https://helm.releases.hashicorp.com
+    targetRevision: 0.10.0
+    chart: vault-secrets-operator
+  destination:
+    namespace: vault-op
+    server: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-operator-management
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: management
+  source:
+    repoURL: https://helm.releases.hashicorp.com
+    targetRevision: 0.10.0
+    chart: vault-secrets-operator
+  destination:
+    namespace: vault-op
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-secret-config-prod
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: prod
+  source:
+    path: gitops/components/vault-config/prod
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  destination:
+    namespace: vault-op
+    server: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-secret-config-staging
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: staging
+  source:
+    path: gitops/components/vault-config/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  destination:
+    namespace: vault-op
+    server: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-secret-config-management
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: management
+  source:
+    path: gitops/components/vault-config/management
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  destination:
+    namespace: vault-op
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

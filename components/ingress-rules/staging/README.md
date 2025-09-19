@@ -16,5 +16,5 @@ Copy secret to secrets.yml and change name to basic-auth
 
 Then seal it using kubeseal
 ```shell
-kubeseal <secrets.yml>sealedsecrets.yml --namespace fia --controller-name=sealed-secrets-staging --controller-namespace=kube-system --format yaml
+kubeseal <secrets.yml>grafana-creds-secret.yml --namespace fia --controller-name=sealed-secrets-staging --controller-namespace=kube-system --format yaml
 ```

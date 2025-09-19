@@ -4,5 +4,5 @@ resources:
   - file-watcher-crd.yml
   - file-watcher-operator.yml
   - file-watchers.yml
-  - sealedsecrets.yml
+  - filewatcher-secret.yml
   - file-watcher-permissions.yml

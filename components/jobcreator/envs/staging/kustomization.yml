@@ -9,4 +9,4 @@ components:
 
 patchesStrategicMerge:
   - jobcreator.yml
-  - sealedsecrets.yml
+  - jobcreator-secret.yml

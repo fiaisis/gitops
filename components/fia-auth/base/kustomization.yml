@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - fia-auth.yml
   - fia-auth-service.yml
-  - sealedsecrets.yml
+  - fia-auth-secret.yml

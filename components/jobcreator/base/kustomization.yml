@@ -4,7 +4,7 @@ resources:
   - jobcreator.yml
   - jobcreator-permissions.yml
   - jobwatcher-permissions.yml
-  - sealedsecrets.yml
+  - jobcreator-secret.yml
   - ceph-pv.yml
   - ceph-pvc.yml
   - extras-pv.yml

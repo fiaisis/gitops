@@ -4,4 +4,4 @@ resources:
 - ../../base
 patches:
 - path: rundetection.yml
-- path: sealedsecrets.yml
+- path: rundetection-secret.yml

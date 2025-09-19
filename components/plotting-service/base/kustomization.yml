@@ -5,5 +5,5 @@ resources:
   - plotting-service-service.yml
   - ceph-pv.yml
   - ceph-pvc.yml
-  - sealedsecrets.yml
+  - plotting-service-secret.yml
 

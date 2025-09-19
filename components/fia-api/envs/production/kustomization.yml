@@ -9,4 +9,4 @@ components:
 
 patchesStrategicMerge:
   - fia-api.yml
-  - sealedsecrets.yml
+  - fia-api-secret.yml

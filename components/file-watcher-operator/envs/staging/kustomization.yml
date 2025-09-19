@@ -10,4 +10,4 @@ components:
 
 patchesStrategicMerge:
   - file-watcher-operator.yml
-  - sealedsecrets.yml
+  - filewatcher-secret.yml

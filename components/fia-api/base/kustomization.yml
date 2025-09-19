@@ -7,4 +7,4 @@ resources:
   - extras-pvc.yml
   - ceph-pv.yml
   - ceph-pvc.yml
-  - sealedsecrets.yml
+  - fia-api-secret.yml

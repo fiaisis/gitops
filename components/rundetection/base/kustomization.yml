@@ -6,4 +6,4 @@ resources:
   - ceph-pv.yml
   - ceph-pvc.yml
   - rundetection.yml
-  - sealedsecrets.yml
+  - rundetection-secret.yml

@@ -1,8 +1,8 @@
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
-  name: teams-webhook
-  namespace: security
+  name: prod-reduce-isis-tls
+  namespace: redpanda
 spec:
   type: kv-v2
   refreshAfter: 30s
@@ -10,8 +10,8 @@ spec:
 
   # Things to change:
   mount: fia
-  path: fia/management/teams-webhook
+  path: fia/prod/prod-reduce-isis-tls
   destination:
-    name: teams-webhook
+    name: prod-reduce-isis-tls
     overwrite: true
     create: true

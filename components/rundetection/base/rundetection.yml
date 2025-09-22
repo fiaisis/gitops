@@ -5,7 +5,7 @@ metadata:
   name: rundetection
   namespace: fia
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: rundetection

@@ -55,7 +55,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-100"
 spec:
-  project: management
+  project: default
   source:
     repoURL: https://helm.releases.hashicorp.com
     targetRevision: 0.10.0
@@ -127,7 +127,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-100"
 spec:
-  project: management
+  project: default
   source:
     path: gitops/components/vault-config/management
     repoURL: https://github.com/interactivereduction/gitops.git

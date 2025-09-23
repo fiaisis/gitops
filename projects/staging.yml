@@ -24,6 +24,7 @@ spec:
   - 'https://kubernetes.github.io/cloud-provider-openstack'
   - 'https://grafana.github.io/helm-charts'
   - 'https://falcosecurity.github.io/charts'
+  - 'https://helm.releases.hashicorp.com'
   destinations:
   - namespace: "*"
     server: "https://130.246.214.191:6443"

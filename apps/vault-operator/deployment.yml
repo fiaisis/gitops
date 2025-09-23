@@ -81,7 +81,7 @@ metadata:
 spec:
   project: prod
   source:
-    path: gitops/components/vault-config/prod
+    path: components/vault-config/prod
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
@@ -105,7 +105,7 @@ metadata:
 spec:
   project: staging
   source:
-    path: gitops/components/vault-config/staging
+    path: components/vault-config/staging
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:
@@ -129,7 +129,7 @@ metadata:
 spec:
   project: default
   source:
-    path: gitops/components/vault-config/management
+    path: components/vault-config/management
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   destination:

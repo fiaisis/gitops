@@ -14,7 +14,7 @@ spec:
     chart: vault-secrets-operator
   destination:
     namespace: vault-op
-    server: prod
+    name: prod
   syncPolicy:
     automated:
       prune: true
@@ -38,7 +38,7 @@ spec:
     chart: vault-secrets-operator
   destination:
     namespace: vault-op
-    server: staging
+    name: staging
   syncPolicy:
     automated:
       prune: true
@@ -86,7 +86,7 @@ spec:
     targetRevision: HEAD
   destination:
     namespace: vault-op
-    server: prod
+    name: prod
   syncPolicy:
     automated:
       prune: true
@@ -110,7 +110,7 @@ spec:
     targetRevision: HEAD
   destination:
     namespace: vault-op
-    server: staging
+    name: staging
   syncPolicy:
     automated:
       prune: true

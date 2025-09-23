@@ -8,4 +8,4 @@ components:
   - ../../variants/servicemonitor
 
 patchesStrategicMerge:
-  - sealedsecrets.yml
+  - rabbitmq-admin-secret.yml

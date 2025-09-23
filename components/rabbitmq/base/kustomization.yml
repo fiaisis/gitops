@@ -4,6 +4,6 @@ resources:
   - rabbitmq-cluster.yml
   - queues.yml
   - ha-policy.yml
-  - sealedsecrets.yml
+  - rabbitmq-admin-secret.yml
   - users.yml
   - permissions.yml

@@ -60,7 +60,7 @@ spec:
     name: prod
   project: prod
   source:
-    path: components/promtail/envs/production
+    path: components/promtail/production
     repoURL: https://github.com/interactivereduction/gitops.git
     targetRevision: HEAD
   syncPolicy:

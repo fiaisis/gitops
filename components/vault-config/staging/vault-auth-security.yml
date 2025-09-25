@@ -13,6 +13,7 @@ metadata:
   name: static-auth
   namespace: security
 spec:
+  vaultConnectionRef: default
   method: kubernetes
   mount: fia
   allowedNamespaces:

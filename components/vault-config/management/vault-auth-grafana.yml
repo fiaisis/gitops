@@ -21,9 +21,6 @@ spec:
   kubernetes:
     role: cluster
     serviceAccount: vault-op
-    audiences:
-      - vault
-      - https://kubernetes.default.svc.cluster.local
 ---
 apiVersion: v1
 kind: ServiceAccount

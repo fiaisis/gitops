@@ -13,6 +13,7 @@ metadata:
   name: static-auth
   namespace: grafana
 spec:
+  vaultConnectionRef: default
   method: kubernetes
   mount: fia
   allowedNamespaces:

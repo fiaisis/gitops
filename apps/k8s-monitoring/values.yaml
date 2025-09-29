@@ -1,0 +1,133 @@
+cluster:
+  name: observability
+
+destinations:
+  - name: metrics-service
+    type: prometheus
+    url: https://mimir.observability.isis.rl.ac.uk/fia-prod/api/v1/push
+    auth:
+      type: basic
+      usernameKey: username
+      passwordKey: password
+    secret:
+      create: false
+      name: mimir-basic-auth
+      namespace: monitoring
+
+  - name: logs-service
+    type: loki
+    url: https://loki.observability.isis.rl.ac.uk/fia-prod/loki/api/v1/push
+    auth:
+      type: basic
+      usernameKey: username
+      passwordKey: password
+    secret:
+      create: false
+      name: loki-basic-auth
+      namespace: monitoring
+
+  - name: traces-service
+    type: otlp
+    url: https://tempo.observability.isis.rl.ac.uk/fia-prod
+    auth:
+      type: basic
+      usernameKey: username
+      passwordKey: password
+    secret:
+      create: false
+      name: tempo-basic-auth
+      namespace: monitoring
+    metrics: {enabled: true}
+    logs: {enabled: true}
+    traces: {enabled: true}
+
+annotationAutodiscovery:
+  enabled: true
+  namespaces: [fia, rabbitmq, redpanda]
+
+applicationObservability:
+  enabled: true
+  receivers:
+    otlp:
+      grpc:
+        enabled: true
+      http:
+        enabled: true
+  metrics:
+    filters:
+      metric:
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda$"))
+      logs:
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda$"))
+      traces:
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda$"))
+
+autoInstrumentation:
+  enabled: true
+  beyla:
+    config:
+      data:
+        discovery:
+          services:
+            - k8s_namespace: fia
+            - k8s_namespace: rabbitmq
+            - k8s_namespace: redpanda
+
+clusterEvents:
+  enabled: true
+  namespaces: [fia, rabbitmq, redpanda]
+
+clusterMetrics:
+  enabled: true
+  cadvisor:
+    metricsTuning:
+      includeNamespaces: [fia, rabbitmq, redpanda]
+  kube-state-metrics:
+    namespaces: [fia, rabbitmq, redpanda]
+
+podLogs:
+  enabled: true
+  namespaces: [fia, rabbitmq, redpanda]
+
+profiling:
+  enabled: false
+  ebpf:
+    namespaces: [fia, rabbitmq, redpanda]
+  java:
+    namespaces: [fia, rabbitmq, redpanda]
+  pprof:
+    namespaces: [fia, rabbitmq, redpanda]
+
+prometheusOperatorObjects:
+  enabled: true
+  probes:
+    namespaces: [fia, rabbitmq, redpanda]
+  podMonitors:
+    namespaces: [fia, rabbitmq, redpanda]
+  serviceMonitors:
+    namespaces: [fia, rabbitmq, redpanda]
+
+alloy-metrics:
+  enabled: true
+
+alloy-singleton:
+  enabled: true
+
+alloy-logs:
+  enabled: true
+
+alloy-receiver:
+  enabled: true
+  alloy:
+    extraPorts:
+      - name: otlp-grpc
+        port: 4317
+        targetPort: 4317
+        protocol: TCP
+      - name: otlp-http
+        port: 4318
+        targetPort: 4318
+        protocol: TCP
+
+alloy-profiles:
+  enabled: false

@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-prod
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  sources:
+    - repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 3.4.2
+      chart: k8s-monitoring
+      helm:
+        valueFiles:
+        - $values/apps/k8s-monitoring/values.yaml
+    - repoURL: https://github.com/fiaisis/gitops
+      targetRevision: HEAD
+      ref: values
+  destination:
+    namespace: monitoring-system
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-config-prod
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    path: components/monitoring/prod
+    repoURL: https://github.com/fiaisis/gitops
+    targetRevision: HEAD
+  destination:
+    namespace: monitoring-system
+    name: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

@@ -12,7 +12,7 @@ destinations:
     secret:
       create: false
       name: mimir-basic-auth
-      namespace: monitoring
+      namespace: monitoring-system
 
   - name: logs-service
     type: loki
@@ -24,7 +24,7 @@ destinations:
     secret:
       create: false
       name: loki-basic-auth
-      namespace: monitoring
+      namespace: monitoring-system
 
   - name: traces-service
     type: otlp
@@ -36,7 +36,7 @@ destinations:
     secret:
       create: false
       name: tempo-basic-auth
-      namespace: monitoring
+      namespace: monitoring-system
     metrics: {enabled: true}
     logs: {enabled: true}
     traces: {enabled: true}

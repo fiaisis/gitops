@@ -37,6 +37,8 @@ spec:
         env:
           - name: LIVE_DATA_PROCESSOR_IMAGE
             value: ghcr.io/fiaisis/live-data-processor:50f170947badb84cac95e094cdd245df6ca3bfb6
+          - name: FIA_API_URL
+            value: fia-api-service.fia.svc.cluster.local:80
           - name: GITHUB_API_TOKEN
             valueFrom:
              secretKeyRef:

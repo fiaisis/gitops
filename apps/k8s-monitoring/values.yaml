@@ -51,8 +51,10 @@ applicationObservability:
     otlp:
       grpc:
         enabled: true
+        port: 4317
       http:
         enabled: true
+        port: 4318
   metrics:
     filters:
       metric:
@@ -111,14 +113,6 @@ prometheusOperatorObjects:
 
 alloy-metrics:
   enabled: true
-  alloy:
-    config:
-      prometheus:
-        operator:
-          enabled: true
-      server:
-        enable_ui: true
-        http_listen_port: 12345
 
 alloy-singleton:
   enabled: true

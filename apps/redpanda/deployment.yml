@@ -13,6 +13,10 @@ spec:
     helm:
       values: |
         config:
+          serde:
+            messagePack:
+              enabled: true
+              topicNames: [".*_bluesky"]
           server:
             basePath: "/redpanda-console"
           kafka:

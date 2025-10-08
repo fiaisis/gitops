@@ -5,7 +5,7 @@ metadata:
 spec:
   jobName: http-probe
   prober:
-    url: blackbox-exporter.monitoring-system.svc.cluster.local:9115
+    url: blackbox-exporter-prometheus-blackbox-exporter.monitoring-system.svc.cluster.local:9115
   module: http_2xx
   targets:
     staticConfig:

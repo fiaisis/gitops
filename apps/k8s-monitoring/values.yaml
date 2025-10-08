@@ -1,5 +1,5 @@
 cluster:
-  name: observability
+  name: FIA-prod
 
 destinations:
   - name: metrics-service

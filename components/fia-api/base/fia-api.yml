@@ -42,6 +42,14 @@ spec:
           value: http://fia-auth-service.fia.svc.cluster.local:80
         - name: CEPH_DIR
           value: /ceph
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: service.name=FIA-API,service.namespace=fia
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "monitoring-prod-alloy-receiver.monitoring-system.svc.cluster.local:4317"
+        - name: OTEL_TRACES_SAMPLER
+          value: "always_on"
+        - name: OTEL_PROPAGATORS
+          value: "tracecontext,baggage"
         - name: DB_IP
           value: dbspgha03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production

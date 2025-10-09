@@ -66,7 +66,7 @@ applicationObservability:
         - not(IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda|falco|monitoring-system$"))
 
 autoInstrumentation:
-  enabled: true
+  enabled: false
   beyla:
     config:
       data:

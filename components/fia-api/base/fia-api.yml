@@ -50,6 +50,8 @@ spec:
           value: "always_on"
         - name: OTEL_PROPAGATORS
           value: "tracecontext,baggage"
+        - name: OTEL_PYTHON_FASTAPI_EXCLUDED_URLS
+          value: "/healthz,/ready"
         - name: DB_IP
           value: dbspgha03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production

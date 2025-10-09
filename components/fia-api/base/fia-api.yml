@@ -45,7 +45,7 @@ spec:
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: service.name=FIA-API,service.namespace=fia
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "monitoring-prod-alloy-receiver.monitoring-system.svc.cluster.local:4317"
+          value: "monitoring-prod-alloy-receiver.monitoring-system.svc.cluster.local:4318"
         - name: OTEL_TRACES_SAMPLER
           value: "always_on"
         - name: OTEL_PROPAGATORS

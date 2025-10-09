@@ -28,7 +28,7 @@ destinations:
 
   - name: traces-service
     type: otlp
-    url: https://tempo.observability.isis.rl.ac.uk/fia-prod
+    url: https://tempo.observability.isis.rl.ac.uk/fia-prod:4318
     auth:
       type: basic
       usernameKey: username

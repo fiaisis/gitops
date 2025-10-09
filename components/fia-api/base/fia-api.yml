@@ -54,6 +54,8 @@ spec:
           value: "/healthz,/ready"
         - name: OTEL_EXPORTER_OTLP_PROTOCOL
           value: "http/protobuf"
+        - name: OTEL_EXPORTER_OTLP_INSECURE
+          value: "true"
         - name: DB_IP
           value: dbspgha03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production

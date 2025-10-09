@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: valkey
+  name: valkey-staging
   namespace: argocd
 spec:
   project: staging
@@ -12,6 +12,27 @@ spec:
   destination:
     namespace: valkey
     name: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: valkey-prod
+  namespace: argocd
+spec:
+  project: prod
+  source:
+    repoURL: https://valkey.io/valkey-helm/
+    targetRevision: 0.7.4
+    chart: valkey
+  destination:
+    namespace: valkey
+    name: prod
   syncPolicy:
     automated:
       prune: true

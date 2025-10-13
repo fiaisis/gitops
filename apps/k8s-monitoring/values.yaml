@@ -105,6 +105,8 @@ profiling:
 
 prometheusOperatorObjects:
   enabled: true
+  crds:
+    deploy: true
   probes:
     namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
   podMonitors:

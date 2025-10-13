@@ -1,5 +1,13 @@
 # GitOps repository
 
+# How to go from zero to cluster to functioning service
+
+- Ensure that the Vault Cluster is up at: https://github.com/ISISNeutronMuon/secrets-management/
+- One that's up follow the instructions to creator management, staging, and prod at: https://github.com/fiaisis/k8s
+- Follow the instructions in this README to deploy ArgoCD and the App of Apps.
+- With this cluster deployed go and Ensure that the observability cluster is up and functioning at: https://github.com/ISISNeutronMuon/observability
+- All is left is to ensure all the services deployed onto prod manually.
+
 # Recommended installs for cluster visualisation:
 Headlamp (GUI): https://headlamp.dev/
 

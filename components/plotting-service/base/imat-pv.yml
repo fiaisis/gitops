@@ -22,7 +22,7 @@ spec:
     # make sure this value is unique for every share in the cluster
     volumeHandle: plotting-service-imat
     volumeAttributes:
-      source: "//NDXIMAT.isis.cclrc.ac.uk/data\$/"
+      source: "//NDXIMAT.isis.cclrc.ac.uk/data$/"
     nodeStageSecretRef:
       name: imat-creds
       namespace: fia

@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/provisioned-by: smb.csi.k8s.io
+  name: plotting-service-imat-pv-smb
+spec:
+  capacity:
+    storage: 1000Gi
+  accessModes:
+    - ReadOnlyMany
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - vers=2.1
+    - noserverino
+    - _netdev
+  csi:
+    driver: smb.csi.k8s.io
+    readOnly: true
+    # volumeHandle format: {smb-server-address}#{sub-dir-name}#{share-name}
+    # make sure this value is unique for every share in the cluster
+    volumeHandle: plotting-service-imat
+    volumeAttributes:
+      source: "//NDXIMAT.isis.cclrc.ac.uk/data\$/"
+    nodeStageSecretRef:
+      name: imat-creds
+      namespace: fia

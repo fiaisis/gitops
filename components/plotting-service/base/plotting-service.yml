@@ -42,6 +42,8 @@ spec:
         volumeMounts:
           - name: cephfs-mount
             mountPath: /ceph
+          - name: imat-mount
+            mountPath: /imat
         readinessProbe:
           httpGet:
             path: /healthz
@@ -58,3 +60,6 @@ spec:
         - name: cephfs-mount
           persistentVolumeClaim:
             claimName: plotting-service-ceph-pvc
+        - name: imat-mount
+          persistentVolumeClaim:
+            claimName: plotting-service-imat-pvc

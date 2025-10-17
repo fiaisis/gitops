@@ -23,7 +23,7 @@ spec:
           args:
             - celery
             - -A
-            - mytasks.celery_app.app
+            - celery_app
             - worker
             - -E
             - --loglevel=INFO

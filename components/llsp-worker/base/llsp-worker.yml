@@ -21,5 +21,4 @@ spec:
         - name: CELERY_BROKER_URL
           value: rabbitmq-cluster.rabbitmq.svc.cluster.local
 
-      args:
-        ["celery","-A","mytasks.celery_app.app","worker","-E","--loglevel=INFO","--concurrency=1"]
+      args: ["celery","-A","mytasks.celery_app.app","worker","-E","--loglevel=INFO","--concurrency=1"]

@@ -28,7 +28,7 @@ spec:
             - name: RABBITMQ_PASS
               valueFrom:
                 secretKeyRef:
-                  name: llsp-secrets
+                  name: llsp-worker-secrets
                   key: queue_pass
           args:
             - celery

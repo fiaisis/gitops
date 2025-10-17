@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llsp-worker
+  namespace: fia
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: llsp-worker
+  template:
+    metadata:
+      labels:
+        app: llsp-worker
+    spec:
+      containers:
+        - name: llsp-worker
+          image: ghcr.io/fiaisis/llsp-worker:latest
+      env:
+        - name: CELERY_BROKER_URL
+          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+
+      args:
+        ["celery","-A","mytasks.celery_app.app","worker","-E","--loglevel=INFO","--concurrency=1"]

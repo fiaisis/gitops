@@ -1,0 +1,13 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llsp-worker
+  namespace: fia
+spec:
+  replicas: 6
+  template:
+    spec:
+      containers:
+        - name: llsp-worker
+          image: ghcr.io/fiaisis/llsp-worker:latestrker","-E","--loglevel=INFO","--concurrency=1"]

@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: llsp-worker
-          image: ghcr.io/fiaisis/llsp-worker:latest"
+          image: ghcr.io/fiaisis/llsp-worker:latest

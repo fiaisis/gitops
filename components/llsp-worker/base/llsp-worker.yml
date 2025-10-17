@@ -29,7 +29,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: llsp-secrets
-                  key: queue_password
+                  key: queue_pass
           args:
             - celery
             - -A

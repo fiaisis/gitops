@@ -8,11 +8,11 @@ spec:
   replicas: 6
   selector:
     matchLabels:
-      app: llsp-worker
+      app: "llsp-worker"
   template:
     metadata:
       labels:
-        app: llsp-worker
+        app: "llsp-worker"
     spec:
       containers:
         - name: llsp-worker

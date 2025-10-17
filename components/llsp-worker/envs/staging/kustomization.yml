@@ -4,3 +4,4 @@ resources:
 - ../../base
 patches:
 - path: llsp-worker.yml
+- path: llsp-worker-secret.yml

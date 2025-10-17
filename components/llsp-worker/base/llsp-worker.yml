@@ -20,6 +20,16 @@ spec:
           env:
             - name: CELERY_BROKER_URL
               value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+            - name: RABBITMQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: llsp-worker-secrets
+                  key: queue_user
+            - name: RABBITMQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: llsp-secrets
+                  key: queue_password
           args:
             - celery
             - -A

@@ -1,0 +1,12 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llsp-worker
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: llsp-worker
+          image: ghcr.io/fiaisis/llsp-worker@sha256:127bdfebb39801e14d210019d8d02eb1dcf7194e4678edcfeb360edea0d85800

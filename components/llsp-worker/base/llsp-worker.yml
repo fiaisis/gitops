@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llsp-worker
+  namespace: fia
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: "llsp-worker"
+  template:
+    metadata:
+      labels:
+        app: "llsp-worker"
+    spec:
+      containers:
+        - name: llsp-worker
+          image: ghcr.io/fiaisis/llsp-worker:latest
+          env:
+            - name: CELERY_BROKER_HOST
+              value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+            - name: RABBITMQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: llsp-worker-secrets
+                  key: queue_user
+            - name: RABBITMQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: llsp-worker-secrets
+                  key: queue_pass
+          args:
+            - celery
+            - -A
+            - celery_app
+            - worker
+            - -E
+            - --loglevel=INFO
+            - --concurrency=1

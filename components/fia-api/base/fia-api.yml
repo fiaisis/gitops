@@ -52,8 +52,6 @@ spec:
           value: "tracecontext,baggage"
         - name: OTEL_PYTHON_FASTAPI_EXCLUDED_URLS
           value: "/healthz,/ready"
-        - name: OTEL_EXPORTER_OTLP_INSECURE
-          value: "true"
         - name: DB_IP
           value: dbspgha03.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production

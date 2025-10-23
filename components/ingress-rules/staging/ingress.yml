@@ -12,31 +12,30 @@ spec:
         - dev.reduce.isis.cclrc.ac.uk
       secretName: staging-reduce-isis-tls
   rules:
-    - host: dev.reduce.isis.cclrc.ac.uk
-      http:
-        paths:
-          - path: /f-i-a/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend-service
-                port:
-                  number: 80
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: scigateway-service
-                port:
-                  number: 80
-          - path: /data-viewer/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: data-viewer-service
-                port:
-                  number: 3000
-
+  - host: dev.reduce.isis.cclrc.ac.uk
+    http:
+      paths:
+      - path: /f-i-a/?(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 80
+      - path: /?(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: scigateway-service
+            port:
+              number: 80
+      - path: /data-viewer/?(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: data-viewer-service
+            port:
+              number: 3000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -57,7 +56,7 @@ spec:
       http:
         paths:
           - path: /auth/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: fia-auth-service
@@ -83,7 +82,7 @@ spec:
       http:
         paths:
           - path: /api/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: fia-api-service
@@ -109,7 +108,7 @@ spec:
       http:
         paths:
           - path: /plottingapi/?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: plotting-service-service

@@ -115,31 +115,3 @@ spec:
                 name: plotting-service-service
                 port:
                   number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: admin-portal-ingress
-  namespace: fia
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/auth-type: basic
-    nginx.ingress.kubernetes.io/auth-secret: basic-auth  # added manually as just on staging
-    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
-    # nginx.ingress.kubernetes.io/rewrite-target: /$1
-spec:
-  tls:
-    - hosts:
-        - dev.reduce.isis.cclrc.ac.uk
-      secretName: staging-reduce-isis-tls
-  rules:
-    - host: dev.reduce.isis.cclrc.ac.uk
-      http:
-        paths:
-          - path: /admin-portal/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: admin-portal-service
-                port:
-                  number: 3000

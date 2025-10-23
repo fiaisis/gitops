@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/fiaisis/frontend@sha256:test-exp-view
+          image: ghcr.io/fiaisis/frontend:test-exp-view

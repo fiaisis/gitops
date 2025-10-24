@@ -16,3 +16,5 @@ spec:
               value: 6b2a5f882b300a1b3bc6b6ac67cf35f0813ab4926e9dc8db4345a2395740609b
             - name: DEFAULT_RUNNER_SHA
               value: 6d118c27dde674af9e02de00b8d82ca6208a651034f0b9746431506331266a01
+            - name: PYTHONUNBUFFERED
+              value: 1

@@ -4,8 +4,9 @@ kind: Kustomization
 resources:
   - ../../base
 
-#components:
+components:
 #  - ../../variants/servicemonitor
+  - ../../variants/llsp-vhost
 
 patchesStrategicMerge:
   - rabbitmq-admin-secret.yml

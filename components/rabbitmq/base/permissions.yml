@@ -12,3 +12,18 @@ spec:
     read: ".*"
   rabbitmqClusterReference:
     name: rabbitmq-cluster
+
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Permission
+metadata:
+  name: rabbitmq-llsp-permission
+spec:
+  vhost: "llspvhost"
+  user: "rabbitmq-admin"
+  permissions:
+    write: ".*"
+    configure: ".*"
+    read: ".*"
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster

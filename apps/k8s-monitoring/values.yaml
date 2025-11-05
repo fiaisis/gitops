@@ -113,7 +113,14 @@ alloy-metrics:
       labels = {
         cluster = "redpanda-external",
       }
+      forward_to = [prometheus.relabel.redpanda_external.receiver]
+    }
+    prometheus.relabel "redpanda_external" {
       forward_to = [prometheus.remote_write.metrics_service.receiver]
+      rule {
+        target_label = "cluster",
+        replacement  = "redpanda-external",
+      }
     }
 
 alloy-singleton:

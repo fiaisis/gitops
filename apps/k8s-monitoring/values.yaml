@@ -110,9 +110,6 @@ alloy-metrics:
       scrape_interval = "30s"
       scrape_timeout  = "10s"
       metrics_path    = "/public_metrics"
-      labels = {
-        cluster = "redpanda-external",
-      }
       forward_to = [prometheus.relabel.redpanda_external.receiver]
     }
     prometheus.relabel "redpanda_external" {

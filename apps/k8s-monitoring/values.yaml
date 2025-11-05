@@ -67,16 +67,6 @@ applicationObservability:
 
 autoInstrumentation:
   enabled: false
-  beyla:
-    config:
-      data:
-        discovery:
-          services:
-            - k8s_namespace: fia
-            - k8s_namespace: rabbitmq
-            - k8s_namespace: redpanda
-            - k8s_namespace: falco
-            - k8s_namespace: monitoring-system
 
 clusterEvents:
   enabled: true
@@ -96,12 +86,6 @@ podLogs:
 
 profiling:
   enabled: false
-  ebpf:
-    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
-  java:
-    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
-  pprof:
-    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
 
 prometheusOperatorObjects:
   enabled: true
@@ -116,6 +100,21 @@ prometheusOperatorObjects:
 
 alloy-metrics:
   enabled: true
+  extraConfig: |
+    # Scrape external Redpanda brokers
+    prometheus.scrape "redpanda_external" {
+      targets = [
+        { __address__ = "130.246.80.191:9644/public_metrics" },
+        { __address__ = "130.246.81.188:9644/public_metrics" },
+        { __address__ = "130.246.81.166:9644/public_metrics" }
+      ]
+      scrape_interval = "30s"
+      scrape_timeout  = "10s"
+      labels = {
+        cluster = "redpanda-external"
+      }
+      forward_to = [prometheus.remote_write.metrics_service.receiver]
+    }
 
 alloy-singleton:
   enabled: true

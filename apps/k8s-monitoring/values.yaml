@@ -101,7 +101,6 @@ prometheusOperatorObjects:
 alloy-metrics:
   enabled: true
   extraConfig: |
-    # Scrape external Redpanda brokers
     prometheus.scrape "redpanda_external" {
       targets = [
         { __address__ = "130.246.80.191:9644" },
@@ -112,7 +111,7 @@ alloy-metrics:
       scrape_timeout  = "10s"
       metrics_path    = "/public_metrics"
       labels = {
-        cluster = "redpanda-external"
+        cluster = "redpanda-external",
       }
       forward_to = [prometheus.remote_write.metrics_service.receiver]
     }

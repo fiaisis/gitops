@@ -105,7 +105,7 @@ alloy-metrics:
       targets = [
         { __address__ = "130.246.80.191:9644" },
         { __address__ = "130.246.81.188:9644" },
-        { __address__ = "130.246.81.166:9644" }
+        { __address__ = "130.246.81.166:9644" },
       ]
       scrape_interval = "30s"
       scrape_timeout  = "10s"

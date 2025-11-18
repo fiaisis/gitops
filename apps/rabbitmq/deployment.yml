@@ -70,8 +70,8 @@ metadata:
 spec:
   destination:
     namespace: rabbitmq
-    name: staging
-  project: staging
+    name: prod
+  project: prod
   source:
     path: components/rabbitmq-messaging-topology/envs/production
     repoURL: https://github.com/interactivereduction/gitops.git

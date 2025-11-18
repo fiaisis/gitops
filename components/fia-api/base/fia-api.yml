@@ -77,6 +77,8 @@ spec:
             secretKeyRef:
               name: fia-api
               key: fia_github_package_token
+        - name: QUEUE_HOST
+          value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
         ports:
           - name: api-port
             protocol: TCP

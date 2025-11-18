@@ -6,7 +6,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: rabbitmq
+    namespace: rabbitmq-system
     name: staging
   project: staging
   source:
@@ -27,7 +27,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: rabbitmq
+    namespace: rabbitmq-system
     name: staging
   project: staging
   source:
@@ -48,7 +48,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: rabbitmq
+    namespace: rabbitmq-system
     name: prod
   project: prod
   source:
@@ -69,7 +69,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: rabbitmq
+    namespace: rabbitmq-system
     name: prod
   project: prod
   source:

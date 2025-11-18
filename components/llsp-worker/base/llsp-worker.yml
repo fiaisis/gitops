@@ -19,7 +19,7 @@ spec:
           image: ghcr.io/fiaisis/llsp-worker:latest
           env:
             - name: CELERY_BROKER_HOST
-              value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+              value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
             - name: RABBITMQ_USER
               valueFrom:
                 secretKeyRef:

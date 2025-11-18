@@ -22,7 +22,7 @@ spec:
         - name: FILE_WATCHER_SHA256
           value: "8ccc3b4ebca7164b23401bff7c584c7a85e03d5bb36927f2d1127d07fba6a763"
         - name: QUEUE_HOST
-          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+          value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
         - name: EGRESS_QUEUE_NAME
           value: watched-files
         - name: FILEWATCHER_NAMESPACE

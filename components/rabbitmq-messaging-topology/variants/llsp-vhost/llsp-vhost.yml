@@ -2,7 +2,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: Vhost
 metadata:
   name: llsp-vhost
-  namespace: rabbitmq
+  namespace: rabbitmq-system
 spec:
   name: llspvhost # name of the vhost
   rabbitmqClusterReference:

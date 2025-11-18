@@ -4,7 +4,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: Policy
 metadata:
   name: ha-policy
-  namespace: rabbitmq
+  namespace: rabbitmq-system
 spec:
   name: transient # name of the policy
   vhost: "/" # default to '/' if not provided

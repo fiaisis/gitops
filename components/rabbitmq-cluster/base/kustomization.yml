@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: rabbitmq
 resources:
   - https://github.com/rabbitmq/cluster-operator/releases/download/v2.17.2/cluster-operator.yml
   - rabbitmq-cluster.yml

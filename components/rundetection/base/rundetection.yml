@@ -55,7 +55,7 @@ spec:
           periodSeconds: 10
         env:
         - name: QUEUE_HOST
-          value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+          value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
         - name: INGRESS_QUEUE_NAME
           value: watched-files
         - name: EGRESS_QUEUE_NAME

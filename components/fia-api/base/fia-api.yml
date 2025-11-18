@@ -5,7 +5,7 @@ metadata:
   name: fia-api
   namespace: fia
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: fia-api

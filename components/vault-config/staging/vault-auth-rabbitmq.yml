@@ -2,7 +2,7 @@
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultConnection
 metadata:
-  namespace: rabbitmq
+  namespace: rabbitmq-system
   name: default
 spec:
   address: "https://secrets.isis.rl.ac.uk"
@@ -11,7 +11,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
 metadata:
   name: static-auth
-  namespace: rabbitmq
+  namespace: rabbitmq-system
 spec:
   vaultConnectionRef: default
   method: kubernetes
@@ -28,14 +28,14 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  namespace: rabbitmq
+  namespace: rabbitmq-system
   name: vault-op
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: service-account-read
-  namespace: rabbitmq
+  namespace: rabbitmq-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -43,7 +43,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: vault-op
-    namespace: rabbitmq
+    namespace: rabbitmq-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -56,13 +56,13 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: vault-op
-    namespace: rabbitmq
+    namespace: rabbitmq-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: service-account-read
-  namespace: rabbitmq
+  namespace: rabbitmq-system
 rules:
   - apiGroups: [""]
     resources: ["serviceaccounts"]

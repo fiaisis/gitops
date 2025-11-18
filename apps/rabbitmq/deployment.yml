@@ -1,84 +1,84 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: rabbitmq-cluster-staging
-  namespace: argocd
-spec:
-  destination:
-    namespace: rabbitmq
-    name: staging
-  project: staging
-  source:
-    path: components/rabbitmq-cluster/base
-    repoURL: https://github.com/interactivereduction/gitops.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: rabbitmq-messaging-topology-staging
-  namespace: argocd
-spec:
-  destination:
-    namespace: rabbitmq
-    name: staging
-  project: staging
-  source:
-    path: components/rabbitmq-messaging-topology/envs/staging
-    repoURL: https://github.com/interactivereduction/gitops.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: rabbitmq-cluster-prod
-  namespace: argocd
-spec:
-  destination:
-    namespace: rabbitmq
-    name: prod
-  project: prod
-  source:
-    path: components/rabbitmq-cluster/envs/production
-    repoURL: https://github.com/interactivereduction/gitops.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: rabbitmq-messaging-topology-prod
-  namespace: argocd
-spec:
-  destination:
-    namespace: rabbitmq
-    name: prod
-  project: prod
-  source:
-    path: components/rabbitmq-messaging-topology/envs/production
-    repoURL: https://github.com/interactivereduction/gitops.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+#---
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: rabbitmq-cluster-staging
+#  namespace: argocd
+#spec:
+#  destination:
+#    namespace: rabbitmq
+#    name: staging
+#  project: staging
+#  source:
+#    path: components/rabbitmq-cluster/base
+#    repoURL: https://github.com/interactivereduction/gitops.git
+#    targetRevision: HEAD
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
+#    syncOptions:
+#      - CreateNamespace=true
+#---
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: rabbitmq-messaging-topology-staging
+#  namespace: argocd
+#spec:
+#  destination:
+#    namespace: rabbitmq
+#    name: staging
+#  project: staging
+#  source:
+#    path: components/rabbitmq-messaging-topology/envs/staging
+#    repoURL: https://github.com/interactivereduction/gitops.git
+#    targetRevision: HEAD
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
+#    syncOptions:
+#      - CreateNamespace=true
+#---
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: rabbitmq-cluster-prod
+#  namespace: argocd
+#spec:
+#  destination:
+#    namespace: rabbitmq
+#    name: prod
+#  project: prod
+#  source:
+#    path: components/rabbitmq-cluster/envs/production
+#    repoURL: https://github.com/interactivereduction/gitops.git
+#    targetRevision: HEAD
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
+#    syncOptions:
+#      - CreateNamespace=true
+#---
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: rabbitmq-messaging-topology-prod
+#  namespace: argocd
+#spec:
+#  destination:
+#    namespace: rabbitmq
+#    name: prod
+#  project: prod
+#  source:
+#    path: components/rabbitmq-messaging-topology/envs/production
+#    repoURL: https://github.com/interactivereduction/gitops.git
+#    targetRevision: HEAD
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
+#    syncOptions:
+#      - CreateNamespace=true

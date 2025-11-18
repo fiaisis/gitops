@@ -26,6 +26,7 @@ spec:
     - "https://falcosecurity.github.io/charts"
     - "https://helm.releases.hashicorp.com"
     - "https://valkey.io/valkey-helm/"
+    - "https://charts.jetstack.io"
   destinations:
     - namespace: "*"
       server: "https://130.246.214.191:6443"

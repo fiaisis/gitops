@@ -4,6 +4,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: Queue
 metadata:
   name: watched-files
+  namespace: rabbitmq-system
 spec:
   name: watched-files # name of the queue
   type: quorum # without providing a queue type, rabbitmq creates a classic queue
@@ -16,6 +17,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: Queue
 metadata:
   name: scheduled-jobs
+  namespace: rabbitmq-system
 spec:
   name: scheduled-jobs
   type: quorum

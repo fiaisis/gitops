@@ -4,6 +4,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: rabbitmq
+  namespace: rabbitmq-system
   # If labels are defined in spec.serviceMonitorSelector.matchLabels of your deployed Prometheus object, make sure to include them here.
 spec:
   endpoints:
@@ -53,6 +54,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: rabbitmq-cluster-operator
+  namespace: rabbitmq-system
   # If labels are defined in spec.podMonitorSelector.matchLabels of your deployed Prometheus object, make sure to include them here.
 spec:
   podMetricsEndpoints:

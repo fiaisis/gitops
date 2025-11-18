@@ -3,6 +3,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: User
 metadata:
   name: rabbitmq-admin
+  namespace: rabbitmq-system
 spec:
   tags:
   - management

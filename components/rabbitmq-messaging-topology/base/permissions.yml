@@ -3,6 +3,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: Permission
 metadata:
   name: rabbitmq-admin-permission
+  namespace: rabbitmq-system
 spec:
   vhost: "/"
   user: "rabbitmq-admin"
@@ -18,6 +19,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: Permission
 metadata:
   name: rabbitmq-llsp-permission
+  namespace: rabbitmq-system
 spec:
   vhost: "llspvhost"
   user: "rabbitmq-admin"

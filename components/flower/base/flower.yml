@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flower
+  namespace: fia
+spec:
+  replicas: 1
+  selector:
+    app: flower
+  template:
+    metadata:
+      labels:
+        app: flower
+    spec:
+      containers:
+        - name: flower
+          image: mher/flower:latest
+          command: ["/bin/sh","-lc"]
+          args:
+            - |
+              exec flower \
+                --address=0.0.0.0 \
+                --port=5555 \
+                --broker="${CELERY_BROKER_URL}" \
+                --basic_auth="${FLOWER_BASIC_AUTH}" \
+                ${FLOWER_BROKER_API:+--broker_api="${FLOWER_BROKER_API}"}
+          # Values are injected by the staging overlay
+          env:
+            - name: CELERY_BROKER_URL
+              value: ""
+            - name: FLOWER_BASIC_AUTH
+              value: ""
+            - name: FLOWER_BROKER_API
+              value: ""
+          ports:
+            - containerPort: 5555
+          readinessProbe:
+            httpGet: { path: /, port: 5555 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /, port: 5555 }
+            initialDelaySeconds: 10
+            periodSeconds: 20

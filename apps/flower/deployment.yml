@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flower-staging
+  namespace: argocd
+spec:
+  project: staging
+  source:
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+    path: components/flower/envs/staging
+  destination:
+    name: staging
+    namespace: fia
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

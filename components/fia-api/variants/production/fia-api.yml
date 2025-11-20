@@ -13,7 +13,7 @@ spec:
           - name: DB_IP
             value: dbspgha01.fds.rl.ac.uk
           - name: QUEUE_HOST
-            value: rabbitmq-cluster.rabbitmq.svc.cluster.local
+            value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
           - name: EGRESS_QUEUE_NAME
             value: scheduled-jobs
           - name: QUEUE_PASSWORD

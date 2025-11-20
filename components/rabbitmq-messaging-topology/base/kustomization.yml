@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - https://github.com/rabbitmq/messaging-topology-operator/releases/download/v1.18.1/messaging-topology-operator-with-certmanager.yaml
   - queues.yml
-  - ha-policy.yml
   - rabbitmq-admin-secret.yml
   - users.yml
   - permissions.yml

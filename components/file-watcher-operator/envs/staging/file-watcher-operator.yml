@@ -12,4 +12,4 @@ spec:
           image: ghcr.io/fiaisis/filewatcher-operator@sha256:2453d50f728ed9038fe93547d000691d13dfeab6b89b6e041d0b92f57295cf9b
           env:
              - name: FILE_WATCHER_SHA256
-               value: "0f8a1b423242c9bb8006ec7f55f0226e32fa2d800f5355b4ae4d237108fa52d9"
+               value: "64e4f2789176eba0c163101ee78ea0a7e1fe8b0c7968c9c39c9c380ef97af005"

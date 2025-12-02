@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: file-watcher-operator
-          image: ghcr.io/fiaisis/filewatcher-operator@sha256:112acd20e3cb8bae43459633fa4aee5dd96d9340e679ad8b49d5a315d7f693b1
+          image: ghcr.io/fiaisis/filewatcher-operator@sha256:adfab223629971d966ef8ab0b6ecaed993a06391bf41ca722b8d9445c304150b
           env:
              - name: FILE_WATCHER_SHA256
                value: "d5d281bc88402fedb35fc12a3dbcb4f3c5aeffdbcd6cc31c4f0b7c20d8b78982"

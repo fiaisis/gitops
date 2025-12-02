@@ -6,3 +6,4 @@ resources:
   - file-watchers.yml
   - filewatcher-secret.yml
   - file-watcher-permissions.yml
+  - imat-secret.yml

@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
-
+  - imat-filewatcher.yml
 
 components:
   - ../../variants/staging
@@ -11,3 +11,4 @@ components:
 patchesStrategicMerge:
   - file-watcher-operator.yml
   - filewatcher-secret.yml
+  - imat-secret.yml

@@ -82,6 +82,8 @@ spec:
             mountPath: /archive
           - name: runner-extra-files
             mountPath: /extras
+          - name: imat-mount
+            mountPath: /imat
       volumes:
         - name: runner-extra-files
           persistentVolumeClaim:
@@ -89,4 +91,8 @@ spec:
         - name: archive-mount
           persistentVolumeClaim:
             claimName: rundetection-archive-pvc
+            readOnly: true
+        - name: archive-mount
+          persistentVolumeClaim:
+            claimName: rundetection-ndximat-pvc
             readOnly: true

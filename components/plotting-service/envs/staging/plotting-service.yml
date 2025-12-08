@@ -5,7 +5,6 @@ metadata:
   name: plotting-service
   namespace: fia
 spec:
-  replicas: 50
   template:
     spec:
       containers:

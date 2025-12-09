@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: rundetection-imat-pvc
+  name: rundetection-ndximat-pvc
 spec:
   accessModes:
     - ReadOnlyMany

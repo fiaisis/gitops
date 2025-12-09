@@ -92,7 +92,7 @@ spec:
           persistentVolumeClaim:
             claimName: rundetection-archive-pvc
             readOnly: true
-        - name: archive-mount
+        - name: imat-mount
           persistentVolumeClaim:
             claimName: rundetection-ndximat-pvc
             readOnly: true

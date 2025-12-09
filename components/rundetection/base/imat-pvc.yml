@@ -9,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 1000Gi
-  volumeName: rundetection-imat-pv-smb
+  volumeName: rundetection-ndximat-pv-smb
   storageClassName: ""

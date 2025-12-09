@@ -4,7 +4,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: smb.csi.k8s.io
-  name: plotting-service-imat-pv-smb
+  name: rundetection-imat-pv-smb
 spec:
   capacity:
     storage: 1000Gi
@@ -20,7 +20,7 @@ spec:
     readOnly: true
     # volumeHandle format: {smb-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: plotting-service-imat
+    volumeHandle: rundetection-imat
     volumeAttributes:
       source: "//NDXIMAT.isis.cclrc.ac.uk/data$/"
     nodeStageSecretRef:

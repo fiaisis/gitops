@@ -10,4 +10,3 @@ components:
 patchesStrategicMerge:
   - file-watcher-operator.yml
   - filewatcher-secret.yml
-  - imat-secret.yml

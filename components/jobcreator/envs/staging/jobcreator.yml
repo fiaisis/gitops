@@ -5,12 +5,13 @@ metadata:
   name: jobcreator
   namespace: fia
 spec:
+  replicas: 1
   template:
     spec:
       serviceAccountName: jobcreator
       containers:
         - name: jobcreator
-          image: ghcr.io/fiaisis/jobcreator@sha256:de24b9a74ed65f07faf7382feebf7d0e177136a73d7736003aa4aa209669b9e8
+          image: ghcr.io/fiaisis/jobcreator@sha256:4820d06eb1830027544aff38786238e9c61517cfa675c4133349f12e2a85009e
           env:
             - name: WATCHER_SHA
               value: ccdf260c8700fc579b103e6f5237c972b941c4bc559aaa3490e82303140e8c00

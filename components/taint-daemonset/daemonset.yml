@@ -16,6 +16,11 @@ spec:
       containers:
         - name: taint
           image: alpine:3.20
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
           command:
             - /bin/sh
             - -c
@@ -25,8 +30,6 @@ spec:
               curl -sSL -o /usr/local/bin/kubectl \
                 https://storage.googleapis.com/kubernetes-release/release/v1.30.0/bin/linux/amd64/kubectl
               chmod +x /usr/local/bin/kubectl
-
-              NODE_NAME=$(hostname)
 
               if echo "$NODE_NAME" | grep -q "gpu-worker"; then
                 echo "Tainting node $NODE_NAME"

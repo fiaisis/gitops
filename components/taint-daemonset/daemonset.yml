@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: gpu-worker-taint
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: gpu-worker-taint
+  template:
+    metadata:
+      labels:
+        app: gpu-worker-taint
+    spec:
+      serviceAccountName: node-taint-sa
+      hostPID: true
+      containers:
+        - name: taint
+          image: registry.k8s.io/kubectl:v1.30.0
+          command:
+            - /bin/sh
+            - -c
+            - |
+              NODE_NAME=$(hostname)
+
+              if echo "$NODE_NAME" | grep -q "gpu-worker"; then
+                echo "Tainting node $NODE_NAME"
+                kubectl taint nodes "$NODE_NAME" gpu=worker:NoSchedule --overwrite
+              else
+                echo "Node $NODE_NAME not matched; no taint applied."
+              fi
+
+              sleep infinity
+          securityContext:
+            runAsUser: 0

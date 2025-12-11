@@ -13,21 +13,26 @@ spec:
         app: gpu-worker-taint
     spec:
       serviceAccountName: node-taint-sa
-      hostPID: true
       containers:
         - name: taint
-          image: registry.k8s.io/kubectl:v1.30.0
+          image: alpine:3.20
           command:
             - /bin/sh
             - -c
             - |
+              apk add --no-cache curl
+
+              curl -sSL -o /usr/local/bin/kubectl \
+                https://storage.googleapis.com/kubernetes-release/release/v1.30.0/bin/linux/amd64/kubectl
+              chmod +x /usr/local/bin/kubectl
+
               NODE_NAME=$(hostname)
 
               if echo "$NODE_NAME" | grep -q "gpu-worker"; then
                 echo "Tainting node $NODE_NAME"
                 kubectl taint nodes "$NODE_NAME" gpu=worker:NoSchedule --overwrite
               else
-                echo "Node $NODE_NAME not matched; no taint applied."
+                echo "Node $NODE_NAME not matched; skipping."
               fi
 
               sleep infinity

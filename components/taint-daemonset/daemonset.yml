@@ -32,10 +32,12 @@ spec:
               chmod +x /usr/local/bin/kubectl
 
               if echo "$NODE_NAME" | grep -q "gpu-worker"; then
-                echo "Tainting node $NODE_NAME"
+                echo "Tainting and labelling node $NODE_NAME"
                 kubectl taint nodes "$NODE_NAME" gpu=worker:NoSchedule --overwrite
+                kubectl label node "$NODE_NAME" node-type=gpu-worker
               else
-                echo "Node $NODE_NAME not matched; skipping."
+                echo "Node $NODE_NAME not matched; labelling as worker"
+                kubectl label node "$NODE_NAME" node-type=worker
               fi
 
               sleep infinity

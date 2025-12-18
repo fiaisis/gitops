@@ -13,6 +13,11 @@ spec:
         app: gpu-worker-taint
     spec:
       serviceAccountName: node-taint-sa
+      tolerations:
+        - key: "gpu"
+          operator: "Equal"
+          value: "worker"
+          effect: "NoSchedule"
       containers:
         - name: taint
           image: alpine:3.20

@@ -35,6 +35,14 @@ spec:
                 echo "Tainting and labelling node $NODE_NAME"
                 kubectl taint nodes "$NODE_NAME" gpu=worker:NoSchedule --overwrite
                 kubectl label node "$NODE_NAME" node-type=gpu-worker
+
+                echo "Preloading ghcr.io/fiaisis/mantidimaging on $NODE_NAME"
+                kubectl run preload-mantidimaging-$NODE_NAME \
+                  --image=ghcr.io/fiaisis/mantidimaging:latest \
+                  --restart=Never \
+                  --ttl-seconds-after-finished=21600
+                  --overrides='{"spec":{"nodeName":"'"$NODE_NAME"'"}}' \
+                  --command -- true
               else
                 echo "Node $NODE_NAME not matched; labelling as worker"
                 kubectl label node "$NODE_NAME" node-type=worker

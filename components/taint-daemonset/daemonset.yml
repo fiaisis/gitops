@@ -38,7 +38,7 @@ spec:
 
               if echo "$NODE_NAME" | grep -q "gpu-worker"; then
                 echo "Tainting and labelling node $NODE_NAME"
-                kubectl taint node "$NODE_NAME" gpu=worker:NoSchedule --overwrite
+                kubectl taint node "$NODE_NAME" nvidia.com/gpu=worker:NoSchedule --overwrite
                 kubectl label node "$NODE_NAME" node-type=gpu-worker
                 kubectl label node "$NODE_NAME" nvidia.com/mig.config=all-7g.40gb
 

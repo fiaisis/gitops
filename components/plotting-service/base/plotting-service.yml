@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -42,7 +41,7 @@ spec:
         volumeMounts:
           - name: cephfs-mount
             mountPath: /ceph
-          - name: imat-mount
+          - name: imat-work
             mountPath: /imat
         readinessProbe:
           httpGet:
@@ -56,10 +55,45 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+      - name: imat-mounter
+        image: alpine
+        securityContext:
+          privileged: true
+        command: ["sh", "-c"]
+        args:
+          - |
+            apk add --no-cache cifs-utils
+            mkdir -p /imat
+
+            while true; do
+              if mountpoint -q /imat; then
+                sleep 300
+                continue
+              fi
+
+              mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
+                -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev \
+                && echo "IMAT mounted"
+
+              sleep 30
+            done
+        env:
+          - name: IMAT_USER
+            valueFrom:
+              secretKeyRef:
+                name: imat-creds
+                key: username
+          - name: IMAT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: imat-creds
+                key: password
+        volumeMounts:
+          - name: imat-work
+            mountPath: /imat
       volumes:
         - name: cephfs-mount
           persistentVolumeClaim:
             claimName: plotting-service-ceph-pvc
-        - name: imat-mount
-          persistentVolumeClaim:
-            claimName: plotting-service-imat-pvc
+        - name: imat-work
+          emptyDir: {}

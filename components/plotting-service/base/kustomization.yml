@@ -5,8 +5,6 @@ resources:
   - plotting-service-service.yml
   - ceph-pv.yml
   - ceph-pvc.yml
-  - imat-pv.yml
-  - imat-pvc.yml
   - imat-secret.yml
   - plotting-service-secret.yml
 

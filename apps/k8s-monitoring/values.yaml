@@ -44,7 +44,7 @@ destinations:
 
 annotationAutodiscovery:
   enabled: true
-  namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+  namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
 
 applicationObservability:
   enabled: true
@@ -59,30 +59,30 @@ applicationObservability:
   metrics:
     filters:
       metric:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda|falco|monitoring-system$"))
+        - IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda|falco|monitoring-system|ingress-nginx$")
       logs:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda|falco|monitoring-system$"))
+        - IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda|falco|monitoring-system|ingress-nginx$")
       traces:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda|falco|monitoring-system$"))
+        - IsMatch(resource.attributes["k8s.namespace.name"], "^fia|rabbitmq|redpanda|falco|monitoring-system|ingress-nginx$")
 
 autoInstrumentation:
   enabled: false
 
 clusterEvents:
   enabled: true
-  namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+  namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
 
 clusterMetrics:
   enabled: true
   cadvisor:
     metricsTuning:
-      includeNamespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+      includeNamespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
   kube-state-metrics:
-    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
 
 podLogs:
   enabled: true
-  namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+  namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
 
 profiling:
   enabled: false
@@ -92,11 +92,11 @@ prometheusOperatorObjects:
   crds:
     deploy: true
   probes:
-    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
   podMonitors:
-    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
   serviceMonitors:
-    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system]
+    namespaces: [fia, rabbitmq, redpanda, falco, monitoring-system, ingress-nginx]
 
 alloy-metrics:
   enabled: true

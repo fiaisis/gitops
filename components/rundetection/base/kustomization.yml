@@ -5,7 +5,5 @@ resources:
   - archive-pvc.yml
   - ceph-pv.yml
   - ceph-pvc.yml
-  - imat-pv.yml
-  - imat-pvc.yml
   - rundetection.yml
   - rundetection-secret.yml

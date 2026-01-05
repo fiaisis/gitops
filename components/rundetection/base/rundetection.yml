@@ -18,6 +18,46 @@ spec:
         searches:
           - isis.cclrc.ac.uk
       containers:
+      - name: imat-loader
+        image: alpine
+        securityContext:
+          runAsUser: 0
+          capabilities:
+            add:
+              - SYS_ADMIN
+        command: ["sh", "-c"]
+        args:
+          - |
+            apk add --no-cache cifs-utils
+            mkdir -p /imat
+      
+            while true; do
+              if mountpoint -q /imat; then
+                sleep 300
+                continue
+              fi
+      
+              mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
+                -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev \
+                && echo "IMAT mounted"
+      
+              sleep 30
+            done
+        env:
+          - name: IMAT_USER
+            valueFrom:
+              secretKeyRef:
+                name: imat-creds
+                key: username
+          - name: IMAT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: imat-creds
+                key: password
+        volumeMounts:
+          - name: imat-mount
+            mountPath: /work
+
       - name: rundetection
         image: ghcr.io/fiaisis/rundetection@sha256:9089be19accf0258c1fed449ace7cb1a88ca1795ef287b1f6eb15cb75ed3dd8e
         readinessProbe:
@@ -93,6 +133,4 @@ spec:
             claimName: rundetection-archive-pvc
             readOnly: true
         - name: imat-mount
-          persistentVolumeClaim:
-            claimName: rundetection-ndximat-pvc
-            readOnly: true
+          emptyDir: {}

@@ -20,12 +20,8 @@ spec:
           command: ["/bin/sh","-lc"]
           args:
             - |
-              exec flower \
-                --address=0.0.0.0 \
-                --port=5555 \
-                --broker="${CELERY_BROKER_URL}" \
-                --basic_auth="${FLOWER_BASIC_AUTH}" \
-                ${FLOWER_BROKER_API:+--broker_api="${FLOWER_BROKER_API}"}
+              celery --broker="${CELERY_BROKER_URL}" flower
+
           # Values are injected by the staging overlay
           env:
             - name: CELERY_BROKER_URL

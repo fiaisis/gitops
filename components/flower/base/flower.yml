@@ -25,6 +25,8 @@ spec:
 
           # Values are injected by the staging overlay
           env:
+            - name: ENCODED_BROKER_URL
+              value: ""
             - name: CELERY_BROKER_URL
               value: ""
             - name: FLOWER_BASIC_AUTH

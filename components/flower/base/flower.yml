@@ -20,7 +20,7 @@ spec:
           command: ["/bin/sh","-lc"]
           args:
             - |
-              celery --broker="${ENCODED_BROKER_URL}" flower
+              celery --broker="${ENCODED_BROKER_URL}" flower --basic-auth=user:pswd
 
           # Values are injected by the staging overlay
           env:

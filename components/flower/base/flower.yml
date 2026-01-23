@@ -20,8 +20,7 @@ spec:
           command: ["/bin/sh","-lc"]
           args:
             - |
-              SAFE_URL=$(echo "$CELERY_BROKER_URL" | sed 's/\[/%5B/g; s/\]/%5D/g')
-              celery --broker="${SAFE_URL}" flower
+              celery --broker="${ENCODED_BROKER_URL}" flower
 
           # Values are injected by the staging overlay
           env:

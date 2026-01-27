@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llsp-api
+  namespace: fia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llsp-api
+  template:
+    metadata:
+      labels:
+        app: llsp-api
+    spec:
+      containers:
+      - name: llsp-api
+        image: ghcr.io/fiaisis/llsp-api:latest
+        env:
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: service.name=LLSP-API,service.namespace=fia
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "monitoring-prod-alloy-receiver.monitoring-system.svc.cluster.local:4317"
+        - name: OTEL_EXPORTER_OTLP_INSECURE
+          value: "true"
+        - name: OTEL_TRACES_SAMPLER
+          value: "always_on"
+        - name: OTEL_PROPAGATORS
+          value: "tracecontext,baggage"
+        - name: OTEL_PYTHON_FASTAPI_EXCLUDED_URLS
+          value: "/healthz,/ready"
+        ports:
+          - name: api-port
+            protocol: TCP
+            containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 300

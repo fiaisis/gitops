@@ -1,0 +1,42 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: llsp-api-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: fia
+    name: staging
+  project: staging
+  source:
+    path: components/llsp-api/envs/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: llsp-api-prod
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: fia
+#     name: prod
+#   project: prod
+#   source:
+#     path: components/llsp-api/envs/production
+#     repoURL: https://github.com/interactivereduction/gitops.git
+#     targetRevision: HEAD
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true

@@ -18,6 +18,11 @@ spec:
       - name: llsp-api
         image: ghcr.io/fiaisis/llsp-api:latest
         env:
+        - name:
+          valueFrom:
+              secretKeyRef:
+                name: llsp-api
+                key: CELERY_BROKER_URL
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: service.name=LLSP-API,service.namespace=fia
         - name: OTEL_EXPORTER_OTLP_ENDPOINT

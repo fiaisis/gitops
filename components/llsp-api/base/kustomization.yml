@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - llsp-api.yml
   - service.yml
+  - secret.yml

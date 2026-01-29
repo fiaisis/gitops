@@ -1,0 +1,12 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llsp-api
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: llsp-api
+          image: ghcr.io/fiaisis/llsp-api:latest

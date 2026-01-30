@@ -20,14 +20,14 @@ spec:
           command: ["/bin/sh","-lc"]
           args:
             - |
-              exec flower \
-                --address=0.0.0.0 \
-                --port=5555 \
-                --broker="${CELERY_BROKER_URL}" \
-                --basic_auth="${FLOWER_BASIC_AUTH}" \
-                ${FLOWER_BROKER_API:+--broker_api="${FLOWER_BROKER_API}"}
+              celery --broker="${ENCODED_BROKER_URL}" flower --basic-auth="fia:${FLOWER_PASSWORD}"
+
           # Values are injected by the staging overlay
           env:
+            - name: ENCODED_BROKER_URL
+              value: ""
+            - name: FLOWER_PASSWORD
+              value: ""
             - name: CELERY_BROKER_URL
               value: ""
             - name: FLOWER_BASIC_AUTH
@@ -36,11 +36,11 @@ spec:
               value: ""
           ports:
             - containerPort: 5555
-          readinessProbe:
-            httpGet: { path: /, port: 5555 }
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet: { path: /, port: 5555 }
-            initialDelaySeconds: 10
-            periodSeconds: 20
+#          readinessProbe:
+#            httpGet: { path: /, port: 5555 }
+#            initialDelaySeconds: 5
+#            periodSeconds: 10
+#          livenessProbe:
+#            httpGet: { path: /, port: 5555 }
+#            initialDelaySeconds: 10
+#            periodSeconds: 20

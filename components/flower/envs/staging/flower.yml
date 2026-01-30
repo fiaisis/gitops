@@ -14,4 +14,14 @@ spec:
                 secretKeyRef:
                   name: flower
                   key: CELERY_BROKER_URL
+            - name: ENCODED_BROKER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: flower
+                  key: ENCODED_BROKER_URL
+            - name: FLOWER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: flower
+                  key: FLOWER_PASSWORD
 

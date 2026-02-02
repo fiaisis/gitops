@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - ../../base
 namespace: fia
-replicas:
-  - name: llsp-api
-    count: 1
+patches:
+  - path: llsp-api.yml
+  - path: secret.yml

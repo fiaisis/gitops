@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: data-viewer
-          image: ghcr.io/fiaisis/data-viewer@sha256:b0a97be79941b4aa25c3f7bdd81b57f91b15cd0e7b49a1ea54a246512985ba7a
+          image: ghcr.io/fiaisis/data-viewer@sha256:35a8988c9b0f34efe81b5c592effe0ba04801d8e0067083c37b5a1820804f610

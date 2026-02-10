@@ -26,3 +26,10 @@ spec:
                 secretKeyRef:
                   name: fia-api
                   key: queue_user
+            - name: LLSP_API_HOST
+              value: http://llsp-api-service.fia.svc.cluster.local:80
+            - name: LLSP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fia-api
+                  key: LLSP_API_KEY

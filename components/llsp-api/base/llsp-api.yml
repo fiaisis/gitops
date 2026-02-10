@@ -23,6 +23,11 @@ spec:
               secretKeyRef:
                 name: llsp-api
                 key: CELERY_BROKER_URL
+        - name: LLSP_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: llsp-api
+              key: LLSP_API_KEY
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: service.name=LLSP-API,service.namespace=fia
         - name: OTEL_EXPORTER_OTLP_ENDPOINT

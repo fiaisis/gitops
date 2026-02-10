@@ -39,7 +39,7 @@ spec:
               name: fia-auth
               key: jwt_signing_key
         - name: AUTH_API_URL
-          value: http://fia-auth-service.fia.svc.cluster.local:8000
+          value: http://fia-auth-service.fia.svc.cluster.local:80
         - name: CEPH_DIR
           value: /ceph
         - name: OTEL_RESOURCE_ATTRIBUTES

@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: https://valkey.io/valkey-helm/
-    targetRevision: 0.7.4
+    targetRevision: 0.9.3
     chart: valkey
   destination:
     namespace: valkey
@@ -28,7 +28,7 @@ spec:
   project: prod
   source:
     repoURL: https://valkey.io/valkey-helm/
-    targetRevision: 0.7.4
+    targetRevision: 0.9.3
     chart: valkey
   destination:
     namespace: valkey

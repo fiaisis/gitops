@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
-    targetRevision: 1.16.0
+    targetRevision: 1.19.1
     chart: csi-driver-smb
   destination:
     namespace: fia
@@ -49,7 +49,7 @@ spec:
   project: prod
   source:
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
-    targetRevision: 1.16.0
+    targetRevision: 1.19.1
     chart: csi-driver-smb
   destination:
     namespace: fia

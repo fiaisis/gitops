@@ -10,7 +10,7 @@ spec:
   project: prod
   source:
     repoURL: https://helm.releases.hashicorp.com
-    targetRevision: 0.10.0
+    targetRevision: 1.2.0
     chart: vault-secrets-operator
   destination:
     namespace: vault-op
@@ -34,7 +34,7 @@ spec:
   project: staging
   source:
     repoURL: https://helm.releases.hashicorp.com
-    targetRevision: 0.10.0
+    targetRevision: 1.2.0
     chart: vault-secrets-operator
   destination:
     namespace: vault-op

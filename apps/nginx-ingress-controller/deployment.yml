@@ -8,7 +8,7 @@ spec:
   project: prod
   source:
     repoURL: https://kubernetes.github.io/ingress-nginx
-    targetRevision: v4.11.3
+    targetRevision: v4.14.2
     chart: ingress-nginx
     helm:
       releaseName: ingress-nginx

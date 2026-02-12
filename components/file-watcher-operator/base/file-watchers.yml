@@ -58,3 +58,14 @@ spec:
   lastrunFilePath: "/archive/NDXTOSCA/Instrument/logs/lastrun.txt"
   instrumentFolder: NDXTOSCA
   filePrefix: TSC
+---
+# Imat
+apiVersion: "fia.com/v1"
+kind: FileWatcher
+metadata:
+  name: imat
+spec:
+  lastrunFilePath: "/imat/lastrun.txt"
+  specialPV: imat
+  instrumentFolder: NDXIMAT
+  filePrefix: IMAT

@@ -5,7 +5,7 @@ metadata:
   name: jobcreator
   namespace: fia
 spec:
-  replicas: 1
+
   template:
     spec:
       serviceAccountName: jobcreator

@@ -11,4 +11,4 @@ spec:
         - name: plotting-service
           env:
             - name: PRODUCTION
-              value: "false"
+              value: "true"

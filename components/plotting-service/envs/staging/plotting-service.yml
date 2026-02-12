@@ -10,6 +10,3 @@ spec:
       containers:
         - name: plotting-service
           image: ghcr.io/fiaisis/plotting-service@sha256:e3cada82f645255596449b806cd7f22e17524bfeeea77da3f785058ddeca8087
-          env:
-            - name: PRODUCTION
-              value: "false"

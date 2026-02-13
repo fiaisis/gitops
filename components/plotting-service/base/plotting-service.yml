@@ -14,85 +14,87 @@ spec:
         app: plotting-service
     spec:
       containers:
-      - name: plotting-service
-        image: ghcr.io/fiaisis/plotting-service@sha256:873fd6d3d2b6dfe6e3b5bf2e3fc306ceef86c61dc572685762f5d4c43d61d937
-        env:
-          - name: PRODUCTION
-            value: "false"
-          - name: FIA_AUTH_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: plotting-service
-                key: fia_auth_api_key
-          - name: JWT_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: fia-auth
-                key: jwt_signing_key
-          - name: API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: plotting-service
-                key: api_key
-          - name: FIA_AUTH_URL
-            value: fia-auth-service.fia.svc.cluster.local:80
-        ports:
-          - name: api-port
-            protocol: TCP
-            containerPort: 80
-        volumeMounts:
-          - name: cephfs-mount
-            mountPath: /ceph
-          - name: imat-work
-            mountPath: /imat
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
-      - name: imat-mounter
-        image: alpine
-        securityContext:
-          privileged: true
-        command: ["sh", "-c"]
-        args:
-          - |
-            apk add --no-cache cifs-utils
-            mkdir -p /imat
+        - name: plotting-service
+          image: ghcr.io/fiaisis/plotting-service@sha256:873fd6d3d2b6dfe6e3b5bf2e3fc306ceef86c61dc572685762f5d4c43d61d937
+          env:
+            - name: PRODUCTION
+              value: "false"
+            - name: FIA_AUTH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: plotting-service
+                  key: fia_auth_api_key
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: fia-auth
+                  key: jwt_signing_key
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: plotting-service
+                  key: api_key
+            - name: FIA_AUTH_URL
+              value: fia-auth-service.fia.svc.cluster.local:80
+          ports:
+            - name: api-port
+              protocol: TCP
+              containerPort: 80
+          volumeMounts:
+            - name: cephfs-mount
+              mountPath: /ceph
+            - name: imat-work
+              mountPath: /imat
+              mountPropagation: HostToContainer
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+        - name: imat-mounter
+          image: alpine
+          securityContext:
+            privileged: true
+          command: ["sh", "-c"]
+          args:
+            - |
+              apk add --no-cache cifs-utils
+              mkdir -p /imat
 
-            while true; do
-              if mountpoint -q /imat; then
-                sleep 300
-                continue
-              fi
-
-              mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
-                -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev \
-                && echo "IMAT mounted"
-
-              sleep 30
-            done
-        env:
-          - name: IMAT_USER
-            valueFrom:
-              secretKeyRef:
-                name: imat-creds
-                key: username
-          - name: IMAT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: imat-creds
-                key: password
-        volumeMounts:
-          - name: imat-work
-            mountPath: /imat
+              while true; do
+                if ! grep -q "//NDXIMAT.isis.cclrc.ac.uk/data\$" /proc/mounts; then
+                  echo "$(date): Attempting to mount IMAT share..."
+                  if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
+                    -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
+                    echo "$(date): IMAT share mounted successfully"
+                  else
+                    echo "$(date): Failed to mount IMAT share, retrying in 60s..."
+                  fi
+                fi
+                sleep 60
+              done
+          env:
+            - name: IMAT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: imat-creds
+                  key: username
+            - name: IMAT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: imat-creds
+                  key: password
+          volumeMounts:
+            - name: imat-work
+              mountPath: /imat
+              mountPropagation: Bidirectional
       volumes:
         - name: cephfs-mount
           persistentVolumeClaim:

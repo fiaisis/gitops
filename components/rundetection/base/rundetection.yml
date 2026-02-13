@@ -29,10 +29,16 @@ spec:
             mkdir -p /imat
       
             while true; do
-              mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
-                -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev \
-                && echo "IMAT mounted"
-              sleep 30
+              if ! mountpoint -q /imat; then
+                echo "$(date): Attempting to mount IMAT share..."
+                if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
+                  -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
+                  echo "$(date): IMAT share mounted successfully"
+                else
+                  echo "$(date): Failed to mount IMAT share, retrying in 60s..."
+                fi
+              fi
+              sleep 60
             done
         env:
           - name: IMAT_USER
@@ -48,6 +54,7 @@ spec:
         volumeMounts:
           - name: imat-mount
             mountPath: /imat
+            mountPropagation: Bidirectional
 
       - name: rundetection
         image: ghcr.io/fiaisis/rundetection@sha256:9089be19accf0258c1fed449ace7cb1a88ca1795ef287b1f6eb15cb75ed3dd8e
@@ -115,6 +122,7 @@ spec:
             mountPath: /extras
           - name: imat-mount
             mountPath: /imat
+            mountPropagation: HostToContainer
       volumes:
         - name: runner-extra-files
           persistentVolumeClaim:

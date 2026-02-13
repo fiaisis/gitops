@@ -15,6 +15,6 @@ spec:
             - name: WATCHER_SHA
               value: c647cefd53b5f1a1de57445e71264dec64473b77821ee4fbe3634953c51eaeaf
             - name: DEFAULT_RUNNER_SHA
-              value: 49d4cfc857f902d46a06f52b86c52f6a955bc63a1d259cda6e2976884c4a27a7
+              value: 6d118c27dde674af9e02de00b8d82ca6208a651034f0b9746431506331266a01
             - name: IMAGING_RUNNER_SHA
               value: d4c58e2fccce5c8ad6518147a0ba6559dd698bff9c0823159287ff2c204259e7

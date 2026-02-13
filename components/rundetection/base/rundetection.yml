@@ -29,15 +29,9 @@ spec:
             mkdir -p /imat
       
             while true; do
-              if mountpoint -q /imat; then
-                sleep 300
-                continue
-              fi
-      
               mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
                 -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev \
                 && echo "IMAT mounted"
-      
               sleep 30
             done
         env:

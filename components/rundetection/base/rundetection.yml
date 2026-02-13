@@ -18,111 +18,111 @@ spec:
         searches:
           - isis.cclrc.ac.uk
       containers:
-      - name: imat-loader
-        image: alpine
-        securityContext:
-          privileged: true
-        command: ["sh", "-c"]
-        args:
-          - |
-            apk add --no-cache cifs-utils
-            mkdir -p /imat
-      
-            while true; do
-              if ! mountpoint -q /imat; then
-                echo "$(date): Attempting to mount IMAT share..."
-                if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
-                  -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
-                  echo "$(date): IMAT share mounted successfully"
-                else
-                  echo "$(date): Failed to mount IMAT share, retrying in 60s..."
-                fi
-              fi
-              sleep 60
-            done
-        env:
-          - name: IMAT_USER
-            valueFrom:
-              secretKeyRef:
-                name: imat-creds
-                key: username
-          - name: IMAT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: imat-creds
-                key: password
-        volumeMounts:
-          - name: imat-mount
-            mountPath: /imat
-            mountPropagation: Bidirectional
+        - name: imat-loader
+          image: alpine
+          securityContext:
+            privileged: true
+          command: ["sh", "-c"]
+          args:
+            - |
+              apk add --no-cache cifs-utils
+              mkdir -p /imat
 
-      - name: rundetection
-        image: ghcr.io/fiaisis/rundetection@sha256:9089be19accf0258c1fed449ace7cb1a88ca1795ef287b1f6eb15cb75ed3dd8e
-        readinessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - |
-              CURRENT_TIME=$(date +%s)
-              FILE_TIME=$(date -r /tmp/heartbeat +%s)
-              DIFF=$((CURRENT_TIME - FILE_TIME))
-              if [ $DIFF -lt 20 ]; then
-                exit 0
-              else
-                exit 1
-              fi
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        livenessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - |
-              CURRENT_TIME=$(date +%s)
-              FILE_TIME=$(date -r /tmp/heartbeat +%s)
-              DIFF=$((CURRENT_TIME - FILE_TIME))
-              if [ $DIFF -lt 20 ]; then
-                exit 0
-              else
-                exit 1
-              fi
-          initialDelaySeconds: 10
-          failureThreshold: 3
-          periodSeconds: 10
-        env:
-        - name: QUEUE_HOST
-          value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
-        - name: INGRESS_QUEUE_NAME
-          value: watched-files
-        - name: EGRESS_QUEUE_NAME
-          value: scheduled-jobs
-        - name: QUEUE_USER
-          valueFrom: 
-            secretKeyRef:
-              name: rundetection-secrets
-              key: queue_user
-        - name: QUEUE_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: rundetection-secrets
-              key: queue_password
-        - name: FIA_API_URL
-          value: http://fia-api-service.fia.svc.cluster.local:80
-        - name: FIA_API_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: fia-api
-              key: fia_api_api_key
-        volumeMounts:
-          - name: archive-mount
-            mountPath: /archive
-          - name: runner-extra-files
-            mountPath: /extras
-          - name: imat-mount
-            mountPath: /imat
-            mountPropagation: HostToContainer
+              while true; do
+                if ! grep -q "//NDXIMAT.isis.cclrc.ac.uk/data\$" /proc/mounts; then
+                  echo "$(date): Attempting to mount IMAT share..."
+                  if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
+                    -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
+                    echo "$(date): IMAT share mounted successfully"
+                  else
+                    echo "$(date): Failed to mount IMAT share, retrying in 60s..."
+                  fi
+                fi
+                sleep 60
+              done
+          env:
+            - name: IMAT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: imat-creds
+                  key: username
+            - name: IMAT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: imat-creds
+                  key: password
+          volumeMounts:
+            - name: imat-mount
+              mountPath: /imat
+              mountPropagation: Bidirectional
+
+        - name: rundetection
+          image: ghcr.io/fiaisis/rundetection@sha256:9089be19accf0258c1fed449ace7cb1a88ca1795ef287b1f6eb15cb75ed3dd8e
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - |
+                  CURRENT_TIME=$(date +%s)
+                  FILE_TIME=$(date -r /tmp/heartbeat +%s)
+                  DIFF=$((CURRENT_TIME - FILE_TIME))
+                  if [ $DIFF -lt 20 ]; then
+                    exit 0
+                  else
+                    exit 1
+                  fi
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - |
+                  CURRENT_TIME=$(date +%s)
+                  FILE_TIME=$(date -r /tmp/heartbeat +%s)
+                  DIFF=$((CURRENT_TIME - FILE_TIME))
+                  if [ $DIFF -lt 20 ]; then
+                    exit 0
+                  else
+                    exit 1
+                  fi
+            initialDelaySeconds: 10
+            failureThreshold: 3
+            periodSeconds: 10
+          env:
+            - name: QUEUE_HOST
+              value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
+            - name: INGRESS_QUEUE_NAME
+              value: watched-files
+            - name: EGRESS_QUEUE_NAME
+              value: scheduled-jobs
+            - name: QUEUE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rundetection-secrets
+                  key: queue_user
+            - name: QUEUE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rundetection-secrets
+                  key: queue_password
+            - name: FIA_API_URL
+              value: http://fia-api-service.fia.svc.cluster.local:80
+            - name: FIA_API_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fia-api
+                  key: fia_api_api_key
+          volumeMounts:
+            - name: archive-mount
+              mountPath: /archive
+            - name: runner-extra-files
+              mountPath: /extras
+            - name: imat-mount
+              mountPath: /imat
+              mountPropagation: HostToContainer
       volumes:
         - name: runner-extra-files
           persistentVolumeClaim:

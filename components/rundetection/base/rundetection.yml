@@ -53,7 +53,7 @@ spec:
                 key: password
         volumeMounts:
           - name: imat-mount
-            mountPath: /work
+            mountPath: /imat
 
       - name: rundetection
         image: ghcr.io/fiaisis/rundetection@sha256:9089be19accf0258c1fed449ace7cb1a88ca1795ef287b1f6eb15cb75ed3dd8e

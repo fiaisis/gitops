@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: live-data-operator
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: live-data-operator
+          image: ghcr.io/fiaisis/live-data-operator@sha256:a4377f62be6b04fdef98e061624b077cc795c72fde1de8f8a50ca6a2cc5f4ba8
+          env:
+            - name: LIVE_DATA_PROCESSOR_IMAGE_SHA
+              value: "2cd5f7c714afe9d6245e629c72a2395dedc2568bdf7ac1052d8a9fb39f5a8599"

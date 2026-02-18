@@ -12,6 +12,8 @@ spec:
     chart: console
     helm:
       values: |
+        nameOverride: redpanda-console
+        fullnameOverride: redpanda-console
         config:
           serde:
             messagePack:

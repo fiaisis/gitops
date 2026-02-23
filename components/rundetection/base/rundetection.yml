@@ -35,12 +35,13 @@ spec:
                     -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
                     echo "$(date): IMAT share mounted successfully"
                   else
-                    echo "$(date): Failed to mount IMAT share, retrying in 60s..."
+                    echo "$(date): Failed to mount IMAT share, retrying in 5s..."
+                    sleep 5
                   fi
                 else
                   echo "$(date): IMAT is mounted"
+                  sleep 60
                 fi
-                sleep 60
               done
           env:
             - name: IMAT_USER

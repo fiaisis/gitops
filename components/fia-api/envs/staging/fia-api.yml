@@ -10,3 +10,9 @@ spec:
       containers:
         - name: fia-api
           image: ghcr.io/fiaisis/fia-api@sha256:555e85ecc2ce53b871a5de55b0be27e8b1df3ef68db7c49fc9d44af823142271
+          env:
+            - name: VALKEY_URL
+              valueFrom:
+                secretKeyRef:
+                  name: fia-api
+                  key: valkey_url

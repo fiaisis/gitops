@@ -27,7 +27,7 @@ spec:
             - |
               apk add --no-cache cifs-utils
               mkdir -p /imat
-              if [ ${Staging} == true ]; then
+              if [ ${STAGING} == true ]; then
                 exit
               fi
               
@@ -57,7 +57,7 @@ spec:
                 secretKeyRef:
                   name: imat-creds
                   key: password
-            - name: Staging
+            - name: STAGING
               value: "true"
           volumeMounts:
             - name: imat-mount

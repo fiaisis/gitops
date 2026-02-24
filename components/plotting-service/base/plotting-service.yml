@@ -4,7 +4,7 @@ metadata:
   name: plotting-service
   namespace: fia
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: plotting-service

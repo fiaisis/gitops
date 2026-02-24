@@ -67,7 +67,10 @@ spec:
             - |
               apk add --no-cache cifs-utils
               mkdir -p /imat
-
+              if [ ${STAGING} == true ]; then
+                exit
+              fi
+              
               while true; do
                 if [ ! -f /imat/lastrun.txt ]; then
                   echo "$(date): Attempting to mount IMAT share..."
@@ -94,6 +97,8 @@ spec:
                 secretKeyRef:
                   name: imat-creds
                   key: password
+            - name: STAGING
+              value: "true"
           volumeMounts:
             - name: imat-work
               mountPath: /imat

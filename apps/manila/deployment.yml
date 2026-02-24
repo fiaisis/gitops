@@ -10,6 +10,11 @@ spec:
     targetRevision: 2.35.0
     chart: openstack-manila-csi
     helm:
+      nodeplugin:
+        tolerations:
+          - effect: NoSchedule
+            key: nvidia.com/gpu
+            operator: Exists
       valuesObject:
         shareProtocols:
           - protocolSelector: CEPHFS
@@ -60,6 +65,11 @@ spec:
     targetRevision: 2.35.0
     chart: openstack-manila-csi
     helm:
+      nodeplugin:
+        tolerations:
+          - effect: NoSchedule
+            key: nvidia.com/gpu
+            operator: Exists
       valuesObject:
         shareProtocols:
           - protocolSelector: CEPHFS

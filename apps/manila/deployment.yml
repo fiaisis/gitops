@@ -10,7 +10,7 @@ spec:
     targetRevision: 2.35.0
     chart: openstack-manila-csi
     helm:
-      fullNameOverride: openstack-manila-csi
+      nameOverride: manila-csi
       nodeplugin:
         tolerations:
           - effect: NoSchedule

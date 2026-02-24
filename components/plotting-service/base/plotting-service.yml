@@ -68,7 +68,7 @@ spec:
               apk add --no-cache cifs-utils
               mkdir -p /imat
               if [ ${STAGING} == true ]; then
-                exit 0
+                sleep 1000000
               fi
               
               while true; do

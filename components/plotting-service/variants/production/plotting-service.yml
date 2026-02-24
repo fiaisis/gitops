@@ -12,7 +12,3 @@ spec:
           env:
             - name: PRODUCTION
               value: "true"
-        - name: imat-loader
-          env:
-            - name: STAGING
-              value: "false"

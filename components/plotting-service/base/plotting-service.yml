@@ -67,25 +67,26 @@ spec:
             - |
               apk add --no-cache cifs-utils
               mkdir -p /imat
-              if [ ${STAGING} == true ]; then
-                sleep 1000000
-              fi
               
               while true; do
-                if [ ! -f /imat/lastrun.txt ]; then
-                  echo "$(date): Attempting to mount IMAT share..."
-                  if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
-                    -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
-                    echo "$(date): IMAT share mounted successfully"
-                  else
-                    echo "$(date): Failed to mount IMAT share, retrying in 5s..."
-                    sleep 5
-                  fi
+                if [ ${STAGING} == true ]; then
+                  sleep 1000000
                 else
-                  echo "$(date): IMAT is mounted"
-                  sleep 60
+                  if [ ! -f /imat/lastrun.txt ]; then
+                    echo "$(date): Attempting to mount IMAT share..."
+                    if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
+                      echo "$(date): IMAT share mounted successfully"
+                    else
+                      echo "$(date): Failed to mount IMAT share, retrying in 5s..."
+                      sleep 5
+                    fi
+                  else
+                    echo "$(date): IMAT is mounted"
+                    sleep 60
+                  fi
                 fi
               done
+
           env:
             - name: IMAT_USER
               valueFrom:

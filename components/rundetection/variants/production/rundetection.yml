@@ -2,16 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: plotting-service
+  name: rundetection
   namespace: fia
 spec:
   template:
     spec:
       containers:
-        - name: plotting-service
-          env:
-            - name: PRODUCTION
-              value: "true"
         - name: imat-loader
           env:
             - name: STAGING

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: csi-manila-staging
+  name: manila-stagin
   namespace: argocd
 spec:
   project: staging
@@ -58,7 +58,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: csi-manila-prod
+  name: manila-prod
   namespace: argocd
 spec:
   project: prod

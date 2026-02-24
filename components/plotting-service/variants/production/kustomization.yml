@@ -3,4 +3,4 @@ kind: Component
 
 patchesStrategicMerge:
   - plotting-service.yml
-  - imat-loader.yml
+  - imat-mounter.yml

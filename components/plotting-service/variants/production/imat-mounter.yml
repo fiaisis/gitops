@@ -8,7 +8,7 @@ spec:
   template:
     spec:
       containers:
-        - name: imat-loader
+        - name: imat-mounter
           env:
             - name: STAGING
               value: "false"

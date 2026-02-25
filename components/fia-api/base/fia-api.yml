@@ -103,7 +103,7 @@ spec:
       volumes:
         - name: extras-files
           persistentVolumeClaim:
-            claimName: extras-manila-fia-api
+            claimName: extras-manila-fia-api-pvc
         - name: cephfs-mount
           persistentVolumeClaim:
             claimName: fia-api-ceph-pvc

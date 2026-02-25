@@ -58,7 +58,7 @@ spec:
   project: prod
   source:
     repoURL: https://ceph.github.io/csi-charts
-    targetRevision: 3.16.1
+    targetRevision: 3.16.0
     chart: ceph-csi-cephfs
     helm:
       valuesObject:

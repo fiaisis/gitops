@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: csimanila-stage
+  name: csi-manila-staging
   namespace: argocd
 spec:
   project: staging
@@ -10,14 +10,14 @@ spec:
     targetRevision: 2.35.0
     chart: openstack-manila-csi
     helm:
-      nameOverride: manila-csi
-      fullNameOverride: openstack-manila-csi
-      nodeplugin:
-        tolerations:
-          - effect: NoSchedule
-            key: nvidia.com/gpu
-            operator: Exists
       valuesObject:
+        nameOverride: manila-csi
+        fullNameOverride: openstack-manila-csi
+        nodeplugin:
+          tolerations:
+            - effect: NoSchedule
+              key: nvidia.com/gpu
+              operator: Exists
         shareProtocols:
           - protocolSelector: CEPHFS
             fsGroupPolicy: None
@@ -58,7 +58,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: csimanila-prod
+  name: csi-manila-prod
   namespace: argocd
 spec:
   project: prod
@@ -67,14 +67,14 @@ spec:
     targetRevision: 2.35.0
     chart: openstack-manila-csi
     helm:
-      nameOverride: manila-csi
-      fullNameOverride: manila-csi
-      nodeplugin:
-        tolerations:
-          - effect: NoSchedule
-            key: nvidia.com/gpu
-            operator: Exists
       valuesObject:
+        nameOverride: manila-csi
+        fullNameOverride: openstack-manila-csi
+        nodeplugin:
+          tolerations:
+            - effect: NoSchedule
+              key: nvidia.com/gpu
+              operator: Exists
         shareProtocols:
           - protocolSelector: CEPHFS
             fsGroupPolicy: None

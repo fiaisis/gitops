@@ -8,8 +8,15 @@ spec:
   project: staging
   source:
     repoURL: https://ceph.github.io/csi-charts
-    targetRevision: 3.16.0
+    targetRevision: 3.16.1
     chart: ceph-csi-cephfs
+    helm:
+      valuesObject:
+        nodeplugin:
+          tolerations:
+            - effect: NoSchedule
+              key: nvidia.com/gpu
+              operator: Exists
   destination:
     namespace: fia
     name: staging
@@ -51,8 +58,15 @@ spec:
   project: prod
   source:
     repoURL: https://ceph.github.io/csi-charts
-    targetRevision: 3.16.0
+    targetRevision: 3.16.1
     chart: ceph-csi-cephfs
+    helm:
+      valuesObject:
+        nodeplugin:
+          tolerations:
+            - effect: NoSchedule
+              key: nvidia.com/gpu
+              operator: Exists
   destination:
     namespace: fia
     name: prod

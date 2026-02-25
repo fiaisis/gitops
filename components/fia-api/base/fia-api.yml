@@ -96,14 +96,14 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 300
         volumeMounts:
-          - name: runner-extra-files
+          - name: extras-files
             mountPath: /extras
           - name: cephfs-mount
             mountPath: /ceph
       volumes:
-        - name: runner-extra-files
+        - name: extras-files
           persistentVolumeClaim:
-            claimName: runner-extra-files-manila-fia-api-pvc
+            claimName: extras-manila-fia-api
         - name: cephfs-mount
           persistentVolumeClaim:
             claimName: fia-api-ceph-pvc

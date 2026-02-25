@@ -7,7 +7,7 @@ spec:
   project: staging
   source:
     repoURL: https://kubernetes.github.io/cloud-provider-openstack
-    targetRevision: 2.35.0
+    targetRevision: 2.34.2
     chart: openstack-manila-csi
     helm:
       valuesObject:
@@ -64,7 +64,7 @@ spec:
   project: prod
   source:
     repoURL: https://kubernetes.github.io/cloud-provider-openstack
-    targetRevision: 2.35.0
+    targetRevision: 2.34.2
     chart: openstack-manila-csi
     helm:
       valuesObject:

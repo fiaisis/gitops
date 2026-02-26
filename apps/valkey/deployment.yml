@@ -9,6 +9,9 @@ spec:
     repoURL: https://valkey.io/valkey-helm/
     targetRevision: 0.9.3
     chart: valkey
+    helm:
+      values: |
+        nameOverride: "valkey"
   destination:
     namespace: valkey
     name: staging

@@ -11,7 +11,7 @@ spec:
     chart: valkey
     helm:
       values: |
-        nameOverride: "valkey"
+        fullnameOverride: "valkey"
   destination:
     namespace: valkey
     name: staging

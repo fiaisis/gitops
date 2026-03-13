@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: llsp-worker
-          image: ghcr.io/fiaisis/llsp-worker@sha256:2777acd0479d69ea8f781b2d39471d3fda13f1d2841b7b6a2a93ddd10ee3c0e4
+          image: ghcr.io/fiaisis/llsp-worker@sha256:1b7327c436bf9f20affa0e66a6096f92185e3f22e0783c9d66ce238cf1749ea8

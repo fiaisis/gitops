@@ -10,10 +10,10 @@ spec:
       serviceAccountName: jobcreator
       containers:
         - name: jobcreator
-          image: ghcr.io/fiaisis/jobcreator@sha256:64235ac189f60c2a94e63405f9730c45264d2deb89974b41f697f552d3b070ff
+          image: ghcr.io/fiaisis/jobcreator@sha256:b52e33b1c92173f0cbe4d02379942147cef23c4a484a545775035e192e2e92dd
           env:
             - name: WATCHER_SHA
-              value: 7ae45328f8e24065ac3bb2db07486fe8d795a2f4b4a3274258ee07047644b3ef
+              value: 9b4376a0336ada1882cf46cfb051d8277b5982312746516283456f3e72f85045
             - name: DEFAULT_RUNNER_SHA
               value: 0a0d9f1aa88fec49be4ee30356b51bddae822067f2e5fb8042a08ddf0f6ea288
             - name: IMAGING_RUNNER_SHA

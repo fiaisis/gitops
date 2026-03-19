@@ -12,7 +12,7 @@ spec:
         - name: fia-api
           env:
             - name: DB_IP
-              value: dbspg-dfndev.fds.rl.ac.uk
+              value: dbspg-dev.fds.rl.ac.uk
             - name: DB_PORT
               value: "6432"
             - name: QUEUE_HOST

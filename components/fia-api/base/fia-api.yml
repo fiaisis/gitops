@@ -55,8 +55,10 @@ spec:
         - name: OTEL_PYTHON_FASTAPI_EXCLUDED_URLS
           value: "/healthz,/ready"
         - name: DB_IP
-          value: dbspgha03.fds.rl.ac.uk # Staging
+          value: dbspg-dfndev.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
+        - name: DB_PORT
+          value: "6432"
         - name: DB_PASSWORD
           valueFrom: 
             secretKeyRef:

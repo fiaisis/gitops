@@ -27,8 +27,10 @@ spec:
         - name: MAX_TIME_TO_COMPLETE
           value: "21600"
         - name: DB_IP
-          value: dbspgha03.fds.rl.ac.uk # Staging
+          value: dbspg-dfndev.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
+        - name: DB_PORT
+          value: "6432"
         - name: REDUCE_USER_ID
           value: '880844730'
         - name: QUEUE_HOST

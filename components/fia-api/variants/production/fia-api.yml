@@ -12,6 +12,8 @@ spec:
           env:
           - name: DB_IP
             value: dbspgha01.fds.rl.ac.uk
+          - name: DB_PORT
+            value: "5432"
           - name: QUEUE_HOST
             value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
           - name: EGRESS_QUEUE_NAME

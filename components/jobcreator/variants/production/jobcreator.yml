@@ -13,3 +13,5 @@ spec:
         # Non secret env vars
         - name: DB_IP
           value: dbspgha01.fds.rl.ac.uk
+        - name: DB_PORT
+          value: "5432"

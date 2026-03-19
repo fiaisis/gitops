@@ -28,7 +28,7 @@ spec:
         - name: FILEWATCHER_NAMESPACE
           value: fia
         - name: DB_IP
-          value: dbspg-dfndev.fds.rl.ac.uk # Staging
+          value: dbspg-dev.fds.rl.ac.uk # Staging
           # value: dbspgha01.fds.rl.ac.uk # Production
         - name: DB_PORT
           value: "6432"

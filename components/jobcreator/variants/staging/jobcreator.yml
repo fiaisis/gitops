@@ -14,7 +14,7 @@ spec:
           env:
             # Non secret env vars
             - name: DB_IP
-              value: dbspg-dfndev.fds.rl.ac.uk
+              value: dbspg-dev.fds.rl.ac.uk
             - name: DB_PORT
               value: "6432"
             - name: DEV_MODE

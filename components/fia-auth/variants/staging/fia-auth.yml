@@ -5,6 +5,7 @@ metadata:
   name: fia-auth
   namespace: fia
 spec:
+  replicas: 0
   template:
     spec:
       containers:

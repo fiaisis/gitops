@@ -12,6 +12,9 @@ spec:
     chart: argo-cd
     helm:
       values: |
+        global:
+          domain: management.reduce.isis.cclrc.ac.uk/argocd
+
         configs:
           params:
             server.rootpath: argocd

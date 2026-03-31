@@ -5,4 +5,4 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   hostnames:
-    - "reduce.isis.cclrc.ac.uk"
+    - "management.reduce.isis.cclrc.ac.uk"

@@ -17,9 +17,15 @@ spec:
     - path:
         type: PathPrefix
         value: /data-viewer
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /
     backendRefs:
     - group: ''
       kind: Service
-      name: frontend-service
-      port: 80
+      name: data-viewer-service
+      port: 3000
       weight: 1

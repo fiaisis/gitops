@@ -38,8 +38,8 @@ spec:
             rules:
               - matches:
                 - path:
-                  type: PathPrefix
-                  value: /argocd
+                    type: PathPrefix
+                    value: /argocd
 
         repoServer:
           autoscaling:

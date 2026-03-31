@@ -2,7 +2,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
   name: staging-reduce-isis-tls
-  namespace: fia
+  namespace: envoy-gateway-system
 spec:
   type: kv-v2
   refreshAfter: 30s

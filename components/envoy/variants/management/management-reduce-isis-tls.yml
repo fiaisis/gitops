@@ -2,7 +2,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
   name: management-reduce-isis-tls
-  namespace: argocd
+  namespace: envoy-gateway-system
 spec:
   type: kv-v2
   refreshAfter: 30s

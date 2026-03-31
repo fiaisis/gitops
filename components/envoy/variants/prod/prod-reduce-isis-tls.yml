@@ -2,7 +2,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
   name: prod-reduce-isis-tls
-  namespace: redpanda
+  namespace: envoy-gateway-system
 spec:
   type: kv-v2
   refreshAfter: 30s

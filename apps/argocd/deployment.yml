@@ -15,6 +15,7 @@ spec:
         configs:
           params:
             server.rootpath: argocd
+            server.insecure: "true"
         redis-ha:
           enabled: true
 

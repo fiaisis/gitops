@@ -12,9 +12,6 @@ spec:
     chart: argo-cd
     helm:
       values: |
-        global:
-          domain: management.reduce.isis.cclrc.ac.uk/argocd
-
         configs:
           params:
             server.rootpath: argocd
@@ -30,12 +27,18 @@ spec:
             minReplicas: 2
           httproute:
             enabled: true
+            hostnames: management.reduce.isis.cclrc.ac.uk
             parentRefs:
               - group: gateway.networking.k8s.io
                 kind: Gateway
                 name: envoy-gateway
                 namespace: envoy-gateway-system
                 sectionName: https-main
+            rules:
+              - matches:
+                - path:
+                  type: PathPrefix
+                  value: /argocd
 
         repoServer:
           autoscaling:

@@ -19,4 +19,4 @@ spec:
         value: /argocd
     backendRefs:
     - name: argocd-server
-      port: 3000
+      port: 80

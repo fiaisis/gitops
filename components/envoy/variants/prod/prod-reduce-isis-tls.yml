@@ -15,3 +15,4 @@ spec:
     name: prod-reduce-isis-tls
     overwrite: true
     create: true
+    type: kubernetes.io/tls

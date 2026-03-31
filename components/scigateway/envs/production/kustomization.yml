@@ -4,3 +4,4 @@ resources:
 - ../../base
 patches:
 - path: scigateway.yml
+- path: httproute.yml

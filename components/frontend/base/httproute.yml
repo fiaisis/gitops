@@ -1,0 +1,25 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: frontend
+  namespace: fia
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: envoy-gateway
+    namespace: envoy-gateway-system
+    sectionName: https-main
+  hostnames:
+    - "localhost"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /f-i-a
+    backendRefs:
+    - group: ''
+      kind: Service
+      name: frontend-service
+      port: 80
+      weight: 1

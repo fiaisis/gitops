@@ -1,0 +1,9 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: proxy
+spec:
+  provider:
+    kubernetes:
+      envoyService:
+        loadBalancerIP: 130.246.81.192

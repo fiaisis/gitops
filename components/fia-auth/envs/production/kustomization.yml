@@ -10,3 +10,4 @@ components:
 patchesStrategicMerge:
   - fia-auth.yml
   - fia-auth-secret.yml
+  - httproute.yml

@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - scigateway.yml
   - scigateway-service.yml
+  - httproute.yml

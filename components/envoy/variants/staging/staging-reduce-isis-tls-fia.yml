@@ -1,0 +1,17 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: staging-reduce-isis-tls
+  namespace: fia
+spec:
+  type: kv-v2
+  refreshAfter: 30s
+  vaultAuthRef: static-auth
+
+  # Things to change:
+  mount: fia
+  path: staging/staging-reduce-isis-tls
+  destination:
+    name: staging-reduce-isis-tls
+    overwrite: true
+    create: true

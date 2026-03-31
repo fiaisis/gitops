@@ -1,0 +1,13 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: proxy
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDeployment:
+        replicas: 3
+      envoyService:
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: 127.0.0.1  # Obviously not a good IP

@@ -4,3 +4,4 @@ resources:
 - ../../base
 patches:
 - path: frontend.yml
+- path: httproute.yml

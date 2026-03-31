@@ -1,0 +1,16 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: envoy-gateway
+  namespace: envoy-gateway-system
+spec:
+  listeners:
+  - name: http-main
+    hostname: reduce.isis.cclrc.ac.uk
+  - name: https-main
+    hostname: reduce.isis.cclrc.ac.uk
+    tls:
+      certificateRefs:
+        - group: ""
+          kind: Secret
+          name: prod-reduce-isis-tls

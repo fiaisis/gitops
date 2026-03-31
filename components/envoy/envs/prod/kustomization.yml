@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
 - ../../base
 patches:
-- path: frontend.yml
-- path: httproute.yml
+- path: envoy-proxy.yml
+- path: gateway.yml
+- path: redirect-http-route.yml

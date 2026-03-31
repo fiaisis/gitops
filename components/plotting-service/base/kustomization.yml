@@ -7,4 +7,4 @@ resources:
   - ceph-pvc.yml
   - imat-secret.yml
   - plotting-service-secret.yml
-
+  - httproute.yml

@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - frontend.yml
   - frontend-service.yml
+  - httproute.yml

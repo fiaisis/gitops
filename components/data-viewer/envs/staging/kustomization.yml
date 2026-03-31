@@ -4,3 +4,4 @@ resources:
   - ../../base
 patches:
   - path: data-viewer.yml
+  - path: httproute.yml

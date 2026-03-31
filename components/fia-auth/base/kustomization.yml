@@ -4,3 +4,4 @@ resources:
   - fia-auth.yml
   - fia-auth-service.yml
   - fia-auth-secret.yml
+  - httproute.yml

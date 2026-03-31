@@ -27,7 +27,8 @@ spec:
             minReplicas: 2
           httproute:
             enabled: true
-            hostnames: management.reduce.isis.cclrc.ac.uk
+            hostnames: 
+              - "management.reduce.isis.cclrc.ac.uk"
             parentRefs:
               - group: gateway.networking.k8s.io
                 kind: Gateway

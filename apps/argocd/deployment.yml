@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 9.3.7
+    targetRevision: 9.4.17
     chart: argo-cd
     helm:
       values: |
@@ -25,6 +25,14 @@ spec:
           autoscaling:
             enabled: true
             minReplicas: 2
+          httproute:
+            enabled: true
+            parentRefs:
+              - group: gateway.networking.k8s.io
+                kind: Gateway
+                name: envoy-gateway
+                namespace: envoy-gateway-system
+                sectionName: https-main
 
         repoServer:
           autoscaling:

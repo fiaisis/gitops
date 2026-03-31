@@ -31,6 +31,7 @@ spec:
     - "https://charts.redpanda.com"
     - "https://helm.releases.hashicorp.com"
     - "https://valkey.io/valkey-helm/"
+    - "docker.io/envoyproxy"
   destinations:
     - namespace: "*"
       server: "https://130.246.81.17:6443"

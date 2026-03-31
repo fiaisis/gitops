@@ -27,6 +27,7 @@ spec:
     - "https://helm.releases.hashicorp.com"
     - "https://valkey.io/valkey-helm/"
     - "https://charts.jetstack.io"
+    - "docker.io/envoyproxy"
   destinations:
     - namespace: "*"
       server: "https://130.246.214.191:6443"

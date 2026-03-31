@@ -5,4 +5,4 @@ metadata:
   namespace: fia
 spec:
   hostnames:
-    - "reduce.isis.cclrc.ac.uk"
+    - "dev.reduce.isis.cclrc.ac.uk"

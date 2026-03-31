@@ -11,7 +11,7 @@ spec:
     namespace: envoy-gateway-system
     sectionName: https-main
   hostnames:
-    - "localhost"
+    - "dev.reduce.isis.cclrc.ac.uk"
   rules:
   - matches:
     - path:

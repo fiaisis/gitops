@@ -15,7 +15,7 @@ spec:
       releaseName: envoy-gateway
   destination:
     namespace: envoy-gateway-system
-    server: https://kubernetes.default.svc
+    name: staging
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
@@ -39,7 +39,7 @@ spec:
     targetRevision: HEAD
   destination:
     namespace: envoy-gateway-system
-    server: https://kubernetes.default.svc
+    name: staging
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
@@ -113,7 +113,7 @@ spec:
       releaseName: envoy-gateway
   destination:
     namespace: envoy-gateway-system
-    server: https://kubernetes.default.svc
+    name: prod
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
@@ -137,7 +137,7 @@ spec:
     targetRevision: HEAD
   destination:
     namespace: envoy-gateway-system
-    server: https://kubernetes.default.svc
+    name: prod
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

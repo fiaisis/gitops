@@ -13,6 +13,22 @@ spec:
   hostnames:
     - "dev.reduce.isis.cclrc.ac.uk"
   rules:
+  # Rewrites /plottingapi/meta/ to /meta
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /plottingapi/meta/
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /meta
+    backendRefs:
+      - name: plotting-service-service
+        port: 80
+
+  # Rewrites URL to remove plottingapi if no meta present
   - matches:
     - path:
         type: PathPrefix

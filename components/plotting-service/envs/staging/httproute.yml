@@ -28,6 +28,21 @@ spec:
       - name: plotting-service-service
         port: 80
 
+    # Rewrites /plottingapi/attr/ to /attr
+  - matches:
+      - path:
+          type: Exact
+          value: /plottingapi/attr/
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplaceFullPath
+            replaceFullPath: /attr
+    backendRefs:
+      - name: plotting-service-service
+        port: 80
+
   # Rewrites URL to remove plottingapi if no meta present
   - matches:
     - path:

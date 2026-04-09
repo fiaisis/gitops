@@ -23,7 +23,7 @@ spec:
         urlRewrite:
           path:
             type: ReplaceFullPath
-            replacePrefixMatch: /meta
+            replaceFullPath: /meta
     backendRefs:
       - name: plotting-service-service
         port: 80

@@ -16,13 +16,13 @@ spec:
   # Rewrites /plottingapi/meta/ to /meta
   - matches:
     - path:
-        type: PathPrefix
+        type: Exact
         value: /plottingapi/meta/
     filters:
       - type: URLRewrite
         urlRewrite:
           path:
-            type: ReplacePrefixMatch
+            type: ReplaceFullPath
             replacePrefixMatch: /meta
     backendRefs:
       - name: plotting-service-service

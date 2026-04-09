@@ -43,6 +43,21 @@ spec:
       - name: plotting-service-service
         port: 80
 
+    # Rewrites /plottingapi/data/ to /data
+  - matches:
+      - path:
+          type: Exact
+          value: /plottingapi/data/
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplaceFullPath
+            replaceFullPath: /data
+    backendRefs:
+      - name: plotting-service-service
+        port: 80
+
   # Rewrites URL to remove plottingapi if no meta present
   - matches:
     - path:

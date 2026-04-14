@@ -1,0 +1,43 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: smb-bridges-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: fia
+    name: staging
+  project: staging
+  source:
+    path: components/smb-bridges/envs/staging
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: smb-bridges-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: fia
+    name: prod
+  project: prod
+  source:
+    path: components/smb-bridges/envs/production
+    repoURL: https://github.com/interactivereduction/gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

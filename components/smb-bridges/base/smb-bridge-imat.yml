@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smb-bridge-imat
+  namespace: fia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smb-bridge-imat
+  template:
+    metadata:
+      labels:
+        app: smb-bridge-imat
+    spec:
+      containers:
+      - name: nfs-server
+        image: sharedvolume/nfs-server:0.1.0-alpine-3.22.0
+        env:
+        - name: SHARED_DIRECTORY
+          value: "/imat"
+        - name: PERMITTED
+          value: "*"
+        - name: SYNC
+          value: "true"
+        ports:
+        - containerPort: 2049
+          name: nfs
+        - containerPort: 20048
+          name: mountd
+        - containerPort: 111
+          name: rpcbind
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+            - SYS_ADMIN
+            - SYS_MODULE
+        volumeMounts:
+        - name: smb-bridge-imat
+          mountPath: /imat
+        readinessProbe:
+          exec:
+            command: ["sh", "-c", "showmount -e localhost"]
+          initialDelaySeconds: 20
+        livenessProbe:
+          exec:
+            command: ["sh", "-c", "pgrep rpc.mountd && showmount -e localhost"]
+          initialDelaySeconds: 30
+      volumes:
+      - name: smb-bridge-imat
+        persistentVolumeClaim:
+          claimName: imat-smb-pvc

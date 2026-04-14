@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smb-bridge-imat
+  namespace: fia
+spec:
+  selector:
+    app: nfs-server
+  ports:
+  - name: nfs
+    port: 2049
+    targetPort: 2049
+  - name: mountd
+    port: 20048
+    targetPort: 20048
+  - name: rpcbind
+    port: 111
+    targetPort: 111
+  type: ClusterIP

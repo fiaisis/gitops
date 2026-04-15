@@ -6,7 +6,7 @@ metadata:
   namespace: fia
 spec:
   selector:
-    app: smb-bridge-imat
+    app: nfs-server
   ports:
   - name: nfs
     port: 2049

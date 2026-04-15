@@ -4,7 +4,7 @@ metadata:
   name: smb-bridge-imat
   namespace: fia
 spec:
-  replicas: 1
+  replicas: 1 # Ensuring only 1 connection to the upstream storage
   selector:
     matchLabels:
       app: smb-bridge-imat
@@ -14,40 +14,30 @@ spec:
         app: smb-bridge-imat
     spec:
       containers:
-      - name: nfs-server
-        image: sharedvolume/nfs-server:0.1.0-alpine-3.22.0
+      - name: samba
+        image: dockur/samba:4.21
         env:
-        - name: SHARED_DIRECTORY
-          value: "/imat"
-        - name: PERMITTED
-          value: "*"
-        - name: SYNC
-          value: "true"
+          - name: USER
+            valueFrom:
+              secretKeyRef:
+                name: smb-bridge-imat
+                key: user
+          - name: PASS
+            valueFrom:
+              secretKeyRef:
+                name: smb-bridge-imat
+                key: pass
+          - name: SHARED
+            value: "imat;/imat;yes;no;no;fiauser;none;fiauser"
         ports:
-        - containerPort: 2049
-          name: nfs
-        - containerPort: 20048
-          name: mountd
-        - containerPort: 111
-          name: rpcbind
+          - containerPort: 445
+            name: smb
         securityContext:
           privileged: true
-          capabilities:
-            add:
-            - SYS_ADMIN
-            - SYS_MODULE
         volumeMounts:
-        - name: smb-bridge-imat
-          mountPath: /imat
-        readinessProbe:
-          exec:
-            command: ["sh", "-c", "showmount -e localhost"]
-          initialDelaySeconds: 20
-        livenessProbe:
-          exec:
-            command: ["sh", "-c", "pgrep rpc.mountd && showmount -e localhost"]
-          initialDelaySeconds: 30
+          - name: source-smb
+            mountPath: /imat
       volumes:
-      - name: smb-bridge-imat
-        persistentVolumeClaim:
-          claimName: imat-smb-pvc
+        - name: source-smb
+          persistentVolumeClaim:
+            claimName: imat-smb-pvc

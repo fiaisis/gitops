@@ -5,3 +5,4 @@ resources:
 
 patches:
 - path: imat-secret.yml
+- path: smb-bridge-imat-secret.yml

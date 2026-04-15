@@ -4,4 +4,4 @@ resources:
 - ../../base
 
 patches:
-- path: imat-secret.yml
+- path: smb-brigde-imat.yml

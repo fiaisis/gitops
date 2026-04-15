@@ -5,4 +5,5 @@ resources:
 patches:
   - path: plotting-service.yml
   - path: plotting-service-secret.yml
+  - path: imat-secret.yml
   - path: httproute.yml

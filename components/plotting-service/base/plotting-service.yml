@@ -62,11 +62,7 @@ spec:
           persistentVolumeClaim:
             claimName: plotting-service-ceph-pvc
         - name: imat-mount
-          csi:
-            driver: smb.csi.k8s.io
-            volumeHandle: plotting-service-imat-smb
-            volumeAttributes:
-              source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
-            nodeStageSecretRef:
-              name: smb-bridge-secret
-              namespace: fia
+          nfs:
+            server: smb-bridge-imat.fia.svc.cluster.local
+            path: "/imat"
+            readOnly: true

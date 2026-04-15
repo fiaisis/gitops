@@ -6,4 +6,3 @@ resources:
   - imat-secret.yml
   - smb-bridge-imat.yml
   - smb-bridge-imat-svc.yml
-  - smb-bridge-imat-secret.yml

@@ -66,7 +66,7 @@ spec:
             driver: smb.csi.k8s.io
             volumeHandle: plotting-service-imat-smb
             volumeAttributes:
-              source: "//10.14.188.36/imat"
+              source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
               secretName: "smb-bridge-imat"
               secretNamespace: "fia"
             nodePublishSecretRef:

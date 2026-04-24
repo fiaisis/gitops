@@ -27,6 +27,8 @@ spec:
               secretKeyRef:
                 name: smb-bridge-imat
                 key: pass
+          - name: GLOBAL
+            value: "netbios name = *; smb ports = 445; disable netbios = yes"
           - name: SHARED
             value: "imat;/imat;yes;no;no;fiauser;none;fiauser"
         ports:

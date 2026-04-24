@@ -64,7 +64,6 @@ spec:
         - name: imat-mount
           csi:
             driver: smb.csi.k8s.io
-            volumeHandle: plotting-service-imat-smb-mount
             volumeAttributes:
               source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
               secretName: "smb-bridge-imat"

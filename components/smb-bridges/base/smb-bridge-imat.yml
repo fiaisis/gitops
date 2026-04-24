@@ -19,6 +19,8 @@ spec:
         env:
           - name: NAME
             value: "imat"
+          - name: RW
+            value: "false"
           - name: USER
             valueFrom:
               secretKeyRef:
@@ -36,7 +38,7 @@ spec:
           privileged: true
         volumeMounts:
           - name: source-smb
-            mountPath: /imat
+            mountPath: /storage
       volumes:
         - name: source-smb
           persistentVolumeClaim:

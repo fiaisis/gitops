@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: samba
-        image: dockur/samba:4.23.5
+        image: dockurr/samba:4.23.5
         env:
           - name: USER
             valueFrom:

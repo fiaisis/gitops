@@ -67,7 +67,7 @@ spec:
             volumeHandle: plotting-service-imat-smb
             volumeAttributes:
               source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
-              csi.storage.k8s.io/node-publish-secret-name: "smb-bridge-imat"
-              csi.storage.k8s.io/node-publish-secret-namespace: "fia"
+              secretName: "smb-bridge-imat"
+              secretNamespace: "fia"
             nodePublishSecretRef:
               name: smb-bridge-imat

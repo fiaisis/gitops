@@ -18,6 +18,10 @@ spec:
     - path:
         type: PathPrefix
         value: /api/live-data
+      headers: # We can't match and replace with a regex on a non base path so need to match on header
+        - type: Exact
+          name: Accept
+          value: text/event-stream
     timeouts:
       request: 0s  # Disables the 15-second Envoy drop
     filters:
@@ -25,7 +29,7 @@ spec:
         urlRewrite:
           path:
             type: ReplacePrefixMatch
-            replacePrefixMatch: /live-data # Retains the /live-data path for the backend
+            replacePrefixMatch: /live-data
     backendRefs:
     - group: ''
       kind: Service

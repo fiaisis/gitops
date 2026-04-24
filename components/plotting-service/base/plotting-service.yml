@@ -66,6 +66,8 @@ spec:
             driver: smb.csi.k8s.io
             volumeAttributes:
               source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
+              secretName: "smb-bridge-imat"
+              secretNamespace: "fia"
               mountOptions: "vers=3.0,nodfs,ro"
             nodePublishSecretRef:
               name: smb-bridge-imat

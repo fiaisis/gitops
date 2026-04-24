@@ -68,4 +68,4 @@ spec:
             volumeAttributes:
               source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
             nodePublishSecretRef:
-              name: smb-bridge-secret
+              name: smb-bridge-imat

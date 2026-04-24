@@ -67,6 +67,5 @@ spec:
             volumeHandle: plotting-service-imat-smb
             volumeAttributes:
               source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
-            nodeStageSecretRef:
+            nodePublishSecretRef:
               name: smb-bridge-secret
-              namespace: fia

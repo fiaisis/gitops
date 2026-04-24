@@ -24,5 +24,5 @@ spec:
     volumeAttributes:
       source: "//NDXIMAT.isis.cclrc.ac.uk/data$"
     nodeStageSecretRef:
-      name: imat-creds
+      name: smb-bridge-imat
       namespace: fia

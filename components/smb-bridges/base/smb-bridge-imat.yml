@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smb-bridge-imat
+  namespace: fia
+spec:
+  replicas: 1 # Ensuring only 1 connection to the upstream storage
+  selector:
+    matchLabels:
+      app: smb-bridge-imat
+  template:
+    metadata:
+      labels:
+        app: smb-bridge-imat
+    spec:
+      containers:
+      - name: samba
+        image: dockur/samba:4.23.5
+        env:
+          - name: USER
+            valueFrom:
+              secretKeyRef:
+                name: smb-bridge-imat
+                key: user
+          - name: PASS
+            valueFrom:
+              secretKeyRef:
+                name: smb-bridge-imat
+                key: pass
+          - name: SHARED
+            value: "imat;/imat;yes;no;no;fiauser;none;fiauser"
+        ports:
+          - containerPort: 445
+            name: smb
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - name: source-smb
+            mountPath: /imat
+      volumes:
+        - name: source-smb
+          persistentVolumeClaim:
+            claimName: imat-smb-pvc

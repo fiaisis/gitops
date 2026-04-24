@@ -43,9 +43,8 @@ spec:
           volumeMounts:
             - name: cephfs-mount
               mountPath: /ceph
-            - name: imat-work
+            - name: imat-mount
               mountPath: /imat
-              mountPropagation: HostToContainer
           readinessProbe:
             httpGet:
               path: /healthz
@@ -58,55 +57,16 @@ spec:
               port: 80
             initialDelaySeconds: 5
             periodSeconds: 5
-        - name: imat-mounter
-          image: alpine
-          securityContext:
-            privileged: true
-          command: ["sh", "-c"]
-          args:
-            - |
-              apk add --no-cache cifs-utils
-              mkdir -p /imat
-              
-              while true; do
-                if [ ${STAGING} == true ]; then
-                  sleep 1000000
-                else
-                  if [ ! -f /imat/lastrun.txt ]; then
-                    echo "$(date): Attempting to mount IMAT share..."
-                    if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
-                      echo "$(date): IMAT share mounted successfully"
-                    else
-                      echo "$(date): Failed to mount IMAT share, retrying in 5s..."
-                      sleep 5
-                    fi
-                  else
-                    echo "$(date): IMAT is mounted"
-                    sleep 60
-                  fi
-                fi
-              done
-
-          env:
-            - name: IMAT_USER
-              valueFrom:
-                secretKeyRef:
-                  name: imat-creds
-                  key: username
-            - name: IMAT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: imat-creds
-                  key: password
-            - name: STAGING
-              value: "true"
-          volumeMounts:
-            - name: imat-work
-              mountPath: /imat
-              mountPropagation: Bidirectional
       volumes:
         - name: cephfs-mount
           persistentVolumeClaim:
             claimName: plotting-service-ceph-pvc
-        - name: imat-work
-          emptyDir: {}
+        - name: imat-mount
+          csi:
+            driver: smb.csi.k8s.io
+            volumeHandle: plotting-service-imat-smb
+            volumeAttributes:
+              source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
+            nodeStageSecretRef:
+              name: smb-bridge-secret
+              namespace: fia

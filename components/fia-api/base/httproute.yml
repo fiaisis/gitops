@@ -13,6 +13,27 @@ spec:
   hostnames:
     - "localhost"
   rules:
+  # RULE 1: Specific match for SSE streams (Infinite Timeout)
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /api/live-data
+    timeouts:
+      request: 0s  # Disables the 15-second Envoy drop
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /live-data # Retains the /live-data path for the backend
+    backendRefs:
+    - group: ''
+      kind: Service
+      name: fia-api-service
+      port: 80
+      weight: 1
+
+  # RULE 2: Standard API Catch-all (Default 15s Timeout)
   - matches:
     - path:
         type: PathPrefix

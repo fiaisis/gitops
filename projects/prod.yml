@@ -32,6 +32,7 @@ spec:
     - "https://helm.releases.hashicorp.com"
     - "https://valkey.io/valkey-helm/"
     - "docker.io/envoyproxy"
+    - "https://helm.ngc.nvidia.com/nvidia"
   destinations:
     - namespace: "*"
       server: "https://130.246.81.17:6443"

@@ -28,6 +28,7 @@ spec:
     - "https://valkey.io/valkey-helm/"
     - "https://charts.jetstack.io"
     - "docker.io/envoyproxy"
+    - "https://helm.ngc.nvidia.com/nvidia"
   destinations:
     - namespace: "*"
       server: "https://130.246.214.191:6443"

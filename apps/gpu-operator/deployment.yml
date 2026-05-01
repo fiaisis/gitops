@@ -16,7 +16,7 @@ spec:
             strategy: none
           daemonsets:
             tolerations:
-              - key: "gpu"
+              - key: "nvidia.com/gpu"
                 operator: "Equal"
                 value: "worker"
                 effect: "NoSchedule"
@@ -50,7 +50,7 @@ spec:
             strategy: none
           daemonsets:
             tolerations:
-              - key: "gpu"
+              - key: "nvidia.com/gpu"
                 operator: "Equal"
                 value: "worker"
                 effect: "NoSchedule"

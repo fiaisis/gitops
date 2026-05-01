@@ -53,8 +53,10 @@ spec:
           toolkit:
             enabled: true
             env:
-              - name: ANY_CHANGE_TO_FORCE_RESTART
-                value: "1"
+              - name: CONTAINERD_CONFIG_DIR
+                value: /etc/containerd/conf.d
+              - name: CONTAINERD_CONFIG
+                value: /etc/containerd/conf.d/99-nvidia.toml
           daemonsets:
             tolerations:
               - key: "nvidia.com/gpu"

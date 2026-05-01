@@ -1,67 +1,67 @@
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: gpu-operator-prod
-#  namespace: argocd
-#  annotations:
-#    argocd.argoproj.io/sync-wave: "-10"
-#spec:
-#  sources:
-#    - repoURL: https://helm.ngc.nvidia.com/nvidia
-#      chart: gpu-operator
-#      targetRevision: v26.3.1
-#      helm:
-#        values: |
-#          mig:
-#            strategy: none
-#          daemonsets:
-#            tolerations:
-#              - key: "gpu"
-#                operator: "Equal"
-#                value: "worker"
-#                effect: "NoSchedule"
-#  destination:
-#    namespace: gpu-operator
-#    name: prod
-#  project: prod
-#  syncPolicy:
-#    syncOptions:
-#    - CreateNamespace=true
-#    - ServerSideApply=true
-#    automated:
-#      prune: true
-#      selfHeal: true
-#---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: gpu-operator-staging
-#  namespace: argocd
-#  annotations:
-#    argocd.argoproj.io/sync-wave: "-10"
-#spec:
-#  sources:
-#    - repoURL: https://helm.ngc.nvidia.com/nvidia
-#      chart: gpu-operator
-#      targetRevision: v26.3.1
-#      helm:
-#        values: |
-#          mig:
-#            strategy: none
-#          daemonsets:
-#            tolerations:
-#              - key: "gpu"
-#                operator: "Equal"
-#                value: "worker"
-#                effect: "NoSchedule"
-#  destination:
-#    namespace: gpu-operator
-#    name: staging
-#  project: staging
-#  syncPolicy:
-#    syncOptions:
-#    - CreateNamespace=true
-#    - ServerSideApply=true
-#    automated:
-#      prune: true
-#      selfHeal: true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gpu-operator-prod
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  sources:
+    - repoURL: https://helm.ngc.nvidia.com/nvidia
+      chart: gpu-operator
+      targetRevision: v26.3.1
+      helm:
+        values: |
+          mig:
+            strategy: none
+          daemonsets:
+            tolerations:
+              - key: "gpu"
+                operator: "Equal"
+                value: "worker"
+                effect: "NoSchedule"
+  destination:
+    namespace: gpu-operator
+    name: prod
+  project: prod
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gpu-operator-staging
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  sources:
+    - repoURL: https://helm.ngc.nvidia.com/nvidia
+      chart: gpu-operator
+      targetRevision: v26.3.1
+      helm:
+        values: |
+          mig:
+            strategy: none
+          daemonsets:
+            tolerations:
+              - key: "gpu"
+                operator: "Equal"
+                value: "worker"
+                effect: "NoSchedule"
+  destination:
+    namespace: gpu-operator
+    name: staging
+  project: staging
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true

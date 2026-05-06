@@ -48,15 +48,6 @@ spec:
         values: |
           mig:
             strategy: none
-          operator:
-            defaultRuntime: containerd  # Force the operator to use containerd
-          toolkit:
-            enabled: true
-            env:
-              - name: CONTAINERD_CONFIG_DIR
-                value: /etc/containerd/conf.d
-              - name: CONTAINERD_CONFIG
-                value: /etc/containerd/conf.d/99-nvidia.toml
           daemonsets:
             tolerations:
               - key: "nvidia.com/gpu"

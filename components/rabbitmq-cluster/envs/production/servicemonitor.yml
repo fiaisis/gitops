@@ -25,20 +25,12 @@ spec:
         # serverName: '*.RABBITMQ-INSTANCE-NAME.NAMESPACE.svc.cluster.local'
   - port: prometheus
     scheme: http
-    path: /metrics/detailed
-    params:
-      family:
-        - queue_coarse_metrics
-        - queue_metrics
+    path: /metrics/per-object
     interval: 15s
     scrapeTimeout: 14s
   - port: prometheus-tls
     scheme: https
-    path: /metrics/detailed
-    params:
-      family:
-        - queue_coarse_metrics
-        - queue_metrics
+    path: /metrics/per-object
     interval: 15s
     scrapeTimeout: 14s
     tlsConfig:

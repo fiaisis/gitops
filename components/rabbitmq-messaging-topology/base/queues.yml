@@ -25,3 +25,16 @@ spec:
   durable: true
   rabbitmqClusterReference:
     name: rabbitmq-cluster
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: failed-watched-files
+  namespace: rabbitmq-system
+spec:
+  name: failed-watched-files
+  type: quorum
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster

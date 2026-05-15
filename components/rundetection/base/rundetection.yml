@@ -18,52 +18,6 @@ spec:
         searches:
           - isis.cclrc.ac.uk
       containers:
-        - name: imat-loader
-          image: alpine
-          securityContext:
-            privileged: true
-          command: ["sh", "-c"]
-          args:
-            - |
-              apk add --no-cache cifs-utils
-              mkdir -p /imat
-              if [ ${STAGING} == true ]; then
-                sleep 10000000
-              fi
-              
-              while true; do
-                if [ ! -f /imat/lastrun.txt ]; then
-                  echo "$(date): Attempting to mount IMAT share..."
-                  if mount -t cifs //NDXIMAT.isis.cclrc.ac.uk/data$ /imat \
-                    -o username=${IMAT_USER},password=${IMAT_PASSWORD},vers=2.1,ro,noserverino,_netdev 2>/dev/null; then
-                    echo "$(date): IMAT share mounted successfully"
-                  else
-                    echo "$(date): Failed to mount IMAT share, retrying in 5s..."
-                    sleep 5
-                  fi
-                else
-                  echo "$(date): IMAT is mounted"
-                  sleep 60
-                fi
-              done
-          env:
-            - name: IMAT_USER
-              valueFrom:
-                secretKeyRef:
-                  name: imat-creds
-                  key: username
-            - name: IMAT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: imat-creds
-                  key: password
-            - name: STAGING
-              value: "true"
-          volumeMounts:
-            - name: imat-mount
-              mountPath: /imat
-              mountPropagation: Bidirectional
-
         - name: rundetection
           image: ghcr.io/fiaisis/rundetection@sha256:9089be19accf0258c1fed449ace7cb1a88ca1795ef287b1f6eb15cb75ed3dd8e
           readinessProbe:
@@ -132,7 +86,6 @@ spec:
               mountPath: /ngem
             - name: imat-mount
               mountPath: /imat
-              mountPropagation: HostToContainer
       volumes:
         - name: runner-extra-files
           persistentVolumeClaim:
@@ -141,8 +94,16 @@ spec:
           persistentVolumeClaim:
             claimName: rundetection-archive-pvc
             readOnly: true
-        - name: imat-mount
-          emptyDir: {}
         - name: ngem-mount
           persistentVolumeClaim:
             claimName: rundetection-ngem-pvc
+        - name: imat-mount
+          csi:
+            driver: smb.csi.k8s.io
+            volumeAttributes:
+              source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
+              secretName: "smb-bridge-imat"
+              secretNamespace: "fia"
+              mountOptions: "vers=3.0,nodfs,ro"
+            nodePublishSecretRef:
+              name: smb-bridge-imat

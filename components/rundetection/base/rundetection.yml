@@ -128,6 +128,8 @@ spec:
               mountPath: /archive
             - name: runner-extra-files
               mountPath: /extras
+            - name: ngem-mount
+              mountPath: /ngem
             - name: imat-mount
               mountPath: /imat
               mountPropagation: HostToContainer
@@ -141,3 +143,6 @@ spec:
             readOnly: true
         - name: imat-mount
           emptyDir: {}
+        - name: ngem-mount
+          persistentVolumeClaim:
+            claimName: rundetection-ngem-pvc

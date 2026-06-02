@@ -3,9 +3,6 @@ kind: Kustomization
 resources:
 - ../../base
 
-components:
-  - ../../variants/production
-
 patches:
 - path: rundetection.yml
 - path: rundetection-secret.yml

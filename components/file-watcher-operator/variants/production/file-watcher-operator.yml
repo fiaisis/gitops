@@ -11,6 +11,6 @@ spec:
         - name: file-watcher-operator
           env:
             - name: DB_IP
-              value: dbspgha01.fds.rl.ac.uk
+              value: dbspgha-prod01.fds.rl.ac.uk
             - name: DB_PORT
-              value: "5432"
+              value: "6432"

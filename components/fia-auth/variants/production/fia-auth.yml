@@ -15,6 +15,6 @@ spec:
             - name: UOWS_URL
               value: https://api.facilities.rl.ac.uk/users-service
             - name: DB_IP
-              value: dbspgha01.fds.rl.ac.uk # Production
+              value: dbspgha-prod01.fds.rl.ac.uk # Production
             - name: DB_PORT
-              value: "5432"
+              value: "6432"

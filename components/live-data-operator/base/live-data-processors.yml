@@ -6,3 +6,12 @@ metadata:
  name: merlin
 spec:
  instrument: MERLIN
+
+---
+
+apiVersion: "fia.com/v1"
+kind: LiveDataProcessor
+metadata:
+ name: pearl_setup
+spec:
+ instrument: PEARL_SETUP

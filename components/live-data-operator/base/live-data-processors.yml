@@ -12,6 +12,6 @@ spec:
 apiVersion: "fia.com/v1"
 kind: LiveDataProcessor
 metadata:
- name: vesuvio
+ name: pearlsetup
 spec:
- instrument: VESUVIO
+ instrument: PEARL_SETUP

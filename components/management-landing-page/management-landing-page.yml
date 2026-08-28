@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: management-landing-page
-          image: ghcr.io/fiaisis/management-landing-page@sha256:827c2887c543e34ea88ba7ea3db08b0297dd548886962faeb87a88c8825cad89
+          image: ghcr.io/fiaisis/management-landing-page@sha256:ed158896e2d993e58094a0943c5a046032faa452ca831101002c8203b503cf24
           ports:
             - name: web-port
               protocol: TCP

@@ -105,12 +105,22 @@ metadata:
     argocd.argoproj.io/sync-wave: "-10"
 spec:
   project: prod
-  source:
+  sources:
+  - repoURL: oci://docker.io/envoyproxy/gateway-helm
     chart: gateway-helm
-    repoURL: docker.io/envoyproxy
-    targetRevision: v1.7.1
+    targetRevision: v1.9.1
     helm:
-      releaseName: envoy-gateway
+      values: |
+        crds:
+          enabled: true
+
+        config:
+          envoyGateway:
+            provider:
+              type: Kubernetes
+            logging:
+              level:
+                default: info
   destination:
     namespace: envoy-gateway-system
     name: prod

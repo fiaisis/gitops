@@ -13,7 +13,7 @@ spec:
           image: ghcr.io/fiaisis/jobcreator@sha256:81f0067c07625a9b9d708bc17127da7bdc80d8d2ad601085ce70fa2e884df325
           env:
             - name: WATCHER_SHA
-              value: 955f76f616097420f12809ffaf7bbbc5cbc30e39a32fcf6b1b9faec39f55d88a
+              value: 63864622a27ee746a21cb9005e918aae72c65e16419ad2e8094a1ac7f1475d8b
             - name: DEFAULT_RUNNER_SHA
               value: 0a0d9f1aa88fec49be4ee30356b51bddae822067f2e5fb8042a08ddf0f6ea288
             - name: IMAGING_RUNNER_SHA

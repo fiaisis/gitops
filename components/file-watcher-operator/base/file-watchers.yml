@@ -76,6 +76,6 @@ kind: FileWatcher
 metadata:
   name: gem
 spec:
-  lastrunFilePath: "/archive/NDXVESUVIO/Instrument/logs/lastrun.txt"
+  lastrunFilePath: "/archive/NDXGEM/Instrument/logs/lastrun.txt"
   instrumentFolder: NDXGEM
   filePrefix: GEM

@@ -69,3 +69,13 @@ spec:
   specialPV: imat
   instrumentFolder: NDXIMAT
   filePrefix: IMAT
+---
+# GEM
+apiVersion: fia.com/v1
+kind: FileWatcher
+metadata:
+  name: gem
+spec:
+  lastrunFilePath: "/archive/NDXGEM/Instrument/logs/lastrun.txt"
+  instrumentFolder: NDXGEM
+  filePrefix: GEM

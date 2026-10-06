@@ -20,10 +20,6 @@ spec:
                 operator: "Equal"
                 value: "worker"
                 effect: "NoSchedule"
-          toolkit:
-            env:
-              - name: RUNTIME_RESTART_MODE
-                value: "systemd"
   destination:
     namespace: gpu-operator
     name: prod
@@ -58,10 +54,6 @@ spec:
                 operator: "Equal"
                 value: "worker"
                 effect: "NoSchedule"
-          toolkit:
-            env:
-              - name: RUNTIME_RESTART_MODE
-                value: "systemd"
   destination:
     namespace: gpu-operator
     name: staging

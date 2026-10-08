@@ -20,6 +20,10 @@ spec:
                 operator: "Equal"
                 value: "worker"
                 effect: "NoSchedule"
+          toolkit:
+            env:
+              - name: RUNTIME_CONFIG_SOURCE
+                value: "file"
   destination:
     namespace: gpu-operator
     name: prod
@@ -54,6 +58,10 @@ spec:
                 operator: "Equal"
                 value: "worker"
                 effect: "NoSchedule"
+          toolkit:
+            env:
+              - name: RUNTIME_CONFIG_SOURCE
+                value: "file"
   destination:
     namespace: gpu-operator
     name: staging

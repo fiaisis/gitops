@@ -81,6 +81,10 @@ spec:
               key: fia_github_package_token
         - name: QUEUE_HOST
           value: rabbitmq-cluster.rabbitmq-system.svc.cluster.local
+        - name: ARCHIVE_DIR
+          value: /archive
+        - name: IMAT_DIR
+          value: /imat
         ports:
           - name: api-port
             protocol: TCP
@@ -102,6 +106,10 @@ spec:
             mountPath: /extras
           - name: cephfs-mount
             mountPath: /ceph
+          - name: archive-mount
+            mountPath: /archive
+          - name: imat-mount
+            mountPath: /imat
       volumes:
         - name: extras-files
           persistentVolumeClaim:
@@ -109,3 +117,17 @@ spec:
         - name: cephfs-mount
           persistentVolumeClaim:
             claimName: fia-api-ceph-pvc
+        - name: archive-mount
+          persistentVolumeClaim:
+            claimName: fia-api-archive-pvc
+            readOnly: true
+        - name: imat-mount
+          csi:
+            driver: smb.csi.k8s.io
+            volumeAttributes:
+              source: "//smb-bridge-imat.fia.svc.cluster.local/imat"
+              secretName: "smb-bridge-imat"
+              secretNamespace: "fia"
+              mountOptions: "vers=3.0,nodfs,ro"
+            nodePublishSecretRef:
+              name: smb-bridge-imat

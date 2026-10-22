@@ -10,3 +10,11 @@ spec:
       containers:
         - name: llsp-worker
           image: ghcr.io/fiaisis/llsp-worker@sha256:a839f910c0f749f398fd37b2d63831b3a59f60a78bfb2a0ae1d2fa4e6e875d1e
+          env:
+            - name: API_BASE_URL
+              value: http://fia-api-service.fia.svc.cluster.local:80
+            - name: API_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: fia-api
+                  key: fia_api_api_key

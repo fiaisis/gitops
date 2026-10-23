@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: llsp-api
-          image: ghcr.io/fiaisis/llsp-api@sha256:011bc9ad1befb4809502fffbb2b6fa30797726a9c434d5ce917052e56fc3ecb9
+          image: ghcr.io/fiaisis/llsp-api@sha256:89ca65e1fa79529dcb591e72cfd12a40f9f654a52837ddaa02869e3449f7ae75

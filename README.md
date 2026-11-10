@@ -79,9 +79,7 @@ Add cluster using CLI for prod
 argocd --port-forward --port-forward-namespace=argocd cluster add prod --yes
 ```
 
-Deploy the app of apps
-
-Reseal all of the secrets for the bitnami sealedsecrets operator in staging and prod then push the changes to Gitops
+Ensure the Vault Secrets Operator (`VaultConnection` and `VaultAuth` in `components/vault-config/`) is configured for `management`, `staging`, and `prod` so `VaultStaticSecret` resources can sync secrets from Vault (`https://secrets.isis.rl.ac.uk`), then deploy the app of apps.
 
 # How to deploy the app of apps
 

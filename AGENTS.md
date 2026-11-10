@@ -160,6 +160,32 @@ Because `prod_release.yml` **blindly overwrites `envs/production/<service>.yml` 
 *(Note: `README.md`'s example tree shows `envs/prod/` and `variants/prod/`; in the actual repo on
 `main`, most components use `envs/production/` and `variants/production/`.)*
 
+### Manifests are mostly not commented
+
+YAML under `apps/` and `components/` carries few explanatory comments: manifests here are considered
+largely self-explanatory, and the structure around them — `base/`, `envs/`, `variants/`, one directory
+per service, `deployment.yml` per ArgoCD Application — already says what a resource is and which
+environment it belongs to. Write the manifest without narration. The reasoning behind a specific digest,
+replica count, resource limit, or probe timeout belongs in the commit message, where it stays attached to
+the change that introduced it instead of quietly detaching from a line that gets edited later.
+
+The exception, and the reason this says *mostly*, is a value that does something its own key does not
+say. `components/plotting-service/base/httproute.yml` keeps `request: 0s  # Disables the 15-second Envoy
+drop`, because `0s` reads as "instant" and actually means "no ceiling", and the `# RULE 1` / `# RULE 2`
+markers in that file carry a route ordering the YAML itself cannot express. Around a fifth of the
+manifests here carry a comment, and nearly all of them are of that kind. A comment that would only
+restate the key, the filename, or the directory is not that kind, and should not be written.
+
+When a value encodes a constraint that reaches outside this repository — a Service name that another
+service's default URL resolves to, a size cap that has to equal another service's cap, a probe path that
+an image is built to answer — record it in the repository that owns the value (its `README.md` /
+`AGENTS.md`), not in the manifest that happens to set it. A comment in this repo about another repo's
+behaviour is the first thing to go stale, and `envs/<env>/<service>.yml` is rewritten in place by sibling
+CI with `yq`, so comments placed there have no guaranteed lifetime at all.
+
+Omissions are also self-explanatory: no `envs/production/` means the service is not in production, and no
+`httproute.yml` means it is not exposed outside the cluster. Do not comment the absence of either.
+
 ---
 
 ## Secrets management (`VaultStaticSecret`) — strict agent rules

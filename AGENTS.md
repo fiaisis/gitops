@@ -160,6 +160,32 @@ Because `prod_release.yml` **blindly overwrites `envs/production/<service>.yml` 
 *(Note: `README.md`'s example tree shows `envs/prod/` and `variants/prod/`; in the actual repo on
 `main`, most components use `envs/production/` and `variants/production/`.)*
 
+### Manifests are mostly not commented
+
+YAML under `apps/` and `components/` carries few explanatory comments: manifests here are considered
+largely self-explanatory, and the structure around them — `base/`, `envs/`, `variants/`, one directory
+per service, `deployment.yml` per ArgoCD Application — already says what a resource is and which
+environment it belongs to. Write the manifest without narration. The reasoning behind a specific digest,
+replica count, resource limit, or probe timeout belongs in the commit message, where it stays attached to
+the change that introduced it instead of quietly detaching from a line that gets edited later.
+
+The exception, and the reason this says *mostly*, is a value that does something its own key does not
+say. `components/plotting-service/base/httproute.yml` keeps `request: 0s  # Disables the 15-second Envoy
+drop`, because `0s` reads as "instant" and actually means "no ceiling", and the `# RULE 1` / `# RULE 2`
+markers in that file carry a route ordering the YAML itself cannot express. Around a fifth of the
+manifests here carry a comment, and nearly all of them are of that kind. A comment that would only
+restate the key, the filename, or the directory is not that kind, and should not be written.
+
+When a value encodes a constraint that reaches outside this repository — a Service name that another
+service's default URL resolves to, a size cap that has to equal another service's cap, a probe path that
+an image is built to answer — record it in the repository that owns the value (its `README.md` /
+`AGENTS.md`), not in the manifest that happens to set it. A comment in this repo about another repo's
+behaviour is the first thing to go stale, and `envs/<env>/<service>.yml` is rewritten in place by sibling
+CI with `yq`, so comments placed there have no guaranteed lifetime at all.
+
+Omissions are also self-explanatory: no `envs/production/` means the service is not in production, and no
+`httproute.yml` means it is not exposed outside the cluster. Do not comment the absence of either.
+
 ---
 
 ## Secrets management (`VaultStaticSecret`) — strict agent rules
@@ -290,7 +316,14 @@ Check `gh issue list` / `gh issue view <number>` first to avoid duplicates.
      for manifest changes" above.
   2. **PR title**: normal grammar/sentence case (do not use `snake_case`).
   3. **PR description**: use the org-wide default template from `fiaisis/.github`
-     (`Closes # <Issue Number>` + `## Description`; ask the user if no issue number is evident).
+     (`Closes # <Issue Number>` + `## Description`). **A PR here often has no issue**, which is normal and
+     not something to work around: adding a component, retuning a manifest, or wiring in a new service is
+     usually raised in review rather than as an issue, and most of `main`'s history is machine-generated
+     `[CD]` bumps with none behind them. When there is no issue, say so on that line
+     (`Closes # (no issue filed for this work)`) or drop it, and carry the trail in `## Description`
+     instead — links to the sibling PRs in the other FIA repos are the usual evidence of what a change is
+     part of. Do not invent an issue, and do not attach an unrelated one to satisfy the template. Ask the
+     user only when an issue would genuinely change how the change is reviewed.
   4. **AI-assistance label**: attach a label to the PR indicating that it was made with the
      assistance of AI. Check existing labels first with `gh label list` (e.g. `AI` or `AI_code` in
      this org) and apply the matching label via `gh pr create --label <label>` or

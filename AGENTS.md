@@ -316,7 +316,14 @@ Check `gh issue list` / `gh issue view <number>` first to avoid duplicates.
      for manifest changes" above.
   2. **PR title**: normal grammar/sentence case (do not use `snake_case`).
   3. **PR description**: use the org-wide default template from `fiaisis/.github`
-     (`Closes # <Issue Number>` + `## Description`; ask the user if no issue number is evident).
+     (`Closes # <Issue Number>` + `## Description`). **A PR here often has no issue**, which is normal and
+     not something to work around: adding a component, retuning a manifest, or wiring in a new service is
+     usually raised in review rather than as an issue, and most of `main`'s history is machine-generated
+     `[CD]` bumps with none behind them. When there is no issue, say so on that line
+     (`Closes # (no issue filed for this work)`) or drop it, and carry the trail in `## Description`
+     instead — links to the sibling PRs in the other FIA repos are the usual evidence of what a change is
+     part of. Do not invent an issue, and do not attach an unrelated one to satisfy the template. Ask the
+     user only when an issue would genuinely change how the change is reviewed.
   4. **AI-assistance label**: attach a label to the PR indicating that it was made with the
      assistance of AI. Check existing labels first with `gh label list` (e.g. `AI` or `AI_code` in
      this org) and apply the matching label via `gh pr create --label <label>` or

@@ -1,0 +1,12 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mantid-python-script-lsp
+  namespace: fia
+spec:
+  template:
+    spec:
+      containers:
+        - name: mantid-python-script-lsp
+          image: ghcr.io/fiaisis/mantid-python-script-lsp@sha256:c83f2b01f2113c5010a4c1e207ee4dab645ee681c61c46406dfed113d03704e8

@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: llsp-worker
-          image: ghcr.io/fiaisis/llsp-worker@sha256:fe958de7679f9565ba23a480dc39aa260f1c9b652ed6f63ae489ee8330938033
+          image: ghcr.io/fiaisis/llsp-worker@sha256:4f09289537f3c24bea7f8e6139373663183b75616cd8278be4282355efc62116
           env:
             - name: API_BASE_URL
               value: http://fia-api-service.fia.svc.cluster.local:80

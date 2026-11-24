@@ -284,6 +284,42 @@ Never attempt to read or inspect Kubernetes `Secret` resources in any cluster (`
 do not `kubectl apply` or `kubectl edit` ArgoCD-managed resources directly on `staging` or `prod`;
 make the change in this repository instead.
 
+### Inspecting live RabbitMQ queues (e.g. "what is on failed-watched-files?")
+
+The `RabbitmqCluster` is `rabbitmq-cluster` in the `rabbitmq-system` namespace of the target cluster,
+so broker state is read from the broker itself with `kubectl exec` rather than from anything in this
+repo. `components/rabbitmq-messaging-topology/base/queues.yml` declares `watched-files`,
+`scheduled-jobs` and `failed-watched-files` in the default `/` vhost; LLSP traffic is in the separate
+`llspvhost` vhost.
+
+1. Check depth, consumers and state first — `rabbitmqctl` authenticates over the node-local Erlang
+   socket inside the pod, so it needs no credentials:
+   ```shell
+   kubectl exec -n rabbitmq-system rabbitmq-cluster-server-0 --context prod -- \
+     rabbitmqctl list_queues name messages consumers state
+   ```
+   A queue with messages and `0` consumers is a backed-up failure, not slow consumption.
+2. Read the messages themselves **without removing them** — `ackmode=ack_requeue_true` puts each
+   fetched message straight back on the queue, so this is safe to run against prod (the older
+   `ackrequeue=` argument is not recognised by this `rabbitmqadmin`):
+   ```shell
+   kubectl exec -n rabbitmq-system rabbitmq-cluster-server-0 --context prod -- \
+     bash -c 'HOME=/var/lib/rabbitmq rabbitmqadmin --vhost=/ get queue=failed-watched-files count=1 ackmode=ack_requeue_true'
+   ```
+   `HOME=/var/lib/rabbitmq` makes `rabbitmqadmin` pick up the pod's own admin config,
+   `/var/lib/rabbitmq/.rabbitmqadmin.conf`, for credentials — use it, never `cat` it, and never fetch
+   a `Secret` for it (see the secrets rules above). `exec` lands in the `rabbitmq` container as the
+   `rabbitmq` user, which is why the `Defaulted container "rabbitmq"` notice is expected. Add
+   `format=raw_json` to see message properties/headers instead of the table, and
+   `--vhost=llspvhost` for LLSP queues. `ack_requeue_false` is the destructive mode — drop
+   `ack_requeue_true` only when the user has asked for the messages to be cleared.
+
+Report back with the cluster, vhost and queue name, the message count from step 1, and the payload
+verbatim — `watched-files` / `failed-watched-files` payloads are the watched file path as a bare
+string (e.g. `/imat/IMAT00040843.nxs`), with no headers carrying the failure reason; the `exchange`
+and `routing_key` columns show how it was published. Say explicitly that the message is still on the
+queue so the user knows nothing was consumed.
+
 ## Managing issues
 
 This repo has no local `.github/ISSUE_TEMPLATE/`; GitHub serves the org-wide default template from
